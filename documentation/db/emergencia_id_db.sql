@@ -96,7 +96,7 @@ CREATE INDEX "fkIdx_77" ON "condicion_medica"
 
 CREATE TABLE "seguro_medico"
 (
- "id_seguro"          int NOT NULL GENERATED ALWAYS AS IDENTITY,
+ "id_seguro"          serial NOT NULL,
  "compania"           varchar(100) NOT NULL,
  "num_identificacion" varchar(50) NOT NULL,
  "deducible"          numeric(9,2) NOT NULL,
@@ -226,7 +226,7 @@ CREATE TABLE "organizacion"
  "id_organizacion" serial NOT NULL,
  "nombre"          varchar(100) NOT NULL,
  "logo"            varchar(75) NOT NULL,
- CONSTRAINT "PK_tipo_usuario_p" PRIMARY KEY ( "id_organizacion" )
+ CONSTRAINT "PK_organizacion_p" PRIMARY KEY ( "id_organizacion" )
 );
 
 
