@@ -139,7 +139,7 @@ CREATE TABLE "usuario_medicacion"
  "id_medicacion" serial NOT NULL,
  "nombre"        varchar(100) NOT NULL,
  "dosis"         varchar(25) NOT NULL,
- "frecuencia"    varchar(15) NOT NULL,
+ "frecuencia"    varchar(25) NOT NULL,
  "notas"         varchar(800),
  "adjunto"       varchar(75) UNIQUE,
  "id_usuario"    integer NOT NULL,
