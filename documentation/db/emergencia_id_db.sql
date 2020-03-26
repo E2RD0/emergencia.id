@@ -6,13 +6,13 @@ CREATE TABLE "usuario"
  "email"            varchar(150) NOT NULL,
  "telefono"         varchar(35) NOT NULL,
  "password"         char(98) NOT NULL,
- "uid"              char(5) NOT NULL,
+ "uid"              char(5) NOT NULL, /*Unique identifier*/
  "pin"              smallint NOT NULL,
  "direccion"        varchar(250) NOT NULL,
  "foto"             varchar(75) NOT NULL,
- "tipo_sangre"      char(2) NOT NULL,
+ "tipo_sangre"      varchar(5) NOT NULL,
  "fecha_nacimiento" date NOT NULL,
- "dui"              char(10) NOT NULL,
+ "di"               varchar(25) NOT NULL, /*Documento de identidad*/
  "es_donador"       boolean NOT NULL,
  "listado"          boolean NOT NULL,
  "ciudad"           varchar(50) NOT NULL,
