@@ -3,20 +3,20 @@ CREATE TABLE "usuario"
  "id_usuario"       serial,
  "nombres"          varchar(100) NOT NULL,
  "apellidos"        varchar(100) NOT NULL,
- "email"            varchar(150) NOT NULL,
- "telefono"         varchar(35) NOT NULL,
- "password"         char(98) NOT NULL,
- "uid"              char(5) NOT NULL, /*Unique identifier*/
+ "email"            varchar(150) UNIQUE NOT NULL,
+ "telefono"         varchar(35) UNIQUE,
+ "clave"            char(98) NOT NULL,
+ "uid"              char(5) UNIQUE NOT NULL, /*Unique identifier*/
  "pin"              smallint NOT NULL,
- "direccion"        varchar(250) NOT NULL,
- "foto"             varchar(75) NOT NULL,
- "tipo_sangre"      varchar(5) NOT NULL,
- "fecha_nacimiento" date NOT NULL,
- "di"               varchar(25) NOT NULL, /*Documento de identidad*/
- "es_donador"       boolean NOT NULL,
- "listado"          boolean NOT NULL,
- "ciudad"           varchar(50) NOT NULL,
- "estado"           varchar(50) NOT NULL,
+ "direccion"        varchar(250),
+ "foto"             varchar(75) UNIQUE,
+ "tipo_sangre"      varchar(5),
+ "fecha_nacimiento" date,
+ "di"               varchar(25), /*Documento de identidad*/
+ "es_donador"       boolean,
+ "listado"          boolean NOT NULL DEFAULT 't',
+ "ciudad"           varchar(50),
+ "estado"           varchar(50),
  "pais"             varchar(50) NOT NULL,
  CONSTRAINT "PK_usuario" PRIMARY KEY ( "id_usuario" )
 );
@@ -27,7 +27,7 @@ CREATE TABLE "usuario_alergia"
 (
  "id_alergia" serial,
  "alergia"    varchar(200) NOT NULL,
- "reaccion"   varchar(800) NOT NULL,
+ "reaccion"   varchar(800),
  "id_usuario" integer NOT NULL,
  CONSTRAINT "PK_alergia" PRIMARY KEY ( "id_alergia" ),
  CONSTRAINT "FK_43" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" )
@@ -80,8 +80,8 @@ CREATE TABLE "condicion_medica"
 (
  "id_condicion" serial NOT NULL,
  "condicion"    varchar(200) NOT NULL,
- "notas"        varchar(800) NOT NULL,
- "adjunto"      varchar(75) NOT NULL,
+ "notas"        varchar(800),
+ "adjunto"      varchar(75) UNIQUE,
  "id_usuario"   integer NOT NULL,
  CONSTRAINT "PK_condicion_medica" PRIMARY KEY ( "id_condicion" ),
  CONSTRAINT "FK_77" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" )
@@ -99,10 +99,10 @@ CREATE TABLE "seguro_medico"
  "id_seguro"          serial NOT NULL,
  "compania"           varchar(100) NOT NULL,
  "num_identificacion" varchar(50) NOT NULL,
- "deducible"          numeric(9,2) NOT NULL,
- "telefono"           varchar(35) NOT NULL,
- "notas"              varchar(800) NOT NULL,
- "adjunto"            varchar(75) NOT NULL,
+ "deducible"          numeric(9,2),
+ "telefono"           varchar(35),
+ "notas"              varchar(800),
+ "adjunto"            varchar(75) UNIQUE,
  "id_usuario"         integer NOT NULL,
  CONSTRAINT "PK_seguro_medico" PRIMARY KEY ( "id_seguro" ),
  CONSTRAINT "FK_80" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" )
@@ -119,9 +119,9 @@ CREATE TABLE "procedimiento_medico"
 (
  "id_procedimiento" serial NOT NULL,
  "procedimiento"    varchar(200) NOT NULL,
- "fecha"            date NOT NULL,
- "hospital"         varchar(200) NOT NULL,
- "adjunto"          varchar(75) NOT NULL,
+ "fecha"            date,
+ "hospital"         varchar(200),
+ "adjunto"          varchar(75) UNIQUE,
  "id_usuario"       integer NOT NULL,
  CONSTRAINT "PK_procedimiento_medico" PRIMARY KEY ( "id_procedimiento" ),
  CONSTRAINT "FK_91" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" )
@@ -140,8 +140,8 @@ CREATE TABLE "usuario_medicacion"
  "nombre"        varchar(100) NOT NULL,
  "dosis"         varchar(25) NOT NULL,
  "frecuencia"    varchar(15) NOT NULL,
- "notas"         varchar(800) NOT NULL,
- "adjunto"       varchar(75) NOT NULL,
+ "notas"         varchar(800),
+ "adjunto"       varchar(75) UNIQUE,
  "id_usuario"    integer NOT NULL,
  CONSTRAINT "PK_usuario_medicacion" PRIMARY KEY ( "id_medicacion" ),
  CONSTRAINT "FK_74" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" )
@@ -196,7 +196,7 @@ CREATE INDEX "fkIdx_135" ON "usuarios_compartir"
 CREATE TABLE "enlaces_compartir"
 (
  "id_enlace"        serial NOT NULL,
- "enlace"           varchar(75) NOT NULL,
+ "enlace"           varchar(75) UNIQUE NOT NULL,
  "fecha_creacion"   timestamptz NOT NULL,
  "fecha_expiracion" timestamptz NOT NULL,
  "num_visitas"      int NOT NULL,
@@ -215,7 +215,7 @@ CREATE INDEX "fkIdx_138" ON "enlaces_compartir"
 CREATE TABLE "tipo_usuario_p"
 (
  "id_tipo_usuario_p" serial NOT NULL,
- "tipo"              varchar(50) NOT NULL,
+ "tipo"              varchar(50) UNIQUE NOT NULL,
  CONSTRAINT "PK_tipo_usuario_p" PRIMARY KEY ( "id_tipo_usuario_p" )
 );
 
@@ -224,8 +224,9 @@ CREATE TABLE "tipo_usuario_p"
 CREATE TABLE "organizacion"
 (
  "id_organizacion" serial NOT NULL,
- "nombre"          varchar(100) NOT NULL,
- "logo"            varchar(75) NOT NULL,
+ "nombre"          varchar(100) UNIQUE NOT NULL,
+ "telefono"        varchar(35) UNIQUE,
+ "logo"            varchar(75) UNIQUE,
  CONSTRAINT "PK_organizacion_p" PRIMARY KEY ( "id_organizacion" )
 );
 
@@ -236,9 +237,9 @@ CREATE TABLE "usuario_privilegiado"
  "id_usuario_p"      serial NOT NULL,
  "nombres"           varchar(100) NOT NULL,
  "apellidos"         varchar(100) NOT NULL,
- "email"             varchar(150) NOT NULL,
- "telefono"          varchar(35) NOT NULL,
- "password"          char(98) NOT NULL,
+ "email"             varchar(150) UNIQUE NOT NULL,
+ "telefono"          varchar(35) UNIQUE NOT NULL,
+ "clave"             char(98) NOT NULL,
  "id_tipo_usuario_p" integer NOT NULL,
  "id_organizacion"   integer NOT NULL,
  CONSTRAINT "PK_usuario_privilegiado" PRIMARY KEY ( "id_usuario_p" ),
@@ -261,7 +262,7 @@ CREATE INDEX "fkIdx_114" ON "usuario_privilegiado"
 CREATE TABLE "accion_bitacora"
 (
  "id_accion_bitacora" serial NOT NULL,
- "accion"             varchar(100) NOT NULL,
+ "accion"             varchar(100) UNIQUE NOT NULL,
  CONSTRAINT "PK_accion_bitacora" PRIMARY KEY ( "id_accion_bitacora" )
 );
 
