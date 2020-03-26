@@ -1,0 +1,150 @@
+INSERT INTO accion_bitacora
+    (
+    accion)
+VALUES
+    ('Agregar'),
+    ('Actualizar'),
+    ('Eliminar'),
+    ('Inicio de sesión'),
+    ('Cambio de contraseña'),
+    ('Perfil compartido');
+
+INSERT INTO condicion_medica
+    (
+    condicion, notas, adjunto, id_usuario)
+VALUES
+    ('Hipertensión', 'Surgio en el 2018', '/documents/9xyeX9MEQA.pdf', 9),
+    ('Asma', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/i91dtZzsiP.png', 12),
+    ('Dermatitis atópica', 'Siento dolores externos a la enfermedad también', '/documents/DFjNK2gEZY.docx', 25),
+    ('Gonorrea', 'Comenze a sentir los sintomas el dia 17 de Junio del 2019', '/documents/WhM4nZpy86.docx', 13),
+    ('Insuficiencia cardiaca', 'A finales de este mes (enero 2020) comenze a sentir los malestares de esta enfermedad', '/documents/X0RSHyaMdJ.png', 5),
+    ('Gonorrea', 'Me recetaron medicinas pero las perdi', '/documents/rGx6I7ztSZ.png', 14),
+    ('Hepatitis A', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/QV8MTxmOg0.pdf', 24),
+    ('Lepra', 'Comenze a sentir estos malestares al final del 2019', '/documents/TZvh2JR4hk.txt', 8),
+    ('Hipertensión', 'A finales de este mes (enero 2020) comenze a sentir los malestares de esta enfermedad', '/documents/9d4W0nZ92m.txt', 28),
+    ('Faringitis', 'Me sentia mal desde hace unos dias, pero no le hice caso a la enfermedad', '/documents/GFyoG0wwRo.txt', 29),
+    ('Lepra', 'A finales de este mes (enero 2020) comenze a sentir los malestares de esta enfermedad', '/documents/OPTPgkWaeB.docx', 2),
+    ('Malaria', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/vhEhrRtto9.png', 3),
+    ('Hipertensión', 'Me recetaron medicinas pero las perdi', '/documents/neIXL1osRy.pdf', 15),
+    ('Glaucoma', 'Surgio a inicios de este año (2020)', '/documents/FNgx7sVkbt.png', 27),
+    ('Linfoma', 'Siento dolores externos a la enfermedad también', '/documents/E09VStrrBM.png', 26),
+    ('Dengue', 'Me sentia mal desde hace unos dias, pero no le hice caso a la enfermedad', '/documents/eRFPOGqIpx.png', 20),
+    ('Insuficiencia cardiaca', 'Surgio a finales de esta semana (09 de Jun del 2020)', '/documents/V6xVWr3EUC.txt', 10),
+    ('Linfoma', 'Comenze a sentir los sintomas el dia 28 de Junio del 2019', '/documents/vzCC9FVdCu.jpg', 21),
+    ('Faringitis', 'Tome todas mis medicinas pero no me hicieron efecto alguno', '/documents/NjK944r2bL.docx', 11),
+    ('Hepatitis A', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/BoMBd66uZw.pdf', 22),
+    ('Hipertensión', 'Me sentia mal desde hace unos dias, pero no le hice caso a la enfermedad', '/documents/6xsZaMkILH.docx', 4),
+    ('Asma', 'Me dio mucho dolor de cuerpo esta madrugada (29 de Jun 2020)', '/documents/CVSQx1Frt0.pdf', 20),
+    ('Dengue', 'Un medico me receto una medicina que se me fue dificil tomarmela', '/documents/GC0iGaape0.pdf', 23),
+    ('Juanetes', 'Surgio a inicios de este año (2020)', '/documents/KpJgtOHKrY.docx', 19),
+    ('Glaucoma', 'Me recetaron medicinas pero las perdi', '/documents/1jyvMxicJ2.docx', 6),
+    ('Dermatitis atópica', 'Me dio mucho dolor de cuerpo esta madrugada (29 de Jun 2020)', '/documents/IN48LW6I6H.pdf', 16),
+    ('Asma', 'Me dio mucho dolor de cuerpo esta madrugada (29 de Jun 2020)', '/documents/CDFiimnv6c.png', 18),
+    ('Malaria', 'Comenze a sentir estos malestares al final del 2019', '/documents/Pbqa3JTD0K.png', 7),
+    ('Hipertensión', 'Un medico me receto una medicina que se me fue dificil tomarmela', '/documents/vJatqtMNVp.txt', 17),
+    ('Dermatitis atópica', 'Surgio a inicios de este año (2020)', '/documents/StWxkbcJ56.png', 1);
+
+INSERT INTO contacto_doctor
+    (
+    nombre, telefono, cargo, id_usuario)
+VALUES
+    ('Alfonso Ayala Hernandez', '+50375028568', 'Medico general', 27),
+    ('Guillermo Enrique Bahamonde', '+50379914332', 'Pediatra', 30),
+    ('David Salvador Canas', '+50361116944', 'Pediatra', 2),
+    ('Manuel Jorge Juarez', '+50361903228', 'Cardiólogo', 11),
+    ('Gonzalo Javier Farres', '+50369538327', 'Nefrólogo', 26),
+    ('Luis Gabriel Sirera', '+50363528440', 'Cardiólogo', 20),
+    ('Leonardo Jose Jeronimo', '+50386295678', 'Ginecólogo', 12),
+    ('Oscar Julian Rosario', '+50363847864', 'Terapeuta', 14),
+    ('Ramon Luis Placeres', '+50388198293', 'Medico general', 21),
+    ('Luis Ricardo Ferreres', '+50378114895', 'Neurocirujano', 4),
+    ('Carlos Ernesto Mendo', '+50389494487', 'Neurocirujano', 15),
+    ('Luis Alfredo Cerdeira', '+50361256328', 'Ginecólogo', 5),
+    ('Francisco Santos Cerezuela', '+50374756069', 'Terapeuta', 16),
+    ('Oscar Francisco Secades', '+50373976860', 'Terapeuta', 13),
+    ('Eduardo Vicente Sirera', '+50367116957', 'Ginecólogo', 12),
+    ('Jesus Gregorio Barreira', '+50361465345', 'Medico general', 6),
+    ('Carlos Nicolas Lorite', '+50384943193', 'Pediatra', 22),
+    ('Jose Marcos Balague', '+50375640966', 'Cardiólogo', 23),
+    ('Oscar Santiago Mesas', '+50384120132', 'Cardiólogo', 7),
+    ('Rafael Ivan Darriba', '+50366716630', 'Medico general', 25),
+    ('Pere Antoni Hervas', '+50388279425', 'Neurocirujano', 8),
+    ('David Jose De Oliveira', '+50372296077', 'Medico general', 1),
+    ('Cesar Vicente Elena', '+50378496128', 'Ginecólogo', 9),
+    ('Fernando Ignacio Bodi', '+50364815693', 'Neurocirujano', 10),
+    ('Cristobal Jesus Salvador', '+50363871428', 'Medico general', 18),
+    ('Moises David Colas', '+50389553457', 'Nefrólogo', 24),
+    ('Jose Miguel Lerida', '+50381382858', 'Neurocirujano', 16),
+    ('Roberto Clapes', '+50371774203', 'nefrólogo', 17),
+    ('Ignacio Alejandro San Nicolas', '+50373829100', 'Terapeuta', 3),
+    ('Jorge Joaquin Dominguez', '+50378315400', 'Ginecólogo', 19);
+
+INSERT INTO contacto_emergencia
+    (
+    nombre, telefono, relacion, id_usuario)
+VALUES
+    ('Juana Antonia Olaizola', '+50377077816', 'Hermano', 1),
+    ('Ainara Carmen Legido', '+50379933062', 'Madre', 9),
+    ('Soraya Maria Segurola', '+50389921148', 'Hermano', 8),
+    ('Tamar Dominguez', '+50379027883', 'Madre', 7),
+    ('Almudena Carmen Solera', '+50381065192', 'Hermana', 6),
+    ('Iris Maria Rafols', '+50369962409', 'Hermano', 5),
+    ('Carmen Elizabeth Beraza', '+50384657923', 'Sobrina', 10),
+    ('Carlos Adolfo Panisello', '+50379348374', 'Hermano', 30),
+    ('Juan Mariano Dols', '+50383524434', 'Tio', 14),
+    ('Jorge Enrique Hinojosa', '+50381336309', 'Hermano', 29),
+    ('Aira Mella', '+50367628944', 'Madre', 15),
+    ('Vicente Joaquin Bergua', '+50383596048', 'Primo', 16),
+    ('Ana Elvira March', '+50366710247', 'Madre', 17),
+    ('Vicente Rafael Salvador', '+50389719499', 'Hermano', 2),
+    ('Hector Raul Prol', '+50387712560', 'Primo', 18),
+    ('Justa Maria Asin', '+50389386704', 'Hermano', 19),
+    ('Guillermo Alejandro De Paz', '+50379339134', 'Padrastro', 28),
+    ('Esther Carmen De Gregorio', '+50366495569', 'Madre', 27),
+    ('Carlos Antonio Picado', '+50374275588', 'Hermano', 4),
+    ('Julio Miguel Irigoyen', '+50379935965', 'Hermano', 20),
+    ('Marco Jose Pin', '+50366829409', 'Primo', 21),
+    ('Luis Javier Cifre', '+50362344996', 'Padrastro', 3),
+    ('Ana Margarita Frances', '+50382169382', 'Tia', 11),
+    ('Jose Aaron Febles', '+50362069477', 'Sobrino', 26),
+    ('Pedro Joaquin Garcias', '+50361481264', 'Tio', 12),
+    ('Yaiza Carmen Menarguez', '+50383079677', 'Madre', 13),
+    ('Maria Farners Ladron De Guevara', '+50384758672', 'Madrastra', 25),
+    ('Carlos Samuel Carceller', '+50364787665', 'Padrastro', 24),
+    ('Hilario Jose Zubia', '+50366042276', 'Hermano', 22),
+    ('Ana Lucia Valladolid', '+50364641559', 'Hermano', 23);
+
+INSERT INTO bitacora_usuario
+    (
+    descripcion, fecha, id_usuario, id_accion_bitacora)
+VALUES
+    ('Iniciaste sesión a tu cuenta', '2020-01-15',  1,  4),
+    ('Agregaste un nuevo contacto de emergencia', '2020-01-15',  2,  1),
+    ('Actualizaste tu nombre de perfil', '2020-01-15',  8,  2),
+    ('Agregaste una condicion medica', '2020-01-15',  7,  1),
+    ('Iniciaste sesión a tu cuenta', '2020-01-15',  6,  4),
+    ('Eliminaste un contacto de emergencia', '2020-01-15',  22,  3),
+    ('Agregaste un nuevo contacto de emergencia', '2020-01-15',  23,  1),
+    ('Agregaste una condicion medica', '2020-01-15',  5,  1),
+    ('Actualizaste tu nombre de perfil', '2020-01-15',  30,  2),
+    ('Iniciaste sesión a tu cuenta', '2020-01-15',  16,  4),
+    ('Eliminaste un contacto de emergencia', '2020-01-15',  21,  3),
+    ('Iniciaste sesión a tu cuenta', '2020-01-15',  4,  4),
+    ('Actualizaste tu nombre de perfil', '2020-01-15',  3,  2),
+    ('Agregaste una condicion medica', '2020-01-15',  26,  1),
+    ('Actualizaste tu contraseña', '2020-01-15',  29,  6),
+    ('Agregaste un nuevo contacto de emergencia', '2020-01-15',  27,  1),
+    ('Agregaste un contacto de doctor', '2020-01-15',  17,  1),
+    ('Agregaste una condicion medica', '2020-01-15',  12,  1),
+    ('Agregaste un nuevo contacto de emergencia', '2020-01-15',  18,  1),
+    ('Iniciaste sesión a tu cuenta', '2020-01-15',  28,  4),
+    ('Agregaste un contacto de doctor', '2020-01-15',  13,  1),
+    ('Iniciaste sesión a tu cuenta', '2020-01-15',  19,  4),
+    ('Agregaste un contacto de doctor', '2020-01-15',  20,  1),
+    ('Agregaste una condicion medica', '2020-01-15',  14,  1),
+    ('Actualizaste tu nombre de perfil', '2020-01-15',  15,  2),
+    ('Agregaste un nuevo contacto de emergencia', '2020-01-15',  9,  1),
+    ('Actualizaste tu contraseña', '2020-01-15',  24,  6),
+    ('Eliminaste un contacto de emergencia', '2020-01-15',  11,  3),
+    ('Iniciaste sesión a tu cuenta', '2020-01-15',  25,  4),
+    ('Agregaste un contacto de doctor', '2020-01-15',  10,  1);
