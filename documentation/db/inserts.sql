@@ -31,7 +31,7 @@ VALUES
     ('Kevin Oswualdo', 'Alvarez Rosales', 'kevinoswaldo@gmail.com', '9627-3191', 'l6lMzkipathfi91J', '34U48', '3564', 'Colonia margaritas casa#43', 'Escritorio\perfil\users\iuaw3.jpg', 'O+', '1998-3-9', '73748558-9', 'true', 'true', 'San salvador', 'Ayutuxtepeque', 'El salvador'),
     ('Oscar Jose', 'Rosales Miguel', 'OscarJous2314@gmail.com', '7846-4157', 'jwN21YLA73jQtTBr', '9X524', '2607', 'Colonia las palmas, casa#265', 'Escritorio\perfil\users\img3.jpg', 'O+', '1998-9-12', '26588644-4', 'true', 'true', 'San salvador', 'Mejicanos', 'El salvador'),
     ('Alfonso Angelo', 'Villalobos Mejia', 'AlfonisAngee@gmail.com', '4184-2852', '401SzWhxIopU5QlK', '7219I', '0230', 'Colonia montevideo, casa#12', 'Escritorio\perfil\users\prif42.jpg', 'O+', '1982-3-4', '96828427-9', 'false', 'true', 'San salvador', 'Ayutuxtepeque', 'El salvador'),
-    ('Pedro Enrique', 'Montañana Mejia', 'pedrixpi@gmail.com', '9681-2234', 'yWrdRRnhjLz9GNrc', '19W86', '4950', 'Colonia plaza verde casa#90', 'Escritorio\perfil\users\d32user.jpg', 'O+', '1991-11-12', '44824565-1', 'false', 'true', 'San salvador', 'Mejicanos', 'El salvador')
+    ('Pedro Enrique', 'Montañana Mejia', 'pedrixpi@gmail.com', '9681-2234', 'yWrdRRnhjLz9GNrc', '19W86', '4950', 'Colonia plaza verde casa#90', 'Escritorio\perfil\users\d32user.jpg', 'O+', '1991-11-12', '44824565-1', 'false', 'true', 'San salvador', 'Mejicanos', 'El salvador');
 
 INSERT INTO
     usuario_alergia
@@ -66,7 +66,7 @@ VALUES
     ('Ácaros de polvo', 'estornudos; picor, goteo o congestión nasal', 27),
     ('Alergia al polen', 'Inchazon en sus brazos', 28),
     ('Rinitis', 'estornudos; picor, goteo o congestión nasal', 29),
-    ('Asma bronquial', 'inflamatorio crónico de las vías respiratorias', 30)
+    ('Asma bronquial', 'inflamatorio crónico de las vías respiratorias', 30);
 
 INSERT INTO
     usuario_medicacion(nombre, dosis, frecuencia, adjunto, id_usuario)
@@ -100,7 +100,7 @@ VALUES
     ('Ibuprofeno 200mg', '2 veces', 'Cuando sea necesario', '/documents/teas-consultas.ext', 27),
     ('Atrnol 50mg', '1 vez', 'SemanalSemanal', '/documents/xcvf-consultas.ext', 28),
     ('Enalapril 20mg', '2 vez', 'Diario', '/documents/tyufw-consultas.ext', 29),
-    ('Lisinopril 10mg', '3 veces', 'Diario', '/documents/uofw-consultas.txt',30)
+    ('Lisinopril 10mg', '3 veces', 'Diario', '/documents/uofw-consultas.txt',30);
 
 INSERT INTO
     accion_bitacora
