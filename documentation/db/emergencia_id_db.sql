@@ -238,7 +238,7 @@ CREATE TABLE "usuario_privilegiado"
  "nombres"           varchar(100) NOT NULL,
  "apellidos"         varchar(100) NOT NULL,
  "email"             varchar(150) UNIQUE NOT NULL,
- "telefono"          varchar(35) UNIQUE NOT NULL,
+ "telefono"          varchar(35) UNIQUE,
  "clave"             char(98) NOT NULL,
  "id_tipo_usuario_p" integer NOT NULL,
  "id_organizacion"   integer NOT NULL,
