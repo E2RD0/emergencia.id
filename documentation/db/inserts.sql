@@ -356,7 +356,7 @@ VALUES
 INSERT INTO 
     tipo_usuario_p
 VALUES
-    (DEFAULT, 'Superadministrador')
+    (DEFAULT, 'Superadministrador'),
     (DEFAULT, 'Administrador'),
     (DEFAULT, 'Paramédico');
 
@@ -364,36 +364,36 @@ INSERT INTO
     usuario_privilegiado
 VALUES
     (DEFAULT, 'Rodrigo Maurico', 'Martínez López', 'rodrigo@cruzrojasal.org.sv', '+50372957458', '$argon2i$v=19$m=1024,t=4,p=2$MtxLemFoVnZFaEJuT1NyYg$4j2ZFDn1fVS70ZExmlJ33rXOinafcBXrp6A6grHEPkI', 2, 2),
-    (DEFAULT,'Nikolas','Dias','NikolasDias@cruzverdesalvadorena.org','+50365558576','$argon2i$v=19$m=1024/,t=4/,p=2$7Gl(%8Uu(%7Jo&3Ut%Zd.4Px%Rk%2Wz/#8Zw%0Wi)6Qi.9Vc)7Co/#8Ts&Qu-4Zr)Ov/#+3',1,1),
-    (DEFAULT,'Shawn','Galarza','ShawnGalarza@cruzverdesalvadorena.org','+50375552195','$argon2i$v=19$m=1024/,t=4/,p=2$3Wf/0Ks&3Jm/,2Hs!Ne.6Zy%Gn)2Vy$4Gs(%6Qe!9Sw#0Qb%6Dw(%6Ax/#Sl(%5Cd&Qk+(%1',1,1),
-    (DEFAULT,'Ayden','Lewis','AydenLewis@cruzverdesalvadorena.org','+50365555058','$argon2i$v=19$m=1024/,t=4/,p=2$1Yk-1Qn/#1Tq/#2Ac(Nr%5Vd/Pa*8Xs#9Nn)5Hn%1Zq)9Io/2Th.7Al)Wr-3Gi(Gx/*4',1,1),
-    (DEFAULT,'Carlos','Abreu','CarlosAbreu@cruzverdesalvadorena.org','+50365552949','$argon2i$v=19$m=1024/,t=4/,p=2$8Ef/9Aj%2Cw*8Qu&Ut.3Kl&Fq+6Sg(9Gi%2Cf$4Cm*0Ee)3Bk/,9Cg&Dt(%3Ew.Ac(%-0',3,1),
-    (DEFAULT,'Elijah','Mancilla','ElijahMancilla@cruzverdesalvadorena.org','+50365550834','$argon2i$v=19$m=1024/,t=4/,p=2$0Mm&6Ov*1Oq%9Ld)Zn%3Ot(%Jv.5Oo*7Kk%1Ih!7Fl.7Js-7Of(0Rb.Cz(%5Qk-Rn(-1',1,1),
-    (DEFAULT,'Adonis','Robledo','AdonisRobledo@cruzverdesalvadorena.org','+50375555837','$argon2i$v=19$m=1024/,t=4/,p=2$1Bh%2Tl.5Xr.9Ea*Mv(%0Xn-Eg$0Zk*4Zy!9Kx*3Wi-6Xx.6Xn+5Zv&Ee#2Bd%Ei.$6',3,1),
-    (DEFAULT,'Devin','Garduno','DevinGarduno@cruzverdesalvadorena.org','+50375556975','$argon2i$v=19$m=1024/,t=4/,p=2$5Cm+7Lj(4Lr!8Oo/#Tl.4Xm!Oj$1Vn&0Ny*9Vo&8Mj/2Co(%0Ty/,0Rx(Pr%1Ba+Dk)(%6',1,1),
-    (DEFAULT,'Jason','Rico','JasonRico@cruzverdesalvadorena.org','+50365554152','$argon2i$v=19$m=1024/,t=4/,p=2$8Ra+4Qa*5Oq.6Yk.Tf/7Kb/,Af/,0Vk#8Eq&1Kw(%2Hy(%3Xi-4Ic/6Ld-Ib#9Ah%By*/5',2,1),
-    (DEFAULT,'Jordan','Rodarte','JordanRodarte@cruzverdesalvadorena.org','+50375559656','$argon2i$v=19$m=1024/,t=4/,p=2$8Va-3Bj(%8Fy+2Op/Ig+3Ll!Kk(%8Xx#7Bs/5Yz#5Bm-4Ee+1Nc!2Sa)Cv*1Qq/Vp$#7',2,1),
-    (DEFAULT,'Jose','Uribe','JoseUribe@cruzverdesalvadorena.org','+50365558988','$argon2i$v=19$m=1024/,t=4/,p=2$0Qi-1Jx*1Fi$9Yk-Ij&3Hh+Uq(8Ei+4Fw%9Ow)3Wm.3Wl!2Ju#0Lw-Az!0Ai!Fr//2',2,1),
-    (DEFAULT,'Fernando','Alcaraz','FernandoAlcaraz@cruzverdesalvadorena.org','+50365552971','$argon2i$v=19$m=1024/,t=4/,p=2$0Mh)0Lp-7Ga#1Ng!Aj%7Vc#Xg)2Zt!5Ej(%6Nm%3Ew/#9Dp(8Td#5Yk/,Sq/#9Cc/#Qm*+4',2,1),
-    (DEFAULT,'Angelo','Betancourt','AngeloBetancourt@cruzverdesalvadorena.org','+50375558052','$argon2i$v=19$m=1024/,t=4/,p=2$1Un*0Ss(%0It%4Ak*Xs-6St-Sx-3Jx!6Hd(%6Rh$5Ml%6Sg/#9Mv&4Ih*Sa#5Co.Mh*-1',1,1),
-    (DEFAULT,'Adam','Delgadillo','AdamDelgadillo@cruzverdesalvadorena.org','+50375550906','$argon2i$v=19$m=1024/,t=4/,p=2$1Kt%6Ez*6Ru&3Ib+Ql#8Ki-Qa-4Tp-1Mt%3Vr*0Ng&3Ny*9Zq(%4Qp%Oa%3Wn/Cp..1',3,1),
-    (DEFAULT,'Julian','Cotto','JulianCotto@cruzverdesalvadorena.org','+50375550927','$argon2i$v=19$m=1024/,t=4/,p=2$8Ty/,2Kh$8Bd*0Yx-Yj(%0Gs&Ii+4Ec%5Om$5Fk/,1Nm$3Oh.5Jg/#6Ph#Ga!2Oq(Rt$)9',2,1),
-    (DEFAULT,'Ivan','Torres','IvanTorres@cruzverdesalvadorena.org','+50375554077','$argon2i$v=19$m=1024/,t=4/,p=2$8Ai!9Zi!4Vi(4Kf(Qa!9Fe&Jc!4Fh$9Zp(8Rk/4Nw#4Vh!3Fm!0Fi%Pj(9Re(Ss)(2',1,1),
-    (DEFAULT,'Freddy','Serrano','FreddySerrano@cruzrojasal.org.sv','+50365554657','$argon2i$v=19$m=1024/,t=4/,p=2$4Os/6Lx%7Hl!4Wx)Zu/#8Kj*So(3Di-9El*7Hj#2Tz-8Vv.0Ho%9Dy!Wk!6Ci(Ji-)0',1,2),
-    (DEFAULT,'Gregory','Orozco','GregoryOrozco@cruzrojasal.org.sv','+50365557709','$argon2i$v=19$m=1024/,t=4/,p=2$6Pk/5Mz(9Kf/#1Ew%Sb/,8Yp-Eq&4Yc)0Ei#2Gc/,2Ox(%1Yy%2Nm/#4Ye(%Bf-2Vs#Yi*.4',2,2),
-    (DEFAULT,'Yariel','Duran','YarielDuran@cruzrojasal.org.sv','+50375551536','$argon2i$v=19$m=1024/,t=4/,p=2$1Ej#7Ul!3Em&7El%St#0Bs(%Cl/,2Le!6Kj%7Le+4Pp/#8Zv!3Mo)7Os-Pk!4Wa*Qy$$5',3,2),
-    (DEFAULT,'Jose','Tobar','JoseTobar@cruzrojasal.org.sv','+50365550303','$argon2i$v=19$m=1024/,t=4/,p=2$2Pc!2Mg#2Pt-1Gq/Nk#8Pn+Sm!8Ye.3Aj(6Fx)7Ov(%0Ko$3Ms.8Bu#Yh$2Cl&Gk%$0',3,2),
-    (DEFAULT,'Carlos','Zavala','CarlosZavala@cruzrojasal.org.sv','+50375556165','$argon2i$v=19$m=1024/,t=4/,p=2$6Ei-2Vb(%4Xm$3Gb/Vd.2Vt/Pp#5Cl&3Ew%1Zr&8Kj/,0Ys/1Uo-4Zx+Dt/,5Zh/#Mr%!1',2,2),
-    (DEFAULT,'Allen','Menchaca','AllenMenchaca@salvamento.org','+50365558109','$argon2i$v=19$m=1024/,t=4/,p=2$7Fz(3Ev%7Dz(%7Fb#Wb*0Sy)Vm/#1Jo/#5Yq/,7Fc/4Rs#8Qj&9Fz)3Oh+Aw/5Qq*Kp&.4',2,3),
-    (DEFAULT,'Alfredo','Montero','AlfredoMontero@salvamento.org','+50365554586','$argon2i$v=19$m=1024/,t=4/,p=2$7Uz)6Fm/,2Cn+2Es&Vm.8Yk(Ek/2Mh%6Nz*0Fr(%8Zw/6Od(0Bg*9Nk(%Gl+1Vy*In..9',2,3),
-    (DEFAULT,'Orlando','Quesada','OrlandoQuesada@salvamento.org','+50365559802','$argon2i$v=19$m=1024/,t=4/,p=2$9Pd*9Qu(1Ui/9Zf/,Nk*2Zw!Kt&1Ba/,4Ww!9Ta.2Vf/2Hx(0Zs$3Jn/Xa/,8Dt%Hs*%9',2,3),
-    (DEFAULT,'Eric','Rivero','EricRivero@salvamento.org','+50375550408','$argon2i$v=19$m=1024/,t=4/,p=2$5Je.5Xq/9Cd&8Zj!Ze/4Cq(Ju(%9Xt/#7Rl(%9Vg*8Oo/4Of-4Rh/,9Du.Ud)3Ry$Fp/)1',3,3),
-    (DEFAULT,'Michael','Granados','MichaelGranados@salvamento.org','+50375555225','$argon2i$v=19$m=1024/,t=4/,p=2$2Oh+5Cf/,0Nt+4Ys+Ca#7Br$Xy%3Qs+2Xr)5Oc!4Tp*8Jf&6Qa/,5Nx)Af%1Gt(If-%2',2,3),
-    (DEFAULT,'Josiah','Pedraza','JosiahPedraza@proteccioncivil.gob.sv','+50375558035','$argon2i$v=19$m=1024/,t=4/,p=2$1Gr+6Np-0Dr#1Qx(%Qh#8Uj&Hj!6Tn%8Hc%0Xw/5Wm-1Vh-9Tb(%0Go!Cd(4Br)To%$6',1,5),
-    (DEFAULT,'Rey','Barba','ReyBarba@proteccioncivil.gob.sv','+50365558549','$argon2i$v=19$m=1024/,t=4/,p=2$6Jp%0Jv$4Mh/5Mz*Mv/,8Rg/#Qt&9Gk&0Kd(%3Ed*1Yk#6Xa-2Ag&7He+Mo#2Bi)Ng&/9',3,5),
-    (DEFAULT,'Paul','Vicente','PaulVicente@proteccioncivil.gob.sv','+50365557762','$argon2i$v=19$m=1024/,t=4/,p=2$4Zw-8Ez/#9Gz/#5Vg-Qr)6Ei+Sm-1Ao$5Qd%2Po!2Kt/,4Mi#7Wg(%4Wx(%Bu/#4Gf!Fd/#.0',2,5),
-    (DEFAULT,'Ricardo','Calvo','RicardoCalvo@fosalud.gob.sv','+50375558399','$argon2i$v=19$m=1024/,t=4/,p=2$5Rm(%1Ry#1Lx/#9Sa#Uy+8Zi/Ji!4Bd#3Di*1Al%0Iu/8Cp/#2En(5La#Jp&9Im#Gv!+1',1,4),
-    (DEFAULT,'Johnny','Soliz','JohnnySoliz@fosalud.gob.sv','+50375554406','$argon2i$v=19$m=1024/,t=4/,p=2$8Io&1Eb+2Oc(0Gl#Su*6Mw!Tc&9Tx%8Oo!9Hp#7Oz$1Uh-2Lw-5Hn#Zc/5Tf/Sb/,)3',2,4);
+    (DEFAULT,'Nikolas','Dias','NikolasDias@cruzverdesalvadorena.org','+50365558576','$argon2i$v=19$m=1024,t=4,p=2$7Gl(%8Uu(%7Jo&3Ut%Zd.4Px%Rk%2Wz/#8Zw%0Wi)6Qi.9Vc)7Co/#8Ts&Qu-4Zr)Ov/#',1,1),
+    (DEFAULT,'Shawn','Galarza','ShawnGalarza@cruzverdesalvadorena.org','+50375552195','$argon2i$v=19$m=1024,t=4,p=2$3Wf/0Ks&3Jm,2Hs!Ne.6Zy%Gn)2Vy$4Gs(%6Qe!9Sw#0Qb%6Dw(%6Ax/#Sl(%5Cd&Qk+(',1,1),
+    (DEFAULT,'Ayden','Lewis','AydenLewis@cruzverdesalvadorena.org','+50365555058','$argon2i$v=19$m=1024,t=4,p=2$1Yk-1Qn/#1Tq/#2Ac(Nr%5Vd/Pa*8Xs#9Nn)5Hn%1Zq)9Io/2Th.7Al)Wr-3Gi(Gx4',1,1),
+    (DEFAULT,'Carlos','Abreu','CarlosAbreu@cruzverdesalvadorena.org','+50365552949','$argon2i$v=19$m=1024,t=4,p=2$8Ef/9Aj%2Cw*8Qu&Ut.3Kl&Fq+6Sg(9Gi%2Cf$4Cm*0Ee)3Bk,9Cg&Dt(%3Ew.Ac(%',3,1),
+    (DEFAULT,'Elijah','Mancilla','ElijahMancilla@cruzverdesalvadorena.org','+50365550834','$argon2i$v=19$m=1024,t=4,p=2$0Mm&6Ov*1Oq%9Ld)Zn%3Ot(%Jv.5Oo*7Kk%1Ih!7Fl.7Js-7Of(0Rb.Cz(%5Qk-R-1',1,1),
+    (DEFAULT,'Adonis','Robledo','AdonisRobledo@cruzverdesalvadorena.org','+50375555837','$argon2i$v=19$m=1024,t=4,p=2$1Bh%2Tl.5Xr.9Ea*Mv(%0Xn-Eg$0Zk*4Zy!9Kx*3Wi-6Xx.6Xn+5Zv&Ee#d%Ei.$6',3,1),
+    (DEFAULT,'Devin','Garduno','DevinGarduno@cruzverdesalvadorena.org','+50375556975','$argon2i$v=19$m=1024,t=4,p=2$5Cm+7Lj(4Lr!8Oo/#Tl.4Xm!Oj$1Vn&0Ny*9Vo&8Mj/2Co(%0Ty,0Rx(Pr%a+Dk)(%6',1,1),
+    (DEFAULT,'Jason','Rico','JasonRico@cruzverdesalvadorena.org','+50365554152','$argon2i$v=19$m=1024,t=4,p=2$8Ra+4Qa*5Oq.6Yk.Tf/7Kb,Af,0Vk#8Eq&1Kw(%2Hy(%3Xi-4Ic/6Ld-Ib#h%By*/5',2,1),
+    (DEFAULT,'Jordan','Rodarte','JordanRodarte@cruzverdesalvadorena.org','+50375559656','$argon2i$v=19$m=1024,t=4,p=2$8Va-3Bj(%8Fy+2Op/Ig+3Ll!Kk(%8Xx#7Bs/5Yz#5Bm-4Ee+1NcSa)Cv*1Qq/Vp$#7',2,1),
+    (DEFAULT,'Jose','Uribe','JoseUribe@cruzverdesalvadorena.org','+50365558988','$argon2i$v=19$m=1024,t=4,p=2$0Qi-1Jx*1Fi$9Yk-Ij&3Hh+Uq(8Ei+4Fw%9Ow)3Wm.3Wl!2Ju#0Lw-Az!0!Fr//2',2,1),
+    (DEFAULT,'Fernando','Alcaraz','FernandoAlcaraz@cruzverdesalvadorena.org','+50365552971','$argon2i$v=19$m=1024,t=4,p=2$0Mh)0Lp-7Ga#1Ng!Aj%7Vc#Xg)2Zt!5Ej(%6Nm%3Ew/#9(8Td#5Yk,Sq/#9Cc/m*',2,1),
+    (DEFAULT,'Angelo','Betancourt','AngeloBetancourt@cruzverdesalvadorena.org','+50375558052','$argon2i$v=19$m=1024,t=4,p=2$1Un*0Ss(%0It%4Ak*Xs-6St-Sx-3Jx!6Hd(%6Rh$5%6Sg/#9Mv&4Ih*Sa#5Coh*-1',1,1),
+    (DEFAULT,'Adam','Delgadillo','AdamDelgadillo@cruzverdesalvadorena.org','+50375550906','$argon2i$v=19$m=1024,t=4,p=2$1Kt%6Ez*6Ru&3Ib+Ql#8Ki-Qa-4Tp-1Mt%3Vr*0Ng&3N9Zq(%4Qp%Oa%n/Cp..1',3,1),
+    (DEFAULT,'Julian','Cotto','JulianCotto@cruzverdesalvadorena.org','+50375550927','$argon2i$v=19$m=1024,t=4,p=2$8Ty,2Kh$8Bd*0Yx-Yj(%0Gs&Ii+4Ec%5Om$5Fk,1Nm$3Oh.5/#6Ph#Ga!2Oq($)9',2,1),
+    (DEFAULT,'Ivan','Torres','IvanTorres@cruzverdesalvadorena.org','+50375554077','$argon2i$v=19$m=1024,t=4,p=2$8Ai!9Zi!4Vi(4Kf(Qa!9Fe&Jc!4Fh$9Zp(8Rk/4Nw#4Vh!3F0Fi%Pj(9Re(S(2',1,1),
+    (DEFAULT,'Freddy','Serrano','FreddySerrano@cruzrojasal.org.sv','+50365554657','$argon2i$v=19$m=1024,t=4,p=2$4Os/6Lx%7Hl!4Wx)Zu/#8Kj*So(3Di-9El*7Hj#2Tz-8VvHo%9Dy!Wk!6Cii-)0',1,2),
+    (DEFAULT,'Gregory','Orozco','GregoryOrozco@cruzrojasal.org.sv','+50365557709','$argon2i$v=19$m=1024,t=4,p=2$6Pk/5Mz(9Kf/#1Ew%Sb,8Yp-Eq&4Yc)0Ei#2Gc,2Ox(%y%2Nm/#4Ye(%BfVs#Yi*.4',2,2),
+    (DEFAULT,'Yariel','Duran','YarielDuran@cruzrojasal.org.sv','+50375551536','$argon2i$v=19$m=1024,t=4,p=2$1Ej#7Ul!3Em&7El%St#0Bs(%Cl,2Le!6Kj%7Le+4Pp/#8Z3Mo)7Os-Pk!4WQy$$5',3,2),
+    (DEFAULT,'Jose','Tobar','JoseTobar@cruzrojasal.org.sv','+50365550303','$argon2i$v=19$m=1024,t=4,p=2$2Pc!2Mg#2Pt-1Gq/Nk#8Pn+Sm!8Ye.3Aj(6Fx)7Ov(%0Ko$3.8Bu#Yh$2Cl&%$0',3,2),
+    (DEFAULT,'Carlos','Zavala','CarlosZavala@cruzrojasal.org.sv','+50375556165','$argon2i$v=19$m=1024,t=4,p=2$6Ei-2Vb(%4Xm$3Gb/Vd.2Vt/Pp#5Cl&3Ew%1Zr&8,0Ys/1Uo-4Zx+Dt,5Zh/#M!1',2,2),
+    (DEFAULT,'Allen','Menchaca','AllenMenchaca@salvamento.org','+50365558109','$argon2i$v=19$m=1024,t=4,p=2$7Fz(3Ev%7Dz(%7Fb#Wb*0Sy)Vm/#1Jo/#5Yq,7FcRs#8Qj&9Fz)3Oh+Aw/5Qq*Kp&.4',2,3),
+    (DEFAULT,'Alfredo','Montero','AlfredoMontero@salvamento.org','+50365554586','$argon2i$v=19$m=1024,t=4,p=2$7Uz)6Fm,2Cn+2Es&Vm.8Yk(Ek/2Mh%6Nz*0F%8Zw/6Od(0Bg*9Nk(%Gl+1Vy*In..9',2,3),
+    (DEFAULT,'Orlando','Quesada','OrlandoQuesada@salvamento.org','+50365559802','$argon2i$v=19$m=1024,t=4,p=2$9Pd*9Qu(1Ui/9Zf,Nk*2Zw!Kt&1Ba,4Ww!a.2Vf/2Hx(0Zs$3Jn/Xa,8Dt%Hs*%9',2,3),
+    (DEFAULT,'Eric','Rivero','EricRivero@salvamento.org','+50375550408','$argon2i$v=19$m=1024,t=4,p=2$5Je.5Xq/9Cd&8Zj!Ze/4Cq(Ju(%9Xt/#7Rl(%9VgOo/4Of-4Rh,9Du.Ud)3Ry$Fp/)1',3,3),
+    (DEFAULT,'Michael','Granados','MichaelGranados@salvamento.org','+50375555225','$argon2i$v=19$m=1024,t=4,p=2$2Oh+5Cf,0Nt+4Ys+Ca#7Br$Xy%3Q2Xr)5Oc!4Tp*8Jf&6Qa,5Nx)Af%1Gt(If-%2',2,3),
+    (DEFAULT,'Josiah','Pedraza','JosiahPedraza@proteccioncivil.gob.sv','+50375558035','$argon2i$v=19$m=1024,t=4,p=2$1Gr+6Np-0Dr#1Qx(%Qh#8UHj!6Tn%8Hc%0Xw/5Wm-1Vh-9Tb(%0Go!Cd(4Br)%$6',1,5),
+    (DEFAULT,'Rey','Barba','ReyBarba@proteccioncivil.gob.sv','+50365558549','$argon2i$v=19$m=1024,t=4,p=2$6Jp%0Jv$4Mh/5Mz*Mv,8Rg/#Qt&9GkKd(%3Ed*1Yk#6Xa-2Ag&7He+Mo#2Bi)Ng&/9',3,5),
+    (DEFAULT,'Paul','Vicente','PaulVicente@proteccioncivil.gob.sv','+50365557762','$argon2i$v=19$m=1024,t=4,p=2$4Zw-8Ez/#9Gz/#5Vg-Qr)6+Sm-1Ao$5Qd%2Po!2Kt,4Mi#7Wg(%4Wx(%Bu/#4Gf!/#.0',2,5),
+    (DEFAULT,'Ricardo','Calvo','RicardoCalvo@fosalud.gob.sv','+50375558399','$argon2i$v=19$m=1024,t=4,p=2$5Rm(%1Ry#1Lx/#9Sa#Uy+8Zi/J4Bd#3Di*1Al%0Iu/8Cp/#2En(5La#Jp&9Im#Gv!+1',1,4),
+    (DEFAULT,'Johnny','Soliz','JohnnySoliz@fosalud.gob.sv','+50375554406','$argon2i$v=19$m=1024,t=4,p=2$8Io&1Eb+2Oc(0Gl#Su*6Mw!Tc&x%8Oo!9Hp#7Oz$1Uh-2Lw-5Hn#Zc/5Tf/Sb,)3',2,4);
 
 INSERT INTO 
     enlaces_compartir
