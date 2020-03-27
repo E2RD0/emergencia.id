@@ -321,7 +321,7 @@ VALUES
     (DEFAULT, 'Inyección intramuscular', '1981-03-24', 'Centro Médico Lourdes', '/documents/udktl27f-diagnostico.jpg', 25),
     (DEFAULT, 'De rayos X de la clavícula', '2014-05-31', 'Hospital de la Mujer', '/documents/cuowhh9p-radiografiaclavi.pdf', 26),
     (DEFAULT, 'Remoción laparoscópica de la vesícula biliar', '2004-04-27', 'Hospital Profamilia', '/documents/bblkoosn-diagnostico.pdf', 27),
-    (DEFAULT, 'Examen general breve', '2011 -06 -23', 'Hospital de Diagnóstico', '/documents/3mij92re-resultados.pdf', 28),
+    (DEFAULT, 'Examen general breve', '2011-06-23', 'Hospital de Diagnóstico', '/documents/3mij92re-resultados.pdf', 28),
     (DEFAULT, 'Examen general breve', '2010-03-25', 'Hospital Nacional Rosales', '/documents/gzdiz5sl-resultadosexamen.pdf', 29),
     (DEFAULT, 'Examen general breve', '2019-08-19', 'Hospital Nacional de Santa Rosa de Lima', '/documents/zfzfluoy-rutinadeexamenes.jpg', 30);
 
