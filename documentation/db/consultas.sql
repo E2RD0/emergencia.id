@@ -13,3 +13,10 @@ SELECT usuario.id_usuario, procedimiento_medico.procedimiento, procedimiento_med
 FROM procedimiento_medico INNER JOIN usuario ON procedimiento_medico.id_usuario = usuario.id_usuario
 WHERE procedimiento_medico.fecha BETWEEN '2020-01-01' AND '2020-02-01'
 GROUP BY usuario.id_usuario, procedimiento_medico.procedimiento, procedimiento_medico.fecha
+
+--Consultas para graficos
+SELECT COUNT(tipo_sangre) AS Cantidad, u.tipo_sangre AS "TIPO" FROM usuario u GROUP BY tipo_sangre
+SELECT COUNT(id_enlace) FROM enlaces_compartir e WHERE e.id_usuario = 1
+SELECT alergia FROM usuario_alergia GROUP BY alergia HAVING COUNT(*)>1
+SELECT COUNT(*) FROM usuario
+SELECT COUNT(*) FROM organizacion
