@@ -1,7 +1,7 @@
 CREATE TABLE "tipo_sangre"
 (
  "id_tipo_sangre" serial NOT NULL,
- "tipo"           varchar(5) UNIQUE NOT NULL,
+ "tipo"           varchar(50) UNIQUE NOT NULL,
  CONSTRAINT "PK_tipo_sangre" PRIMARY KEY ( "id_tipo_sangre" )
 );
 
@@ -10,6 +10,22 @@ CREATE TABLE "estado_isss"
  "id_estado_isss" serial NOT NULL,
  "estado"         varchar(50) UNIQUE NOT NULL,
  CONSTRAINT "PK_estado_isss" PRIMARY KEY ( "id_estado_isss" )
+);
+
+CREATE TABLE "pais"
+(
+ "id_pais" serial NOT NULL,
+ "nombre"         varchar(100) UNIQUE NOT NULL,
+ CONSTRAINT "PK_pais" PRIMARY KEY ( "id_pais" )
+);
+
+CREATE TABLE "pais_estado"
+(
+ "id_pais_estado" serial NOT NULL,
+ "nombre"         varchar(100) NOT NULL,
+ "id_pais"        integer NOT NULL,
+ CONSTRAINT "PK_pais_estado" PRIMARY KEY ( "id_pais_estado" ),
+ CONSTRAINT "FK_232" FOREIGN KEY ( "id_pais" ) REFERENCES "pais" ( "id_pais" )
 );
 
 CREATE TABLE "perfil_medico"
@@ -21,18 +37,24 @@ CREATE TABLE "perfil_medico"
  "pin"              smallint NOT NULL,
  "foto"             varchar(75) UNIQUE,
  "fecha_nacimiento" date,
- "dui"              varchar(50),
+ "documento_identidad"              varchar(50),
  "es_donador"       boolean,
  "listado"          boolean NOT NULL DEFAULT 't',
  "direccion"        varchar(250),
+ "peso"             varchar(50),
+ "estatura"         varchar(50),
+ "id_pais"          integer NOT NULL,
+ "id_pais_estado"   integer,
  "ciudad"           varchar(50),
- "estado"           varchar(50),
- "pais"             varchar(50) NOT NULL,
- "id_estado_isss"   integer NOT NULL,
  "id_tipo_sangre"   integer NOT NULL,
+ "id_estado_isss"   integer NOT NULL,
  CONSTRAINT "PK_perfil_medico" PRIMARY KEY ( "id_perfil_medico" ),
+ CONSTRAINT "FK_230" FOREIGN KEY ( "id_tipo_sangre" ) REFERENCES "tipo_sangre" ( "id_tipo_sangre" ),
  CONSTRAINT "FK_212" FOREIGN KEY ( "id_estado_isss" ) REFERENCES "estado_isss" ( "id_estado_isss" ),
- CONSTRAINT "FK_230" FOREIGN KEY ( "id_tipo_sangre" ) REFERENCES "tipo_sangre" ( "id_tipo_sangre" )
+ CONSTRAINT "FK_236" FOREIGN KEY ( "id_pais" ) REFERENCES "pais" ( "id_pais" ),
+ CONSTRAINT "FK_240" FOREIGN KEY ( "id_pais_estado" ) REFERENCES "pais_estado" ( "id_pais_estado" )
+
+
 );
 
 CREATE INDEX "fkIdx_212" ON "perfil_medico"
@@ -102,6 +124,8 @@ CREATE TABLE "perfil_contacto_emergencia"
  "nombre"           varchar(200) NOT NULL,
  "telefono"         varchar(35) NOT NULL,
  "relacion"         varchar(50) NOT NULL,
+ "direccion"        varchar(250),
+ "email"            varchar(150),
  "id_perfil_medico" integer NOT NULL,
  CONSTRAINT "PK_perfil_contacto_emergencia" PRIMARY KEY ( "id_contacto" ),
  CONSTRAINT "FK_26" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
@@ -117,7 +141,7 @@ CREATE TABLE "perfil_contacto_doctor"
  "id_contacto_d"    serial NOT NULL,
  "nombre"           varchar(200) NOT NULL,
  "telefono"         varchar(35) NOT NULL,
- "cargo"            varchar(50) NOT NULL,
+ "especialidad"            varchar(50) NOT NULL,
  "id_perfil_medico" integer NOT NULL,
  CONSTRAINT "PK_perfil_contacto_doctor" PRIMARY KEY ( "id_contacto_d" ),
  CONSTRAINT "FK_35" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
@@ -163,22 +187,6 @@ CREATE INDEX "fkIdx_80" ON "perfil_seguro_medico"
  "id_perfil_medico"
 );
 
-CREATE TABLE "perfil_condicion_medica"
-(
- "id_condicion"     serial NOT NULL,
- "condicion"        varchar(200) NOT NULL,
- "notas"            varchar(800),
- "adjunto"          varchar(75) UNIQUE,
- "id_perfil_medico" integer NOT NULL,
- CONSTRAINT "PK_perfil_condicion_medica" PRIMARY KEY ( "id_condicion" ),
- CONSTRAINT "FK_77" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
-);
-
-CREATE INDEX "fkIdx_77" ON "perfil_condicion_medica"
-(
- "id_perfil_medico"
-);
-
 CREATE TABLE "perfil_procedimiento_medico"
 (
  "id_procedimiento" serial NOT NULL,
@@ -186,8 +194,10 @@ CREATE TABLE "perfil_procedimiento_medico"
  "fecha"            date,
  "hospital"         varchar(200),
  "adjunto"          varchar(75) UNIQUE,
+ "id_contacto_d"	integer,
  "id_perfil_medico" integer NOT NULL,
  CONSTRAINT "PK_perfil_procedimiento_medico" PRIMARY KEY ( "id_procedimiento" ),
+ CONSTRAINT "FK_250" FOREIGN KEY ( "id_contacto_d" ) REFERENCES "perfil_contacto_doctor" ( "id_contacto_d" ),
  CONSTRAINT "FK_91" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
 );
 
@@ -210,6 +220,24 @@ CREATE TABLE "perfil_medicacion"
 );
 
 CREATE INDEX "fkIdx_74" ON "perfil_medicacion"
+(
+ "id_perfil_medico"
+);
+
+CREATE TABLE "perfil_condicion_medica"
+(
+ "id_condicion"     serial NOT NULL,
+ "condicion"        varchar(200) NOT NULL,
+ "notas"            varchar(800),
+ "adjunto"          varchar(75) UNIQUE,
+ "id_medicacion"	integer,
+ "id_perfil_medico" integer NOT NULL,
+ CONSTRAINT "PK_perfil_condicion_medica" PRIMARY KEY ( "id_condicion" ),
+ CONSTRAINT "FK_73" FOREIGN KEY ( "id_medicacion" ) REFERENCES "perfil_medicacion" ( "id_medicacion" ),
+ CONSTRAINT "FK_77" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
+);
+
+CREATE INDEX "fkIdx_77" ON "perfil_condicion_medica"
 (
  "id_perfil_medico"
 );
