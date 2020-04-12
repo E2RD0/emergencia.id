@@ -1,3 +1,94 @@
+INSERT INTO estado_isss
+    (estado)
+VALUES
+    ('Cotizante'),
+    ('No corizante'),
+    ('Beneficiario');
+
+INSERT INTO pais
+    (nombre)
+VALUES
+    ('Antigua y Barbuda'),
+    ('Aruba'),
+    ('Belice'),
+    ('Costa Rica'),
+    ('El Salvador'),
+    ('Guatemala'),
+    ('Honduras'),
+    ('Nicaragua'),
+    ('Panamá'),
+    ('Argentina'),
+
+    ('Bolivia'),
+    ('Brasil'),
+    ('Chile'),
+    ('Colombia'),
+    ('Ecuador'),
+    ('Guyana'),
+    ('Guyana Francesa'),
+    ('Paraguay'),
+    ('Perú'),
+    ('Suriname'),
+
+    ('Uruguay'),
+    ('Venezuela'),
+    ('México'),
+    ('Puerto Rico'),
+    ('República Dominicana'),
+    ('Jamaica'),
+    ('Haití'),
+    ('Martinica'),
+    ('Bahamas'),
+    ('Cuba');
+
+INSERT INTO pais_estado
+    (nombre, id_pais)
+VALUES
+    ('Saint John', 1),
+    ('Saint George', 1),
+    ('Saint Peter', 1),
+    ('Orange Walk', 3),
+    ('Cayo', 3),
+    ('Toledo', 3),
+    ('Belize', 3),
+    ('Alajuela', 4),
+    ('Guanacaste', 4),
+    ('San Jose', 4),
+
+    ('San Salvador', 5),
+    ('San vicente', 5),
+    ('Artigas', 21),
+    ('Rivera', 21),
+    ('Salto', 21),
+    ('Rio negro', 21),
+    ('Sonora', 23),
+    ('Sinaloa', 23),
+    ('Durango', 23),
+    ('Chiapas', 23),
+
+    ('Guayas', 15),
+    ('Esmeraldas', 15),
+    ('Guayas', 15),
+    ('Leja', 15),
+    ('Napo', 15),
+    ('Arica', 13),
+    ('Maule', 13),
+    ('Biobío', 13),
+    ('Los ríos', 13),
+    ('Surinam', 20);
+
+INSERT INTO tipo_sangre
+    (tipo)
+VALUES
+    ('A+'),
+    ('O+'),
+    ('B+'),
+    ('AB+'),
+    ('A-'),
+    ('O-'),
+    ('B-'),
+    ('AB-');
+	
 INSERT INTO
     perfil_medico
     (nombres, apellidos, uid, pin, foto, fecha_nacimiento, documento_identidad, es_donador, listado, direccion, peso, estatura, id_pais, id_pais_estado, ciudad, id_tipo_sangre, id_estado_isss)
@@ -69,9 +160,7 @@ VALUES
     ('AlfonisAngee@gmail.com', '4184-2852', '401SzWhxIopU5QlK', 29),
     ('pedrixpi@gmail.com', '9681-2234', 'yWrdRRnhjLz9GNrc', 30);
 
-INSERT INTO
-	perfil_alegria
-    (alergia, reaccion, tratamiento, id_perfil_medico)
+INSERT INTO perfil_alergia(alergia, reaccion, tratamiento, id_perfil_medico)
 VALUES
     ('Alergia al polen', 'Dolor de cabeza.', 'medicamentos antihistamínicos.', 1),
     ('Rinitis', 'estornudos; picor, goteo o congestión nasal', 'Descongestionantes', 2),
@@ -154,36 +243,36 @@ INSERT INTO
     perfil_condicion_medica
     (condicion, notas, adjunto, id_medicacion, id_perfil_medico)
 VALUES
-    ('Hipertensión', 'Surgio en el 2018', '/documents/9xyeX9MEQA.pdf', 1, 2, 9),
-    ('Asma', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/i91dtZzsiP.png', 5, 9, 12),
-    ('Dermatitis atópica', 'Siento dolores externos a la enfermedad también', '/documents/DFjNK2gEZY.docx', 10, 12, 25),
-    ('Gonorrea', 'Comenze a sentir los sintomas el dia 17 de Junio del 2019', '/documents/WhM4nZpy86.docx', 9, 13, 13),
-    ('Insuficiencia cardiaca', 'A finales de este mes (enero 2020) comenze a sentir los malestares de esta enfermedad', '/documents/X0RSHyaMdJ.png', 20, 1, 5),
-    ('Gonorrea', 'Me recetaron medicinas pero las perdi', '/documents/rGx6I7ztSZ.png', 14, 14, 14),
-    ('Hepatitis A', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/QV8MTxmOg0.pdf', 12, 3, 24),
-    ('Lepra', 'Comenze a sentir estos malestares al final del 2019', '/documents/TZvh2JR4hk.txt', 17, 27, 8),
-    ('Hipertensión', 'A finales de este mes (enero 2020) comenze a sentir los malestares de esta enfermedad', '/documents/9d4W0nZ92m.txt', 12, 1, 28),
-    ('Faringitis', 'Me sentia mal desde hace unos dias, pero no le hice caso a la enfermedad', '/documents/GFyoG0wwRo.txt', 18, 20, 29),
-    ('Lepra', 'A finales de este mes (enero 2020) comenze a sentir los malestares de esta enfermedad', '/documents/OPTPgkWaeB.docx', 12, 2, 2),
-    ('Malaria', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/vhEhrRtto9.png', 18, 30, 3),
-    ('Hipertensión', 'Me recetaron medicinas pero las perdi', '/documents/neIXL1osRy.pdf', 7, 8, 15),
-    ('Glaucoma', 'Surgio a inicios de este año (2020)', '/documents/FNgx7sVkbt.png', 10, 11, 27),
-    ('Linfoma', 'Siento dolores externos a la enfermedad también', '/documents/E09VStrrBM.png', 24, 3, 26),
-    ('Dengue', 'Me sentia mal desde hace unos dias, pero no le hice caso a la enfermedad', '/documents/eRFPOGqIpx.png', 2, 20, 20),
-    ('Insuficiencia cardiaca', 'Surgio a finales de esta semana (09 de Jun del 2020)', '/documents/V6xVWr3EUC.txt', 19, 21, 10),
-    ('Linfoma', 'Comenze a sentir los sintomas el dia 28 de Junio del 2019', '/documents/vzCC9FVdCu.jpg', 27, 22, 21),
-    ('Faringitis', 'Tome todas mis medicinas pero no me hicieron efecto alguno', '/documents/NjK944r2bL.docx', 19, 27, 11),
-    ('Hepatitis A', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/BoMBd66uZw.pdf', 14, 15, 22),
-    ('Hipertensión', 'Me sentia mal desde hace unos dias, pero no le hice caso a la enfermedad', '/documents/6xsZaMkILH.docx', 12, 15, 4),
-    ('Asma', 'Me dio mucho dolor de cuerpo esta madrugada (29 de Jun 2020)', '/documents/CVSQx1Frt0.pdf', 22, 18, 20),
-    ('Dengue', 'Un medico me receto una medicina que se me fue dificil tomarmela', '/documents/GC0iGaape0.pdf', 7, 6, 23),
-    ('Juanetes', 'Surgio a inicios de este año (2020)', '/documents/KpJgtOHKrY.docx', 22, 23, 19),
-    ('Glaucoma', 'Me recetaron medicinas pero las perdi', '/documents/1jyvMxicJ2.docx', 2, 12, 6),
-    ('Dermatitis atópica', 'Me dio mucho dolor de cuerpo esta madrugada (29 de Jun 2020)', '/documents/IN48LW6I6H.pdf', 16),
-    ('Asma', 'Me dio mucho dolor de cuerpo esta madrugada (29 de Jun 2020)', '/documents/CDFiimnv6c.png', 13, 24, 18),
-    ('Malaria', 'Comenze a sentir estos malestares al final del 2019', '/documents/Pbqa3JTD0K.png', 30, 21, 7),
-    ('Hipertensión', 'Un medico me receto una medicina que se me fue dificil tomarmela', '/documents/vJatqtMNVp.txt', 12, 12, 17),
-    ('Dermatitis atópica', 'Surgio a inicios de este año (2020)', '/documents/StWxkbcJ56.png', 26, 27, 1);
+    ('Hipertensión', 'Surgio en el 2018', '/documents/9xyeX9MEQA.pdf', 2, 9),
+    ('Asma', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/i91dtZzsiP.png', 9, 12),
+    ('Dermatitis atópica', 'Siento dolores externos a la enfermedad también', '/documents/DFjNK2gEZY.docx', 12, 25),
+    ('Gonorrea', 'Comenze a sentir los sintomas el dia 17 de Junio del 2019', '/documents/WhM4nZpy86.docx', 13, 13),
+    ('Insuficiencia cardiaca', 'A finales de este mes (enero 2020) comenze a sentir los malestares de esta enfermedad', '/documents/X0RSHyaMdJ.png', 1, 5),
+    ('Gonorrea', 'Me recetaron medicinas pero las perdi', '/documents/rGx6I7ztSZ.png', 14, 14),
+    ('Hepatitis A', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/QV8MTxmOg0.pdf', 3, 24),
+    ('Lepra', 'Comenze a sentir estos malestares al final del 2019', '/documents/TZvh2JR4hk.txt', 27, 8),
+    ('Hipertensión', 'A finales de este mes (enero 2020) comenze a sentir los malestares de esta enfermedad', '/documents/9d4W0nZ92m.txt', 1, 28),
+    ('Faringitis', 'Me sentia mal desde hace unos dias, pero no le hice caso a la enfermedad', '/documents/GFyoG0wwRo.txt', 20, 29),
+    ('Lepra', 'A finales de este mes (enero 2020) comenze a sentir los malestares de esta enfermedad', '/documents/OPTPgkWaeB.docx', 2, 2),
+    ('Malaria', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/vhEhrRtto9.png', 30, 3),
+    ('Hipertensión', 'Me recetaron medicinas pero las perdi', '/documents/neIXL1osRy.pdf', 11, 15),
+    ('Glaucoma', 'Surgio a inicios de este año (2020)', '/documents/FNgx7sVkbt.png', 11, 27),
+    ('Linfoma', 'Siento dolores externos a la enfermedad también', '/documents/E09VStrrBM.png', 3, 26),
+    ('Dengue', 'Me sentia mal desde hace unos dias, pero no le hice caso a la enfermedad', '/documents/eRFPOGqIpx.png', 20, 20),
+    ('Insuficiencia cardiaca', 'Surgio a finales de esta semana (09 de Jun del 2020)', '/documents/V6xVWr3EUC.txt', 21, 10),
+    ('Linfoma', 'Comenze a sentir los sintomas el dia 28 de Junio del 2019', '/documents/vzCC9FVdCu.jpg', 22, 21),
+    ('Faringitis', 'Tome todas mis medicinas pero no me hicieron efecto alguno', '/documents/NjK944r2bL.docx', 27, 11),
+    ('Hepatitis A', 'Ya me habian detectado esta enfermedad hace un mes', '/documents/BoMBd66uZw.pdf', 15, 22),
+    ('Hipertensión', 'Me sentia mal desde hace unos dias, pero no le hice caso a la enfermedad', '/documents/6xsZaMkILH.docx', 15, 4),
+    ('Asma', 'Me dio mucho dolor de cuerpo esta madrugada (29 de Jun 2020)', '/documents/CVSQx1Frt0.pdf', 18, 20),
+    ('Dengue', 'Un medico me receto una medicina que se me fue dificil tomarmela', '/documents/GC0iGaape0.pdf', 6, 23),
+    ('Juanetes', 'Surgio a inicios de este año (2020)', '/documents/KpJgtOHKrY.docx', 23, 19),
+    ('Glaucoma', 'Me recetaron medicinas pero las perdi', '/documents/1jyvMxicJ2.docx', 12, 6),
+    ('Dermatitis atópica', 'Me dio mucho dolor de cuerpo esta madrugada (29 de Jun 2020)', '/documents/IN48LW6I6H.pdf', 15, 16),
+    ('Asma', 'Me dio mucho dolor de cuerpo esta madrugada (29 de Jun 2020)', '/documents/CDFiimnv6c.png', 24, 18),
+    ('Malaria', 'Comenze a sentir estos malestares al final del 2019', '/documents/Pbqa3JTD0K.png', 21, 7),
+    ('Hipertensión', 'Un medico me receto una medicina que se me fue dificil tomarmela', '/documents/vJatqtMNVp.txt', 12, 17),
+    ('Dermatitis atópica', 'Surgio a inicios de este año (2020)', '/documents/StWxkbcJ56.png', 27, 1);
 
 INSERT INTO
     perfil_contacto_doctor
@@ -257,7 +346,7 @@ VALUES
 
 INSERT INTO
     perfil_bitacora
-    (descripcion, fecha, id_usuario, id_accion_bitacora)
+    (descripcion, fecha, id_perfil_medico, id_accion_bitacora)
 VALUES
     ('Iniciaste sesión a tu cuenta', '2020-01-15', 1, 4),
     ('Agregaste un nuevo contacto de emergencia', '2020-01-15', 2, 1),
@@ -433,36 +522,36 @@ VALUES
 INSERT INTO 
     perfil_enlaces_compartir
 VALUES
-    (DEFAULT, '/share/4Myy8CthQC7/', '21/2/2020', '23/5/2020', '0', '4'),
-    (DEFAULT, '/share/9Mgp7HkmBG3/', '2/3/2020', '11/5/2020', '1', '23'),
-    (DEFAULT, '/share/8Oyj1IupMY4/', '23/3/2020', '9/6/2020', '4', '14'),
-    (DEFAULT, '/share/0Iyp9CpqMA6/', '13/2/2020', '25/5/2020', '3', '9'),
-    (DEFAULT, '/share/5Tpb8WipKB4/', '15/2/2020', '13/5/2020', '2', '4'),
-    (DEFAULT, '/share/4Ozv2XjaJH5/', '12/3/2020', '14/5/2020', '2', '22'),
-    (DEFAULT, '/share/1Emt3NqqGX1/', '23/3/2020', '6/5/2020', '0', '7'),
-    (DEFAULT, '/share/5Uog9TwlRN0/', '1/2/2020', '8/6/2020', '1', '2'),
-    (DEFAULT, '/share/9Qmm4FepWW3/', '23/3/2020', '9/6/2020', '2', '1'),
-    (DEFAULT, '/share/5Tur9NqqEX8/', '26/2/2020', '25/4/2020', '0', '11'),
-    (DEFAULT, '/share/9Gyn0NfkLT9/', '18/2/2020', '19/4/2020', '5', '20'),
-    (DEFAULT, '/share/1Gjq6MjnFQ0/', '25/3/2020', '1/5/2020', '2', '20'),
-    (DEFAULT, '/share/1Eoh2MtrLW6/', '22/1/2020', '23/4/2020', '1', '18'),
-    (DEFAULT, '/share/1Tco6JzoGH7/', '14/3/2020', '13/6/2020', '2', '30'),
-    (DEFAULT, '/share/1Waw3VnsFX0/', '23/1/2020', '9/6/2020', '5', '28'),
-    (DEFAULT, '/share/9Rky2MnwMZ8/', '4/2/2020', '10/4/2020', '3', '13'),
-    (DEFAULT, '/share/1Ufh7MyqKQ4/', '17/2/2020', '1/5/2020', '2', '6'),
-    (DEFAULT, '/share/6Bpf1FndDH6/', '13/2/2020', '8/5/2020', '2', '11'),
-    (DEFAULT, '/share/2Xrd6OedWX7/', '15/3/2020', '10/4/2020', '4', '4'),
-    (DEFAULT, '/share/7Pnj2LxaSK3/', '2/1/2020', '13/6/2020', '0', '6'),
-    (DEFAULT, '/share/7Wge6DmfXS2/', '6/3/2020', '21/5/2020', '1', '8'),
-    (DEFAULT, '/share/6Dgt6ExhIO0/', '5/1/2020', '19/6/2020', '1', '11'),
-    (DEFAULT, '/share/4Nts8AccYL1/', '15/3/2020', '13/5/2020', '3', '16'),
-    (DEFAULT, '/share/1Mgc1AgyJB5/', '27/1/2020', '26/6/2020', '1', '17'),
-    (DEFAULT, '/share/1Gyt3HroXG7/', '18/1/2020', '28/5/2020', '4', '21'),
-    (DEFAULT, '/share/3Uks0HcfYJ0/', '13/1/2020', '16/4/2020', '2', '6'),
-    (DEFAULT, '/share/4Wfh7RcsEE7/', '20/1/2020', '13/6/2020', '1', '29'),
-    (DEFAULT, '/share/5Eqo7IgdFF0/', '7/1/2020', '19/4/2020', '1', '28'),
-    (DEFAULT, '/share/0Vem8LjbHS1/', '8/1/2020', '10/5/2020', '5', '4'),
-    (DEFAULT, '/share/0Kin5YqrKF3/', '24/2/2020', '22/6/2020', '5', '5');
+    (DEFAULT, '/share/4Myy8CthQC7/', '2020-05-19', '2020-05-23', 0, 4),
+    (DEFAULT, '/share/9Mgp7HkmBG3/', '2020-05-01', '2020-05-11', 1, 23),
+    (DEFAULT, '/share/8Oyj1IupMY4/', '2020-09-01', '2020-09-06', 4, 14),
+    (DEFAULT, '/share/0Iyp9CpqMA6/', '2020-05-18', '2020-05-25', 3, 9),
+    (DEFAULT, '/share/5Tpb8WipKB4/', '2020-05-11', '2020-05-13', 2, 4),
+    (DEFAULT, '/share/4Ozv2XjaJH5/', '2020-05-09', '2020-05-14', 2, 22),
+    (DEFAULT, '/share/1Emt3NqqGX1/', '2020-05-20', '2020-06-05', 0, 7),
+    (DEFAULT, '/share/5Uog9TwlRN0/', '2020-08-01', '2020-08-06', 1, 2),
+    (DEFAULT, '/share/9Qmm4FepWW3/', '2020-08-01', '2020-09-06', 2, 1),
+    (DEFAULT, '/share/5Tur9NqqEX8/', '2020-04-18', '2020-04-25', 0, 11),
+    (DEFAULT, '/share/9Gyn0NfkLT9/', '2020-04-11', '2020-04-19', 5, 20),
+    (DEFAULT, '/share/1Gjq6MjnFQ0/', '2020-02-01', '2020-02-05', 2, 20),
+    (DEFAULT, '/share/1Eoh2MtrLW6/', '2020-04-17', '2020-04-23', 1, 18),
+    (DEFAULT, '/share/1Tco6JzoGH7/', '2020-06-01', '2020-06-13', 2, 30),
+    (DEFAULT, '/share/1Waw3VnsFX0/', '2020-09-01', '2020-09-06', 5, 28),
+    (DEFAULT, '/share/9Rky2MnwMZ8/', '2020-04-08', '2020-04-10', 3, 13),
+    (DEFAULT, '/share/1Ufh7MyqKQ4/', '2020-02-04', '2020-02-05', 2, 6),
+    (DEFAULT, '/share/6Bpf1FndDH6/', '2020-08-01', '2020-08-05', 2, 1),
+    (DEFAULT, '/share/2Xrd6OedWX7/', '2020-04-02', '2020-04-10', 4, 4),
+    (DEFAULT, '/share/7Pnj2LxaSK3/', '2020-06-10', '2020-06-13', 0, 6),
+    (DEFAULT, '/share/7Wge6DmfXS2/', '2020-05-15', '2020-05-21', 1, 8),
+    (DEFAULT, '/share/6Dgt6ExhIO0/', '2020-06-16', '2020-06-19', 1, 11),
+    (DEFAULT, '/share/4Nts8AccYL1/', '2020-05-11', '2020-05-13', 3, 16),
+    (DEFAULT, '/share/1Mgc1AgyJB5/', '2020-06-21', '2020-06-26', 1, 17),
+    (DEFAULT, '/share/1Gyt3HroXG7/', '2020-05-22', '2020-05-28', 4, 21),
+    (DEFAULT, '/share/3Uks0HcfYJ0/', '2020-04-15', '2020-04-16', 2, 6),
+    (DEFAULT, '/share/4Wfh7RcsEE7/', '2020-06-11', '2020-06-13', 1, 29),
+    (DEFAULT, '/share/5Eqo7IgdFF0/', '2020-04-14', '2020-04-19', 1, 28),
+    (DEFAULT, '/share/0Vem8LjbHS1/', '2020-05-02', '2020-05-10', 5, 4),
+    (DEFAULT, '/share/0Kin5YqrKF3/', '2020-06-17', '2020-06-22', 5, 5);
 
 INSERT INTO 
     perfil_usuarios_compartir
@@ -497,94 +586,3 @@ VALUES
     (DEFAULT, 22, 10),
     (DEFAULT, 28, 4),
     (DEFAULT, 15, 9);
-
-INSERT INTO estado_isss
-    (estado)
-VALUES
-    ('Cotizante'),
-    ('No corizante'),
-    ('Beneficiario')
-
-INSERT INTO pais
-    (nombre)
-VALUES
-    ('Antigua y Barbuda'),
-    ('Aruba'),
-    ('Belice'),
-    ('Costa Rica'),
-    ('El Salvador'),
-    ('Guatemala'),
-    ('Honduras'),
-    ('Nicaragua'),
-    ('Panamá'),
-    ('Argentina'),
-
-    ('Bolivia'),
-    ('Brasil'),
-    ('Chile'),
-    ('Colombia'),
-    ('Ecuador'),
-    ('Guyana'),
-    ('Guyana Francesa'),
-    ('Paraguay'),
-    ('Perú'),
-    ('Suriname'),
-
-    ('Uruguay'),
-    ('Venezuela'),
-    ('México'),
-    ('Puerto Rico'),
-    ('República Dominicana'),
-    ('Jamaica'),
-    ('Haití'),
-    ('Martinica'),
-    ('Bahamas'),
-    ('Cuba')
-
-INSERT INTO pais_estado
-    (nombre, id_pais)
-VALUES
-    ('Saint John', 1),
-    ('Saint George', 1),
-    ('Saint Peter', 1),
-    ('Orange Walk', 3),
-    ('Cayo', 3),
-    ('Toledo', 3),
-    ('Belize', 3),
-    ('Alajuela', 4),
-    ('Guanacaste', 4),
-    ('San Jose', 4),
-
-    ('San Salvador', 5),
-    ('San vicente', 5),
-    ('Artigas', 21),
-    ('Rivera', 21),
-    ('Salto', 21),
-    ('Rio negro', 21),
-    ('Sonora', 23),
-    ('Sinaloa', 23),
-    ('Durango', 23),
-    ('Chiapas', 23),
-
-    ('Guayas', 15),
-    ('Esmeraldas', 15),
-    ('Guayas', 15),
-    ('Leja', 15),
-    ('Napo', 15),
-    ('Arica', 13),
-    ('Maule', 13),
-    ('Biobío', 13),
-    ('Los ríos', 13),
-    ('Surinam', 20)
-
-INSERT INTO tipo_sangre
-    (tipo)
-VALUES
-    ('A+'),
-    ('O+'),
-    ('B+'),
-    ('AB+'),
-    ('A-'),
-    ('O-'),
-    ('B-'),
-    ('AB-')
