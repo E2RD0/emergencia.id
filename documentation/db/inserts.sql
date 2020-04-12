@@ -107,7 +107,8 @@ VALUES
     ('Asma bronquial', 'inflamatorio crónico de las vías respiratorias', 'broncodilatadores', 30);
 
 INSERT INTO
-    usuario_medicacion(nombre, dosis, frecuencia, adjunto, id_perfil_medico)
+    perfil_medicacion
+    (nombre, dosis, frecuencia, adjunto, id_perfil_medico)
 VALUES
     ('Acetaminofen 500mg', '3 veces', 'Diario', '/documents/awfaw-consultas.txt', 1),
     ('Acetaminofen 500mg', '1 veces', 'Diario', '/documents/dfg-consultas.ext', 2),
@@ -152,7 +153,7 @@ VALUES
     ('Perfil compartido');
 
 INSERT INTO
-    condicion_medica
+    perfil_condicion_medica
     (condicion, notas, adjunto, id_usuario)
 VALUES
     ('Hipertensión', 'Surgio en el 2018', '/documents/9xyeX9MEQA.pdf', 9),
@@ -187,8 +188,8 @@ VALUES
     ('Dermatitis atópica', 'Surgio a inicios de este año (2020)', '/documents/StWxkbcJ56.png', 1);
 
 INSERT INTO
-    contacto_doctor
-    (nombre, telefono, cargo, id_usuario)
+    perfil_contacto_doctor
+    (nombre, telefono, especialidad, id_perfil_medico)
 VALUES
     ('Alfonso Ayala Hernandez', '+50375028568', 'Medico general', 27),
     ('Guillermo Enrique Bahamonde', '+50379914332', 'Pediatra', 30),
@@ -222,7 +223,7 @@ VALUES
     ('Jorge Joaquin Dominguez', '+50378315400', 'Ginecólogo', 19);
 
 INSERT INTO
-    contacto_emergencia
+    perfil_contacto_emergencia
     (nombre, telefono, relacion, id_usuario)
 VALUES
     ('Juana Antonia Olaizola', '+50377077816', 'Hermano', 1),
@@ -257,7 +258,7 @@ VALUES
     ('Ana Lucia Valladolid', '+50364641559', 'Hermano', 23);
 
 INSERT INTO
-    bitacora_usuario
+    perfil_bitacora
     (descripcion, fecha, id_usuario, id_accion_bitacora)
 VALUES
     ('Iniciaste sesión a tu cuenta', '2020-01-15',  1,  4),
@@ -292,7 +293,7 @@ VALUES
     ('Agregaste un contacto de doctor', '2020-01-15',  10,  1);
 
 INSERT INTO
-    seguro_medico
+    perfil_seguro_medico
 VALUES
     (DEFAULT, 'Seguros Azul', '618596402', 10000, '(+503)6555-6975', 'Seguro de vida de Seguros Azul desde el 2016', '/documents/LMD99yx2-carnetdelseguro.jpg', 1),
     (DEFAULT, 'SISA Seguros', '574311417', 7200, '(+503)7578-1498', 'Seguro que abarca todos los posibles gastos médicos', '/documents/mgD0rCWM-seguromedico.jpg', 2),
@@ -328,7 +329,7 @@ VALUES
     (DEFAULT, 'Aseguradora Vivir', '332059611', 30000, '(+503)6138-2305', 'Abarca todos los gastos médicos', '/documents/AEG0X7MY-papelseguro.jpg', 30);
 
 INSERT INTO
-    procedimiento_medico
+    perfil_procedimiento_medico
 VALUES
     (DEFAULT, 'Inmovilización del hueso', '2000-06-13', 'Hospital Nacional San Rafael', '/documents/CYzN7JqO-radiografia.jpg', 1),
     (DEFAULT, 'Rayos X en la zona del tórax', '1985-09-29', 'Hospital Nacional Rosales', '/documents/6ZDruF13-radiografiatorax.jpg', 2),
@@ -364,7 +365,7 @@ VALUES
     (DEFAULT, 'Examen general breve', '2019-08-19', 'Hospital Nacional de Santa Rosa de Lima', '/documents/zfzfluoy-rutinadeexamenes.jpg', 30);
 
 INSERT INTO
-    otra_informacion
+    perfil_otra_informacion
 VALUES
     (DEFAULT, 'En caso de morir', 'Llamar a mi abogado y que traiga el testamento.', 1),
     (DEFAULT, 'Adicciones', 'Alcohol y Tabaco', 2),
@@ -383,7 +384,7 @@ VALUES
     (DEFAULT, 'Al morir', 'Llamar a todos mis contactos', 23);
 
 INSERT INTO 
-    organizacion 
+    up_organizacion 
 VALUES
     (DEFAULT, 'Cruz Verde Salvadoreña', '+50322845792', '/content/U7xSUcMK2qwIOdsgWOFF.png'),
     (DEFAULT, 'Cruz Roja Salvadoreña', '+50322225155', '/content/tx6aknhOH5jjR5PY6ivJ.png'),
@@ -392,7 +393,7 @@ VALUES
     (DEFAULT, 'Protección Civil', '+50322012424', '/content/zZsFMCxTEzeiI0bB3ry5.png');
 
 INSERT INTO 
-    tipo_usuario_p
+    up_tipo_usuario
 VALUES
     (DEFAULT, 'Superadministrador'),
     (DEFAULT, 'Administrador'),
@@ -434,7 +435,7 @@ VALUES
     (DEFAULT,'Johnny','Soliz','JohnnySoliz@fosalud.gob.sv','+50375554406','$argon2i$v=19$m=1024,t=4,p=2$8Io&1Eb+2Oc(0Gl#Su*6Mw!Tc&x%8Oo!9Hp#7Oz$1Uh-2Lw-5Hn#Zc/5Tf/Sb,)3',2,4);
 
 INSERT INTO 
-    enlaces_compartir
+    perfil_enlaces_compartir
 VALUES
     (DEFAULT,'/share/4Myy8CthQC7/','21/2/2020','23/5/2020','0','4'),
     (DEFAULT,'/share/9Mgp7HkmBG3/','2/3/2020','11/5/2020','1','23'),
@@ -468,7 +469,7 @@ VALUES
     (DEFAULT,'/share/0Kin5YqrKF3/','24/2/2020','22/6/2020','5','5');
 
 INSERT INTO 
-    usuarios_compartir 
+    perfil_usuarios_compartir 
 VALUES
     (DEFAULT,4,17),
     (DEFAULT,8,22),
