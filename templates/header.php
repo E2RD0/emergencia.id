@@ -11,8 +11,8 @@
     <link rel="apple-touch-icon" href="icon.png">
 
     <link rel="stylesheet" href="webfonts/stylesheet.css">
-    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
 
     <meta name="theme-color" content="#fafafa">
