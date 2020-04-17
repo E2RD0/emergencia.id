@@ -1,0 +1,34 @@
+Hola amikos, se creo la estructura del proyecto, luego se modifica la ruta para que sea mas amigable para el usaurio
+estructura:
+
+ahora son dos carpetas en las que se dividira el proyecto, la primera es la carpeta 'app':
+En esta carpeta ira todo para lo que el desarrollador es necesario, vistas, controladores, modelos, configuracion.
+
+Y esta la otra carpeta llamada public, en donde ira todos los archivos 'public' que puede acceder el usuario:
+Como imagenes, css, js (archivos public que no importa si el usaurio los ve).
+
+En la carpeta app ira lo siguiente: [
+    config:
+    iran todos los archivos de configuración para el proyecto, como nombre, versión, conexion a la bd, etc
+
+core:
+    Aqui va todo el backend de la aplicación, llamadas a la base de datos, mantenimiento de tablas, consultas, etc.
+
+libs:
+    Iran librerias, archivos necesarios para el funcionamiento de la app.
+
+templates: 
+    Todos los templates de las vistas para ahorrar codigo.
+
+views: 
+    Todas las vistas que vera el usaurio.
+]
+
+En la carpeta public ira lo siguiente: [
+    - css
+    - imagenes
+    - js
+    - webfonts
+]
+
+BESOS 😍😘...

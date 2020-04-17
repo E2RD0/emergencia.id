@@ -1,10 +1,10 @@
 <?php
-require_once('functions.php');
-template::getHeader('Iniciar sesión');
+require_once '../templates/templateUser.php';
+template::headerLogin('Inicio de sesión');
 ?>
 
 <header class="col-12 text-center text-md-left">
-    <img class="mt-5 mx-5 mb-md-5 mb-0" src="images/for-light-bg.svg" alt="Emergencia.id">
+    <img class="mt-5 mx-5 mb-md-5 mb-0" src="../../public/images/for-light-bg.svg" alt="Emergencia.id">
 </header>
 <main class="col-12">
     <div class="row">
@@ -44,12 +44,17 @@ template::getHeader('Iniciar sesión');
 <footer class="col-12 fixed-bottom bg-back bg-h z-back d-none d-md-block">
     <div class="row">
         <div class="col-12 col-xl-6"></div>
+        <div class="">
+            <div class="mt-5"></div>
+        </div>
         <div class="col-12 col-xl-6">
             <div class="text-center d-none d-md-block">
-                <img class="img-fluid img-nmt img-s" src="images/object.svg" alt="Imagen de salud">
+                <img class="img-fluid img-nmt img-s" src="../../public/images/object.svg" alt="Imagen de salud">
             </div>
         </div>
     </div>
 </footer>
 
-<?php template::getFooter() ?>
+<?php
+template::footerLogin();
+?>
