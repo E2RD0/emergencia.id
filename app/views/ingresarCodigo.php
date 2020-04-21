@@ -1,6 +1,6 @@
 <?php
 require_once '../templates/templateUser.php';
-template::headerLogin('Inicio de sesión');
+template::headerLogin('Restablecer contraseña');
 ?>
 
 <header class="col-12 text-center text-md-left">
@@ -12,28 +12,20 @@ template::headerLogin('Inicio de sesión');
             <div class="row mt-md-0">
                 <div class="col-10 col-md-8 mx-auto">
                     <form action="">
-                        <h1 class="text-main text-title mb-1">Iniciar sesión</h1>
-                        <p class="text-regular mb-4">Ingresa tus credenciales para continuar.</p>
-                        <label class="text-help" for="email">Correo electrónico o teléfono</label>
+                        <h1 class="text-main text-title mb-1">Restablecer contraseña</h1>
+                        <p class="text-regular mb-4">Revisa tu correo electrónico e ingresa el código de verificación.</p>
+                        <label class="text-help" for="code">Código de verificación</label>
                         <div class="input-group mb-4">
-                            <input class="textfield" type="email" class="form-control" id="email" aria-describedby="basic-addon3">
-                            <div class="line"></div>
-                        </div>
-                        <label class="text-help" for="pass">Contraseña</label>
-                        <div class="input-group mb-4">
-                            <input class="textfield" type="password" class="form-control" id="pass" aria-describedby="basic-addon3">
+                            <input class="textfield" type="text" class="form-control" id="code" aria-describedby="basic-addon3">
                             <div class="line"></div>
                         </div>
                         <div class="row mb-md-4 mb-2">
                             <div class="col-12 col-md-8 text-center text-lg-right">
-                                <a href="recuperarContrasena.php" class="text-help text-link align-middle">¿Olvidaste tu contraseña?</a>
+                                <a href="login.php" class="text-help text-link align-middle">Ir al inicio de sesión</a>
                             </div>
                             <div class="col-12 col-md-4 text-md-right text-center my-4 my-md-2">
-                                <button type="button" class="button">Acceder</button>
+                                <button type="button" class="button">Continuar</button>
                             </div>
-                        </div>
-                        <div class="col-12 text-center">
-                            <p class="text-help">Aún no tengo una cuenta - <a class="text-link text-main" href="#">Registrarme</a></p>
                         </div>
                     </form>
                 </div>
@@ -49,7 +41,7 @@ template::headerLogin('Inicio de sesión');
         </div>
         <div class="col-12 col-xl-6">
             <div class="text-center d-none d-md-block">
-                <img class="img-fluid img-nmt img-s" src="../../public/images/object.svg" alt="Imagen de salud">
+                <img class="img-fluid img-nmt img-s" src="../../public/images/recoverPassword.svg" alt="Imagen de restablecer contraseña">
             </div>
         </div>
     </div>
