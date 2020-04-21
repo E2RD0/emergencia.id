@@ -25,9 +25,16 @@ template::headerLogin('Inicio de sesión');
                             <div class="line"></div>
                         </div>
                         <div class="row mb-md-4 mb-2">
-                            <div class="col-12 col-md-8 text-center text-lg-right">
-                                <a href="recuperarContrasena.php" class="text-help text-link align-middle">¿Olvidaste tu contraseña?</a>
+                            <!--Para computadora-->
+                            <div class="col-12 col-md-8 text-center text-lg-right d-none d-sm-none d-md-block">
+                                <a href="recuperarContrasena.php" class="text-help text-link float-left">¿Olvidaste tu contraseña?</a>
                             </div>
+
+                            <!--Para Dispositivos moviles-->
+                            <div class="col-12 col-md-8 text-center text-lg-right d-block d-sm-block d-md-none">
+                                <a href="recuperarContrasena.php" class="text-help text-link ">¿Olvidaste tu contraseña?</a>
+                            </div>
+
                             <div class="col-12 col-md-4 text-md-right text-center my-4 my-md-2">
                                 <button type="button" class="button">Acceder</button>
                             </div>
