@@ -63,8 +63,21 @@
   border-bottom: 2px solid rgb(242, 245, 250);
 }
 
+.carrousel_bg_inactive {
+  background-color: #dde3f0;
+}
+
+.text_inactive_corrousel {
+  color: #98a1b3;
+}
+
+.btn_redirect_white{
+  color: white !important;
+  text-decoration: none !important;
+}
+
 .textfield:focus {
-  animation-duration: 0.50s;
+  animation-duration: 0.5s;
   animation-name: slidein;
   border-bottom: 2px solid rgb(33, 150, 243);
 }
@@ -102,6 +115,26 @@
   transition: background-color 0.1s ease 0s, box-shadow 0.1s ease 0s;
   border-width: 0px;
 }
+
+.button_return {
+  font-size: 23px;
+  line-height: 0px;
+  font-weight: 600;
+  display: inline-block;
+  -webkit-appearance: none;
+  text-align: center;
+  color: rgb(75, 79, 86);
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+  outline: none;
+  padding: 17px 37px;
+  border-radius: 10px;
+  transition: background-color 0.1s ease 0s, box-shadow 0.1s ease 0s;
+  border-width: 0px;
+}
+
 .button:hover {
   outline: none;
   background-color: #168ae6;
