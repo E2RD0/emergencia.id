@@ -6,6 +6,7 @@ template::headerLogin('Inicio de sesión');
 <header class="col-12 text-center text-md-left">
     <img class="mt-5 mx-5 mb-md-5 mb-0" src="../../public/images/for-light-bg.svg" alt="Emergencia.id">
 </header>
+
 <main class="col-12">
     <div class="row">
         <div class="col-12 col-xl-6">
@@ -40,7 +41,7 @@ template::headerLogin('Inicio de sesión');
                             </div>
                         </div>
                         <div class="col-12 text-center">
-                            <p class="text-help">Aún no tengo una cuenta - <a class="text-link text-main" href="#">Registrarme</a></p>
+                            <p class="text-help">Aún no tengo una cuenta - <a class="text-link text-main" href="register.php?step=1">Registrarme</a></p>
                         </div>
                     </form>
                 </div>
@@ -48,6 +49,7 @@ template::headerLogin('Inicio de sesión');
         </div>
     </div>
 </main>
+
 <footer class="col-12 fixed-bottom bg-back bg-h z-back d-none d-md-block">
     <div class="row">
         <div class="col-12 col-xl-6"></div>
