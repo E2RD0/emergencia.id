@@ -51,18 +51,64 @@ class template
      * el inicio de sesión, el sitio, etc (compartiran los mismos estilos, pero diferente estructura).
      **/
 
-    public static function headerSite()
+    public static function headerSite($titleDash)
     {
     ?>
         <!--Here copy the header of the dashboard site-->
-    <?php
+        <!doctype html>
+        <html class="no-js" lang="es">
+
+        <head>
+            <meta charset="UTF-8">
+            <title><?php echo $titleDash ?></title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+            <!--<link rel="manifest" href="site.webmanifest">-->
+            <link rel="apple-touch-icon" href="icon.png">
+
+            <link rel="stylesheet" href="../../public/webfonts/stylesheet.css">
+            <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../public/css/normalize.css">
+            <link rel="stylesheet" href="../../public/css/main.css">
+
+            <meta name="theme-color" content="#fafafa">
+        </head>
+
+        <body class="bg-light">
+            <nav class="navbar navbar-light bg-white">
+                <img src="../../public/images/for-light-bg.svg" width="150" height="70" alt="">
+                <form class="form-inline">
+                    <a href="" type="button" style="color:black" class="text-link">Mis perfiles</a>
+                    <div class="dropdown">
+                        <a href="#" style="box-shadow: none" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eduardo Estrada</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Ajustes de cuenta</a>
+                            <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </form>
+            </nav>
+        <?php
     }
 
     public static function footerSite()
     {
-    ?>
-        <!--Here copy the footer of the dashboard site-->
-<?php
+        ?>
+            <!--Here copy the footer of the dashboard site-->
+        </body>
+
+        <script src="../../public/js/vendor/jquery-3.5.0.min.js"></script>
+        <script src="../../public/js/vendor/bootstrap.min.js"></script>
+        <script src="../../public/js/plugins.js"></script>
+        <script src="../../public/js/main.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+        </html>
+        <?php
+        
     }
 }
 
