@@ -71,15 +71,19 @@ class template
             <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
             <link rel="stylesheet" href="../../public/css/normalize.css">
             <link rel="stylesheet" href="../../public/css/main.css">
+            <link rel="stylesheet" href="../../public/icons/css/all.css">
 
             <meta name="theme-color" content="#fafafa">
         </head>
 
-        <body class="bg-light">
+        <body style="background-color: #F2F5FA">
             <nav class="navbar navbar-light bg-white">
                 <img src="../../public/images/for-light-bg.svg" width="150" height="70" alt="">
                 <form class="form-inline">
-                    <a href="" type="button" style="color:black" class="text-link">Mis perfiles</a>
+                    <a href="" type="button" style="color:black" class="text-link mr-lg-5">Mis perfiles</a>
+                    <div class="verticalLine">
+                        .
+                    </div>
                     <div class="dropdown">
                         <a href="#" style="box-shadow: none" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eduardo Estrada</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -98,6 +102,7 @@ class template
             <!--Here copy the footer of the dashboard site-->
         </body>
 
+        <!-- <script src="https://kit.fontawesome.com/9b3f9e4d8d.js" crossorigin="anonymous"></script> -->
         <script src="../../public/js/vendor/jquery-3.5.0.min.js"></script>
         <script src="../../public/js/vendor/bootstrap.min.js"></script>
         <script src="../../public/js/plugins.js"></script>
