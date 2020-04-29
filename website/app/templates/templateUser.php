@@ -78,7 +78,7 @@ class template
 
         <body style="background-color: #F2F5FA">
             <nav class="navbar navbar-light bg-white">
-                <img src="../../public/images/for-light-bg.svg" width="150" height="70" alt="">
+                <img class="ml-4" src="../../public/images/for-light-bg.svg" width="150" height="70" alt="">
                 <form class="form-inline">
                     <a href="" type="button" style="color:black" class="text-link mr-lg-5">Mis perfiles</a>
                     <div class="verticalLine">
@@ -113,7 +113,7 @@ class template
 
         </html>
         <?php
-        
+
     }
 }
 

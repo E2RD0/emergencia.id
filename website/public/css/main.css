@@ -42,6 +42,31 @@
 .text-link:hover {
   color: #2196f3;
 }
+.text-settings-help{
+  letter-spacing: 2.2px;
+  font-size: 1rem;
+}
+.text-settings-tfname{
+  font-size: 1rem;
+}
+.text-settings-da{
+  font-size: 1.1rem;
+}
+.text-settings-link-off{
+  color: rgb(152, 161, 179);
+  pointer-events: none;
+  cursor: unset;
+}
+.text-settings-link-on{
+  font-size: 1.2rem;
+  color: #2196f3;
+}
+.text-settings-link-on, .text-settings-link-on:hover, .text-settings-link-on:focus{
+  text-decoration: none !important;
+}
+.text-settings-link-on:hover {
+  color: #21277f;
+}
 .textfield {
   padding-top: 16px;
   padding-bottom: 16px;
@@ -202,6 +227,3 @@
     margin-top: -16rem !important;
   }
 }
-
-
-
