@@ -13,7 +13,7 @@ template::headerSite('Dashboard del cliente');
             <h1 class="text-regular">Perfiles</h1>
         </div>
         <div class="col-lg-2 mt-2">
-            <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo perfil</button>
+            <button type="button" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Nuevo perfil</button>
         </div>
     </div>
 
@@ -39,12 +39,36 @@ template::headerSite('Dashboard del cliente');
                         <a class="dropdown-item" href="#"><i class="far fa-address-card mr-2"></i> Targeta QR</a>
                         <a class="dropdown-item" href="#"><i class="far fa-arrow-alt-down mr-2"></i> Descargar PDF</a>
                         <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-share-square mr-2"></i> Compartir</a>
-                        <a class="dropdown-item" href="#"><i class="far fa-trash mr-2"></i> Eliminar</a>
+                        <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil"><i class="far fa-trash mr-2"></i> Eliminar</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="card mb-3 card mb-3 card border-0 card mb-5" style="max-width: 540px;background-color: #F2F5FA;">
+        <div class="row no-gutters">
+            <div class="col-md-3">
+                <img src="../../public/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
+            </div>
+            <div class="col-md-9">
+                <div class="card-body">
+                    <h5 class="card-title text-regular">José Roberto Estrada</h5>
+                    <p class="card-text"><small class="text-muted">54 años, San salvador, El salvador.</small></p>
+                    <a href="" class="text-link mr-4" style="color:black"><i class="far fa-pencil"></i> Editar</a>
+                    <a href="" class="text-link mr-4" style="color:black"><i class="far fa-clone"></i> Duplicar</a>
+                    <a href="" class="text-link mr-4" style="color:black" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,5"><i class="fas fa-ellipsis-h"></i></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                        <a class="dropdown-item" href="#"><i class="far fa-address-card mr-2"></i> Targeta QR</a>
+                        <a class="dropdown-item" href="#"><i class="far fa-arrow-alt-down mr-2"></i> Descargar PDF</a>
+                        <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-share-square mr-2"></i> Compartir</a>
+                        <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil"><i class="far fa-trash mr-2"></i> Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- modal compartir perfil -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -112,33 +136,29 @@ template::headerSite('Dashboard del cliente');
         </div>
     </div>
 
-
-
-    <div class="card mb-3 card mb-3 card border-0 card mb-5" style="max-width: 540px;background-color: #F2F5FA;">
-        <div class="row no-gutters">
-            <div class="col-md-3">
-                <img src="../../public/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
-            </div>
-            <div class="col-md-9">
-                <div class="card-body">
-                    <h5 class="card-title text-regular">José Roberto Estrada</h5>
-                    <p class="card-text"><small class="text-muted">54 años, San salvador, El salvador.</small></p>
-                    <a href="" class="text-link mr-4" style="color:black"><i class="far fa-pencil"></i> Editar</a>
-                    <a href="" class="text-link mr-4" style="color:black"><i class="far fa-clone"></i> Duplicar</a>
-                    <a href="" class="text-link mr-4" style="color:black" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,5"><i class="fas fa-ellipsis-h"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                        <a class="dropdown-item" href="#"><i class="far fa-address-card mr-2"></i> Targeta QR</a>
-                        <a class="dropdown-item" href="#"><i class="far fa-arrow-alt-down mr-2"></i> Descargar PDF</a>
-                        <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-share-square mr-2"></i> Compartir</a>
-                        <a class="dropdown-item" href="#"><i class="far fa-trash mr-2"></i> Eliminar</a>
-                    </div>
+    <!-- modal eliminar perfil -->
+    <div class="modal fade" id="eliminarperfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header  border-0">
+                    <h5 class="text-header-modal" id="exampleModalCenterTitle">Eliminar perfil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estas seguro que quieres eliminar este perfil? Una vez eliminado no lo podras recuperar</p>
+                </div>
+                <div class="modal-footer  border-0 d-flex justify-content-end">
+                <button type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;" data-dismiss="modal">Eliminar</button>
+                    <button type="button" class="btn btn-primary" style="font-weight: 600;" data-dismiss="modal">Cancelar</button>  
                 </div>
             </div>
         </div>
     </div>
 
+    
 </div>
-
 
 <?php
 template::footerSite();
