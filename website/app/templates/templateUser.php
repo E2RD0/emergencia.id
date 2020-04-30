@@ -93,22 +93,52 @@ class template
         <?php
     }
 
-    public static function footerSite()
+    public static function headerCreate($titleDash)
     {
         ?>
-            <!--Here copy the footer of the dashboard site-->
-        </body>
+            <!--Here copy the header of the dashboard site-->
+            <!doctype html>
+            <html class="no-js" lang="es">
 
-        <!-- <script src="https://kit.fontawesome.com/9b3f9e4d8d.js" crossorigin="anonymous"></script> -->
-        <script src="../../public/js/vendor/jquery-3.5.0.min.js"></script>
-        <script src="../../public/js/vendor/bootstrap.bundle.min.js"></script>
-        <script src="../../public/js/plugins.js"></script>
-        <script src="../../public/js/main.js"></script>
+            <head>
+                <meta charset="UTF-8">
+                <title><?php echo $titleDash ?></title>
+                <meta name="description" content="">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        </html>
-        <?php
+                <!--<link rel="manifest" href="site.webmanifest">-->
+                <link rel="apple-touch-icon" href="icon.png">
 
+                <link rel="stylesheet" href="../../public/webfonts/stylesheet.css">
+                <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+                <link rel="stylesheet" href="../../public/css/normalize.css">
+                <link rel="stylesheet" href="../../public/css/main.css">
+                <link rel="stylesheet" href="../../public/icons/css/all.css">
+
+                <meta name="theme-color" content="#fafafa">
+            </head>
+
+            <body style="background-color: #F2F5FA">
+            <div class="mt-5"></div>
+            <?php
+        }
+
+        public static function footerSite()
+        {
+            ?>
+                <!--Here copy the footer of the dashboard site-->
+            </body>
+
+            <!-- <script src="https://kit.fontawesome.com/9b3f9e4d8d.js" crossorigin="anonymous"></script> -->
+            <script src="../../public/js/vendor/jquery-3.5.0.min.js"></script>
+            <script src="../../public/js/vendor/bootstrap.bundle.min.js"></script>
+            <script src="../../public/js/plugins.js"></script>
+            <script src="../../public/js/main.js"></script>
+
+            </html>
+    <?php
+
+        }
     }
-}
 
-?>
+    ?>

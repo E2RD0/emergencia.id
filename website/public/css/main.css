@@ -105,26 +105,28 @@ body{
 .text-link:hover {
   color: #2196f3;
 }
-.text-settings-help{
+.text-settings-help {
   letter-spacing: 2.2px;
   font-size: 1rem;
 }
-.text-settings-tfname{
+.text-settings-tfname {
   font-size: 1rem;
 }
-.text-settings-da{
+.text-settings-da {
   font-size: 1.1rem;
 }
-.text-settings-link-off{
+.text-settings-link-off {
   color: rgb(152, 161, 179);
   pointer-events: none;
   cursor: unset;
 }
-.text-settings-link-on{
+.text-settings-link-on {
   font-size: 1.2rem;
   color: #2196f3;
 }
-.text-settings-link-on, .text-settings-link-on:hover, .text-settings-link-on:focus{
+.text-settings-link-on,
+.text-settings-link-on:hover,
+.text-settings-link-on:focus {
   text-decoration: none !important;
 }
 .text-settings-link-on:hover {
@@ -152,7 +154,7 @@ body{
   font-size: inherit;
 }
 
-.text-header-modal{
+.text-header-modal {
   font-size: 2.5vh;
   font-weight: bold;
 }
@@ -165,7 +167,7 @@ body{
   color: #98a1b3;
 }
 
-.btn_redirect_white{
+.btn_redirect_white {
   color: white !important;
   text-decoration: none !important;
 }
@@ -249,11 +251,25 @@ body{
   height: 15vh;
 }
 
-.line{
+.line {
   border-bottom-style: solid;
-  border-color: #DDE3F0;
+  border-color: #dde3f0;
   border-width: 1px;
 }
+
+.interline-header {
+  line-height: 1rem !important;
+}
+
+.end{
+  height: 50px !important;
+}
+
+.my-bar{
+  width: 5%;
+	background-color: #f34213;
+}
+
 @media only screen and (max-width: 991px){
   .container-login::before{
     height: 220px;
