@@ -93,25 +93,55 @@ class template
         <?php
     }
 
-    public static function footerSite()
+    public static function headerCreate($titleDash)
     {
         ?>
-            <!--Here copy the footer of the dashboard site-->
-        </body>
+            <!--Here copy the header of the dashboard site-->
+            <!doctype html>
+            <html class="no-js" lang="es">
 
-        <!-- <script src="https://kit.fontawesome.com/9b3f9e4d8d.js" crossorigin="anonymous"></script> -->
-        <script src="../../public/js/vendor/jquery-3.5.0.min.js"></script>
-        <script src="../../public/js/vendor/bootstrap.min.js"></script>
-        <script src="../../public/js/plugins.js"></script>
-        <script src="../../public/js/main.js"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            <head>
+                <meta charset="UTF-8">
+                <title><?php echo $titleDash ?></title>
+                <meta name="description" content="">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        </html>
-        <?php
+                <!--<link rel="manifest" href="site.webmanifest">-->
+                <link rel="apple-touch-icon" href="icon.png">
 
+                <link rel="stylesheet" href="../../public/webfonts/stylesheet.css">
+                <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
+                <link rel="stylesheet" href="../../public/css/normalize.css">
+                <link rel="stylesheet" href="../../public/css/main.css">
+                <link rel="stylesheet" href="../../public/icons/css/all.css">
+
+                <meta name="theme-color" content="#fafafa">
+            </head>
+
+            <body style="background-color: #F2F5FA">
+            <div class="mt-5"></div>
+            <?php
+        }
+
+        public static function footerSite()
+        {
+            ?>
+                <!--Here copy the footer of the dashboard site-->
+            </body>
+
+            <!-- <script src="https://kit.fontawesome.com/9b3f9e4d8d.js" crossorigin="anonymous"></script> -->
+            <script src="../../public/js/vendor/jquery-3.5.0.min.js"></script>
+            <script src="../../public/js/vendor/bootstrap.min.js"></script>
+            <script src="../../public/js/plugins.js"></script>
+            <script src="../../public/js/main.js"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+            </html>
+    <?php
+
+        }
     }
-}
 
-?>
+    ?>
