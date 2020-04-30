@@ -81,9 +81,6 @@ class template
                 <img class="ml-4" src="../../public/images/for-light-bg.svg" width="150" height="70" alt="">
                 <form class="form-inline">
                     <a href="" type="button" style="color:black" class="text-link mr-lg-5">Mis perfiles</a>
-                    <div class="verticalLine">
-                        .
-                    </div>
                     <div class="dropdown">
                         <a href="#" style="box-shadow: none" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eduardo Estrada</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
