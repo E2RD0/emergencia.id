@@ -41,7 +41,7 @@ template::headerLogin('Inicio de sesión');
             </form>
 
             <div class="col-12 text-center">
-                <p class="text-help">Aún no tengo una cuenta - <a class="text-link text-main" href="register.php?step=1">Registrarme</a></p>
+                <p class="text-help">Aún no tengo una cuenta - <a class="text-link text-main" href="registro.php">Registrarme</a></p>
             </div>
         </div>
     </main>

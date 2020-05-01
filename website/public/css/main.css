@@ -211,7 +211,24 @@ body{
   transition: background-color 0.1s ease 0s, box-shadow 0.1s ease 0s;
   border-width: 0px;
 }
-
+.button:hover {
+  outline: none;
+  background-color: #168ae6;
+  color: #fff;
+  text-decoration: none;
+}
+.button:focus {
+  outline: none;
+}
+.button--white{
+  background-color: #fff;
+  border: 1px solid #DDE3F0;
+  color: #262B33;
+}
+.button--white:hover{
+  background-color: #fff;
+  color: #262B33;
+}
 .button_return {
   font-size: 23px;
   line-height: 0px;
@@ -229,14 +246,6 @@ body{
   border-radius: 10px;
   transition: background-color 0.1s ease 0s, box-shadow 0.1s ease 0s;
   border-width: 0px;
-}
-
-.button:hover {
-  outline: none;
-  background-color: #168ae6;
-}
-.button:focus {
-  outline: none;
 }
 
 .mt-6 {
