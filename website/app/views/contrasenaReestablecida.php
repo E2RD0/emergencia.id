@@ -7,10 +7,10 @@ template::headerLogin('Restablecer contraseña');
     <img class="" src="../../public/images/for-light-bg.svg" alt="Emergencia.id">
 </header>
 
-<main class="container">
+<main class="container my-5">
     <div class="row">
-        <div class="col-10 col-md-8 mx-auto">
-            <img class="img-fluid" src="../../public/images/contrasenaReestablecida.svg" alt="Corazón imagen">
+        <div class="col-10 col-md-8 mx-auto text-center">
+            <img class="img-fluid" width="400" src="../../public/images/contrasenaReestablecida.svg" alt="Corazón imagen">
         </div>
     </div>
     <div class="row">
