@@ -13,31 +13,31 @@ template::headerLogin('Inicio de sesión');
             <p class="text-regular mt-2 mb-4">Ingresa tus credenciales para continuar.</p>
 
             <form action="">
-            <label class="text-help" for="email">Correo electrónico o teléfono</label>
-            <div class="input-group mb-4">
-                <input class="textfield" type="email" class="form-control" id="email" aria-describedby="basic-addon3">
-                <div class="line"></div>
-            </div>
-            <label class="text-help" for="pass">Contraseña</label>
-            <div class="input-group mb-4">
-                <input class="textfield" type="password" class="form-control" id="pass" aria-describedby="basic-addon3">
-                <div class="line"></div>
-            </div>
-            <div class="row mb-md-4 mb-2">
-                <!--Para computadora-->
-                <div class="col-12 col-md-8 text-center text-lg-right d-none d-sm-block">
-                    <a href="recuperarContrasena.php" class="text-help text-link float-left">¿Olvidaste tu contraseña?</a>
+                <label class="text-help" for="email">Correo electrónico o teléfono</label>
+                <div class="input-group mb-4">
+                    <input class="textfield" type="email" class="form-control" id="email" aria-describedby="basic-addon3">
+                    <div class="line"></div>
                 </div>
+                <label class="text-help" for="pass">Contraseña</label>
+                <div class="input-group mb-4">
+                    <input class="textfield" type="password" class="form-control" id="pass" aria-describedby="basic-addon3">
+                    <div class="line"></div>
+                </div>
+                <div class="row mb-md-4 mb-2">
+                    <!--Para computadora-->
+                    <div class="col-12 col-md-8 text-center text-lg-right d-none d-sm-block">
+                        <a href="recuperarContrasena.php" class="text-help text-link float-left">¿Olvidaste tu contraseña?</a>
+                    </div>
 
-                <!--Para Dispositivos moviles-->
-                <div class="col-12 col-md-8 text-center text-lg-right d-block d-sm-none">
-                    <a href="recuperarContrasena.php" class="text-help text-link ">¿Olvidaste tu contraseña?</a>
-                </div>
+                    <!--Para Dispositivos moviles-->
+                    <div class="col-12 col-md-8 text-center text-lg-right d-block d-sm-none">
+                        <a href="recuperarContrasena.php" class="text-help text-link ">¿Olvidaste tu contraseña?</a>
+                    </div>
 
-                <div class="col-12 col-md-4 text-sm-right text-center my-4 my-md-2">
-                    <button type="button" class="button" onclick="location.href='dashboardCliente.php'">Acceder</button>
+                    <div class="col-12 col-md-4 text-sm-right text-center my-4 my-md-2">
+                        <button type="button" class="button" onclick="location.href='dashboardCliente.php'">Acceder</button>
+                    </div>
                 </div>
-            </div>
             </form>
 
             <div class="col-12 text-center">

@@ -80,12 +80,12 @@ class template
             <nav class="navbar navbar-light bg-white">
                 <img class="ml-4" src="../../public/images/for-light-bg.svg" width="150" height="70" alt="">
                 <form class="form-inline">
-                    <a href="" type="button" style="color:black" class="text-link mr-lg-5">Mis perfiles</a>
+                    <a href="dashboardCliente.php" type="button" style="color:black" class="text-link mr-lg-5">Mis perfiles</a>
                     <div class="dropdown">
                         <a href="#" style="box-shadow: none" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eduardo Estrada</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Ajustes de cuenta</a>
-                            <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                            <a class="dropdown-item" href="configurarCuenta.php">Ajustes de cuenta</a>
+                            <a class="dropdown-item" href="login.php">Cerrar Sesión</a>
                         </div>
                     </div>
                 </form>
