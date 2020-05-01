@@ -76,19 +76,19 @@ class template
             <meta name="theme-color" content="#fafafa">
         </head>
 
-        <body style="background-color: #F2F5FA">
+        <body class="app">
             <nav class="navbar navbar-light bg-white">
-                <img class="ml-4" src="../../public/images/for-light-bg.svg" width="150" height="70" alt="">
-                <form class="form-inline">
-                    <a href="dashboardCliente.php" type="button" style="color:black" class="text-link mr-lg-5">Mis perfiles</a>
-                    <div class="dropdown">
-                        <a href="#" style="box-shadow: none" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eduardo Estrada</a>
+                <img class="ml-3" src="../../public/images/for-light-bg.svg" width="150" height="70" alt="Emergencia.id">
+                <div class="d-flex align-items-center mr-3">
+                    <a href="dashboardCliente.php" class="color-text text-link mr-lg-5">Mis perfiles</a>
+                    <div class="dropdown dropdown-nav-options">
+                        <a href="#" class="font-size-regular btn dropdown-toggle shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eduardo Estrada</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="configurarCuenta.php">Ajustes de cuenta</a>
-                            <a class="dropdown-item" href="login.php">Cerrar Sesión</a>
+                            <a class="dropdown-item font-size-regular" href="configurarCuenta.php">Ajustes de cuenta</a>
+                            <a class="dropdown-item font-size-regular" href="login.php">Cerrar Sesión</a>
                         </div>
                     </div>
-                </form>
+                </div>
             </nav>
         <?php
     }

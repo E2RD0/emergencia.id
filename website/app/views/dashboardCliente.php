@@ -3,75 +3,106 @@ require_once '../templates/templateUser.php';
 template::headerSite('Dashboard del cliente');
 ?>
 
-<main>
+<div class="container mt-5">
+    <h1 class="title-page">Perfiles</h1>
 
-</main>
-<div class="container">
-
-    <div class="row mt-5 ml-sm-0">
-        <div class="col-lg-10">
-            <h1 class="text-regular">Perfiles</h1>
-        </div>
-    </div>
-    <div class="line ml-0 ml-sm-3">
-        <a class="navbar-brand" href="dashboardCliente.php" style="border-bottom: 3px solid #2F8DEB; text-decoration: none; color:black">Mis perfiles</a>
-        <a class="navbar-brand" href="dashboardCompartir.php" style=" text-decoration: none; color:grey">Compartidos conmigo</a>
+    <div class="nav d-flex d-md-block line nav-profiles" role="tablist">
+        <a class="navbar-brand profile-option text-link active" data-toggle="tab" href="#perfiles">Mis perfiles</a>
+        <a class="navbar-brand profile-option text-link" data-toggle="tab" href="#compartidos">Compartidos conmigo</a>
         <!-- btn escritorio -->
-        <a href="" class="btn btn-primary float-right d-none d-sm-none d-md-block" role="button"><i class="fas fa-plus mr-2"></i>Nuevo perfil</a>
-        <!-- btn movil -->
-        <a href="" class="btn btn-primary float-right d-block d-sm-block d-md-none btn-lg btn-block" role="button"><i class="fas fa-plus mr-2"></i>Nuevo perfil</a>
+        <a href="newProfile.php" class="button button--small button-profile d-none d-md-block" role="button"><i class="fas fa-plus mr-2"></i>Nuevo perfil</a>
     </div>
+    <!-- btn movil -->
+    <a href="newProfile.php" class="button button--small d-block d-md-none mt-4" role="button"><i class="fas fa-plus mr-2"></i>Nuevo perfil</a>
 
+    <div class="tab-content">
+    <!-- cards de mis perfiles -->
+    <div class="tab-pane active" id="perfiles" role="tabpanel">
 
-    <!-- card de perfiles -->
-    <div class="card mb-3 card mb-3 card border-0 card mb-5 mt-5 pt-3" style="max-width: 540px; background-color: #F2F5FA;">
+    <div class="card profile-card my-5 text-center text-sm-left">
         <div class="row no-gutters">
-            <div class="col-md-3">
+            <div class="col-sm-3">
                 <img src="../../public/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
             </div>
-            <div class="col-md-9">
+            <div class="col-sm-9">
                 <div class="card-body">
                     <h5 class="card-title text-regular">Eduardo Estrada</h5>
-                    <p class="card-text"><small class="text-muted">18 años, San salvador, El salvador.</small></p>
-                    <a href="" class="text-link mr-4" style="color:black"><i class="far fa-pencil mr-2"></i> Editar</a>
-                    <a href="" class="text-link mr-4" style="color:black"><i class="far fa-clone mr-2"></i> Duplicar</a>
-                    <a href="" class="text-link mr-4" style="color:black" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,5"><i class="fas fa-ellipsis-h"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                        <a class="dropdown-item" href="#"><i class="far fa-address-card mr-2"></i> Targeta QR</a>
-                        <a class="dropdown-item" href="#"><i class="far fa-arrow-alt-down mr-2"></i> Descargar PDF</a>
-                        <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-share-square mr-2"></i> Compartir</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-history mr-2"></i></i> Ver actividad</a>
-                        <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil"><i class="far fa-trash mr-2"></i> Eliminar</a>
+                    <p class="card-text">18 años, San salvador, El salvador.</p>
+                    <div class="d-flex flex-column d-sm-block">
+                    <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-pencil mr-2"></i> Editar</a>
+                    <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-clone mr-2"></i> Duplicar</a>
+                    <a href="#" class="color-text text-link mr-4 mb-3" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,5"><i class="fas fa-ellipsis-h"></i></a>
+                        <div class="dropdown-menu profile-more-options" aria-labelledby="dropdownMenuOffset">
+                            <a class="dropdown-item mb-1" href="#"><i class="far fa-address-card mr-2"></i> Targeta QR</a>
+                            <a class="dropdown-item mb-1" href="#"><i class="far fa-arrow-alt-down mr-2"></i> Descargar PDF</a>
+                            <a class="dropdown-item mb-1" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-share-square mr-2"></i> Compartir</a>
+                            <a class="dropdown-item mb-1" href="#"><i class="fas fa-history mr-2"></i></i> Ver actividad</a>
+                            <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil"><i class="far fa-trash mr-2"></i> Eliminar</a>
+                        </div>    
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="card mb-3 card mb-3 card border-0 card mb-5" style="max-width: 540px;background-color: #F2F5FA;">
+    <div class="card profile-card my-5 text-center text-sm-left">
         <div class="row no-gutters">
-            <div class="col-md-3">
+            <div class="col-sm-3">
                 <img src="../../public/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
             </div>
-            <div class="col-md-9">
+            <div class="col-sm-9">
                 <div class="card-body">
                     <h5 class="card-title text-regular">José Roberto Estrada</h5>
-                    <p class="card-text"><small class="text-muted">54 años, San salvador, El salvador.</small></p>
-                    <a href="" class="text-link mr-4" style="color:black"><i class="far fa-pencil mr-2"></i> Editar</a>
-                    <a href="" class="text-link mr-4" style="color:black"><i class="far fa-clone mr-2"></i> Duplicar</a>
-                    <a href="" class="text-link mr-4" style="color:black" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,5"><i class="fas fa-ellipsis-h"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                        <a class="dropdown-item" href="#"><i class="far fa-address-card mr-2"></i> Targeta QR</a>
-                        <a class="dropdown-item" href="#"><i class="far fa-arrow-alt-down mr-2"></i> Descargar PDF</a>
-                        <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-share-square mr-2"></i> Compartir</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-history mr-2"></i></i> Ver actividad</a>
-                        <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil"><i class="far fa-trash mr-2"></i> Eliminar</a>
+                    <p class="card-text">54 años, San salvador, El salvador.</p>
+                    <div class="d-flex flex-column d-sm-block">
+                    <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-pencil mr-2"></i> Editar</a>
+                    <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-clone mr-2"></i> Duplicar</a>
+                    <a href="#" class="color-text text-link mr-4 mb-3" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,5"><i class="fas fa-ellipsis-h"></i></a>
+                        <div class="dropdown-menu profile-more-options" aria-labelledby="dropdownMenuOffset">
+                            <a class="dropdown-item mb-1" href="#"><i class="far fa-address-card mr-2"></i> Targeta QR</a>
+                            <a class="dropdown-item mb-1" href="#"><i class="far fa-arrow-alt-down mr-2"></i> Descargar PDF</a>
+                            <a class="dropdown-item mb-1" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-share-square mr-2"></i> Compartir</a>
+                            <a class="dropdown-item mb-1" href="#"><i class="fas fa-history mr-2"></i></i> Ver actividad</a>
+                            <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil"><i class="far fa-trash mr-2"></i> Eliminar</a>
+                        </div>    
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    </div> <!-- Tab pane perfiles -->
+
+
+    <!-- cards de perfiles compartidos -->
+    <div class="tab-pane" id="compartidos" role="tabpanel">
+
+    <div class="card profile-card my-5 text-center text-sm-left">
+        <div class="row no-gutters">
+            <div class="col-sm-3">
+                <img src="../../public/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
+            </div>
+            <div class="col-sm-9">
+                <div class="card-body">
+                    <h5 class="card-title text-regular">Julio Escamilla</h5>
+                    <p class="card-text">18 años, San salvador, El salvador.</p>
+                    <div class="d-flex flex-column d-sm-block">
+                    <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-eye mr-2"></i> Ver</a>
+                    <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-clone mr-2"></i> Guardar</a>
+                    <a href="#" class="color-text text-link mr-4 mb-3" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,5"><i class="fas fa-ellipsis-h"></i></a>
+                        <div class="dropdown-menu profile-more-options" aria-labelledby="dropdownMenuOffset">
+                            <a class="dropdown-item mb-1" href="#"><i class="far fa-arrow-alt-down mr-2"></i> Descargar PDF</a>
+                            <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil"><i class="far fa-trash mr-2"></i> Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div> <!-- Tab pane compartir -->
+
+    </div> <!--Tab content -->
 
     <!-- modal compartir perfil -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -159,6 +190,7 @@ template::headerSite('Dashboard del cliente');
             </div>
         </div>
     </div>
+
 
     
 </div>

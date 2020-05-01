@@ -103,7 +103,7 @@ body{
   text-decoration: none !important;
 }
 .text-link:hover {
-  color: #2196f3;
+  color: #2196f3 !important;
 }
 .text-settings-help {
   letter-spacing: 2.2px;
@@ -220,6 +220,10 @@ body{
 .button:focus {
   outline: none;
 }
+.button--small{
+  font-size: 16px;
+  padding: 8px 10px;
+}
 .button--white{
   background-color: #fff;
   border: 1px solid #DDE3F0;
@@ -228,6 +232,11 @@ body{
 .button--white:hover{
   background-color: #fff;
   color: #262B33;
+}
+.button-profile{
+  position: absolute;
+  right: 0;
+  bottom: 15px;
 }
 .button_return {
   font-size: 23px;
@@ -279,6 +288,41 @@ body{
 	background-color: #f34213;
 }
 
+.app{
+  background-color: #F2F5FA;
+}
+.dropdown-nav-options.show >a {
+  color: #98a1b3;
+}
+.color-text{
+  color: #262b33;
+}
+.title-page{
+  font-size: 32px;
+}
+.nav-profiles{
+  position: relative;
+}
+.nav-profiles .profile-option{
+  font-size: 19px;
+  color: #98a1b3;
+}
+.nav-profiles .profile-option.active{
+  color: #262B33 !important;
+  border-bottom: 3px solid #2F8DEB;
+}
+.profile-card{
+  max-width: 540px;
+  background-color: inherit;
+  border: 0;
+}
+.profile-card .card-text{
+  font-size: 16px;
+  color: #98A1B3;
+}
+.profile-more-options{
+  font-size: 19px;
+}
 @media only screen and (max-width: 991px){
   .container-login::before{
     height: 220px;
@@ -296,6 +340,18 @@ body{
     font-size: 38px;
     line-height: 40px;
   }
+  .nav-profiles .profile-option{
+    width: 50%;
+    text-align: center;
+    margin: 0;
+    white-space: normal;
+  }
+}
+@media only screen and (max-width: 575px){
+  .profile-card .card-img{
+    max-width: 200px;
+  }
+
 }
 @media only screen and (max-width: 500px){
   .container-login::before{
