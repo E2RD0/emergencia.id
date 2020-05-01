@@ -79,7 +79,7 @@ class template
         <body class="app">
             <nav class="navbar navbar-light bg-white">
                 <img class="ml-3" src="../../public/images/for-light-bg.svg" width="150" height="70" alt="Emergencia.id">
-                <div class="d-flex align-items-center mr-3">
+                <div class="navbar-items d-flex align-items-center mr-0 mr-sm-3">
                     <a href="dashboardCliente.php" class="color-text text-link mr-lg-5">Mis perfiles</a>
                     <div class="dropdown dropdown-nav-options">
                         <a href="#" class="font-size-regular btn dropdown-toggle shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eduardo Estrada</a>
