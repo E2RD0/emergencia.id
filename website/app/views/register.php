@@ -4,7 +4,7 @@ template::headerLogin('Register');
 ?>
 
 <header class="header-login">
-        <img class="" src="../../public/images/for-light-bg.svg" alt="Emergencia.id">
+    <img class="" src="../../public/images/for-light-bg.svg" alt="Emergencia.id">
 </header>
 
 <main class="container-fluid">
@@ -12,23 +12,23 @@ template::headerLogin('Register');
         <div class="w-100 d-none d-md-flex justify-content-center">
             <div class="d-flex">
                 <div class="mx-3">
-                        <h5 class="d-flex">
-                        <span class="badge badge-pill mr-3 badge-primary text-white"><span class="text-white">1</span></span><span class="d-none d-sm-none d-md-block text-dark">Añade tu información</span>
-                        </h5>
-                </div>
-                <div class="mx-3">
-                        <h5 class="d-flex">
-                        <span class="badge badge-pill mr-3 carrousel_bg_inactive"><span class="text-secondary">2</span></span><span class="d-none d-sm-none d-md-block text-secondary">Completa tu perfil médico</span>
-                        </h5>
+                    <h5 class="d-flex">
+                        <!-- If ternario, para validad el active del stepper -->
+                        <span class="badge badge-pill mr-3 <?php echo $res = ($_GET['step'] == 1) ? "active-stepper" : "inactive-stepper"; ?>"><span class="">1</span></span><span class="d-none d-sm-none d-md-block text-dark">Añade tu información</span>
+                    </h5>
                 </div>
                 <div class="mx-3">
                     <h5 class="d-flex">
-                    <span class="badge badge-pill mr-3 carrousel_bg_inactive"><span class="text-secondary">3</span></span><span class="d-none d-sm-none d-md-block text-secondary">Revisión</span>
+                        <span class="badge badge-pill mr-3 <?php echo $res = ($_GET['step'] == 2) ? "active-stepper" : "inactive-stepper"; ?>"><span class="">2</span></span><span class="d-none d-sm-none d-md-block text-secondary">Completa tu perfil médico</span>
+                    </h5>
+                </div>
+                <div class="mx-3">
+                    <h5 class="d-flex">
+                        <span class="badge badge-pill mr-3 <?php echo $res = ($_GET['step'] == 3) ? "active-stepper" : "inactive-stepper"; ?>"><span class="">3</span></span><span class="d-none d-sm-none d-md-block text-secondary">Revisión</span>
                     </h5>
                 </div>
             </div>
         </div>
-
         <?php
         #Valida si existe la variable step en la URL
         if (!isset($_GET['step'])) {
@@ -70,7 +70,7 @@ template::headerLogin('Register');
         <?php
         } else if ($_GET['step'] == 3) {
         ?>
-
+            <!-- Codigo HTML para el stepper 3-->
         <?php
         }
         ?>

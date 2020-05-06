@@ -113,13 +113,13 @@ class template
                 <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
                 <link rel="stylesheet" href="../../public/css/normalize.css">
                 <link rel="stylesheet" href="../../public/css/main.css">
-                <link rel="stylesheet" href="../../public/icons/css/all.css">
+                <link rel="stylesheet" href="../../public/icons/css/all.min.css">
 
                 <meta name="theme-color" content="#fafafa">
             </head>
 
-            <body style="background-color: #F2F5FA">
-            <div class="mt-5"></div>
+            <body style="background-color: #fff">
+                <div class="mt-5"></div>
             <?php
         }
 

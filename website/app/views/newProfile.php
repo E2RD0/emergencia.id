@@ -24,50 +24,64 @@ template::headerCreate('Nuevo perfil');
         <h5>Información personal</h5>
         <div class="row">
             <div class="col-lg-6">
-                <div class="form-group">
+                <div class="input-group">
                     <label for="exampleInputEmail1" class="text-secondary">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="text-field input-date-picker mb-3" type="date" aria-describedby="basic-addon3">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Nombres</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" aria-describedby="basic-addon3">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Tipo sangre</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <!-- <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3"> -->
+                    <select class="textfield">
+                        <option selected>Seleccionar</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Documento de identidad</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Peso</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3">
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Subir fotografia</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Elegir archivo</label>
+                        <input class="textfield custom-file-input" type="file" class="form-control" aria-describedby="basic-addon3">
+                        <!-- <div class="line"></div> -->
+                        <!-- <input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon01"> -->
+                        <label class="custom-file-label textfield" for="inputGroupFile01">Elegir archivo</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="text-secondary">Apellidos</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="exampleInputEmail1" class="text-secondary mt-1">Apellidos</label>
+                    <input class="textfield" type="text" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Donante de organos</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Estado ISSS</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <select class="textfield">
+                        <option selected>Seleccionar</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <!-- <input class="textfield" type="text" class="form-control"> -->
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Estatura</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" class="form-control">
                 </div>
             </div>
         </div>
@@ -77,21 +91,37 @@ template::headerCreate('Nuevo perfil');
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">País</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <select class="textfield">
+                        <option selected>Seleccionar</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Ciudad</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <!-- <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3"> -->
+                    <select class="textfield">
+                        <option selected>Seleccionar</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Estado/Provincia</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <select class="textfield">
+                        <option selected>Seleccionar</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="text-secondary">Dirección</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="exampleInputEmail1" class="text-secondary mt-1">Dirección</label>
+                    <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3">
                 </div>
             </div>
         </div>
@@ -109,27 +139,27 @@ template::headerCreate('Nuevo perfil');
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Nombre</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" aria-describedby="basic-addon3">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Teléfono</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" aria-describedby="basic-addon3">
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Relación</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" aria-describedby="basic-addon3">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Email</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" aria-describedby="basic-addon3">
                 </div>
             </div>
             <div class="col-lg-12">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Dirección</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" aria-describedby="basic-addon3">
                 </div>
 
             </div>
@@ -151,11 +181,11 @@ template::headerCreate('Nuevo perfil');
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Nombre</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" aria-describedby="basic-addon3">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Nota adicional</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input class="textfield" type="text" aria-describedby="basic-addon3">
                 </div>
             </div>
             <div class="col-lg-6">
@@ -163,25 +193,25 @@ template::headerCreate('Nuevo perfil');
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-secondary">Cantidad de dosis</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input class="textfield" type="text" aria-describedby="basic-addon3">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-secondary">Frecuencia</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input class="textfield" type="text" aria-describedby="basic-addon3">
                         </div>
-                        <a href="" style="text-decoration: none">paperclip Adjuntar archivo</a>
+                        <a href="" >paperclip Adjuntar archivo</a>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-secondary">Unidad</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input class="textfield" type="text" aria-describedby="basic-addon3">
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="form-group col-lg-12 mt-3">
-                <a href="" class="" style="text-decoration: none">Nuevo medicamento</a>
+                <a href="" class="" >Nuevo medicamento</a>
             </div>
 
         </div>

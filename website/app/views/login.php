@@ -13,6 +13,7 @@ template::headerLogin('Inicio de sesión');
             <p class="text-regular mt-2 mb-4">Ingresa tus credenciales para continuar.</p>
 
             <form action="">
+            
                 <label class="text-help" for="email">Correo electrónico o teléfono</label>
                 <div class="input-group mb-4">
                     <input class="textfield" type="email" class="form-control" id="email" aria-describedby="basic-addon3">
