@@ -4,14 +4,14 @@ template::headerLogin('Restablecer contraseña');
 ?>
 <div class="container-login container-login--recover">
     <header class="header-login">
-        <img class="" src="../../public/images/for-light-bg.svg" alt="Emergencia.id">
+        <img class="" src="<?= HOME_PATH ?>resources/images/for-light-bg.svg" alt="Emergencia.id">
     </header>
     <div class="container-login-form">
     <main class="container">
         <div class="container-login-form-inner mx-auto mx-md-0">
             <h1 class="text-main text-title">Restablecer contraseña</h1>
             <p class="text-regular mt-2 mb-4">Ingresa tu usuario.</p>
-            
+
             <form action="">
                 <label class="text-help" for="email">Correo electrónico o teléfono</label>
                 <div class="input-group mb-4">

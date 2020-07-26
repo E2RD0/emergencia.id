@@ -1,10 +1,10 @@
 <?php
-require_once '../templates/templateUser.php';
+require_once 'templates/templateUser.php';
 template::headerLogin('Registro');
 ?>
 <div class="container-login">
     <header class="header-login">
-        <img class="" src="../../public/images/for-light-bg.svg" alt="Emergencia.id">
+        <img class="" src="<?= HOME_PATH ?>resources/images/for-light-bg.svg" alt="Emergencia.id">
     </header>
     <div class="container-login-form">
     <main class="container">
@@ -31,7 +31,7 @@ template::headerLogin('Registro');
             </form>
 
             <div class="col-12 text-center">
-                <p class="text-help">Ya tengo una cuenta - <a class="text-link text-main" href="login.php">Iniciar Sesión</a></p>
+                <p class="text-help">Ya tengo una cuenta - <a class="text-link text-main" href="<?= HOME_PATH ?>app/user/login">Iniciar Sesión</a></p>
             </div>
         </div>
     </main>

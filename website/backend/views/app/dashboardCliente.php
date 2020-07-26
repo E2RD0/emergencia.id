@@ -1,5 +1,5 @@
 <?php
-require_once '../templates/templateUser.php';
+require_once 'templates/templateUser.php';
 template::headerSite('Dashboard del cliente');
 ?>
 
@@ -22,7 +22,7 @@ template::headerSite('Dashboard del cliente');
     <div class="card profile-card my-5 text-center text-sm-left">
         <div class="row no-gutters">
             <div class="col-sm-3">
-                <img src="../../public/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
+                <img src="<?= HOME_PATH ?>resources/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
             </div>
             <div class="col-sm-9">
                 <div class="card-body">
@@ -38,7 +38,7 @@ template::headerSite('Dashboard del cliente');
                             <a class="dropdown-item mb-1" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-share-square mr-2"></i> Compartir</a>
                             <a class="dropdown-item mb-1" href="#"><i class="fas fa-history mr-2"></i></i> Ver actividad</a>
                             <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil"><i class="far fa-trash mr-2"></i> Eliminar</a>
-                        </div>    
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@ template::headerSite('Dashboard del cliente');
     <div class="card profile-card my-5 text-center text-sm-left">
         <div class="row no-gutters">
             <div class="col-sm-3">
-                <img src="../../public/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
+                <img src="<?= HOME_PATH ?>resources/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
             </div>
             <div class="col-sm-9">
                 <div class="card-body">
@@ -64,7 +64,7 @@ template::headerSite('Dashboard del cliente');
                             <a class="dropdown-item mb-1" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-share-square mr-2"></i> Compartir</a>
                             <a class="dropdown-item mb-1" href="#"><i class="fas fa-history mr-2"></i></i> Ver actividad</a>
                             <a class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil"><i class="far fa-trash mr-2"></i> Eliminar</a>
-                        </div>    
+                        </div>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@ template::headerSite('Dashboard del cliente');
     <div class="card profile-card my-5 text-center text-sm-left">
         <div class="row no-gutters">
             <div class="col-sm-3">
-                <img src="../../public/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
+                <img src="<?= HOME_PATH ?>resources/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
             </div>
             <div class="col-sm-9">
                 <div class="card-body">
@@ -125,7 +125,7 @@ template::headerSite('Dashboard del cliente');
                 <div class="modal-footer  border-0 d-flex justify-content-between">
                     <small class="text-muted"><a href="" style="text-decoration: none;font-weight: 600;color:grey" data-toggle="modal" data-target="#compartirperfil" data-dismiss="modal">Compartir con un usuario</a></small>
                     <button type="button" class="btn" style="background-color: white; color: #2F8DEB; font-weight: 600;">Abrir enclace</button>
-                    <button type="button" class="btn btn-primary" style="font-weight: 600;">Copiar enlace</button>  
+                    <button type="button" class="btn btn-primary" style="font-weight: 600;">Copiar enlace</button>
                 </div>
             </div>
         </div>
@@ -149,7 +149,7 @@ template::headerSite('Dashboard del cliente');
                         <div class="line"></div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;">Invitar</button>  
+                        <button type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;">Invitar</button>
                     </div>
                     <div>
                         <p class="card-text"><small class="text-muted">Gestiona quién tiene acceso</small></p>
@@ -164,7 +164,7 @@ template::headerSite('Dashboard del cliente');
                 </div>
                 <div class="modal-footer  border-0 d-flex justify-content-between">
                     <small class="text-muted"><a href="" style="text-decoration: none;font-weight: 600;color:grey" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter">Compartir enlace</a></small>
-                    <button type="button" class="btn btn-primary" style="font-weight: 600;" data-dismiss="modal">Aceptar</button>  
+                    <button type="button" class="btn btn-primary" style="font-weight: 600;" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
         </div>
@@ -185,14 +185,14 @@ template::headerSite('Dashboard del cliente');
                 </div>
                 <div class="modal-footer  border-0 d-flex justify-content-end">
                 <button type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;" data-dismiss="modal">Eliminar</button>
-                    <button type="button" class="btn btn-primary" style="font-weight: 600;" data-dismiss="modal">Cancelar</button>  
+                    <button type="button" class="btn btn-primary" style="font-weight: 600;" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
 
 
-    
+
 </div>
 
 <?php

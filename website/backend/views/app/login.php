@@ -1,10 +1,10 @@
 <?php
-require_once '../templates/templateUser.php';
+require_once 'templates/templateUser.php';
 template::headerLogin('Inicio de sesión');
 ?>
 <div class="container-login">
     <header class="header-login">
-        <img class="" src="../../public/images/for-light-bg.svg" alt="Emergencia.id">
+        <img class="" src="<?= HOME_PATH ?>resources/images/for-light-bg.svg" alt="Emergencia.id">
     </header>
     <div class="container-login-form">
     <main class="container">
@@ -13,7 +13,7 @@ template::headerLogin('Inicio de sesión');
             <p class="text-regular mt-2 mb-4">Ingresa tus credenciales para continuar.</p>
 
             <form action="">
-            
+
                 <label class="text-help" for="email">Correo electrónico o teléfono</label>
                 <div class="input-group mb-4">
                     <input class="textfield" type="email" class="form-control" id="email" aria-describedby="basic-addon3">
@@ -42,7 +42,7 @@ template::headerLogin('Inicio de sesión');
             </form>
 
             <div class="col-12 text-center">
-                <p class="text-help">Aún no tengo una cuenta - <a class="text-link text-main" href="registro.php">Registrarme</a></p>
+                <p class="text-help">Aún no tengo una cuenta - <a class="text-link text-main" href="<?= HOME_PATH ?>app/user/signup">Registrarme</a></p>
             </div>
         </div>
     </main>

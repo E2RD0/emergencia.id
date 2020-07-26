@@ -4,13 +4,13 @@ template::headerLogin('Restablecer contraseña');
 ?>
 
 <header class="header-login">
-    <img class="" src="../../public/images/for-light-bg.svg" alt="Emergencia.id">
+    <img class="" src="<?= HOME_PATH ?>resources/images/for-light-bg.svg" alt="Emergencia.id">
 </header>
 
 <main class="container my-5">
     <div class="row">
         <div class="col-10 col-md-8 mx-auto text-center">
-            <img class="img-fluid" width="400" src="../../public/images/contrasenaReestablecida.svg" alt="Corazón imagen">
+            <img class="img-fluid" width="400" src="<?= HOME_PATH ?>resources/images/contrasenaReestablecida.svg" alt="Corazón imagen">
         </div>
     </div>
     <div class="row">

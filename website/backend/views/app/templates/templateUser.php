@@ -18,10 +18,10 @@ class template
             <!--<link rel="manifest" href="site.webmanifest">-->
             <link rel="apple-touch-icon" href="icon.png">
 
-            <link rel="stylesheet" href="../../public/webfonts/stylesheet.css">
-            <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
-            <link rel="stylesheet" href="../../public/css/normalize.css">
-            <link rel="stylesheet" href="../../public/css/main.css">
+            <link rel="stylesheet" href="<?= HOME_PATH ?>resources/webfonts/stylesheet.css">
+            <link rel="stylesheet" href="<?= HOME_PATH ?>resources/css/bootstrap.min.css">
+            <link rel="stylesheet" href="<?= HOME_PATH ?>resources/css/normalize.css">
+            <link rel="stylesheet" href="<?= HOME_PATH ?>resources/css/main.css">
 
             <meta name="theme-color" content="#fafafa">
         </head>
@@ -36,10 +36,10 @@ class template
             <!--Here copy the footer-->
         </body>
 
-        <script src="../../public/js/vendor/jquery-3.5.0.min.js"></script>
-        <script src="../../public/js/vendor/bootstrap.min.js"></script>
-        <script src="../../public/js/plugins.js"></script>
-        <script src="../../public/js/main.js"></script>
+        <script src="<?= HOME_PATH ?>resources/js/vendor/jquery-3.5.0.min.js"></script>
+        <script src="<?= HOME_PATH ?>resources/js/vendor/bootstrap.min.js"></script>
+        <script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
+        <script src="<?= HOME_PATH ?>resources/js/main.js"></script>
 
         </html>
 
@@ -67,18 +67,18 @@ class template
             <!--<link rel="manifest" href="site.webmanifest">-->
             <link rel="apple-touch-icon" href="icon.png">
 
-            <link rel="stylesheet" href="../../public/webfonts/stylesheet.css">
-            <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
-            <link rel="stylesheet" href="../../public/css/normalize.css">
-            <link rel="stylesheet" href="../../public/css/main.css">
-            <link rel="stylesheet" href="../../public/icons/css/all.min.css">
+            <link rel="stylesheet" href="<?= HOME_PATH ?>resources/webfonts/stylesheet.css">
+            <link rel="stylesheet" href="<?= HOME_PATH ?>resources/css/bootstrap.min.css">
+            <link rel="stylesheet" href="<?= HOME_PATH ?>resources/css/normalize.css">
+            <link rel="stylesheet" href="<?= HOME_PATH ?>resources/css/main.css">
+            <link rel="stylesheet" href="<?= HOME_PATH ?>resources/icons/css/all.min.css">
 
             <meta name="theme-color" content="#fafafa">
         </head>
 
         <body class="app">
             <nav class="navbar navbar-light bg-white">
-                <img class="ml-3" src="../../public/images/for-light-bg.svg" width="150" height="70" alt="Emergencia.id">
+                <img class="ml-3" src="<?= HOME_PATH ?>resources/images/for-light-bg.svg" width="150" height="70" alt="Emergencia.id">
                 <div class="navbar-items d-flex align-items-center mr-0 mr-sm-3">
                     <a href="dashboardCliente.php" class="color-text text-link mr-lg-5">Mis perfiles</a>
                     <div class="dropdown dropdown-nav-options">
@@ -109,11 +109,11 @@ class template
                 <!--<link rel="manifest" href="site.webmanifest">-->
                 <link rel="apple-touch-icon" href="icon.png">
 
-                <link rel="stylesheet" href="../../public/webfonts/stylesheet.css">
-                <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
-                <link rel="stylesheet" href="../../public/css/normalize.css">
-                <link rel="stylesheet" href="../../public/css/main.css">
-                <link rel="stylesheet" href="../../public/icons/css/all.min.css">
+                <link rel="stylesheet" href="<?= HOME_PATH ?>resources/webfonts/stylesheet.css">
+                <link rel="stylesheet" href="<?= HOME_PATH ?>resources/css/bootstrap.min.css">
+                <link rel="stylesheet" href="<?= HOME_PATH ?>resources/css/normalize.css">
+                <link rel="stylesheet" href="<?= HOME_PATH ?>resources/css/main.css">
+                <link rel="stylesheet" href="<?= HOME_PATH ?>resources/icons/css/all.min.css">
 
                 <meta name="theme-color" content="#fafafa">
             </head>
@@ -130,10 +130,10 @@ class template
             </body>
 
             <!-- <script src="https://kit.fontawesome.com/9b3f9e4d8d.js" crossorigin="anonymous"></script> -->
-            <script src="../../public/js/vendor/jquery-3.5.0.min.js"></script>
-            <script src="../../public/js/vendor/bootstrap.bundle.min.js"></script>
-            <script src="../../public/js/plugins.js"></script>
-            <script src="../../public/js/main.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/vendor/jquery-3.5.0.min.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/vendor/bootstrap.bundle.min.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/main.js"></script>
 
             </html>
     <?php

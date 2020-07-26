@@ -4,7 +4,7 @@ template::headerLogin('Restablecer contraseña');
 ?>
 <div class="container-login container-login--recover">
     <header class="header-login">
-        <img class="" src="../../public/images/for-light-bg.svg" alt="Emergencia.id">
+        <img class="" src="<?= HOME_PATH ?>resources/images/for-light-bg.svg" alt="Emergencia.id">
     </header>
     <div class="container-login-form">
         <main class="container">

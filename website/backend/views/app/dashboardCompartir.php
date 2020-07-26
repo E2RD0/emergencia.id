@@ -26,7 +26,7 @@ template::headerSite('Dashboard del cliente');
     <div class="card mb-3 card mb-3 card border-0 card mb-5 mt-5 pt-3" style="max-width: 540px; background-color: #F2F5FA;">
         <div class="row no-gutters">
             <div class="col-md-3">
-                <img src="../../public/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
+                <img src="<?= HOME_PATH ?>resources/images/default-perfil.svg" class="card-img img-fluid" alt="defaultPerfil">
             </div>
             <div class="col-md-9">
                 <div class="card-body">
@@ -67,7 +67,7 @@ template::headerSite('Dashboard del cliente');
                 <div class="modal-footer  border-0 d-flex justify-content-between">
                     <small class="text-muted"><a href="" style="text-decoration: none;font-weight: 600;color:grey" data-toggle="modal" data-target="#compartirperfil" data-dismiss="modal">Compartir con un usuario</a></small>
                     <button type="button" class="btn" style="background-color: white; color: #2F8DEB; font-weight: 600;">Abrir enclace</button>
-                    <button type="button" class="btn btn-primary" style="font-weight: 600;">Copiar enlace</button>  
+                    <button type="button" class="btn btn-primary" style="font-weight: 600;">Copiar enlace</button>
                 </div>
             </div>
         </div>
@@ -88,13 +88,13 @@ template::headerSite('Dashboard del cliente');
                 </div>
                 <div class="modal-footer  border-0 d-flex justify-content-end">
                 <button type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;" data-dismiss="modal">Eliminar</button>
-                    <button type="button" class="btn btn-primary" style="font-weight: 600;" data-dismiss="modal">Cancelar</button>  
+                    <button type="button" class="btn btn-primary" style="font-weight: 600;" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    
+
 </div>
 
 <?php

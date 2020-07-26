@@ -1,10 +1,10 @@
 <?php
-require_once '../templates/templateUser.php';
+require_once 'templates/templateUser.php';
 template::headerLogin('Register');
 ?>
 
 <header class="header-login">
-    <img class="" src="../../public/images/for-light-bg.svg" alt="Emergencia.id">
+    <img class="" src="<?= HOME_PATH ?>resources/images/for-light-bg.svg" alt="Emergencia.id">
 </header>
 
 <main class="container-fluid">
