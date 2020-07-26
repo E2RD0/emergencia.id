@@ -1,5 +1,5 @@
 <?php
-require_once '../templates/templateUser.php';
+require_once 'templates/templateUser.php';
 template::headerCreate('Nuevo perfil');
 ?>
 
@@ -7,9 +7,12 @@ template::headerCreate('Nuevo perfil');
     <div class="text-center interline-header">
         <h3>Eduardo Estrada</h3>
         <p class="text-secondary">18 años, San Salvador, El Salvador.</p>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-            <label class="form-check-label text-secondary" for="defaultCheck1">
+        <div class="check-share">
+            <label class="label-check" for="check">
+                <input type="checkbox" id="check">
+                <div class="checked">
+                    <i class="far fa-check"></i>
+                </div>
                 Permitir que los paramédicos puedan buscar este perfil
             </label>
         </div>
@@ -20,13 +23,23 @@ template::headerCreate('Nuevo perfil');
             <div class="progress-bar bg-danger " role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
-    <div class="mt-5">
+    <div class="mt-3">
         <h5>Información personal</h5>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-lg-6">
                 <div class="input-group">
-                    <label for="exampleInputEmail1" class="text-secondary">Fecha de nacimiento</label>
-                    <input class="text-field input-date-picker mb-3" type="date" aria-describedby="basic-addon3">
+                <label for="exampleInputEmail1" class="text-secondary">Fecha de nacimiento</label>
+                    <div class="form-group date-input">
+                        <div class="">
+                            <input class="textfield" placeholder="Dia" type="text" aria-describedby="basic-addon3">
+                        </div>
+                        <div class="text-date">
+                            <input class="textfield" placeholder="Mes" type="text" aria-describedby="basic-addon3">
+                        </div>
+                        <div class="text-date">
+                            <input class="textfield" placeholder="Año" type="text" aria-describedby="basic-addon3">
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="text-secondary">Nombres</label>

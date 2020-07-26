@@ -1,17 +1,18 @@
 <?php
-class Product extends \Common\Controller{
+class Profile extends \Common\Controller{
 
-  public function __construct(){
-      $this->model = $this->loadModel('PerfilUsuario');
-  }
-  public function view($id)
-  {
-      /*if ($this->model->existProduct($id)) {
-          $data = $this->model->getProduct($id);
-          $this->loadView('store', 'producto', false, $data);
-      }
-      else {
-          Core::http404();
-      }*/
-  }
+    public function __construct(){
+        #$this->model = $this->loadModel('PerfilUsuario');
+        //self::dashboard();
+    }
+
+    public function test()
+    {
+        $this->loadView('app', 'newProfile', -1);
+    }
+
+    public function edit()
+    {
+        $this->loadView('app', 'configurarCuenta', -1);
+    }
 }
