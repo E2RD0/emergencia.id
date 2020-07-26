@@ -12,20 +12,22 @@ template::headerLogin('Registro');
             <h1 class="text-main text-title">Regístrate</h1>
             <p class="text-regular mt-2 mb-4">Crea una nueva cuenta.</p>
 
-            <form action="">
-                <label class="text-help" for="email">Correo electrónico</label>
+            <form id="register-form" action="" method="post">
+                <label class="text-help" for="inputEmail">Correo electrónico</label>
                 <div class="input-group mb-4">
-                    <input class="textfield" type="email" class="form-control" id="email" aria-describedby="basic-addon3">
+                    <input class="textfield" type="email" class="form-control" id="inputEmail" name="email" aria-describedby="basic-addon3" required>
                     <div class="line"></div>
+                    <p class="form-error-label" id="errorEmail"></p>
                 </div>
-                <label class="text-help" for="pass">Contraseña</label>
+                <label class="text-help" for="inputContraseña">Contraseña</label>
                 <div class="input-group mb-4">
-                    <input class="textfield" type="password" class="form-control" id="pass" aria-describedby="basic-addon3">
+                    <input class="textfield" type="password" class="form-control" id="inputContraseña" required name="password" aria-describedby="basic-addon3" minlength=6>
                     <div class="line"></div>
+                    <p class="form-error-label" id="errorContraseña"></p>
                 </div>
                 <div class="row mb-md-4 mb-2">
                     <div class="col-12 text-sm-right text-center mb-2">
-                        <button type="button" class="button" onclick="location.href='register.php?step=1'">Continuar</button>
+                        <button type="submit" class="button" id="register-submit">Continuar</button>
                     </div>
                 </div>
             </form>
@@ -39,5 +41,5 @@ template::headerLogin('Registro');
 </div>
 
 <?php
-template::footerLogin();
+template::footerLogin('signup.js');
 ?>

@@ -30,7 +30,7 @@ class template
         <?php
     }
 
-    public static function footerLogin()
+    public static function footerLogin(...$ajax)
     {
         ?>
             <!--Here copy the footer-->
@@ -40,6 +40,11 @@ class template
         <script src="<?= HOME_PATH ?>resources/js/vendor/bootstrap.min.js"></script>
         <script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
         <script src="<?= HOME_PATH ?>resources/js/main.js"></script>
+        <?php
+        foreach ($ajax as $script) {
+            echo '<script src="' . HOME_PATH . 'resources/js/ajax/app/' . $script .'"></script>';
+        }
+        ?>
 
         </html>
 
@@ -123,7 +128,7 @@ class template
             <?php
         }
 
-        public static function footerSite()
+        public static function footerSite(...$ajax)
         {
             ?>
                 <!--Here copy the footer of the dashboard site-->
@@ -134,6 +139,14 @@ class template
             <script src="<?= HOME_PATH ?>resources/js/vendor/bootstrap.bundle.min.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/main.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/vendor/sweetalert2.all.min.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/components.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/ajax/app/account.js"></script>
+            <?php
+            foreach ($ajax as $script) {
+                echo '<script src="' . HOME_PATH . 'resources/js/ajax/app/' . $script .'"></script>';
+            }
+            ?>
 
             </html>
     <?php

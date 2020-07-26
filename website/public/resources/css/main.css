@@ -286,6 +286,25 @@ body {
   border-width: 1px;
 }
 
+.textfield.error:focus, .textfield.error:valid:focus{
+    border-bottom: 2px solid rgb(33, 150, 243);
+}
+.textfield.error:valid{
+    border-bottom: 0px solid rgb(33, 150, 243);;
+}
+
+.textfield.error{
+    border-bottom: 2px solid #E53935;
+}
+
+.form-error-label{
+    text-align: left;
+    margin: 0;
+    margin-left: 0.5em;
+    font-size: 1rem;
+    color: #E53935;
+}
+
 .interline-header {
   line-height: 1rem !important;
 }
