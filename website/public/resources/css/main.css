@@ -404,7 +404,7 @@ body {
 }
 
 [type="date"] {
-    background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+    background: #fff url(https://lh6.googleusercontent.com/jfvK7Er46QbdQPI3N8mCU6GcqvkU1Tn0NeAPpgQFy-m-_KHDAhLb7ulCWlnZKfDzYVH8H3ClIvtcs2MHtyd1=w1001-h667) 97% 50% no-repeat;
 }
 
 [type="date"]::-webkit-inner-spin-button {
@@ -435,6 +435,16 @@ body {
     transition: color 0.1s ease 0s;
     border-bottom: 2px solid rgb(242, 245, 250);
     font-size: inherit;
+    height: 42px;
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    cursor: pointer;
 }
 
 .label-check {
@@ -491,7 +501,6 @@ body {
 
 *::-webkit-scrollbar-thumb {
     background: #ccc;
-    border-radius: 4px;
 }
 
 
@@ -514,7 +523,6 @@ body {
 
 *::-webkit-scrollbar-track {
     background: #e1e1e1;
-    border-radius: 4px;
 }
 
 
@@ -532,6 +540,108 @@ body {
 
 .text-date {
     margin-left: 20px;
+}
+
+.icon-close {
+    margin-top: 0px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 18px;
+    font-size: 25px;
+    color: #D5DBE9;
+    cursor: pointer;
+}
+
+.progress-bar {
+    background-color: #FF4C4C;
+}
+
+.text-bar {
+    color: #FF4C4C;
+}
+
+.target {
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+}
+
+.icon-target {
+    color: #BFC4D1;
+    margin-right: 10px;
+}
+
+.content-target {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controller {
+    border-radius: 5px;
+    border: 2px solid #EAEEF6;
+    width: 100%;
+}
+
+.text-target {
+    color: #B2B8C6;
+}
+
+.right a {
+    margin-left: 5px;
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+.content-collapse {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.add-new-contact {
+    background-color: #F2F9FF;
+    padding: 10px;
+    color: #2196F3;
+    width: 100%;
+    margin-left: 42px;
+    margin-right: 14px;
+    cursor: pointer;
+}
+
+.add-new-contact a {
+    text-decoration: none;
+}
+
+.icon-add-contact {
+    margin-right: 10px;
+}
+
+.up-photo {
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+}
+
+.text-upload {
+    color: #2196F3;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.upload-photo-box {
+    width: 73px;
+    height: 73px;
+    overflow: hidden;
+}
+
+.upload-photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 @media only screen and (max-width: 991px) {
