@@ -1,5 +1,5 @@
 <?php
-require_once '../templates/templateUser.php';
+require_once 'templates/templateUser.php';
 template::headerSite('Configuración de la cuenta');
 ?>
 

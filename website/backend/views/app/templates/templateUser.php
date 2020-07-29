@@ -125,7 +125,7 @@ class template
             </head>
 
             <body style="background-color: #fff">
-                <div class="mt-5"></div>
+                <div class=""></div>
             <?php
         }
 
@@ -134,10 +134,14 @@ class template
             ?>
                 <!--Here copy the footer of the dashboard site-->
             </body>
-
+                
             <!-- <script src="https://kit.fontawesome.com/9b3f9e4d8d.js" crossorigin="anonymous"></script> -->
+            <script src="<?= HOME_PATH ?>resources/js/vendor/jquery-3.2.1.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/vendor/collapse.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/vendor/jquery-3.5.0.min.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/vendor/bootstrap.bundle.min.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/vendor/axios.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/vendor/vue.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/main.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/vendor/sweetalert2.all.min.js"></script>
