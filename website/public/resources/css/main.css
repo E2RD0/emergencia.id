@@ -553,8 +553,24 @@ select {
     cursor: pointer;
 }
 
-.progress-bar {
+.progress-bar-first {
     background-color: #FF4C4C;
+}
+
+.progress-bar-second {
+    background-color: #F38738;
+}
+
+.progress-bar-third {
+    background-color: #F3BD42;
+}
+
+.progress-bar-fourth {
+    background-color: #F3DA40;
+}
+
+.progress-bar-fifth {
+    background-color: #9AE542;
 }
 
 .text-bar {
@@ -584,6 +600,13 @@ select {
     border-radius: 5px;
     border: 2px solid #EAEEF6;
     width: 100%;
+}
+
+.addNewContactForm {
+    border-radius: 5px;
+    width: 100%;
+    margin-left: 27px;
+    margin-top: 10px;
 }
 
 .text-target {
@@ -642,6 +665,58 @@ select {
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+.btn-add-new {
+    margin-top: 0px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 25px;
+    color: #D5DBE9;
+    cursor: pointer;
+}
+
+.showSave {
+    position: fixed;
+    margin-top: 0px;
+    color: #fff;
+    cursor: pointer;
+    padding: 15px;
+    background-color: #2198F4;
+    border-radius: 40px;
+    margin: 9px;
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.icon-load {
+    margin-left: 10px;
+    transform: rotate(20deg);
+    -webkit-animation: spin 3s linear infinite;
+    -moz-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
 @media only screen and (max-width: 991px) {

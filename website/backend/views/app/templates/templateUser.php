@@ -139,6 +139,8 @@ class template
             <script src="<?= HOME_PATH ?>resources/js/vendor/collapse.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/vendor/jquery-3.5.0.min.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/vendor/bootstrap.bundle.min.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/vendor/axios.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/vendor/vue.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/main.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/vendor/sweetalert2.all.min.js"></script>
