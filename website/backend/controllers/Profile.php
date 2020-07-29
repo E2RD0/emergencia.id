@@ -18,7 +18,7 @@ class Profile extends \Common\Controller
 
     public function getBlood(){
         $result = $this->r;
-        $result = $this->usersModel->getProfileInformation();
+        $result = $this->usersModel->loadBlood();
         return $result;
     }
 

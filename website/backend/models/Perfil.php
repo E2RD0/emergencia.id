@@ -38,10 +38,9 @@ class Perfil
         return $db->resultSet();
     }
 
-    public function loadBlood($parameter){
+    public function loadBlood(){
         $db = new \Common\Database;
         $db->query('Select * from tipo_sangre');
-        $db->bind(':id', $parameter);
         return $db->resultSet();
     }
 

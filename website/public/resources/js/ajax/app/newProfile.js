@@ -1,3 +1,5 @@
+const API = 'http://localhost/emergencia.id/website/public/api/app/perfil.php?action=';
+console.log(API);
 const newprofile = new Vue({
     el: "#newprofile",
     data() {
@@ -9,12 +11,13 @@ const newprofile = new Vue({
             valueSingleInput: 6.25,
             savingTxt: "Guardado",
             aaa: "",
+            blood: [],
             src: "https://boostlikes-bc85.kxcdn.com/blog/wp-content/uploads/2019/08/No-Instagram-Profile-Pic.jpg",
             dataProfile: {
                 date: "",
                 name: "",
                 lastName: "",
-                blood: "Seleccionar",
+                selectedIdBlood: "Seleccionar",
                 donor: "Seleccionar",
                 document: "",
                 isssEstatus: "Seleccionar",
@@ -40,6 +43,9 @@ const newprofile = new Vue({
             test: "",
         };
     },
+    mounted: function() {
+        this.getBlood();
+    },
     computed: {
         calcProgressColor: function() {
             return this.calcProgress <= 25 ?
@@ -62,16 +68,13 @@ const newprofile = new Vue({
             this.dataProfile.weight != "" ? (value = value + 6.25) : "";
             this.dataProfile.height != "" ? (value = value + 6.25) : "";
             this.addEmergencycontacts != "" ? (value = value + 6.25) : "";
-            this.dataProfile.blood != "Seleccionar" ?
-                (value = value + 6.25) :
-                "";
             this.dataProfile.donor != "Seleccionar" ?
                 (value = value + 6.25) :
                 "";
             this.dataProfile.isssEstatus != "Seleccionar" ?
                 (value = value + 6.25) :
                 "";
-            this.dataProfile.blood != "Seleccionar" ?
+            this.dataProfile.selectedIdBlood != "Seleccionar" ?
                 (value = value + 6.25) :
                 "";
             this.dataProfile.city != "Seleccionar" ?
@@ -112,8 +115,10 @@ const newprofile = new Vue({
             clearTimeout(this.debounce);
             this.debounce = setTimeout(() => {
                 this.savingTxt = "Guardado";
+                console.log("PATCH a la BD")
                 this.aaa = "";
-            }, 3000);
+                //2.5 segundos para realizar actualización a la bd despues de terminar de escribir:)
+            }, 2500);
         },
         onFileSelected: function(event) {
             this.selectedFile = event.target.files[0];
@@ -136,5 +141,15 @@ const newprofile = new Vue({
             });
             this.addNewContactForm = [];
         },
+        seleccionarSangre: function(recive) {
+            console.log(recive)
+        },
+        getBlood: function() {
+            axios.get(API + 'getBlood')
+                .then(response => {
+                    console.log(response.data),
+                        this.blood = response.data;
+                })
+        }
     },
 });

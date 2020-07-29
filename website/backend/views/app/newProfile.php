@@ -21,9 +21,9 @@ template::headerCreate('Nuevo perfil');
                 <label class="label-check" for="check">
                     <input type="checkbox" id="check">
                     <div class="checked">
-                        <i class="far fa-check"></i>
+                        <i @click="debounceSearch" class="far fa-check"></i>
                     </div>
-                    <span @click="debounceSearch" class="text-target">Permitir que los paramédicos puedan buscar este perfil</span>
+                    <div @click="debounceSearch" class="text-target">Permitir que los paramédicos puedan buscar este perfil</div>
                 </label>
             </div>
         </div>
@@ -51,11 +51,9 @@ template::headerCreate('Nuevo perfil');
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-target">Tipo de sangre</label>
                         <!-- <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3"> -->
-                        <select @input="debounceSearch" v-model="dataProfile.blood" tabindex="5" class="textfield">
-                            <option selected>Seleccionar</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select @input="debounceSearch" v-model="dataProfile.selectedIdBlood" tabindex="5" class="textfield">
+                            <option selected value="Seleccionar">Seleccionar</option>
+                            <option v-for="item in blood" :value="item.id_tipo_sangre">{{item.tipo}}</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -90,8 +88,8 @@ template::headerCreate('Nuevo perfil');
                         <label for="exampleInputEmail1" class="text-target">Donante de organos</label>
                         <select @input="debounceSearch" v-model="dataProfile.donor" tabindex="8" class="textfield">
                             <option selected>Seleccionar</option>
-                            <option value="1">Si</option>
-                            <option value="2">No</option>
+                            <option value="true">Si</option>
+                            <option value="false">No</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -271,7 +269,8 @@ template::headerCreate('Nuevo perfil');
                             </div>
                         </div>
                         <div class="btn-add-new">
-                            <button @click="addContactFromForm(), debounceSearch()" class="button "><i class="fas fa-plus icon-add-contact"></i>Agregar</button>
+                            <button data-toggle="collapse" href="#addContact" data-toggle="addContact" aria-expanded="false"
+                        aria-controls="addContact" @click="addContactFromForm(), debounceSearch()" class="button "><i class="fas fa-plus icon-add-contact"></i>Agregar</button>
                         </div>
                     </div>
 
