@@ -2,13 +2,18 @@
 class Profile extends \Common\Controller{
 
     public function __construct(){
-        #$this->model = $this->loadModel('PerfilUsuario');
+        $this->model = $this->loadModel('Perfil');
         //self::dashboard();
     }
 
-    public function test()
+    public function test($id)
     {
-        $this->loadView('app', 'newProfile', -1);
+        if($this->model->existProfile($id)){
+            $this->loadView('app', 'newProfile', -1);
+        }else{
+            Core::http404();
+        }
+        
     }
 
     public function edit()

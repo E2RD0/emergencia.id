@@ -90,9 +90,8 @@ template::headerCreate('Nuevo perfil');
                         <label for="exampleInputEmail1" class="text-target">Donante de organos</label>
                         <select @input="debounceSearch" v-model="dataProfile.donor" tabindex="8" class="textfield">
                             <option selected>Seleccionar</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="1">Si</option>
+                            <option value="2">No</option>
                         </select>
                     </div>
                     <div class="form-group">
