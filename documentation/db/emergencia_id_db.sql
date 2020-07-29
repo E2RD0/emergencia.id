@@ -363,3 +363,7 @@ CREATE INDEX "fkIdx_114" ON "usuario_privilegiado"
 (
  "id_organizacion"
 );
+
+ALTER TABLE perfil_medico ADD COLUMN id_usuario int;
+alter table perfil_medico add constraint fkIdx_209 foreign key ("id_usuario") references usuario ("id_usuario");
+DROP TABLE perfiles_usuario

@@ -33,14 +33,34 @@ class Perfil
 
     public function existProfile($parameter){
         $db = new \Common\Database;
-        $db->query('SELECT * FROM perfil_medico WHERE id_perfil_medico = :id');
+        $db->query('SELECT * FROM perfil_medico WHERE id_perfil_medico = :id WHERE :se');
         $db->bind(':id', $parameter);
+        $db->bind(':se', $session);
         return $db->resultSet();
     }
 
     public function loadBlood(){
         $db = new \Common\Database;
-        $db->query('Select * from tipo_sangre');
+        $db->query('SELECT * FROM tipo_sangre');
+        return $db->resultSet();
+    }
+
+    public function loadIsssEstatus(){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM estado_isss');
+        return $db->resultSet();
+    }
+
+    public function loadCountry(){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM pais');
+        return $db->resultSet();
+    }
+
+    public function loadCity($param){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM pais_estado WHERE id_pais = :id');
+        $db->bind(':id', $param);
         return $db->resultSet();
     }
 

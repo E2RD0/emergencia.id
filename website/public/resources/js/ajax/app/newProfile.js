@@ -1,5 +1,5 @@
-const API = 'http://localhost/emergencia.id/website/public/api/app/perfil.php?action=';
-console.log(API);
+let endPoint = "http://localhost" + HOME_PATH + "api/app/perfil.php?action=";
+console.log(endPoint);
 const newprofile = new Vue({
     el: "#newprofile",
     data() {
@@ -12,6 +12,10 @@ const newprofile = new Vue({
             savingTxt: "Guardado",
             aaa: "",
             blood: [],
+            issEstatus: [],
+            countryList: [],
+            countrySelect: "Seleccionar",
+            cityList: [],
             src: "https://boostlikes-bc85.kxcdn.com/blog/wp-content/uploads/2019/08/No-Instagram-Profile-Pic.jpg",
             dataProfile: {
                 date: "",
@@ -20,11 +24,11 @@ const newprofile = new Vue({
                 selectedIdBlood: "Seleccionar",
                 donor: "Seleccionar",
                 document: "",
-                isssEstatus: "Seleccionar",
+                isssEstatusSelected: "Seleccionar",
                 weight: "",
                 height: "",
                 country: "Seleccionar",
-                province: "Seleccionar",
+                province: "",
                 city: "Seleccionar",
                 direction: "",
                 image: "",
@@ -45,6 +49,8 @@ const newprofile = new Vue({
     },
     mounted: function() {
         this.getBlood();
+        this.getIsss();
+        this.getCountry();
     },
     computed: {
         calcProgressColor: function() {
@@ -71,7 +77,7 @@ const newprofile = new Vue({
             this.dataProfile.donor != "Seleccionar" ?
                 (value = value + 6.25) :
                 "";
-            this.dataProfile.isssEstatus != "Seleccionar" ?
+            this.dataProfile.isssEstatusSelected != "Seleccionar" ?
                 (value = value + 6.25) :
                 "";
             this.dataProfile.selectedIdBlood != "Seleccionar" ?
@@ -80,7 +86,7 @@ const newprofile = new Vue({
             this.dataProfile.city != "Seleccionar" ?
                 (value = value + 6.25) :
                 "";
-            this.dataProfile.province != "Seleccionar" ?
+            this.dataProfile.province != "" ?
                 (value = value + 6.25) :
                 "";
             this.dataProfile.country != "Seleccionar" ?
@@ -106,7 +112,14 @@ const newprofile = new Vue({
             return this.src;
         },
     },
-    watch: {},
+    watch: {
+        countrySelect() {
+            console.log("Se realizo un cambio de país")
+            this.dataProfile.country = this.countrySelect
+            this.dataProfile.city = "Seleccionar";
+            this.getCity();
+        }
+    },
     methods: {
         debounceSearch(event) {
             this.savingTxt = "Guardando";
@@ -115,7 +128,7 @@ const newprofile = new Vue({
             clearTimeout(this.debounce);
             this.debounce = setTimeout(() => {
                 this.savingTxt = "Guardado";
-                console.log("PATCH a la BD")
+                //console.log("PATCH a la BD");
                 this.aaa = "";
                 //2.5 segundos para realizar actualización a la bd despues de terminar de escribir:)
             }, 2500);
@@ -142,14 +155,27 @@ const newprofile = new Vue({
             this.addNewContactForm = [];
         },
         seleccionarSangre: function(recive) {
-            console.log(recive)
+            console.log(recive);
         },
         getBlood: function() {
-            axios.get(API + 'getBlood')
-                .then(response => {
-                    console.log(response.data),
-                        this.blood = response.data;
-                })
-        }
+            axios.get(endPoint + "getBlood").then((response) => {
+                this.blood = response.data;
+            });
+        },
+        getIsss: function() {
+            axios.get(endPoint + "getIssEstatus").then((response) => {
+                this.issEstatus = response.data;
+            });
+        },
+        getCountry: function() {
+            axios.get(endPoint + "getCountry").then((response) => {
+                this.countryList = response.data;
+            });
+        },
+        getCity: function() {
+            axios.get(endPoint + "getCity&country=" + this.dataProfile.country).then((response) => {
+                this.cityList = response.data;
+            });
+        },
     },
 });

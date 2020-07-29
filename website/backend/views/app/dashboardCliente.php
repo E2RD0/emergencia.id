@@ -10,10 +10,10 @@ template::headerSite('Dashboard del cliente');
         <a class="navbar-brand profile-option text-link active" data-toggle="tab" href="#perfiles">Mis perfiles</a>
         <a class="navbar-brand profile-option text-link" data-toggle="tab" href="#compartidos">Compartidos conmigo</a>
         <!-- btn escritorio -->
-        <a href="newProfile.php" class="button button--small button-profile d-none d-md-block" role="button"><i class="fas fa-plus mr-2"></i>Nuevo perfil</a>
+        <a  href="<?= HOME_PATH ?>app/profile/edit/1" class="button button--small button-profile d-none d-md-block" role="button"><i class="fas fa-plus mr-2"></i>Nuevo perfil</a>
     </div>
     <!-- btn movil -->
-    <a href="newProfile.php" class="button button--small d-block d-md-none mt-4" role="button"><i class="fas fa-plus mr-2"></i>Nuevo perfil</a>
+    <a href="<?= HOME_PATH ?>app/profile/edit" class="button button--small d-block d-md-none mt-4" role="button"><i class="fas fa-plus mr-2"></i>Nuevo perfil</a>
 
     <div class="tab-content">
     <!-- cards de mis perfiles -->
