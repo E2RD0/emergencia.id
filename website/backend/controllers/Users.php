@@ -4,7 +4,7 @@ class Users extends \Common\Controller
     public function __construct()
     {
         $this->usersModel = $this->loadModel('Usuario');
-        $r = array('status' => 0, 'message' => null, 'exception' => null, 'errors'=> []);
+        $this->r = array('status' => 0, 'message' => null, 'exception' => null, 'errors'=> []);
     }
 
     public function signUp($userData)
@@ -23,12 +23,12 @@ class Users extends \Common\Controller
         if (!boolval($errors)) {
             if ($this->usersModel->registerUser($user)) {
                 $userInfo = $this->usersModel->checkPassword($email);
-                loginSession($userInfo->idusuario, $email);
+                $this->loginSession($userInfo->id_usuario, $email);
                 $result['status'] = 1;
                 $result['message'] = 'Usuario registrado correctamente';
             } else {
                 $result['status'] = -1;
-                $result['exception'] = 'Error al ingresar los datos';
+                $result['exception'] = \Common\Database::$exception;
             }
         } else {
             $result['status'] = 0;
@@ -38,7 +38,7 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function login($userData, $result)
+    public function login($userData)
     {
         $userData = \Helpers\Validation::trimForm($userData);
         $email = $userData['email'];
@@ -52,8 +52,8 @@ class Users extends \Common\Controller
         if (!boolval($errors)) {
             $userHash = $this->usersModel->checkPassword($email);
             if ($userHash) {
-                if (password_verify($password, trim($userHash->contrasena))) {
-                    loginSession($userHash->idusuario, $email);
+                if (password_verify($password, trim($userHash->clave))) {
+                    $this->loginSession($userHash->id_usuario, $email);
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                 } else {
@@ -186,7 +186,7 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function userLogout($result)
+    public function logout()
     {
         if (session_destroy()) {
             $result['status'] = 1;

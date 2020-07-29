@@ -150,8 +150,9 @@ class Usuario
     }
     public function registerUser($user){
         $db = new \Common\Database;
-        $db->query('INSERT into usuario (id_usuario, email, clave) VALUES(DEFAULT, :email, :hash)');
-        $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
+        $db->query('INSERT into usuario (id_usuario, email, clave) VALUES(DEFAULT, :email, :clave)');
+        $db->bind(':email', $user->email);
+        $db->bind(':clave', password_hash($user->password, PASSWORD_ARGON2ID));
         return $db->execute();
     }
     public function checkPassword($email){

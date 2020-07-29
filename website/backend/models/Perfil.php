@@ -44,7 +44,7 @@ class Perfil
         $db->bind(':id', $parameter);
         return $db->resultSet();
     }
-    
+
 }
 
 

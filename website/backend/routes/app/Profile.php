@@ -13,11 +13,6 @@ class Profile extends \Common\Controller{
         }else{
             Core::http404();
         }
-        
-    }
 
-    public function edit()
-    {
-        $this->loadView('app', 'configurarCuenta', -1);
     }
 }

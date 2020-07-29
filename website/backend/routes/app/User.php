@@ -11,7 +11,9 @@ class User extends \Common\Controller
     }
     public function new()
     {
-        if(ningunperfil){
+        $modeloPUsuario = $this->loadModel('PerfilesUsuario');
+        session_start();
+        if($modeloPUsuario->countProfilesUser(isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '-1') ==0){
             $this->loadView('app', 'newUser');
         }
         else{
@@ -22,6 +24,14 @@ class User extends \Common\Controller
     public function login()
     {
         $this->loadView('app', 'login', -1);
+    }
+
+    public function profiles(){
+        $this->loadView('app', 'dashboardCliente');
+    }
+    public function settings()
+    {
+        $this->loadView('app', 'configurarCuenta');
     }
 
     /*public function dashboard()

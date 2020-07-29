@@ -41,6 +41,8 @@ class template
         <script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
         <script src="<?= HOME_PATH ?>resources/js/main.js"></script>
         <script> var HOME_PATH = "<?= HOME_PATH ?>" </script>
+        <script src="<?= HOME_PATH ?>resources/js/vendor/sweetalert2.all.min.js"></script>
+        <script src="<?= HOME_PATH ?>resources/js/components.js"></script>
         <?php
         foreach ($ajax as $script) {
             echo '<script src="' . HOME_PATH . 'resources/js/ajax/app/' . $script .'"></script>';
@@ -86,12 +88,12 @@ class template
             <nav class="navbar navbar-light bg-white">
                 <img class="ml-3" src="<?= HOME_PATH ?>resources/images/for-light-bg.svg" width="150" height="70" alt="Emergencia.id">
                 <div class="navbar-items d-flex align-items-center mr-0 mr-sm-3">
-                    <a href="dashboardCliente.php" class="color-text text-link mr-lg-5">Mis perfiles</a>
+                    <a href="<?= HOME_PATH ?>app/user/profiles" class="color-text text-link mr-lg-5">Mis perfiles</a>
                     <div class="dropdown dropdown-nav-options">
                         <a href="#" class="font-size-regular btn dropdown-toggle shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eduardo Estrada</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item font-size-regular" href="configurarCuenta.php">Ajustes de cuenta</a>
-                            <a class="dropdown-item font-size-regular" href="login.php">Cerrar Sesión</a>
+                            <a class="dropdown-item font-size-regular" href="<?= HOME_PATH ?>app/user/settings">Ajustes de cuenta</a>
+                            <a class="dropdown-item font-size-regular" href="#" onclick="logout()">Cerrar Sesión</a>
                         </div>
                     </div>
                 </div>
@@ -134,20 +136,18 @@ class template
             ?>
                 <!--Here copy the footer of the dashboard site-->
             </body>
-                
+
             <!-- <script src="https://kit.fontawesome.com/9b3f9e4d8d.js" crossorigin="anonymous"></script> -->
-            <script src="<?= HOME_PATH ?>resources/js/vendor/jquery-3.2.1.js"></script>
-            <script src="<?= HOME_PATH ?>resources/js/vendor/collapse.js"></script>
-            <script src="<?= HOME_PATH ?>resources/js/vendor/jquery-3.5.0.min.js"></script>
+            <script src="<?= HOME_PATH ?>resources/js/vendor/jquery-3.5.1.min.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/vendor/bootstrap.bundle.min.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/vendor/axios.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/vendor/vue.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/main.js"></script>
+            <script> var HOME_PATH = "<?= HOME_PATH ?>" </script>
             <script src="<?= HOME_PATH ?>resources/js/vendor/sweetalert2.all.min.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/components.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/ajax/app/account.js"></script>
-            <script> var HOME_PATH = "<?= HOME_PATH ?>" </script>
             <?php
             foreach ($ajax as $script) {
                 echo '<script src="' . HOME_PATH . 'resources/js/ajax/app/' . $script .'"></script>';
