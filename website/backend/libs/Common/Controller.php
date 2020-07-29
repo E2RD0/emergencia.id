@@ -39,7 +39,7 @@ class Controller
                     }
                 } elseif ($loginRequired === -1) { //if login is NOT required and page should not be accessible when logged in
                     if ($loggedInClient) {
-                        \Helpers\Url::redirect('app/user/dashboard'); //redirect to user home
+                        \Helpers\Url::redirect('app/user/profiles'); //redirect to user home
                     }
                 }
             }
