@@ -13,8 +13,8 @@ if (isset($_GET['action'])) {
         case 'test':
             $result = $controller->getProfile();
             break;
-        case 'login':
-            $result = $controller->login($_POST);
+        case 'getBlood':
+            $result = $controller->getBlood();
             break;
         case 'recoverPassword':
             $result = $controller->recoverPassword($_POST);
