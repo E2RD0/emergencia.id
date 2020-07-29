@@ -156,7 +156,7 @@ class Usuario
     }
     public function checkPassword($email){
         $db = new \Common\Database;
-        $db->query('SELECT idUsuario, idTipoUsuario, nombre, contrasena from usuario WHERE email = :email');
+        $db->query('SELECT * from usuario WHERE email = :email');
         $db->bind(':email', $email);
         return $db->getResult();
     }
@@ -174,7 +174,7 @@ class Usuario
     }
     public function getUser($id){
         $db = new \Common\Database;
-        $db->query("SELECT * FROM usuario WHERE idUsuario=:id");
+        $db->query("SELECT * FROM usuario WHERE id_usuario=:id");
         $db->bind(':id', $id);
         return $db->getResult();
     }

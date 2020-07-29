@@ -9,9 +9,14 @@ class User extends \Common\Controller
     {
         $this->loadView('app', 'registro', -1);
     }
-    public function signup1()
+    public function new()
     {
-        $this->loadView('app', 'register', -1);
+        if(ningunperfil){
+            $this->loadView('app', 'newUser');
+        }
+        else{
+            \Helpers\Url::redirect('app/profile');
+        }
     }
 
     public function login()

@@ -40,6 +40,7 @@ class template
         <script src="<?= HOME_PATH ?>resources/js/vendor/bootstrap.min.js"></script>
         <script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
         <script src="<?= HOME_PATH ?>resources/js/main.js"></script>
+        <script> var HOME_PATH = "<?= HOME_PATH ?>" </script>
         <?php
         foreach ($ajax as $script) {
             echo '<script src="' . HOME_PATH . 'resources/js/ajax/app/' . $script .'"></script>';
@@ -142,6 +143,7 @@ class template
             <script src="<?= HOME_PATH ?>resources/js/vendor/sweetalert2.all.min.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/components.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/ajax/app/account.js"></script>
+            <script> var HOME_PATH = "<?= HOME_PATH ?>" </script>
             <?php
             foreach ($ajax as $script) {
                 echo '<script src="' . HOME_PATH . 'resources/js/ajax/app/' . $script .'"></script>';

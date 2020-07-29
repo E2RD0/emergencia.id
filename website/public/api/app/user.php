@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../../../app/init.php';
-require_once __DIR__ . '/../../../app/controllers/Users.php';
+require_once __DIR__ . '/../../../backend/init.php';
+require_once __DIR__ . '/../../../backend/controllers/Users.php';
 
 if (isset($_GET['action'])) {
     session_start();

@@ -27,7 +27,7 @@ template::headerLogin('Inicio de sesión');
                 <div class="row mb-md-4 mb-2">
                     <!--Para computadora-->
                     <div class="col-12 col-md-8 text-center text-lg-right d-none d-sm-block">
-                        <a href="recuperarContrasena.php" class="text-help text-link float-left">¿Olvidaste tu contraseña?</a>
+                        <a  href="<?= HOME_PATH ?>app/user/recoverpassword" class="text-help text-link float-left">¿Olvidaste tu contraseña?</a>
                     </div>
 
                     <!--Para Dispositivos moviles-->
