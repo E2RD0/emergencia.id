@@ -1,4 +1,4 @@
-//const API = HOME_PATH + 'api/store/user.php?action=';
+const API = HOME_PATH + 'api/app/user.php?action=';
 
 function logout() {
     swal(4, '¿Estás seguro de que quieres cerrar sesión?', false, 0, true, out);
@@ -10,7 +10,7 @@ function logout() {
             })
             .done(function(response) {
                 if (response.status) {
-                    swal(1, response.message, 'store/user/login');
+                    swal(1, response.message, 'app/user/login');
                 } else {
                     swal(2, response.exception);
                 }

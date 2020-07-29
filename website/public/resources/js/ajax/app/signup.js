@@ -1,3 +1,4 @@
+const API = HOME_PATH + 'api/app/user.php?action=';
 $( '#register-form' ).submit(function( event ) {
     event.preventDefault();
     $.ajax({
@@ -15,14 +16,11 @@ $( '#register-form' ).submit(function( event ) {
     .done(function( response ) {
         // If user is registered succesfully
         if (response.status==1) {
-            //swal( 1, 'Usuario registrado correctamente', 'store/user/login' );
+            redirect('app/user/new');
         } else if(response.status==-1){
-            console.log('error con db');
             swal(2, response.exception);
         }
         var errors = response.errors;
-        checkFields(errors, 'Nombre');
-        checkFields(errors, 'Apellido');
         checkFields(errors, 'Email');
         checkFields(errors, 'Contraseña');
     })

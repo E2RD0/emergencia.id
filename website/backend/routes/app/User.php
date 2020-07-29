@@ -9,14 +9,29 @@ class User extends \Common\Controller
     {
         $this->loadView('app', 'registro', -1);
     }
-    public function signup1()
+    public function new()
     {
-        $this->loadView('app', 'register', -1);
+        $modeloPUsuario = $this->loadModel('PerfilesUsuario');
+        session_start();
+        if($modeloPUsuario->countProfilesUser(isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '-1') ==0){
+            $this->loadView('app', 'newUser');
+        }
+        else{
+            \Helpers\Url::redirect('app/profile');
+        }
     }
 
     public function login()
     {
         $this->loadView('app', 'login', -1);
+    }
+
+    public function profiles(){
+        $this->loadView('app', 'dashboardCliente');
+    }
+    public function settings()
+    {
+        $this->loadView('app', 'configurarCuenta');
     }
 
     /*public function dashboard()

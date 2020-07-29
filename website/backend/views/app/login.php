@@ -12,22 +12,24 @@ template::headerLogin('Inicio de sesión');
             <h1 class="text-main text-title">Iniciar sesión</h1>
             <p class="text-regular mt-2 mb-4">Ingresa tus credenciales para continuar.</p>
 
-            <form action="">
+            <form id="login-form" action="" method="post">
 
-                <label class="text-help" for="email">Correo electrónico o teléfono</label>
+                <label class="text-help" for="inputEmail">Correo electrónico</label>
                 <div class="input-group mb-4">
-                    <input class="textfield" type="email" class="form-control" id="email" aria-describedby="basic-addon3">
+                    <input class="textfield" type="email" class="form-control" id="inputEmail" name="email" aria-describedby="basic-addon3" required>
                     <div class="line"></div>
+                    <p class="form-error-label" id="errorEmail"></p>
                 </div>
-                <label class="text-help" for="pass">Contraseña</label>
+                <label class="text-help" for="inputContraseña">Contraseña</label>
                 <div class="input-group mb-4">
-                    <input class="textfield" type="password" class="form-control" id="pass" aria-describedby="basic-addon3">
+                    <input class="textfield" type="password" class="form-control" id="inputContraseña" required name="password" aria-describedby="basic-addon3" minlength=6>
                     <div class="line"></div>
+                    <p class="form-error-label" id="errorContraseña"></p>
                 </div>
                 <div class="row mb-md-4 mb-2">
                     <!--Para computadora-->
                     <div class="col-12 col-md-8 text-center text-lg-right d-none d-sm-block">
-                        <a href="recuperarContrasena.php" class="text-help text-link float-left">¿Olvidaste tu contraseña?</a>
+                        <a  href="<?= HOME_PATH ?>app/user/recoverpassword" class="text-help text-link float-left">¿Olvidaste tu contraseña?</a>
                     </div>
 
                     <!--Para Dispositivos moviles-->
@@ -36,7 +38,7 @@ template::headerLogin('Inicio de sesión');
                     </div>
 
                     <div class="col-12 col-md-4 text-sm-right text-center my-4 my-md-2">
-                        <button type="button" class="button" onclick="location.href='dashboardCliente.php'">Acceder</button>
+                        <button type="submit" class="button" id="login-submit">Acceder</button>
                     </div>
                 </div>
             </form>
@@ -50,5 +52,5 @@ template::headerLogin('Inicio de sesión');
 </div>
 
 <?php
-template::footerLogin();
+template::footerLogin('login.js');
 ?>

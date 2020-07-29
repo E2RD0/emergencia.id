@@ -17,9 +17,10 @@ class Controller
         $pathFile = __DIR__ . '/../../views/' . $context . '/' . $nameView . '.php';
         //If the file exists
         if (file_exists($pathFile)) {
-            session_start();
-            $loggedInAdmin = isset($_SESSION['user_id']);
-            $loggedInClient = isset($_SESSION['client_id']);
+            if(!isset($_SESSION))
+                session_start();
+            $loggedInAdmin = isset($_SESSION['p_user_id']);
+            $loggedInClient = isset($_SESSION['user_id']);
 
             if ($context == 'admin') {
                 if ($loginRequired) {

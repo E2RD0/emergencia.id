@@ -227,7 +227,7 @@ template::headerCreate('Nuevo perfil');
 
             <div class="row">
                 <div class="mt-3 add-new-contact">
-                    <a data-toggle="collapse" href="#addContact" data-toggle="addContact" aria-expanded="false"
+                    <a data-toggle="collapse" href="#addContact" data-toggle="collapse" aria-expanded="false"
                         aria-controls="addContact"><i class="fas fa-plus icon-add-contact"></i> Nuevo contacto</a>
                 </div>
                 <div class="addNewContactForm">

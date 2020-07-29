@@ -4,7 +4,7 @@ class Users extends \Common\Controller
     public function __construct()
     {
         $this->usersModel = $this->loadModel('Usuario');
-        $r = array('status' => 0, 'message' => null, 'exception' => null, 'errors'=> []);
+        $this->r = array('status' => 0, 'message' => null, 'exception' => null, 'errors'=> []);
     }
 
     public function signUp($userData)
@@ -22,11 +22,13 @@ class Users extends \Common\Controller
         //If there aren't any errors
         if (!boolval($errors)) {
             if ($this->usersModel->registerUser($user)) {
+                $userInfo = $this->usersModel->checkPassword($email);
+                $this->loginSession($userInfo->id_usuario, $email);
                 $result['status'] = 1;
                 $result['message'] = 'Usuario registrado correctamente';
             } else {
                 $result['status'] = -1;
-                $result['exception'] = 'Error al ingresar los datos';
+                $result['exception'] = \Common\Database::$exception;
             }
         } else {
             $result['status'] = 0;
@@ -34,6 +36,44 @@ class Users extends \Common\Controller
             $result['errors'] = $errors;
         }
         return $result;
+    }
+
+    public function login($userData)
+    {
+        $userData = \Helpers\Validation::trimForm($userData);
+        $email = $userData['email'];
+        $password = $userData['password'];
+
+        $user = new Usuario;
+        $errors = [];
+        $errors = $user->setEmail($email, true) === true ? $errors : array_merge($errors, $user->setEmail($email, true));
+        $errors = $user->setPassword($password, false) === true ? $errors : array_merge($errors, $user->setPassword($password, false));
+        //If there aren't any errors
+        if (!boolval($errors)) {
+            $userHash = $this->usersModel->checkPassword($email);
+            if ($userHash) {
+                if (password_verify($password, trim($userHash->clave))) {
+                    $this->loginSession($userHash->id_usuario, $email);
+                    $result['status'] = 1;
+                    $result['message'] = 'Autenticación correcta';
+                } else {
+                    $result['status'] = -1;
+                    $result['exception'] = 'Credenciales incorrectas';
+                }
+            } else {
+                $result['status'] = -1;
+                $result['exception'] = 'Credenciales incorrectas';
+            }
+        } else {
+            $result['exception'] = 'Error en uno de los campos';
+            $result['errors'] = $errors;
+        }
+        return $result;
+    }
+
+    private function loginSession($id, $email){
+        $_SESSION['user_id'] = $id;
+        $_SESSION['user_email'] = $email;
     }
 
     public function readOne($data, $result)
@@ -120,43 +160,6 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function userLogin($userData, $result)
-    {
-        $userData = \Helpers\Validation::trimForm($userData);
-        $email = $userData['email'];
-        $password = $userData['password'];
-
-        $user = new Usuario;
-        $errors = [];
-        $errors = $user->setEmail($email, true) === true ? $errors : array_merge($errors, $user->setEmail($email, true));
-        $errors = $user->setPassword($password, false) === true ? $errors : array_merge($errors, $user->setPassword($password, false));
-        //If there aren't any errors
-        if (!boolval($errors)) {
-            $userHash = $this->usersModel->checkPassword($email);
-            if ($userHash) {
-                if (password_verify($password, trim($userHash->contrasena))) {
-                    $_SESSION['user_id'] = $userHash->idusuario;
-                    $_SESSION['user_name'] = $userHash->nombre;
-                    $_SESSION['user_type'] = $userHash->idtipousuario;
-                    $_SESSION['user_email'] = $email;
-                    $_SESSION['sidebar_status'] = 'extended';
-                    $result['status'] = 1;
-                    $result['message'] = 'Autenticación correcta';
-                } else {
-                    $result['status'] = -1;
-                    $result['exception'] = 'Credenciales incorrectas';
-                }
-            } else {
-                $result['status'] = -1;
-                $result['exception'] = 'Credenciales incorrectas';
-            }
-        } else {
-            $result['exception'] = 'Error en uno de los campos';
-            $result['errors'] = $errors;
-        }
-        return $result;
-    }
-
     public function getSidebarStatus($result)
     {
         if (isset($_SESSION['sidebar_status'])) {
@@ -183,7 +186,7 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function userLogout($result)
+    public function logout()
     {
         if (session_destroy()) {
             $result['status'] = 1;

@@ -43,7 +43,7 @@ class Perfil
         $db->query('Select * from tipo_sangre');
         return $db->resultSet();
     }
-    
+
 }
 
 
