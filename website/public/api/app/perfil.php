@@ -25,6 +25,9 @@ if (isset($_GET['action'])) {
         case 'getCity':
             $result = $controller->getCity($_GET['country']);
         break;
+        case 'newProfile':
+            $result = $controller->createNewProfile();
+        break;
         default:
             \Common\Core::http404();
     }

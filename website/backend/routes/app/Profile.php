@@ -7,8 +7,10 @@ class Profile extends \Common\Controller{
     }
 
     public function edit($id)
-    {
-        if($this->model->existProfile($id)){
+    {   
+        session_start();
+        $s = $_SESSION['user_id'];
+        if($this->model->existProfile($id, $s)){
             $this->loadView('app', 'newProfile', 0);
         }else{
             Core::http404();

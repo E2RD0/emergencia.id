@@ -39,6 +39,14 @@ class Profile extends \Common\Controller
         $result = $this->usersModel->loadCity($param);
         return $result;
     }
+
+    public function createNewProfile(){
+        session_start();
+        $idSesssion = $_SESSION['user_id'];
+        $result = $this->r;
+        $result = $this->usersModel->newProfile($idSesssion);
+        return $result;
+    }
 }
 
 
