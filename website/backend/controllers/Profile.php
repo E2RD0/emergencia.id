@@ -92,7 +92,7 @@ class Profile extends \Common\Controller
     }
 
     public function createNewProfile(){
-        session_start();
+        #session_start();
         $idSesssion = $_SESSION['user_id'];
         $result = $this->r;
         $result = $this->usersModel->newProfile($idSesssion);
@@ -104,6 +104,27 @@ class Profile extends \Common\Controller
         $info = \Helpers\Validation::trimForm($info);
         $user = new Perfil;
         return $this->usersModel->updateProfile($info);
+    }
+
+    public function getInformation($id){
+        $idSesssion = $_SESSION['user_id'];
+        $result = $this->r;
+        $result = $this->usersModel->getProfileInformationToUpdate($id);
+        return $result;
+    }
+
+    public function crateContact($contact){
+        $result = $this->r;
+        $info = \Helpers\Validation::trimForm($contact);
+        $user = new Perfil;
+        return $this->usersModel->createNewContact($info);
+    }
+
+    public function showContact($contact){
+        $result = $this->r;
+        $info = \Helpers\Validation::trimForm($contact);
+        $user = new Perfil;
+        return $this->usersModel->getProfileContact($info);
     }
 }
 

@@ -141,8 +141,34 @@ class Perfil
         $db->bind(':city', $information["city"] === 'Seleccionar' ? null : $information["city"]);
         $db->bind(':province', $information["province"] === '' ? null: $information["province"]);
         $db->bind(':selectedIdBlood', $information["selectedIdBlood"] === 'Seleccionar' ? null: $information["selectedIdBlood"]);
-        $db->bind(':isssEstatusSelected', $information["isssEstatusSelected"] === 'Seleccionar' ? null: $information["isssEstatusSelected"]);
-        $db->bind(':isssEstatusSelected', $information["isssEstatusSelected"] == "Seleccionar" ? null: (int)$information["isssEstatusSelected"]);
+        $db->bind(':isssEstatusSelected', $information["isssEstatusSelected"] === 'Seleccionar' ? null: (int)$information["isssEstatusSelected"]);
+        return $db->resultSet();
+    }
+
+    public function getProfileInformationToUpdate($id){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM perfil_medico WHERE id_perfil_medico = :id');
+        $db->bind(':id', (int)$id["idProfileToReceiveUpdates"]);
+        return $db->resultSet();
+    }
+
+    public function createNewContact($inf){
+        $db = new \Common\Database;
+        $db->query('INSERT INTO perfil_contacto_emergencia
+        (nombre, telefono, relacion, direccion, email, id_perfil_medico) VALUES (:nom, :tel, :rel, :dire, :em, :id_p_m)');
+        $db->bind(':nom', $inf["name"]);
+        $db->bind(':tel', $inf["telephone"]);
+        $db->bind(':rel', $inf["relacion"]);
+        $db->bind(':dire', $inf["direction"]);
+        $db->bind(':em', $inf["email"]);
+        $db->bind(':id_p_m', (int)$inf["id_p_m"]);
+        return $db->execute();
+    }
+
+    public function getProfileContact($id){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM perfil_contacto_emergencia WHERE id_perfil_medico = :id');
+        $db->bind(':id', (int)$id["idProfileToReceiveUpdates"]);
         return $db->resultSet();
     }
 

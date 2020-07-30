@@ -1,13 +1,16 @@
 let endPoint = "http://localhost" + HOME_PATH + "api/app/perfil.php?action=";
-console.log(HOME_PATH);
+//console.log(HOME_PATH);
 const newprofile = new Vue({
     el: "#newprofile",
     data() {
         return {
+            redirect: 'http://localhost' + HOME_PATH + "app/user/profiles",
             options: [
                 { text: 'Si', value: true },
                 { text: 'No', value: false },
             ],
+            loaderTest: true,
+            idToLoadEstastus: 0,
             delay: 1000,
             progress: 1,
             progresscolor: "",
@@ -20,6 +23,9 @@ const newprofile = new Vue({
             countryList: [],
             countrySelect: "Seleccionar",
             cityList: [],
+            info: {
+                idProfileToReceiveUpdates: 0
+            },
             src: "https://boostlikes-bc85.kxcdn.com/blog/wp-content/uploads/2019/08/No-Instagram-Profile-Pic.jpg",
             dataProfile: {
                 date: "",
@@ -46,6 +52,7 @@ const newprofile = new Vue({
                 relacion: "",
                 email: "",
                 direction: "",
+                id_p_m: 0
             },
             addEmergencycontacts: [],
             timer: null,
@@ -53,11 +60,13 @@ const newprofile = new Vue({
             test: "",
         };
     },
-    mounted: function() {
+    created: function() {
         this.getBlood();
         this.getIsss();
         this.getCountry();
         this.getUri();
+        this.getInformationToUpdate();
+        this.getContacts();
     },
     computed: {
         calcProgressColor: function() {
@@ -122,7 +131,7 @@ const newprofile = new Vue({
     },
     watch: {
         countrySelect() {
-            console.log("Se realizo un cambio de país")
+            //console.log("Se realizo un cambio de país")
             this.dataProfile.country = this.countrySelect
             this.dataProfile.city = "Seleccionar";
             this.getCity();
@@ -164,7 +173,7 @@ const newprofile = new Vue({
             this.addNewContactForm = [];
         },
         seleccionarSangre: function(recive) {
-            console.log(recive);
+            //console.log(recive);
         },
         getBlood: function() {
             axios.get(endPoint + "getBlood").then((response) => {
@@ -184,6 +193,10 @@ const newprofile = new Vue({
         getCity: function() {
             axios.get(endPoint + "getCity&country=" + this.dataProfile.country).then((response) => {
                 this.cityList = response.data;
+                const param = this.cityList.find(countryEstatus => countryEstatus.id_pais_estado === this.idToLoadEstastus)
+                    //console.log(param.id_pais_estado)
+                this.dataProfile.city = param.id_pais_estado;
+                this.loaderTest = false;
             });
         },
         toFormData: function(obj) {
@@ -194,7 +207,7 @@ const newprofile = new Vue({
             return form_data;
         },
         updateInformation: function() {
-            console.log("Hi i´m a update method")
+            //console.log("Hi i´m a update method")
             var formData = this.toFormData(this.dataProfile);
             axios
                 .post(endPoint + "updateProfile",
@@ -206,16 +219,90 @@ const newprofile = new Vue({
                 )
                 .then(
                     response => (
-                        console.log("Se actualizo :)")
+                        console.log("Actualizado correctamente")
                     )
                 );
         },
         getUri: function() {
             let url = location.href.split('/').pop();
             this.dataProfile.idProfile = url;
+            this.addNewContactForm.id_p_m = url;
         },
         changeList: function() {
             //this.dataProfile.list ? this.dataProfile.list = false : this.dataProfile.list = true
+        },
+        getInformationToUpdate: function() {
+            this.info.idProfileToReceiveUpdates = location.href.split('/').pop();
+            //console.log("Hi i´m a receive method")
+            var formData = this.toFormData(this.info);
+            axios
+                .post(endPoint + "showProfileAllInfo",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        this.prepareToShowInformation(response)
+                    )
+                );
+        },
+        prepareToShowInformation: function(res) {
+            //console.log(res.data)
+            //console.log(res.data[0].email)
+            res.data[0].fecha_nacimiento == null ? this.dataProfile.date = "" : this.dataProfile.date = res.data[0].fecha_nacimiento;
+            res.data[0].nombres == null ? this.dataProfile.name = "" : this.dataProfile.name = res.data[0].nombres;
+            res.data[0].apellidos == null ? this.dataProfile.lastName = "" : this.dataProfile.lastName = res.data[0].apellidos;
+            res.data[0].id_tipo_sangre == null ? this.dataProfile.selectedIdBlood = "Seleccionar" : this.dataProfile.selectedIdBlood = res.data[0].id_tipo_sangre;
+            res.data[0].es_donador == true ? this.dataProfile.donor = true : this.dataProfile.donor = false;
+            res.data[0].documento_identidad == null ? this.dataProfile.document = "" : this.dataProfile.document = res.data[0].documento_identidad;
+            res.data[0].id_estado_isss == null ? this.dataProfile.isssEstatusSelected = "Seleccionar" : this.dataProfile.isssEstatusSelected = res.data[0].id_estado_isss;
+            res.data[0].peso == null ? this.dataProfile.weight = "" : this.dataProfile.weight = res.data[0].peso;
+            res.data[0].estatura == null ? this.dataProfile.height = "" : this.dataProfile.height = res.data[0].estatura;
+            res.data[0].id_pais == null ? this.countrySelect = "Seleccionar" : this.countrySelect = res.data[0].id_pais;
+            res.data[0].id_pais_estado == null ? this.idToLoadEstastus = "Seleccionar" : this.idToLoadEstastus = res.data[0].id_pais_estado;
+            res.data[0].ciudad == null ? this.dataProfile.province = "" : this.dataProfile.province = res.data[0].ciudad;
+            res.data[0].direccion == null ? this.dataProfile.direction = "" : this.dataProfile.direction = res.data[0].direccion;
+            res.data[0].listado == null ? this.dataProfile.list = "" : this.dataProfile.list = res.data[0].listado;
+            this.loaderTest = false;
+        },
+        closeProfile: function() {
+            window.location = this.redirect;
+        },
+        //addNewContactForm
+        getContacts: function() {
+            var formData = this.toFormData(this.info);
+            axios
+                .post(endPoint + "showContact",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        this.addEmergencycontacts = response.data
+                    )
+                );
+        },
+        createNewContact: function() {
+            var formData = this.toFormData(this.addNewContactForm);
+            axios
+                .post(endPoint + "newContact",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        this.getContacts(), this.addNewContactForm = []
+                    )
+                );
         }
     },
 

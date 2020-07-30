@@ -34,6 +34,15 @@ if (isset($_GET['action'])) {
         case 'updateProfile':
             $result = $controller->updatePro($_POST);
         break;
+        case 'showProfileAllInfo':
+            $result = $controller->getInformation($_POST);
+        break;
+        case 'newContact':
+            $result = $controller->crateContact($_POST);
+        break;
+        case 'showContact':
+            $result = $controller->showContact($_POST);
+        break;
         default:
             \Common\Core::http404();
     }

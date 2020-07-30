@@ -700,6 +700,24 @@ select {
     animation: spin 3s linear infinite;
 }
 
+.loader {
+    width: 340px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fdfdfd;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.primary-cl {
+    color: #2198F4;
+    font-size: 50px;
+}
+
 @-moz-keyframes spin {
     100% {
         -moz-transform: rotate(360deg);
