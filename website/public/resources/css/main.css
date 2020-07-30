@@ -718,6 +718,10 @@ select {
     font-size: 50px;
 }
 
+[v-cloak] {
+    display: none;
+}
+
 @-moz-keyframes spin {
     100% {
         -moz-transform: rotate(360deg);

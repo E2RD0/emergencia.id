@@ -5,7 +5,7 @@ template::headerCreate('Nuevo perfil');
 
 <div id="newprofile">
     <div v-if="loaderTest" class="loader"><i class="far fa-spinner-third icon-load primary-cl"></i></div>
-    <div v-else="loaderTest">
+    <div v-else="loaderTest" v-cloak>
         <div class="showSave">
             {{savingTxt}}
             <div v-html="aaa"></div>
