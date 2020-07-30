@@ -90,7 +90,7 @@ class template
                 <div class="navbar-items d-flex align-items-center mr-0 mr-sm-3">
                     <a href="<?= HOME_PATH ?>app/user/profiles" class="color-text text-link mr-lg-5">Mis perfiles</a>
                     <div class="dropdown dropdown-nav-options">
-                        <a href="#" class="font-size-regular btn dropdown-toggle shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $_SESSION['user_name'] . ' ' . $_SESSION['user_lastname']?></a>
+                        <a href="#" class="font-size-regular btn dropdown-toggle shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= ($_SESSION['user_name'] ? $_SESSION['user_name'] : 'Mi cuenta'). ' ' . $_SESSION['user_lastname']?></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item font-size-regular" href="<?= HOME_PATH ?>app/user/settings">Ajustes de cuenta</a>
                             <a class="dropdown-item font-size-regular" href="#" onclick="logout()">Cerrar Sesión</a>
