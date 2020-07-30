@@ -12,7 +12,10 @@ if (isset($_GET['action'])) {
     switch ($action) {
         case 'getshowProfile':
             $result = $controller->getShowProfile();
-            break;
+        break;
+        case 'getshowProfileShared':
+            $result = $controller->getShowProfileShared();
+        break;
         default:
             \Common\Core::http404();
     }

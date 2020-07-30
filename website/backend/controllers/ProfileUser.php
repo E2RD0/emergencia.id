@@ -16,6 +16,13 @@ class ProfileUser extends \Common\Controller
         $idSesssion = $_SESSION['user_id'];
         return $this->usersModel->getShowProfile($idSesssion);
     }
+
+    public function getShowProfileShared(){
+        $result = $this->r;
+        session_start();
+        $idSesssion = $_SESSION['user_id'];
+        return $this->usersModel->getShowProfileShared($idSesssion);
+    }
 }
 
 

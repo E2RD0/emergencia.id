@@ -34,13 +34,26 @@ class Usuario
         return $this->telefono;
     }
 
-    public function setTelefono($value)
+    public function setTelefono($value, $isLogin = false)
     {
         $v = new \Valitron\Validator(array('Teléfono' => $value));
         $v->rule('integer', 'Teléfono');
-        if ($v->validate()) {
-            $this->telefono = $value;
-            return true;
+        if($v->validate()) {
+            if($isLogin){
+                $this->telefono = $value;
+                return true;
+            }
+            else{
+                if(!$this->userExists('telefono', $value)){
+                    $this->telefono = $value;
+                    return true;
+                }
+                else {
+                    $errors = [];
+                    $errors['Teléfono'] = ['Ya existe una cuenta con este teléfono'];
+                    return $errors;
+                }
+            }
         } else {
             return $v->errors();
         }
