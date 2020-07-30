@@ -16,12 +16,18 @@ if (isset($_GET['action'])) {
         case 'getBlood':
             $result = $controller->getBlood();
             break;
-        case 'recoverPassword':
-            $result = $controller->recoverPassword($_POST);
+        case 'getIssEstatus':
+            $result = $controller->getIssEstatus();
             break;
-        case 'recoverCode':
-            $result = $controller->recoverCode($_POST);
+        case 'getCountry':
+            $result = $controller->getCountry();
             break;
+        case 'getCity':
+            $result = $controller->getCity($_GET['country']);
+        break;
+        case 'newProfile':
+            $result = $controller->createNewProfile();
+        break;
         default:
             \Common\Core::http404();
     }

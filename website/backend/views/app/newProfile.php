@@ -19,7 +19,7 @@ template::headerCreate('Nuevo perfil');
             <p class="text-target">{{calcDate}} {{dataProfile.direction == '' ? '' : dataProfile.direction + '.'}}</p>
             <div class="check-share">
                 <label class="label-check" for="check">
-                    <input type="checkbox" id="check">
+                    <input type="checkbox" id="check" checked>
                     <div class="checked">
                         <i @click="debounceSearch" class="far fa-check"></i>
                     </div>
@@ -94,11 +94,9 @@ template::headerCreate('Nuevo perfil');
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-target">Estado ISSS</label>
-                        <select @input="debounceSearch" v-model="dataProfile.isssEstatus" tabindex="8" class="textfield">
-                            <option selected>Seleccionar</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select @input="debounceSearch" v-model="dataProfile.isssEstatusSelected" tabindex="5" class="textfield">
+                            <option selected value="Seleccionar">Seleccionar</option>
+                            <option v-for="item in issEstatus" :value="item.id_estado_isss">{{item.estado}}</option>
                         </select>
                         <!-- <input class="textfield" type="text" class="form-control"> -->
                     </div>
@@ -115,33 +113,26 @@ template::headerCreate('Nuevo perfil');
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-target">País</label>
-                        <select @input="debounceSearch" v-model="dataProfile.country" tabindex="11" class="textfield">
-                            <option selected>Seleccionar</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select @input="debounceSearch" v-model="countrySelect" tabindex="5" class="textfield">
+                            <option selected value="Seleccionar">Seleccionar</option>
+                            <option v-for="item in countryList" :value="item.id_pais">{{item.nombre}}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1" class="text-target">Ciudad</label>
-                        <!-- <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3"> -->
-                        <select @input="debounceSearch" v-model="dataProfile.city" tabindex="13" class="textfield">
-                            <option selected>Seleccionar</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <label for="exampleInputEmail1" class="text-target mt-1">Ciudad</label>
+                        <input @input="debounceSearch" v-model="dataProfile.province" tabindex="14" class="textfield" type="text"
+                            class="form-control" aria-describedby="basic-addon3">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-target">Estado/Provincia</label>
-                        <select @input="debounceSearch" v-model="dataProfile.province" tabindex="12" class="textfield text-select">
-                            <option selected>Seleccionar</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <!-- <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3"> -->
+                        <select @input="debounceSearch" v-model="dataProfile.city" tabindex="5" class="textfield">
+                            <option selected value="Seleccionar">Seleccionar</option>
+                            <option v-for="item in cityList" :value="item.id_pais_estado">{{item.nombre}}</option>
                         </select>
+                        
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-target mt-1">Dirección</label>

@@ -15,14 +15,38 @@ class Profile extends \Common\Controller
         $result = $this->usersModel->getProfileInformation();
         return $result;
     }
-
+    
     public function getBlood(){
         $result = $this->r;
         $result = $this->usersModel->loadBlood();
         return $result;
     }
 
-    
+    public function getIssEstatus(){
+        $result = $this->r;
+        $result = $this->usersModel->loadIsssEstatus();
+        return $result;
+    }
+
+    public function getCountry(){
+        $result = $this->r;
+        $result = $this->usersModel->loadCountry();
+        return $result;
+    }
+
+    public function getCity($param){
+        $result = $this->r;
+        $result = $this->usersModel->loadCity($param);
+        return $result;
+    }
+
+    public function createNewProfile(){
+        session_start();
+        $idSesssion = $_SESSION['user_id'];
+        $result = $this->r;
+        $result = $this->usersModel->newProfile($idSesssion);
+        return $result;
+    }
 }
 
 
