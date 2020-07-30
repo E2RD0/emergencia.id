@@ -30,7 +30,7 @@ template::headerSite('Dashboard del cliente');
                     </div>
                     <div class="col-sm-9">
                         <div class="card-body">
-                            <h5 class="card-title text-regular">{{item.nombres}} {{item.apellidos}}</h5>
+                            <h5 class="card-title text-regular">{{item.nombres }} {{item.apellidos}}</h5>
                             <p class="card-text">18 años, {{item.nombre}}, {{item.ciudad}}</p>
                             <div class="d-flex flex-column d-sm-block">
                                 <a @click="redirectToEdit(item.id_perfil_medico)" class="color-text text-link mr-4 mb-3"><i class="far fa-pencil mr-2"></i>
