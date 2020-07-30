@@ -1,5 +1,5 @@
 let endPoint = "http://localhost" + HOME_PATH + "api/app/perfil.php?action=";
-console.log(endPoint);
+console.log(HOME_PATH);
 const newprofile = new Vue({
     el: "#newprofile",
     data() {

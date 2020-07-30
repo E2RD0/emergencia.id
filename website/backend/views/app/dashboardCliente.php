@@ -3,6 +3,7 @@ require_once 'templates/templateUser.php';
 template::headerSite('Dashboard del cliente');
 ?>
 
+<div id="dashboard">
 <div class="container mt-5" id="dashboard">
     <h1 class="title-page">Perfiles</h1>
 
@@ -19,58 +20,20 @@ template::headerSite('Dashboard del cliente');
 
     <div class="tab-content">
         <!-- cards de mis perfiles -->
-        <div class="tab-pane active" id="perfiles" role="tabpanel">
+        <div class="tab-pane active" id="perfiles" role="tabpanel" >
 
-            <div class="card profile-card my-5 text-center text-sm-left">
+            <div v-for="item in show" class="card profile-card my-5 text-center text-sm-left">
                 <div class="row no-gutters">
                     <div class="col-sm-3">
-                        <img src="<?= HOME_PATH ?>resources/images/default-perfil.svg" class="card-img img-fluid"
-                            alt="defaultPerfil">
+                        <img :src="item.foto" class="card-img img-fluid"
+                            :alt="item.nombres">
                     </div>
                     <div class="col-sm-9">
                         <div class="card-body">
-                            <h5 class="card-title text-regular">Eduardo Estrada</h5>
-                            <p class="card-text">18 años, San salvador, El salvador.</p>
+                            <h5 class="card-title text-regular">{{item.nombres}} {{item.apellidos}}</h5>
+                            <p class="card-text">18 años, {{item.nombre}}, {{item.ciudad}}</p>
                             <div class="d-flex flex-column d-sm-block">
-                                <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-pencil mr-2"></i>
-                                    Editar</a>
-                                <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-clone mr-2"></i>
-                                    Duplicar</a>
-                                <a href="#" class="color-text text-link mr-4 mb-3" id="dropdownMenuOffset"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    data-offset="0,5"><i class="fas fa-ellipsis-h"></i></a>
-                                <div class="dropdown-menu profile-more-options" aria-labelledby="dropdownMenuOffset">
-                                    <a class="dropdown-item mb-1" href="#"><i class="far fa-address-card mr-2"></i>
-                                        Targeta QR</a>
-                                    <a class="dropdown-item mb-1" href="#"><i class="far fa-arrow-alt-down mr-2"></i>
-                                        Descargar PDF</a>
-                                    <a class="dropdown-item mb-1" href="#" type="button" class="btn btn-primary"
-                                        data-toggle="modal" data-target="#exampleModalCenter"><i
-                                            class="far fa-share-square mr-2"></i> Compartir</a>
-                                    <a class="dropdown-item mb-1" href="#"><i class="fas fa-history mr-2"></i></i> Ver
-                                        actividad</a>
-                                    <a class="dropdown-item" href="#" type="button" class="btn btn-primary"
-                                        data-toggle="modal" data-target="#eliminarperfil"><i
-                                            class="far fa-trash mr-2"></i> Eliminar</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card profile-card my-5 text-center text-sm-left">
-                <div class="row no-gutters">
-                    <div class="col-sm-3">
-                        <img src="<?= HOME_PATH ?>resources/images/default-perfil.svg" class="card-img img-fluid"
-                            alt="defaultPerfil">
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="card-body">
-                            <h5 class="card-title text-regular">José Roberto Estrada</h5>
-                            <p class="card-text">54 años, San salvador, El salvador.</p>
-                            <div class="d-flex flex-column d-sm-block">
-                                <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-pencil mr-2"></i>
+                                <a @click="redirectToEdit(item.id_perfil_medico)" class="color-text text-link mr-4 mb-3"><i class="far fa-pencil mr-2"></i>
                                     Editar</a>
                                 <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-clone mr-2"></i>
                                     Duplicar</a>
@@ -246,7 +209,7 @@ template::headerSite('Dashboard del cliente');
 
 
 </div>
-
+</div>
 <?php
 template::footerSite("dashboardUser.js");
 ?>
