@@ -38,10 +38,10 @@ template::headerLogin('Register');
                     <p class="mt-2 mb-4">Ingresa tu nombre.</p>
                     <div id="names-form">
                         <label class="text-help float-left" for="inputNombres">Nombres</label>
-                        <input id="inputNombres" class="textfield" type="text" aria-describedby="basic-addon3" required>
+                        <input id="inputNombres" class="textfield" type="text" aria-describedby="basic-addon3" required pattern="^[A-Z a-zñáéíóúüÑÁÉÍÓÚ]+$">
                         <p class="form-error-label" id="errorNombres"></p>
                         <label class="text-help float-left mt-2" for="inputApellidos">Apellidos</label>
-                        <input id="inputApellidos" class="textfield" type="text" aria-describedby="basic-addon3" required>
+                        <input id="inputApellidos" class="textfield" type="text" aria-describedby="basic-addon3" required pattern="^[A-Z a-zñáéíóúüÑÁÉÍÓÚ]+$">
                         <p class="form-error-label" id="errorApellidos"></p>
                         <button id="names-submit" class="button float-right mt-3 btn_redirect_white">Continuar</button>
                     </div>
@@ -55,11 +55,10 @@ template::headerLogin('Register');
                     <div id="tel-form" class="clearfix mb-3">
                         <label class="text-help float-left" for="inputTeléfono">Teléfono</label>
                         <input id="inputTeléfono" class="textfield" type="text" aria-describedby="basic-addon3">
-                        <p class="form-error-label" id="errorApellidos"></p>
+                        <p class="form-error-label" id="errorTeléfono"></p>
                         <button id="go-back-1"class="button button--white float-left mt-3">Regresar</button>
                         <button id="tel-submit" class="button float-right mt-3">Continuar</button>
                     </div>
-                    <a href="#" id="tel-omitir" class="text-help text-link font-size-regular">Omitir</a>
                 </div>
             </div>
 

@@ -11,14 +11,7 @@ class User extends \Common\Controller
     }
     public function new()
     {
-        $modeloPUsuario = $this->loadModel('PerfilesUsuario');
-        session_start();
-        if($modeloPUsuario->countProfilesUser(isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '-1') ==0){
-            $this->loadView('app', 'newUser');
-        }
-        else{
-            \Helpers\Url::redirect('app/profile');
-        }
+        $this->loadView('app', 'newUser');
     }
 
     public function login()
