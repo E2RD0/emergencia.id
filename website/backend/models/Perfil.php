@@ -73,6 +73,30 @@ class Perfil
         return $db->resultSet();
     }
 
+    public function updateProfile($information){
+        $db = new \Common\Database;
+        $db->query('UPDATE perfil_medico SET nombres= :name, apellidos= :lastName, fecha_nacimiento= :date, documento_identidad= :document, 
+        es_donador= :donor, listado= :list, direccion= :direction, peso= :weight, estatura= :height, id_pais= :country, 
+        id_pais_estado= :city, ciudad= :province, id_tipo_sangre= :selectedIdBlood, id_estado_isss= :isssEstatusSelected WHERE id_perfil_medico = :idProfile');
+        $db->bind(':idProfile', (int)$information["idProfile"]);
+        $db->bind(':name', $information["name"] === '' ? null : $information["name"] );
+        $db->bind(':lastName', $information["lastName"] === '' ? null : $information["lastName"]);
+        $db->bind(':date', $information["date"] === '' ? null: $information["date"]);
+        $db->bind(':document', $information["document"] === '' ? null : $information["document"]);
+        $db->bind(':donor', $information["donor"] === 'true'? true : false);
+        $db->bind(':list', $information["list"] === 'true'? true : false);
+        $db->bind(':direction', $information["direction"] === '' ? null: $information["direction"]);
+        $db->bind(':weight', $information["weight"] === '' ? null : $information["weight"]);
+        $db->bind(':height', $information["height"] === '' ? null : $information["height"]);
+        $db->bind(':country', $information["country"] === 'Seleccionar' ? null : $information["country"]);
+        $db->bind(':city', $information["city"] === 'Seleccionar' ? null : $information["city"]);
+        $db->bind(':province', $information["province"] === '' ? null: $information["province"]);
+        $db->bind(':selectedIdBlood', $information["selectedIdBlood"] === 'Seleccionar' ? null: $information["selectedIdBlood"]);
+        $db->bind(':isssEstatusSelected', $information["isssEstatusSelected"] === 'Seleccionar' ? null: $information["isssEstatusSelected"]);
+        $db->bind(':isssEstatusSelected', $information["isssEstatusSelected"] == "Seleccionar" ? null: (int)$information["isssEstatusSelected"]);
+        return $db->resultSet();
+    }
+
 }
 
 

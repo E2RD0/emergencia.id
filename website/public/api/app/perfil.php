@@ -28,6 +28,9 @@ if (isset($_GET['action'])) {
         case 'newProfile':
             $result = $controller->createNewProfile();
         break;
+        case 'updateProfile':
+            $result = $controller->updatePro($_POST);
+        break;
         default:
             \Common\Core::http404();
     }

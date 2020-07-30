@@ -47,6 +47,13 @@ class Profile extends \Common\Controller
         $result = $this->usersModel->newProfile($idSesssion);
         return $result;
     }
+
+    public function updatePro($info){
+        $result = $this->r;
+        $info = \Helpers\Validation::trimForm($info);
+        $user = new Perfil;
+        return $this->usersModel->updateProfile($info);
+    }
 }
 
 

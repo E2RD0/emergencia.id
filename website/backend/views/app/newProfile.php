@@ -19,7 +19,7 @@ template::headerCreate('Nuevo perfil');
             <p class="text-target">{{calcDate}} {{dataProfile.direction == '' ? '' : dataProfile.direction + '.'}}</p>
             <div class="check-share">
                 <label class="label-check" for="check">
-                    <input type="checkbox" id="check" checked>
+                    <input v-model="dataProfile.list" type="checkbox" id="check">
                     <div class="checked">
                         <i @click="debounceSearch" class="far fa-check"></i>
                     </div>
@@ -71,7 +71,7 @@ template::headerCreate('Nuevo perfil');
                     <div class="form-group ">
                         <div class="up-photo">
                             <div class="upload-photo-box">
-                                <img :src="img">
+                                <img :src="dataProfile.image">
                             </div>
                             <div class="text-upload">
                                 <input style="display: none" ref="fileInput" type="file" @change="onFileSelected">
@@ -87,9 +87,7 @@ template::headerCreate('Nuevo perfil');
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-target">Donante de organos</label>
                         <select @input="debounceSearch" v-model="dataProfile.donor" tabindex="8" class="textfield">
-                            <option selected>Seleccionar</option>
-                            <option value="true">Si</option>
-                            <option value="false">No</option>
+                            <option v-for="item in options" :value="item.value">{{item.text}}</option>
                         </select>
                     </div>
                     <div class="form-group">

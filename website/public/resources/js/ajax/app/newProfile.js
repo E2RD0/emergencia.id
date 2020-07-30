@@ -4,6 +4,10 @@ const newprofile = new Vue({
     el: "#newprofile",
     data() {
         return {
+            options: [
+                { text: 'Si', value: true },
+                { text: 'No', value: false },
+            ],
             delay: 1000,
             progress: 1,
             progresscolor: "",
@@ -22,7 +26,7 @@ const newprofile = new Vue({
                 name: "",
                 lastName: "",
                 selectedIdBlood: "Seleccionar",
-                donor: "Seleccionar",
+                donor: false,
                 document: "",
                 isssEstatusSelected: "Seleccionar",
                 weight: "",
@@ -31,8 +35,10 @@ const newprofile = new Vue({
                 province: "",
                 city: "Seleccionar",
                 direction: "",
-                image: "",
+                image: "https://boostlikes-bc85.kxcdn.com/blog/wp-content/uploads/2019/08/No-Instagram-Profile-Pic.jpg",
                 selectedFile: null,
+                idProfile: 0,
+                list: true
             },
             addNewContactForm: {
                 name: "",
@@ -51,6 +57,7 @@ const newprofile = new Vue({
         this.getBlood();
         this.getIsss();
         this.getCountry();
+        this.getUri();
     },
     computed: {
         calcProgressColor: function() {
@@ -109,6 +116,7 @@ const newprofile = new Vue({
             return isNaN(edad) ? "" : edad + " años,";
         },
         img: function() {
+            //this.image = this.src;
             return this.src;
         },
     },
@@ -129,6 +137,7 @@ const newprofile = new Vue({
             this.debounce = setTimeout(() => {
                 this.savingTxt = "Guardado";
                 //console.log("PATCH a la BD");
+                this.updateInformation();
                 this.aaa = "";
                 //2.5 segundos para realizar actualización a la bd despues de terminar de escribir:)
             }, 2500);
@@ -140,7 +149,7 @@ const newprofile = new Vue({
         showImage: function(file) {
             let reader = new FileReader();
             reader.onload = (e) => {
-                this.src = e.target.result;
+                this.dataProfile.image = e.target.result;
             };
             reader.readAsDataURL(file);
         },
@@ -177,5 +186,37 @@ const newprofile = new Vue({
                 this.cityList = response.data;
             });
         },
+        toFormData: function(obj) {
+            var form_data = new FormData();
+            for (var key in obj) {
+                form_data.append(key, obj[key]);
+            }
+            return form_data;
+        },
+        updateInformation: function() {
+            console.log("Hi i´m a update method")
+            var formData = this.toFormData(this.dataProfile);
+            axios
+                .post(endPoint + "updateProfile",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        console.log("Se actualizo :)")
+                    )
+                );
+        },
+        getUri: function() {
+            let url = location.href.split('/').pop();
+            this.dataProfile.idProfile = url;
+        },
+        changeList: function() {
+            //this.dataProfile.list ? this.dataProfile.list = false : this.dataProfile.list = true
+        }
     },
+
 });
