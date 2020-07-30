@@ -25,6 +25,42 @@ class Perfil
     {
         //session_start();
     }
+    public function getNombres()
+    {
+        return $this->nombres;
+    }
+
+    public function setNombres($value)
+    {
+        $v = new \Valitron\Validator(array('Nombres' => $value));
+        $v->rule('required', 'Nombres');
+        $v->rule('regex', 'Nombres', '/^[A-Z a-zñáéíóúüÑÁÉÍÓÚ]+$/');
+        if ($v->validate()) {
+            $this->nombres = $value;
+            return true;
+        } else {
+            return $v->errors();
+        }
+    }
+
+    public function getApellidos()
+    {
+        return $this->nombres;
+    }
+
+    public function setApellidos($value)
+    {
+        $v = new \Valitron\Validator(array('Apellidos' => $value));
+        $v->rule('required', 'Apellidos');
+        $v->rule('regex', 'Apellidos', '/^[A-Z a-zñáéíóúüÑÁÉÍÓÚ]+$/');
+        if ($v->validate()) {
+            $this->apellidos = $value;
+            return true;
+        } else {
+            return $v->errors();
+        }
+    }
+
 
     public function getProfileInformation(){
         $db = new \Common\Database;
@@ -33,7 +69,7 @@ class Perfil
     }
 
     public function existProfile($parameter, $s){
-        
+
         $db = new \Common\Database;
         $db->query('SELECT * FROM perfil_medico WHERE id_perfil_medico = :id AND id_usuario = :se');
         $db->bind(':id', $parameter);
@@ -70,7 +106,20 @@ class Perfil
         $db = new \Common\Database;
         $db->query('INSERT INTO perfil_medico(id_usuario) VALUES (:id) RETURNING id_perfil_medico;');
         $db->bind(':id', $param);
-        return $db->resultSet();
+        return $db->getResult();
+    }
+    public function updateProfile($param, $value, $id){
+        $db = new \Common\Database;
+        $db->query("UPDATE perfil_medico set $param = :value WHERE id_perfil_medico = :id");
+        $db->bind(':value', $value);
+        $db->bind(':id', $id);
+        return $db->execute();
+    }
+    public function countProfilesUser($id_usuario){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM perfil_medico WHERE id_usuario = :id');
+        $db->bind(':id', $id_usuario);
+        return $db->rowCount();
     }
 
     public function updateProfile($information){

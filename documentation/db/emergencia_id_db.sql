@@ -31,24 +31,26 @@ CREATE TABLE "pais_estado"
 CREATE TABLE "perfil_medico"
 (
  "id_perfil_medico" serial NOT NULL,
- "nombres"          varchar(100) NOT NULL,
- "apellidos"        varchar(100) NOT NULL,
- "uid"              char(5) UNIQUE NOT NULL,
- "pin"              smallint NOT NULL,
+ "nombres"          varchar(100),
+ "apellidos"        varchar(100),
+ "uid"              char(5) UNIQUE,
+ "pin"              smallint,
  "foto"             varchar(75) UNIQUE,
  "fecha_nacimiento" date,
  "documento_identidad"              varchar(50),
  "es_donador"       boolean,
- "listado"          boolean NOT NULL DEFAULT 't',
+ "listado"          boolean DEFAULT 't',
  "direccion"        varchar(250),
  "peso"             varchar(50),
  "estatura"         varchar(50),
- "id_pais"          integer NOT NULL,
+ "id_pais"          integer,
  "id_pais_estado"   integer,
  "ciudad"           varchar(50),
- "id_tipo_sangre"   integer NOT NULL,
- "id_estado_isss"   integer NOT NULL,
+ "id_tipo_sangre"   integer,
+ "id_estado_isss"   integer,
+ "id_usuario"       integer NOT NULL,
  CONSTRAINT "PK_perfil_medico" PRIMARY KEY ( "id_perfil_medico" ),
+ CONSTRAINT "FK_255" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" ),
  CONSTRAINT "FK_230" FOREIGN KEY ( "id_tipo_sangre" ) REFERENCES "tipo_sangre" ( "id_tipo_sangre" ),
  CONSTRAINT "FK_212" FOREIGN KEY ( "id_estado_isss" ) REFERENCES "estado_isss" ( "id_estado_isss" ),
  CONSTRAINT "FK_236" FOREIGN KEY ( "id_pais" ) REFERENCES "pais" ( "id_pais" ),
@@ -98,7 +100,7 @@ CREATE INDEX "fkIdx_223" ON "usuario_recuperar_clave"
  "id_usuario"
 );
 
-CREATE TABLE "perfiles_usuario"
+/*CREATE TABLE "perfiles_usuario"
 (
  "id_perfiles_usuario" serial NOT NULL,
  "id_usuario"          integer NOT NULL,
@@ -116,7 +118,7 @@ CREATE INDEX "fkIdx_195" ON "perfiles_usuario"
 CREATE INDEX "fkIdx_215" ON "perfiles_usuario"
 (
  "id_perfil_medico"
-);
+);*/
 
 CREATE TABLE "perfil_contacto_emergencia"
 (
