@@ -30,8 +30,10 @@ template::headerSite('Dashboard del cliente');
                     </div>
                     <div class="col-sm-9">
                         <div class="card-body">
-                            <h5 class="card-title text-regular">{{item.nombres}} {{item.apellidos}}</h5>
-                            <p class="card-text">18 años, {{item.nombre}}, {{item.ciudad}}</p>
+                            <h5 class="card-title text-regular" v-if="item.nombres === null">Complete su nombre.</h5>
+                            <h5 class="card-title text-regular" v-else>{{item.nombres }} {{item.apellidos}}</h5>
+                            <p class="card-text" v-if="item.date_part === null">Complete la información.</p>
+                            <p class="card-text" v-else>{{item.date_part }} Años, {{item.nombre}}, {{item.ciudad}}</p>
                             <div class="d-flex flex-column d-sm-block">
                                 <a @click="redirectToEdit(item.id_perfil_medico)" class="color-text text-link mr-4 mb-3"><i class="far fa-pencil mr-2"></i>
                                     Editar</a>
@@ -66,16 +68,18 @@ template::headerSite('Dashboard del cliente');
         <!-- cards de perfiles compartidos -->
         <div class="tab-pane" id="compartidos" role="tabpanel">
 
-            <div class="card profile-card my-5 text-center text-sm-left">
+            <div v-for="item in ShowShared" class="card profile-card my-5 text-center text-sm-left">
                 <div class="row no-gutters">
                     <div class="col-sm-3">
-                        <img src="<?= HOME_PATH ?>resources/images/default-perfil.svg" class="card-img img-fluid"
-                            alt="defaultPerfil">
+                        <img :src="item.foto" class="card-img img-fluid"
+                            :alt="item.nombres">
                     </div>
                     <div class="col-sm-9">
                         <div class="card-body">
-                            <h5 class="card-title text-regular">Julio Escamilla</h5>
-                            <p class="card-text">18 años, San salvador, El salvador.</p>
+                            <h5 class="card-title text-regular" v-if="item.nombres === null">Complete su nombre.</h5>
+                            <h5 class="card-title text-regular" v-else>{{item.nombres }} {{item.apellidos}}</h5>
+                            <p class="card-text" v-if="item.date_part === null">Complete la información.</p>
+                            <p class="card-text" v-else>{{item.date_part }} Años, {{item.nombre}}, {{item.ciudad}}</p>
                             <div class="d-flex flex-column d-sm-block">
                                 <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-eye mr-2"></i>
                                     Ver</a>
