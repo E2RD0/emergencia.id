@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../../backend/init.php';
 require_once __DIR__ . '/../../../backend/controllers/Profile.php';
 
 if (isset($_GET['action'])) {
-    #session_start();
+    session_start();
     $action = $_GET['action'];
     $controller = new \Profile;
     $result = $controller->r;
@@ -12,6 +12,9 @@ if (isset($_GET['action'])) {
     switch ($action) {
         case 'test':
             $result = $controller->getProfile();
+            break;
+        case 'newUser':
+            $result = $controller->newUser($_POST);
             break;
         case 'getBlood':
             $result = $controller->getBlood();
@@ -31,7 +34,7 @@ if (isset($_GET['action'])) {
         default:
             \Common\Core::http404();
     }
-    
+
     header('content-type: application/json; charset=utf-8');
 	echo json_encode($result, JSON_PRETTY_PRINT);
 }

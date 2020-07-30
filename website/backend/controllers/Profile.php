@@ -9,13 +9,60 @@ class Profile extends \Common\Controller
         $this->usersModel = $this->loadModel('Perfil');
         $this->r = array('status' => 0, 'message' => null, 'exception' => null, 'errors'=> []);
     }
+    public function newUser($userData)
+    {
+        $result = $this->r;
+        if($this->usersModel->countProfilesUser($_SESSION['user_id']) == 0) {
+            $userData = \Helpers\Validation::trimForm($userData);
+            $nombres = $userData['nombres'];
+            $apellidos = $userData['apellidos'];
+            $tel = isset($userData['tel']) ? $userData['tel'] : '';
+
+            $profile = new Perfil;
+            $errors = [];
+            $errors = $profile->setNombres($nombres) === true ? $errors : array_merge($errors, $profile->setNombres($nombres));
+            $errors = $profile->setApellidos($apellidos) === true ? $errors : array_merge($errors, $profile->setApellidos($apellidos));
+
+            $user = $this->loadModel('Usuario');
+            $errors = $user->setTelefono($tel) === true ? $errors : array_merge($errors, $user->setTelefono($tel));
+
+            $idUsuario = $_SESSION['user_id'];
+            //If there aren't any errors
+            if (!boolval($errors)) {
+                if ($idPerfil = ($this->usersModel->newProfile($idUsuario))->id_perfil_medico ){
+                    $rUsuario =$user->updateUserParam('id_perfil_medico', $idPerfil, $idUsuario);
+                    $rNombres = $this->usersModel->updateProfile('nombres', $nombres, $idPerfil);
+                    $rApellidos = $this->usersModel->updateProfile('apellidos', $nombres, $idPerfil);
+                    $rTelefono = $tel ? $user->updateUserParam('telefono', $tel, $idUsuario) : true;
+
+                    if ($rUsuario && $rNombres && $rApellidos && $rTelefono) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Usuario registrado correctamente';
+                        $result['id_perfil_medico'] = $idPerfil;
+                    }
+                } else {
+                    $result['status'] = -1;
+                    $result['exception'] = \Common\Database::$exception;
+                }
+            } else {
+                $result['status'] = 0;
+                $result['exception'] = 'Error en uno de los campos';
+                $result['errors'] = $errors;
+            }
+        }
+        else {
+            $result['status'] = -2;
+            $result['exception'] = 'Ya existe un perfil médico. Redirigiendo a perfiles...';
+        }
+        return $result;
+    }
 
     public function getProfile(){
         $result = $this->r;
         $result = $this->usersModel->getProfileInformation();
         return $result;
     }
-    
+
     public function getBlood(){
         $result = $this->r;
         $result = $this->usersModel->loadBlood();

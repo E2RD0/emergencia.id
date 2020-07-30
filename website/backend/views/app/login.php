@@ -22,7 +22,7 @@ template::headerLogin('Inicio de sesión');
                 </div>
                 <label class="text-help" for="inputContraseña">Contraseña</label>
                 <div class="input-group mb-4">
-                    <input class="textfield" type="password" class="form-control" id="inputContraseña" required name="password" aria-describedby="basic-addon3" minlength=6>
+                    <input class="textfield" type="password" class="form-control" id="inputContraseña" required name="password" aria-describedby="basic-addon3">
                     <div class="line"></div>
                     <p class="form-error-label" id="errorContraseña"></p>
                 </div>

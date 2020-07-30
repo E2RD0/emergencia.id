@@ -180,7 +180,7 @@ class Usuario
         return $db->getResult();
     }
 
-    public function updateUser($user){
+    public function updateUser(){
         $db = new \Common\Database;
         if($user->password){
             $db->query('UPDATE usuario SET nombre = :nombre, apellido = :apellido, email = :email, contrasena = :hash, idTipoUsuario = :idTipo WHERE idUsuario = :idUsuario');
@@ -194,6 +194,13 @@ class Usuario
         $db->bind(':apellido', $user->apellido);
         $db->bind(':email', $user->email);
         $db->bind(':idTipo', $user->idTipo);
+        return $db->execute();
+    }
+    public function updateUserParam($param, $value, $id){
+        $db = new \Common\Database;
+        $db->query("UPDATE usuario SET $param = :value WHERE id_usuario = :idUsuario");
+        $db->bind(':idUsuario', $id);
+        $db->bind(':value', $value);
         return $db->execute();
     }
     public function saveRecoveryCode($pin, $id){

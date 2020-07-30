@@ -40,6 +40,7 @@ class Users extends \Common\Controller
 
     public function login($userData)
     {
+        $result = $this->r;
         $userData = \Helpers\Validation::trimForm($userData);
         $email = $userData['email'];
         $password = $userData['password'];
