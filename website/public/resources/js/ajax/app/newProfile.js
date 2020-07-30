@@ -1,4 +1,5 @@
-let endPoint = "http://localhost" + HOME_PATH + "api/app/perfil.php?action=";
+//$('#dateToChoose').datepicker({ dateFormat: 'yy-mm-dd', minDate: (0), maxDate: (365) });
+let endPoint = HOST_NAME + HOME_PATH + "api/app/perfil.php?action=";
 //console.log(HOME_PATH);
 const newprofile = new Vue({
     el: "#newprofile",

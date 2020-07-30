@@ -9,7 +9,7 @@ template::headerCreate('Nuevo perfil');
         <div class="showSave">
             {{savingTxt}}
             <div v-html="aaa"></div>
-        </div>
+        </div> 
         <div class="header-close">
             <div class="icon-close">
                 <i @click="closeProfile" class="fas fa-times-circle"></i>
@@ -47,7 +47,7 @@ template::headerCreate('Nuevo perfil');
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-target">Fecha de nacimiento</label>
-                            <input @input="debounceSearch" v-model="dataProfile.date" tabindex="1"
+                            <input id="dateToChoose" @input="debounceSearch" v-model="dataProfile.date" tabindex="1"
                                 class="input-date-picker" type="date" aria-describedby="basic-addon3">
                         </div>
                         <div class="form-group">
