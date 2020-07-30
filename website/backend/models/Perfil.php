@@ -108,7 +108,7 @@ class Perfil
         $db->bind(':id', $param);
         return $db->getResult();
     }
-    public function updateProfile($param, $value, $id){
+    public function updateProfileParam($param, $value, $id){
         $db = new \Common\Database;
         $db->query("UPDATE perfil_medico set $param = :value WHERE id_perfil_medico = :id");
         $db->bind(':value', $value);
@@ -124,8 +124,8 @@ class Perfil
 
     public function updateProfile($information){
         $db = new \Common\Database;
-        $db->query('UPDATE perfil_medico SET nombres= :name, apellidos= :lastName, fecha_nacimiento= :date, documento_identidad= :document, 
-        es_donador= :donor, listado= :list, direccion= :direction, peso= :weight, estatura= :height, id_pais= :country, 
+        $db->query('UPDATE perfil_medico SET nombres= :name, apellidos= :lastName, fecha_nacimiento= :date, documento_identidad= :document,
+        es_donador= :donor, listado= :list, direccion= :direction, peso= :weight, estatura= :height, id_pais= :country,
         id_pais_estado= :city, ciudad= :province, id_tipo_sangre= :selectedIdBlood, id_estado_isss= :isssEstatusSelected WHERE id_perfil_medico = :idProfile');
         $db->bind(':idProfile', (int)$information["idProfile"]);
         $db->bind(':name', $information["name"] === '' ? null : $information["name"] );

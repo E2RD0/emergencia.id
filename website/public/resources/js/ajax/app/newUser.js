@@ -20,6 +20,7 @@ function submit(){
     var nombres = $('#inputNombres').val();
     var apellidos = $('#inputApellidos').val();
     var tel = $('#inputTeléfono').val();
+    console.log(tel);
 
     var dataObject = {};
     dataObject['nombres'] = nombres;

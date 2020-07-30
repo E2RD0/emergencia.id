@@ -16,7 +16,7 @@ class Profile extends \Common\Controller
             $userData = \Helpers\Validation::trimForm($userData);
             $nombres = $userData['nombres'];
             $apellidos = $userData['apellidos'];
-            $tel = isset($userData['tel']) ? $userData['tel'] : '';
+            $tel = $userData['tel'];
 
             $profile = new Perfil;
             $errors = [];
@@ -31,14 +31,18 @@ class Profile extends \Common\Controller
             if (!boolval($errors)) {
                 if ($idPerfil = ($this->usersModel->newProfile($idUsuario))->id_perfil_medico ){
                     $rUsuario =$user->updateUserParam('id_perfil_medico', $idPerfil, $idUsuario);
-                    $rNombres = $this->usersModel->updateProfile('nombres', $nombres, $idPerfil);
-                    $rApellidos = $this->usersModel->updateProfile('apellidos', $nombres, $idPerfil);
+                    $rNombres = $this->usersModel->updateProfileParam('nombres', $nombres, $idPerfil);
+                    $rApellidos = $this->usersModel->updateProfileParam('apellidos', $apellidos, $idPerfil);
                     $rTelefono = $tel ? $user->updateUserParam('telefono', $tel, $idUsuario) : true;
 
                     if ($rUsuario && $rNombres && $rApellidos && $rTelefono) {
                         $result['status'] = 1;
                         $result['message'] = 'Usuario registrado correctamente';
                         $result['id_perfil_medico'] = $idPerfil;
+                    }
+                    else {
+                        $result['status'] = -1;
+                        $result['exception'] = \Common\Database::$exception;
                     }
                 } else {
                     $result['status'] = -1;
