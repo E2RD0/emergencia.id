@@ -7,11 +7,13 @@ const dashboardUser = new Vue({
         return {
             redirect: 'http://localhost' + HOME_PATH + "app/profile/edit/",
             newProfile: "Nuevo perfil",
-            show: []
+            show: [],
+            ShowShared: [],
         }
     },
     created: function () {
         this.showprofiles();
+        this.showprofilesShared();
     },
     methods: {
         createNewProfile: function() {
@@ -26,6 +28,12 @@ const dashboardUser = new Vue({
             axios.get(endPointU + "getshowProfile")
             .then((response)=>{
                 this.show = response.data
+            })
+        },
+        showprofilesShared: function () {
+            axios.get(endPointU + "getshowProfileShared")
+            .then((response)=>{
+                this.ShowShared = response.data
             })
         },
         redirectToEdit: function(parameter){
