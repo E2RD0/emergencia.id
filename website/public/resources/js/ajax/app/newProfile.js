@@ -1,11 +1,10 @@
-//$('#dateToChoose').datepicker({ dateFormat: 'yy-mm-dd', minDate: (0), maxDate: (365) });
 let endPoint = HOST_NAME + HOME_PATH + "api/app/perfil.php?action=";
 //console.log(HOME_PATH);
 const newprofile = new Vue({
     el: "#newprofile",
     data() {
         return {
-            redirect: 'http://localhost' + HOME_PATH + "app/user/profiles",
+            redirect: HOST_NAME + HOME_PATH + "app/user/profiles",
             options: [
                 { text: 'Si', value: true },
                 { text: 'No', value: false },

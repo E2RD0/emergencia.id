@@ -50,7 +50,7 @@ CREATE TABLE "perfil_medico"
  "id_estado_isss"   integer,
  "id_usuario"       integer NOT NULL,
  CONSTRAINT "PK_perfil_medico" PRIMARY KEY ( "id_perfil_medico" ),
- CONSTRAINT "FK_255" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" ),
+ CONSTRAINT "FK_255" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" ) ON DELETE CASCADE,
  CONSTRAINT "FK_230" FOREIGN KEY ( "id_tipo_sangre" ) REFERENCES "tipo_sangre" ( "id_tipo_sangre" ),
  CONSTRAINT "FK_212" FOREIGN KEY ( "id_estado_isss" ) REFERENCES "estado_isss" ( "id_estado_isss" ),
  CONSTRAINT "FK_236" FOREIGN KEY ( "id_pais" ) REFERENCES "pais" ( "id_pais" ),
@@ -130,7 +130,7 @@ CREATE TABLE "perfil_contacto_emergencia"
  "email"            varchar(150),
  "id_perfil_medico" integer NOT NULL,
  CONSTRAINT "PK_perfil_contacto_emergencia" PRIMARY KEY ( "id_contacto" ),
- CONSTRAINT "FK_26" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
+ CONSTRAINT "FK_26" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )  ON DELETE CASCADE
 );
 
 CREATE INDEX "fkIdx_26" ON "perfil_contacto_emergencia"
@@ -146,7 +146,7 @@ CREATE TABLE "perfil_contacto_doctor"
  "especialidad"            varchar(50) NOT NULL,
  "id_perfil_medico" integer NOT NULL,
  CONSTRAINT "PK_perfil_contacto_doctor" PRIMARY KEY ( "id_contacto_d" ),
- CONSTRAINT "FK_35" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
+ CONSTRAINT "FK_35" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )  ON DELETE CASCADE
 );
 
 CREATE INDEX "fkIdx_35" ON "perfil_contacto_doctor"
@@ -162,7 +162,7 @@ CREATE TABLE "perfil_alergia"
  "tratamiento"      varchar(200),
  "id_perfil_medico" integer NOT NULL,
  CONSTRAINT "PK_perfil_alergia" PRIMARY KEY ( "id_alergia" ),
- CONSTRAINT "FK_43" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
+ CONSTRAINT "FK_43" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )  ON DELETE CASCADE
 );
 
 CREATE INDEX "fkIdx_43" ON "perfil_alergia"
@@ -181,7 +181,7 @@ CREATE TABLE "perfil_seguro_medico"
  "adjunto"            varchar(75) UNIQUE,
  "id_perfil_medico"   integer NOT NULL,
  CONSTRAINT "PK_perfil_seguro_medico" PRIMARY KEY ( "id_seguro" ),
- CONSTRAINT "FK_80" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
+ CONSTRAINT "FK_80" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )  ON DELETE CASCADE
 );
 
 CREATE INDEX "fkIdx_80" ON "perfil_seguro_medico"
@@ -199,8 +199,8 @@ CREATE TABLE "perfil_procedimiento_medico"
  "id_contacto_d"	integer,
  "id_perfil_medico" integer NOT NULL,
  CONSTRAINT "PK_perfil_procedimiento_medico" PRIMARY KEY ( "id_procedimiento" ),
- CONSTRAINT "FK_250" FOREIGN KEY ( "id_contacto_d" ) REFERENCES "perfil_contacto_doctor" ( "id_contacto_d" ),
- CONSTRAINT "FK_91" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
+ CONSTRAINT "FK_250" FOREIGN KEY ( "id_contacto_d" ) REFERENCES "perfil_contacto_doctor" ( "id_contacto_d" ) ON DELETE SET NULL,
+ CONSTRAINT "FK_91" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )  ON DELETE CASCADE
 );
 
 CREATE INDEX "fkIdx_91" ON "perfil_procedimiento_medico"
@@ -218,7 +218,7 @@ CREATE TABLE "perfil_medicacion"
  "adjunto"          varchar(75) UNIQUE,
  "id_perfil_medico" integer NOT NULL,
  CONSTRAINT "PK_perfil_medicacion" PRIMARY KEY ( "id_medicacion" ),
- CONSTRAINT "FK_74" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
+ CONSTRAINT "FK_74" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )  ON DELETE CASCADE
 );
 
 CREATE INDEX "fkIdx_74" ON "perfil_medicacion"
@@ -235,8 +235,8 @@ CREATE TABLE "perfil_condicion_medica"
  "id_medicacion"	integer,
  "id_perfil_medico" integer NOT NULL,
  CONSTRAINT "PK_perfil_condicion_medica" PRIMARY KEY ( "id_condicion" ),
- CONSTRAINT "FK_73" FOREIGN KEY ( "id_medicacion" ) REFERENCES "perfil_medicacion" ( "id_medicacion" ),
- CONSTRAINT "FK_77" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
+ CONSTRAINT "FK_73" FOREIGN KEY ( "id_medicacion" ) REFERENCES "perfil_medicacion" ( "id_medicacion" )  ON DELETE SET NULL,
+ CONSTRAINT "FK_77" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )  ON DELETE CASCADE
 );
 
 CREATE INDEX "fkIdx_77" ON "perfil_condicion_medica"
@@ -251,7 +251,7 @@ CREATE TABLE "perfil_otra_informacion"
  "valor"            varchar(800) NOT NULL,
  "id_perfil_medico" integer NOT NULL,
  CONSTRAINT "PK_perfil_otra_informacion" PRIMARY KEY ( "id_informacion" ),
- CONSTRAINT "FK_160" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
+ CONSTRAINT "FK_160" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )  ON DELETE CASCADE
 );
 
 CREATE INDEX "fkIdx_160" ON "perfil_otra_informacion"
@@ -265,8 +265,8 @@ CREATE TABLE "perfil_usuarios_compartir"
  "id_perfil_medico"      integer NOT NULL,
  "id_usuario"            integer NOT NULL,
  CONSTRAINT "PK_perfil_usuarios_compartir" PRIMARY KEY ( "id_usuarios_compartir" ),
- CONSTRAINT "FK_132" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" ),
- CONSTRAINT "FK_204" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" )
+ CONSTRAINT "FK_132" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )  ON DELETE CASCADE,
+ CONSTRAINT "FK_204" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" )  ON DELETE CASCADE
 );
 
 CREATE INDEX "fkIdx_132" ON "perfil_usuarios_compartir"
@@ -279,7 +279,7 @@ CREATE INDEX "fkIdx_204" ON "perfil_usuarios_compartir"
  "id_usuario"
 );
 
-CREATE TABLE "perfil_enlaces_compartir"
+/*CREATE TABLE "perfil_enlaces_compartir"
 (
  "id_enlace"        serial NOT NULL,
  "enlace"           varchar(75) UNIQUE NOT NULL,
@@ -295,7 +295,7 @@ CREATE INDEX "fkIdx_138" ON "perfil_enlaces_compartir"
 (
  "id_perfil_medico"
 );
-
+*/
 CREATE TABLE "accion_bitacora"
 (
  "id_accion_bitacora" serial NOT NULL,
@@ -353,7 +353,7 @@ CREATE TABLE "usuario_privilegiado"
  "id_organizacion"   integer NOT NULL,
  CONSTRAINT "PK_usuario_privilegiado" PRIMARY KEY ( "id_usuario_p" ),
  CONSTRAINT "FK_108" FOREIGN KEY ( "id_tipo_usuario_p" ) REFERENCES "up_tipo_usuario" ( "id_tipo_usuario_p" ),
- CONSTRAINT "FK_114" FOREIGN KEY ( "id_organizacion" ) REFERENCES "up_organizacion" ( "id_organizacion" )
+ CONSTRAINT "FK_114" FOREIGN KEY ( "id_organizacion" ) REFERENCES "up_organizacion" ( "id_organizacion" )  ON DELETE CASCADE
 );
 
 CREATE INDEX "fkIdx_108" ON "usuario_privilegiado"
@@ -365,10 +365,6 @@ CREATE INDEX "fkIdx_114" ON "usuario_privilegiado"
 (
  "id_organizacion"
 );
-
-ALTER TABLE perfil_medico ADD COLUMN id_usuario int;
-alter table perfil_medico add constraint fkIdx_209 foreign key ("id_usuario") references usuario ("id_usuario");
-DROP TABLE perfiles_usuario
 
 /*
 FUNCIONES
