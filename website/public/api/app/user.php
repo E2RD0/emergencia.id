@@ -15,6 +15,9 @@ if (isset($_GET['action'])) {
             case 'logout':
                 $result = $controller->logout();
                 break;
+            case 'newUser':
+                $result = $controller->newUser($_POST);
+                break;
             default:
                 \Common\Core::http404();
         }
