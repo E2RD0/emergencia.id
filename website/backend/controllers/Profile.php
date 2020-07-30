@@ -36,6 +36,8 @@ class Profile extends \Common\Controller
                     $rTelefono = $tel ? $user->updateUserParam('telefono', $tel, $idUsuario) : true;
 
                     if ($rUsuario && $rNombres && $rApellidos && $rTelefono) {
+                        $_SESSION['user_name'] = $nombres;
+                        $_SESSION['user_lastname'] = $apellidos;
                         $result['status'] = 1;
                         $result['message'] = 'Usuario registrado correctamente';
                         $result['id_perfil_medico'] = $idPerfil;

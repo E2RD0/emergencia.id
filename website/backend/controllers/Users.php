@@ -75,6 +75,10 @@ class Users extends \Common\Controller
     private function loginSession($id, $email){
         $_SESSION['user_id'] = $id;
         $_SESSION['user_email'] = $email;
+
+        $info = ($this->loadModel('Perfil'))->getProfileInformationByUser($id);
+        $_SESSION['user_name'] = isset($info->nombres) ? $info->nombres : '';
+        $_SESSION['user_lastname'] = isset($info->apellidos) ? $info->apellidos : '';
     }
 
     public function readOne($data, $result)
