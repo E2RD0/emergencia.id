@@ -104,7 +104,7 @@ class Perfil
 
     public function newProfile($param){
         $db = new \Common\Database;
-        $db->query('INSERT INTO perfil_medico(id_usuario) VALUES (:id) RETURNING id_perfil_medico;');
+        $db->query('INSERT INTO perfil_medico(id_usuario, uid) VALUES (:id, DEFAULT) RETURNING id_perfil_medico;');
         $db->bind(':id', $param);
         return $db->getResult();
     }

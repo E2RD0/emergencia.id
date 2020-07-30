@@ -33,7 +33,7 @@ CREATE TABLE "perfil_medico"
  "id_perfil_medico" serial NOT NULL,
  "nombres"          varchar(100),
  "apellidos"        varchar(100),
- "uid"              char(5) UNIQUE,
+ "uid"              char(5) UNIQUE NOT NULL DEFAULT uid(5),
  "pin"              smallint,
  "foto"             varchar(75) UNIQUE,
  "fecha_nacimiento" date,
@@ -369,3 +369,41 @@ CREATE INDEX "fkIdx_114" ON "usuario_privilegiado"
 ALTER TABLE perfil_medico ADD COLUMN id_usuario int;
 alter table perfil_medico add constraint fkIdx_209 foreign key ("id_usuario") references usuario ("id_usuario");
 DROP TABLE perfiles_usuario
+
+/*
+FUNCIONES
+*/
+CREATE EXTENSION pgcrypto;
+
+CREATE OR REPLACE FUNCTION generate_uid(size INT) RETURNS TEXT AS $$
+DECLARE
+  characters TEXT := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  bytes BYTEA := gen_random_bytes(size);
+  l INT := length(characters);
+  i INT := 0;
+  output TEXT := '';
+BEGIN
+  WHILE i < size LOOP
+    output := output || substr(characters, get_byte(bytes, i) % l + 1, 1);
+    i := i + 1;
+  END LOOP;
+  RETURN output;
+END;
+$$ LANGUAGE plpgsql VOLATILE;
+
+CREATE OR REPLACE FUNCTION uid(size INT) RETURNS TEXT AS $$
+DECLARE
+  id TEXT;
+  count INT;
+  unico BOOL:= FALSE;
+BEGIN
+    WHILE NOT unico LOOP
+        SELECT generate_uid  INTO id from generate_uid(size);
+        SELECT count(*) INTO count FROM perfil_medico WHERE uid = id;
+        IF count = 0 THEN
+        unico := TRUE;
+        END IF;
+    END LOOP;
+  RETURN id;
+END;
+$$ LANGUAGE plpgsql;
