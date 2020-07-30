@@ -1,11 +1,11 @@
-let endPoint = "http://localhost" + HOME_PATH + "api/app/perfil.php?action=";
-let endPointU = "http://localhost" + HOME_PATH + "api/app/perfilUsuario.php?action=";
+let endPoint = HOST_NAME + HOME_PATH + "api/app/perfil.php?action=";
+let endPointU = HOST_NAME + HOME_PATH + "api/app/perfilUsuario.php?action=";
 const dashboardUser = new Vue({
     el: "#dashboard",
 
     data() {
         return {
-            redirect: 'http://localhost' + HOME_PATH + "app/profile/edit/",
+            redirect: HOST_NAME + HOME_PATH + "app/profile/edit/",
             newProfile: "Nuevo perfil",
             show: [],
             ShowShared: [],

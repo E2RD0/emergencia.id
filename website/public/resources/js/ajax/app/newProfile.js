@@ -1,10 +1,10 @@
-let endPoint = "http://localhost" + HOME_PATH + "api/app/perfil.php?action=";
+let endPoint = HOST_NAME + HOME_PATH + "api/app/perfil.php?action=";
 //console.log(HOME_PATH);
 const newprofile = new Vue({
     el: "#newprofile",
     data() {
         return {
-            redirect: 'http://localhost' + HOME_PATH + "app/user/profiles",
+            redirect: HOST_NAME + HOME_PATH + "app/user/profiles",
             options: [
                 { text: 'Si', value: true },
                 { text: 'No', value: false },

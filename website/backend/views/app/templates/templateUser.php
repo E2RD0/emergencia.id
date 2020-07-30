@@ -40,6 +40,7 @@ class template
         <script src="<?= HOME_PATH ?>resources/js/vendor/bootstrap.min.js"></script>
         <script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
         <script src="<?= HOME_PATH ?>resources/js/main.js"></script>
+        <script> var HOST_NAME = "<?= HOST_NAME ?>" </script>
         <script> var HOME_PATH = "<?= HOME_PATH ?>" </script>
         <script src="<?= HOME_PATH ?>resources/js/vendor/sweetalert2.all.min.js"></script>
         <script src="<?= HOME_PATH ?>resources/js/components.js"></script>
@@ -144,6 +145,7 @@ class template
             <script src="<?= HOME_PATH ?>resources/js/vendor/vue.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/plugins.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/main.js"></script>
+            <script> var HOST_NAME = "<?= HOST_NAME ?>" </script>
             <script> var HOME_PATH = "<?= HOME_PATH ?>" </script>
             <script src="<?= HOME_PATH ?>resources/js/vendor/sweetalert2.all.min.js"></script>
             <script src="<?= HOME_PATH ?>resources/js/components.js"></script>
