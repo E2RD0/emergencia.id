@@ -196,7 +196,8 @@ class Usuario
     public function updateUser($user){
         $db = new \Common\Database;
         if(isset($user->password)){
-            $db->query('UPDATE usuario SET nombre = :nombre, apellido = :apellido, email = :email, idTipoUsuario = :idTipo WHERE idUsuario = :idUsuario');
+            $db->query('UPDATE usuario SET clave = :hash WHERE id_usuario = :idUsuario');
+            $db->bind(':idUsuario', $user->id);
             $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
         }
         else{

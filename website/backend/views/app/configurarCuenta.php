@@ -60,23 +60,25 @@ template::headerSite('Configuración de la cuenta');
             <div class="col-11 mx-auto mt-4">
                 <p class="text-help text-settings-help text-uppercase">Cambiar contraseña</p>
             </div>
-            <div class="col-12 bg-white rounded">
+            <form class="col-12 bg-white rounded" method="post" action="" id="password-form">
                 <div class="row">
                     <div class="col-12 col-md-6 mt-4 mx-auto">
                         <div class="col-12">
-                            <label class="text-help text-settings-tfname" for="first-name">Ingresa tu contraseña actual</label>
+                            <label class="text-help text-settings-tfname" for="inputContraseña">Ingresa tu contraseña actual</label>
                             <div class="input-group mb-4">
-                                <input class="textfield" type="text" class="form-control" id="first-name" aria-describedby="basic-addon3">
+                                <input class="textfield" type="password" class="form-control" id="inputContraseña" name="password" aria-describedby="basic-addon3">
                                 <div class="line"></div>
+                                <p class="form-error-label" id="errorContraseña"></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 mt-md-4 mt-2 mx-auto">
                         <div class="col-12">
-                            <label class="text-help text-settings-tfname" for="second-name">Ingresa tu nueva contraseña</label>
+                            <label class="text-help text-settings-tfname" for="inputNuevaContraseña">Ingresa tu nueva contraseña</label>
                             <div class="input-group mb-4">
-                                <input class="textfield" type="text" class="form-control" id="second-name" aria-describedby="basic-addon3">
+                                <input class="textfield" type="password" class="form-control" id="inputNuevaContraseña" name="newPassword" aria-describedby="basic-addon3">
                                 <div class="line"></div>
+                                <p class="form-error-label" id="errorNuevaContraseña"></p>
                             </div>
                         </div>
                     </div>
@@ -84,22 +86,21 @@ template::headerSite('Configuración de la cuenta');
                 <div class="row">
                     <div class="col-12 col-md-6 mt-2 ml-auto">
                         <div class="col-12">
-                            <label class="text-help text-settings-tfname" for="number">Ingresa de nuevo la contraseña</label>
+                            <label class="text-help text-settings-tfname" for="inputNewPasswordR">Ingresa de nuevo la contraseña</label>
                             <div class="input-group mb-4">
-                                <input class="textfield" type="text" class="form-control" id="number" aria-describedby="basic-addon3">
+                                <input class="textfield" type="password" class="form-control" id="inputNewPasswordR" name="newPasswordR" aria-describedby="basic-addon3">
                                 <div class="line"></div>
+                                <p class="form-error-label" id="errorNewPasswordR"></p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <a href="#" class="text-settings-link-on">
-                            <p class="text-right mr-3">Guardar</p>
-                        </a>
+                        <button id="password-submit" class="text-settings-link-on float-right m-3" type="submit" name="button">Guardar</button>
                     </div>
                 </div>
-            </div>
+            </form>
             <div class="col-11 mx-auto mt-4">
                 <p class="text-settings-help text-uppercase text-danger">Eliminar cuenta</p>
             </div>

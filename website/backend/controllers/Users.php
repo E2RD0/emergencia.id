@@ -227,6 +227,52 @@ class Users extends \Common\Controller
         return $result;
     }
 
+    public function updatePassword($userData)
+    {
+        $result = $this->r;
+        $userData = \Helpers\Validation::trimForm($userData);
+        $idUsuario = $_SESSION['user_id'];
+
+        $userInfo= $this->usersModel->getUser($idUsuario);
+
+        $currentPassword = $userData['password'];
+        $newPassword = $userData['newPassword'];
+        $newPasswordR = $userData['newPasswordR'];
+
+        $user = new Usuario;
+        $errors = [];
+        $errors = $user->setId($idUsuario) === true ? $errors : array_merge($errors, $user->setId($idUsuario));
+
+        if (password_verify($currentPassword, trim($userInfo->clave))) {
+            $errors = $user->setPassword($newPassword, true, 'Nueva Contraseña') === true ? $errors : array_merge($errors, $user->setPassword($newPassword, true, 'Nueva Contraseña'));
+            if ($newPasswordR) {
+                if ($newPassword != $newPasswordR) {
+                    $errors['NewPasswordR'] = ['Las contraseñas no coinciden'];
+                }
+            } else {
+                $errors['NewPasswordR'] = ['Este campo es obligatorio'];
+            }
+        } else {
+            $errors['Contraseña'] = ['Contraseña incorrecta.'];
+            $errors = $user->setPassword($currentPassword, false) === true ? $errors : array_merge($errors, $user->setPassword($currentPassword, false));
+        }
+
+        if (!boolval($errors)) {
+            if ($this->usersModel->updateUser($user)) {
+                $result['status'] = 1;
+                $result['message'] = 'Contraseña actualizada correctamente';
+            } else {
+                $result['status'] = -1;
+                $result['exception'] = \Common\Database::$exception;
+            }
+        } else {
+            $result['exception'] = 'Error en uno de los campos';
+            $result['errors'] = $errors;
+        }
+        return $result;
+    }
+
+
     public function userRecoverPassword($userData, $result)
     {
         $userData = \Helpers\Validation::trimForm($userData);

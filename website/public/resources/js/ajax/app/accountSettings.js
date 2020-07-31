@@ -63,6 +63,11 @@ $( '#account-form' ).submit(function( event ) {
     updateClient(this, document.getElementById('account-submit'));
 });
 
+$( '#password-form' ).submit(function( event ) {
+    event.preventDefault();
+    updatePassword(this, document.getElementById('password-submit'));
+});
+
 function updateClient(form, submitButton)
 {
     var inner = submitButton.innerHTML;
@@ -82,7 +87,6 @@ function updateClient(form, submitButton)
     .done(function( response ) {
         // If user is registered succesfully
         if (response.status==1) {
-            console.log('yep');
             getUserInfo();
             $('#nombreUsuario').html(($('#inputPerfil option:selected').text()));
         } else if(response.status==-1){
@@ -92,6 +96,44 @@ function updateClient(form, submitButton)
         checkFields(errors, 'Email');
         checkFields(errors, 'Teléfono');
         checkFields(errors, 'Perfil');
+    })
+    .fail(function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+}
+
+function updatePassword(form, submitButton)
+{
+    var inner = submitButton.innerHTML;
+    $.ajax({
+        type: 'post',
+        url: API_USUARIOS + 'updatePassword',
+        data: $(form).serialize(),
+        dataType: 'json',
+        beforeSend: function() {
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+        },
+        complete: function() {
+            submitButton.innerHTML = inner;
+        }
+
+    })
+    .done(function( response ) {
+        // If user is registered succesfully
+        if (response.status==1) {
+            swal(1, response.message);
+        } else if(response.status==-1){
+            swal(2, response.exception);
+        }
+        var errors = response.errors;
+        checkFields(errors, 'Contraseña');
+        checkFields(errors, 'Nueva Contraseña');
+        checkFields(errors, 'NewPasswordR');
     })
     .fail(function( jqXHR ) {
         // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
