@@ -92,22 +92,19 @@ class Users extends \Common\Controller
         return $this->userRegister($data, $result);
     }
 
-    public function delete($data, $result)
+    public function delete()
     {
-        $id = intval($data['id']);
+        $id = $_SESSION['user_id'];
         $user = new Usuario;
 
-        if ($user->setId($id) && $user->userExists('idusuario', $id)) {
-            if ($_SESSION['user_id'] != $id) {
+        if ($user->setId($id) && $user->userExists('id_usuario', $id)) {
                 if ($user->deleteUser($id)) {
+                    session_destroy();
                     $result['status'] = 1;
                     $result['message'] = 'Usuario eliminado correctamente';
                 } else {
                     $result['exception'] = \Common\Database::$exception;
                 }
-            } else {
-                $result['exception'] = 'No se puede eliminar a sí mismo.';
-            }
         } else {
             $result['exception'] = 'Usuario inexistente';
         }
