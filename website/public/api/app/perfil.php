@@ -67,6 +67,9 @@ if (isset($_GET['action'])) {
         case 'deleteContact':
             $result = $controller->deleteContact($_POST);
         break;
+        case 'deleteContactDoctor':
+            $result = $controller->deleteContactDoctor($_POST);
+        break;
         default:
             \Common\Core::http404();
     }

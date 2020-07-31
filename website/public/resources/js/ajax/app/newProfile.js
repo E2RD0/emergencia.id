@@ -1,3 +1,21 @@
+function soloLetras(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = "8-37-39-46";
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+    }
+}
 let endPoint = HOST_NAME + HOME_PATH + "api/app/perfil.php?action=";
 //console.log(HOME_PATH);
 const newprofile = new Vue({
@@ -45,6 +63,9 @@ const newprofile = new Vue({
                 selectedFile: null,
                 idProfile: 0,
                 list: true
+            },
+            messagesError: {
+                nombreUsuario: "Nombres"
             },
             addNewContactForm: {
                 name: "",
@@ -112,6 +133,7 @@ const newprofile = new Vue({
             getCondition: [],
             //Ids para eliminar
             idToDeleteContact: { id: 0, text: "Eliminar" },
+            idToDeleteContactDoctor: { id: 0, text: "Eliminar" },
             progresscolorText: "text-bar-one"
         };
     },
@@ -209,6 +231,15 @@ const newprofile = new Vue({
             this.dataProfile.country = this.countrySelect
             this.dataProfile.city = "Seleccionar";
             this.getCity();
+        },
+        dataProfile: {
+            handler() {
+                //const pattern = new RegExp('^[A-Z]+$', 'i');
+                //this.dataProfile.name
+                //messagesError.nombreUsuario
+
+            },
+            deep: true
         }
     },
     methods: {
@@ -416,6 +447,24 @@ const newprofile = new Vue({
                     )
                 );
         },
+        noNumbers: function() {
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+            especiales = "8-37-39-46";
+
+            tecla_especial = false
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    tecla_especial = true;
+                    break;
+                }
+            }
+
+            if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+                return false;
+            }
+        },
         getM: function() {
             var formData = this.toFormData(this.info);
             axios
@@ -485,6 +534,10 @@ const newprofile = new Vue({
             console.log(p)
             this.idToDeleteContact.id = p
         },
+        changeIdContactDoctor: function(p) {
+            console.log(p)
+            this.idToDeleteContactDoctor.id = p
+        },
         deleteContact: function(parameter) {
             this.idToDeleteContact.text = "Cargando..."
             var formData = this.toFormData(this.idToDeleteContact);
@@ -501,6 +554,25 @@ const newprofile = new Vue({
                         $("#eliminarContacto").modal("hide"),
                         this.idToDeleteContact.text = "Eliminar",
                         this.getContacts()
+                    )
+                );
+        },
+        deleteContactDoctor: function(parameter) {
+            this.idToDeleteContactDoctor.text = "Cargando..."
+            var formData = this.toFormData(this.idToDeleteContactDoctor);
+            axios
+                .post(endPoint + "deleteContactDoctor",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        $("#eliminarContactoDoctor").modal("hide"),
+                        this.idToDeleteContactDoctor.text = "Eliminar",
+                        this.getDoctor()
                     )
                 );
         }

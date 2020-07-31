@@ -51,8 +51,8 @@ template::headerCreate('Nuevo perfil');
                                 class="input-date-picker" type="date" aria-describedby="basic-addon3">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target">Nombres</label>
-                            <input @input="debounceSearch" tabindex="3" class="textfield" type="text"
+                            <label for="exampleInputEmail1" class="text-target">{{messagesError.nombreUsuario}}</label>
+                            <input onkeypress="return soloLetras(event)" @input="debounceSearch" tabindex="3" class="textfield" type="text"
                                 v-model="dataProfile.name">
                             <!-- Perfecto!vaya cerrare la conexion en fb seguimos mucahs gracias-->
                         </div>
@@ -67,7 +67,7 @@ template::headerCreate('Nuevo perfil');
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-target">Documento de identidad</label>
-                            <input @input="debounceSearch" v-model="dataProfile.document" tabindex="7" class="textfield"
+                            <input onkeypress="return (event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode)));" @input="debounceSearch" v-model="dataProfile.document" tabindex="7" class="textfield"
                                 type="text" class="form-control" aria-describedby="basic-addon3">
                         </div>
                         <div class="form-group">
@@ -91,7 +91,7 @@ template::headerCreate('Nuevo perfil');
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-target mt-1">Apellidos</label>
-                            <input @input="debounceSearch" tabindex="4" class="textfield" v-model="dataProfile.lastName"
+                            <input onkeypress="return soloLetras(event)" @input="debounceSearch" tabindex="4" class="textfield" v-model="dataProfile.lastName"
                                 type="text" class="form-control">
                         </div>
                         <div class="form-group">
@@ -129,7 +129,7 @@ template::headerCreate('Nuevo perfil');
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-target mt-1">Ciudad</label>
-                            <input @input="debounceSearch" v-model="dataProfile.province" tabindex="14"
+                            <input onkeypress="return soloLetras(event)" @input="debounceSearch" v-model="dataProfile.province" tabindex="14"
                                 class="textfield" type="text" class="form-control" aria-describedby="basic-addon3">
                         </div>
                     </div>
@@ -196,7 +196,7 @@ template::headerCreate('Nuevo perfil');
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
                                                             class="text-target">Teléfono</label>
-                                                        <input v-model="item.telefono" class="textfield" type="text"
+                                                        <input onkeypress="return (event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode)));" v-model="item.telefono" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
                                                 </div>
@@ -245,19 +245,19 @@ template::headerCreate('Nuevo perfil');
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="text-target">Nombre</label>
-                                                <input v-model="addNewContactForm.name" tabindex="2" class="textfield"
+                                                <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.name" tabindex="2" class="textfield"
                                                     type="text" aria-describedby="basic-addon3">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="text-target">Teléfono</label>
-                                                <input v-model="addNewContactForm.telephone" class="textfield"
+                                                <input onkeypress="return (event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode)));" v-model="addNewContactForm.telephone" class="textfield"
                                                     type="text" aria-describedby="basic-addon3">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="text-target">Relación</label>
-                                                <input v-model="addNewContactForm.relacion" class="textfield"
+                                                <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.relacion" class="textfield"
                                                     type="text" aria-describedby="basic-addon3">
                                             </div>
                                             <div class="form-group">
@@ -306,7 +306,7 @@ template::headerCreate('Nuevo perfil');
                                             </div>
                                         </div>
                                         <div class="right">
-                                            <a>
+                                            <a data-toggle="modal" data-target="#eliminarContactoDoctor" @click="changeIdContactDoctor(item.id_contacto_d)">
                                                 <i class="far fa-trash text-target"></i>
                                             </a>
                                             <a data-toggle="collapse" :data-target="'#loadDoc' + item.id_contacto_d"
@@ -323,13 +323,13 @@ template::headerCreate('Nuevo perfil');
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
                                                             class="text-target">Nombre</label>
-                                                        <input v-model="item.nombre" tabindex="2" class="textfield"
+                                                        <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.name" v-model="item.nombre" tabindex="2" class="textfield"
                                                             type="text" aria-describedby="basic-addon3">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
                                                             class="text-target">Teléfono</label>
-                                                        <input v-model="item.telefono" class="textfield" type="text"
+                                                        <input onkeypress="return (event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode)));" v-model="item.telefono" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
                                                 </div>
@@ -337,11 +337,10 @@ template::headerCreate('Nuevo perfil');
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
                                                             class="text-target">Especialidad</label>
-                                                        <input v-model="item.especialidad" class="textfield" type="text"
+                                                        <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.name" v-model="item.especialidad" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -364,19 +363,19 @@ template::headerCreate('Nuevo perfil');
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="text-target">Nombre</label>
-                                                <input v-model="addDoctorContact.nombre" tabindex="2" class="textfield"
+                                                <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.name" v-model="addDoctorContact.nombre" tabindex="2" class="textfield"
                                                     type="text" aria-describedby="basic-addon3">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="text-target">Teléfono</label>
-                                                <input v-model="addDoctorContact.telefono" class="textfield" type="text"
+                                                <input onkeypress="return (event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode)));" v-model="addDoctorContact.telefono" class="textfield" type="text"
                                                     aria-describedby="basic-addon3">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="text-target">Especialidad</label>
-                                                <input placeholder="Ej: Cardiólogo"
+                                                <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.name" placeholder="Ej: Cardiólogo"
                                                     v-model="addDoctorContact.especialidad" class="textfield"
                                                     type="text" aria-describedby="basic-addon3">
                                             </div>
@@ -432,7 +431,7 @@ template::headerCreate('Nuevo perfil');
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
                                                             class="text-target">Nombre</label>
-                                                        <input v-model="item.nombre" class="textfield" type="text"
+                                                        <input onkeypress="return soloLetras(event)" v-model="item.nombre" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
                                                     <div class="form-group">
@@ -488,7 +487,7 @@ template::headerCreate('Nuevo perfil');
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="text-target">Nombre</label>
-                                                <input v-model="addMedicacion.nombre" class="textfield" type="text"
+                                                <input onkeypress="return soloLetras(event)" v-model="addMedicacion.nombre" class="textfield" type="text"
                                                     aria-describedby="basic-addon3">
                                             </div>
                                             <div class="form-group">
@@ -570,7 +569,7 @@ template::headerCreate('Nuevo perfil');
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
                                                             class="text-target">Nombre</label>
-                                                        <input v-model="item.condicion" class="textfield" type="text"
+                                                        <input onkeypress="return soloLetras(event)" v-model="item.condicion" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
                                                     <div class="form-group">
@@ -624,7 +623,7 @@ template::headerCreate('Nuevo perfil');
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1" class="text-target">Condición</label>
-                                                <input v-model="addCondition.condicion" class="textfield" type="text"
+                                                <input onkeypress="return soloLetras(event)" v-model="addCondition.condicion" class="textfield" type="text"
                                                     aria-describedby="basic-addon3">
                                             </div>
                                             <div class="form-group">
@@ -1205,7 +1204,7 @@ template::headerCreate('Nuevo perfil');
 -->
             </div>
         </div>
-        <!-- modal eliminar perfil -->
+        <!-- modal eliminar contacto -->
         <div class="modal fade" id="eliminarContacto" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1223,6 +1222,31 @@ template::headerCreate('Nuevo perfil');
                         <button @click="deleteContact(idToDeleteContact.id)" type="button" class="btn"
                             style="font-weight: 600;color:black;border-color: #DDE3F0;">
                             {{idToDeleteContact.text}}</button>
+                        <button type="button" class="btn btn-primary" style="font-weight: 600;"
+                            data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal eliminar contacto doctor -->
+        <div class="modal fade" id="eliminarContactoDoctor" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="text-header-modal" id="exampleModalCenterTitle">Eliminar contacto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Estás seguro que quieres eliminar este contacto? Una vez eliminado no lo podrás recuperar</p>
+                    </div>
+                    <div class="modal-footer border-0 d-flex justify-content-end">
+                        <button @click="deleteContactDoctor(idToDeleteContactDoctor.id)" type="button" class="btn"
+                            style="font-weight: 600;color:black;border-color: #DDE3F0;">
+                            {{idToDeleteContactDoctor.text}}</button>
                         <button type="button" class="btn btn-primary" style="font-weight: 600;"
                             data-dismiss="modal">Cancelar</button>
                     </div>

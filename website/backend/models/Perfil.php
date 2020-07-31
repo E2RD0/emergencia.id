@@ -248,6 +248,13 @@ class Perfil
         return $db->resultSet();
     }
 
+    public function deleteContactDoctorModel($id){
+        $db = new \Common\Database;
+        $db->query('DELETE FROM perfil_contacto_doctor WHERE id_contacto_d = :id');
+        $db->bind(':id', (int)$id["id"]);
+        return $db->resultSet();
+    }
+
 }
 
 

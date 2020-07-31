@@ -186,6 +186,13 @@ class Profile extends \Common\Controller
         $user = new Perfil;
         return $this->usersModel->deleteContactModel($info);
     }
+
+    public function deleteContactDoctor($contact){
+        $result = $this->r;
+        $info = \Helpers\Validation::trimForm($contact);
+        $user = new Perfil;
+        return $this->usersModel->deleteContactDoctorModel($info);
+    }
 }
 
 
