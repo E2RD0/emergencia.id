@@ -126,6 +126,7 @@ function updatePassword(form, submitButton)
     .done(function( response ) {
         // If user is registered succesfully
         if (response.status==1) {
+            $('#password-form')[0].reset();
             swal(1, response.message);
         } else if(response.status==-1){
             swal(2, response.exception);

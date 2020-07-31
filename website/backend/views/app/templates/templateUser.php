@@ -96,7 +96,12 @@ class template
                         if (isset($_SESSION['user_id'])) {
                             $model = new \Perfil;
                             if($info = $model->getProfileInformationByUser($_SESSION['user_id'])){
-                                $nombre = $info->nombres . ' ' . $info->apellidos;
+                                if ($info->nombres) {
+                                    $nombre = $info->nombres;
+                                    if ($info->nombres && $info->apellidos) {
+                                        $nombre = $info->nombres . ' ' . $info->apellidos;
+                                    }
+                                }
                             }
                         }
                          ?>
