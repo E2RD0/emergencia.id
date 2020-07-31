@@ -124,30 +124,15 @@ template::headerSite('Dashboard del cliente');
             </div>
         </div>
 
-    <!-- modal compartir perfil con usuario -->
-    <div class="modal fade" id="compartirperfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header  border-0">
-                    <h5 class="text-header-modal" id="exampleModalCenterTitle">Compartir el perfil</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Puedes compartir el perfil médico con una persona en específico que sea un usuario de la
-                        plataforma.</p>
-                    <p class="card-text"><small class="text-muted">Correo electrónico del usuario a compartir</small>
-                    </p>
-                    <div class="input-group mb-4">
-                        <input class="textfield" type="text" class="form-control" id="email"
-                            aria-describedby="basic-addon3">
-                        <div class="line"></div>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn"
-                            style="font-weight: 600;color:black;border-color: #DDE3F0;">Invitar</button>
+        <!-- modal compartir perfil con usuario -->
+        <div class="modal fade" id="compartirperfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header  border-0">
+                        <h5 class="text-header-modal" id="exampleModalCenterTitle">Compartir el perfil</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <p>Puedes compartir el perfil médico con una persona en específico que sea un usuario de la
