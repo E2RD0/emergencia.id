@@ -191,7 +191,7 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function getUserInfo($id, $result)
+    public function getUserInfoSettings($id, $result)
     {
         if ($result['dataset'] = $this->usersModel-> getUser($id)) {
             $result['status'] = 1;
