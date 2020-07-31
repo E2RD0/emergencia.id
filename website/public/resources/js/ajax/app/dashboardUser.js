@@ -9,9 +9,9 @@ const dashboardUser = new Vue({
             newProfile: "Nuevo perfil",
             show: [],
             ShowShared: [],
-            deleteProfile: "Eliminar",
-            toSend: {}
-        }
+            deleteText: "Eliminar",
+            toSend: {},
+        };
     },
     created: function () {
         this.showprofiles();
@@ -19,40 +19,62 @@ const dashboardUser = new Vue({
     },
     methods: {
         createNewProfile: function () {
-            this.newProfile = "Cargando..."
+            this.newProfile = "Cargando...";
             axios.get(endPoint + "newProfile").then((response) => {
-                this.newProfile = "Nuevo perfil"
-                window.location = this.redirect + response.data.id_perfil_medico;
-                console.log(response.data[0].id_perfil_medico)
-                console.log(response)
+                this.newProfile = "Nuevo perfil";
+                window.location =
+                    this.redirect + response.data.id_perfil_medico;
+                console.log(response.data[0].id_perfil_medico);
+                console.log(response);
             });
         },
         showprofiles: function () {
-            axios.get(endPointU + "getshowProfile")
-                .then((response) => {
-                    this.show = response.data
-                })
+            axios.get(endPointU + "getshowProfile").then((response) => {
+                this.show = response.data.dataset;
+            });
         },
         showprofilesShared: function () {
-            axios.get(endPointU + "getshowProfileShared")
-                .then((response) => {
-                    this.ShowShared = response.data
-                })
+            axios.get(endPointU + "getshowProfileShared").then((response) => {
+                this.ShowShared = response.data.dataset;
+            });
         },
         redirectToEdit: function (parameter) {
             window.location = this.redirect + parameter;
         },
-        deletePerfil: function () {
-            this.deleteProfile = "Cargando...";
+        deleteProfile: function (type) {
+            this.deleteText = "Cargando...";
             let formData = this.toFormData(this.toSend);
-            axios.post(endPointU + "deleteProfile", formData).then(() => {
-                this.deleteProfile = "Eliminar"
-                this.showprofiles()
-                $("#eliminarperfil").modal("hide");
-            });
+            axios
+                .post(endPointU + "delete"+type+"Profile", formData)
+                .then((response) => {
+                    jsonResponse = response.data;
+                    let value = "";
+                    let modal = "";
+
+                    if(jsonResponse.status == true){
+                        if (type == "Own") {
+                            value = this.show.indexOf(
+                                this.toSend.id_perfil_medico
+                            );
+                            modal = "#eliminarperfil";
+                            this.show.splice(value, 1);
+                        } else {
+                            value = this.ShowShared.indexOf(
+                                this.toSend.id_perfil_medico
+                            );
+                            modal = "#eliminarperfilcompartido";
+                            this.ShowShared.splice(value, 1);
+                        }
+                        swal(1, jsonResponse.message, false, 0);
+                    } else swal(2, jsonResponse.exception, false, 0);
+
+                    this.deleteText = "Eliminar";
+                    this.toSend = {};
+                    $(modal).modal("hide");
+                });
         },
-        deleteMethod: function (param) {
-            this.toSend = {id_perfil_medico: param}
+        encapsulateId: function (param) {
+            this.toSend = { id_perfil_medico: param };
         },
         toFormData: function (obj) {
             var form_data = new FormData();
@@ -62,6 +84,6 @@ const dashboardUser = new Vue({
             return form_data;
         },
     },
-})
+});
 
 //<?= HOME_PATH ?>resources/images/default-perfil.svg

@@ -53,7 +53,7 @@ template::headerSite('Dashboard del cliente');
                                             class="far fa-share-square mr-2"></i> Compartir</a>
                                     <a class="dropdown-item mb-1" href="#"><i class="fas fa-history mr-2"></i></i> Ver
                                         actividad</a>
-                                    <a @click="deleteMethod(item.id_perfil_medico)" class="dropdown-item" href="#" type="button"
+                                    <a @click="encapsulateId(item.id_perfil_medico)" class="dropdown-item" href="#" type="button"
                                         class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil">
                                         <i class="far fa-trash mr-2"></i>Eliminar
                                     </a>
@@ -93,8 +93,8 @@ template::headerSite('Dashboard del cliente');
                                 <div class="dropdown-menu profile-more-options" aria-labelledby="dropdownMenuOffset">
                                     <a class="dropdown-item mb-1" href="#"><i class="far fa-arrow-alt-down mr-2"></i>
                                         Descargar PDF</a>
-                                    <a @click="deleteMethod(item.id_perfil_medico)" class="dropdown-item" href="#" type="button" class="btn btn-primary"
-                                        data-toggle="modal" data-target="#eliminarperfil"><i
+                                    <a @click="encapsulateId(item.id_perfil_medico)" class="dropdown-item" href="#" type="button" class="btn btn-primary"
+                                        data-toggle="modal" data-target="#eliminarperfilcompartido"><i
                                             class="far fa-trash mr-2"></i> Eliminar</a>
                                 </div>
                             </div>
@@ -203,8 +203,31 @@ template::headerSite('Dashboard del cliente');
                     <p>¿Estás seguro que quieres eliminar este perfil? Una vez eliminado no lo podrás recuperar</p>
                 </div>
                 <div class="modal-footer border-0 d-flex justify-content-end">
-                    <button @click="deletePerfil" type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;">
-                        {{deleteProfile}}</button>
+                    <button @click="deleteProfile('Own')" type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;">
+                        {{deleteText}}</button>
+                    <button type="button" class="btn btn-primary" style="font-weight: 600;"
+                        data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- modal eliminar perfil compartido-->
+    <div class="modal fade" id="eliminarperfilcompartido" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header  border-0">
+                    <h5 class="text-header-modal" id="exampleModalCenterTitle">Eliminar perfil compartido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro que quieres eliminar este perfil? Perderás el acceso para verlo, pero el perfil seguirá disponible para el propietario.</p>
+                </div>
+                <div class="modal-footer  border-0 d-flex justify-content-end">
+                    <button @click="deleteProfile('Shared')" type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;">
+                        {{deleteText}}</button>
                     <button type="button" class="btn btn-primary" style="font-weight: 600;"
                         data-dismiss="modal">Cancelar</button>
                 </div>
