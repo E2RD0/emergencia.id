@@ -107,7 +107,7 @@ class Database
             case '42P01':
                 self::$exception = 'Nombre de tabla desconocido';
                 break;
-            case '23503':
+            case '1':
                 self::$exception = 'Registro ocupado, no se puede eliminar';
                 break;
             default:

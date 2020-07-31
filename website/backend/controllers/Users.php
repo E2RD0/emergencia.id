@@ -75,10 +75,6 @@ class Users extends \Common\Controller
     private function loginSession($id, $email){
         $_SESSION['user_id'] = $id;
         $_SESSION['user_email'] = $email;
-
-        $info = ($this->loadModel('Perfil'))->getProfileInformationByUser($id);
-        $_SESSION['user_name'] = isset($info->nombres) ? $info->nombres : '';
-        $_SESSION['user_lastname'] = isset($info->apellidos) ? $info->apellidos : '';
     }
 
     public function getUserInfo()
@@ -94,10 +90,6 @@ class Users extends \Common\Controller
     public function create($data, $result)
     {
         return $this->userRegister($data, $result);
-    }
-    public function update($data, $result)
-    {
-        return $this->updateUser($data, $result);
     }
 
     public function delete($data, $result)
@@ -182,6 +174,7 @@ class Users extends \Common\Controller
 
     public function logout()
     {
+        $result = $this->r;
         if (session_destroy()) {
             $result['status'] = 1;
             $result['message'] = 'Se ha cerrado la sesión';
@@ -191,77 +184,38 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function getUserInfoSettings($id, $result)
+    public function updateUser($userData)
     {
-        if ($result['dataset'] = $this->usersModel-> getUser($id)) {
-            $result['status'] = 1;
-        } else {
-            $result['exception'] = 'Hubo un error al cargar los datos';
-        }
-        return $result;
-    }
-
-    public function updateUser($userData, $result)
-    {
+        $result = $this->r;
         $userData = \Helpers\Validation::trimForm($userData);
-        $idUsuario = isset($userData['id']) ? $userData['id']: $_SESSION['user_id'] ;
-        $idTipoUsuario = isset($userData['idTipoUsuario']) ? $userData['idTipoUsuario']: $_SESSION['user_type'] ;
+        $idUsuario = $_SESSION['user_id'];
 
         $userInfo= $this->usersModel->getUser($idUsuario);
 
-        $nombre = $userData['nombre'];
-        $apellido = $userData['apellido'];
-        $email = $userData['email'] ;
-        $currentPassword = $userData['password'];
-        $newPassword = "";
-        $newPasswordR = "";
-        if (isset($userData['newPassword']) && isset($userData['newPasswordR'])) {
-            $newPassword = $userData['newPassword'];
-            $newPasswordR = $userData['newPasswordR'];
-        }
+        $email = $userData['email'];
+        $tel = $userData['tel'];
+        $idPerfil = intval($userData['perfil']);
 
         $user = new Usuario;
         $errors = [];
         $errors = $user->setId($idUsuario) === true ? $errors : array_merge($errors, $user->setId($idUsuario));
-        $errors = $user->setNombre($nombre) === true ? $errors : array_merge($errors, $user->setNombre($nombre));
-        $errors = $user->setApellido($apellido) === true ? $errors : array_merge($errors, $user->setApellido($apellido));
+        $errors = $user->setIdPerfil($idPerfil) === true ? $errors : array_merge($errors, $user->setIdPerfil($idPerfil));
         if ($email != $userInfo->email) {
             $errors = $user->setEmail($email) === true ? $errors : array_merge($errors, $user->setEmail($email));
         } else {
             $errors = $user->setEmail($email, true) === true ? $errors : array_merge($errors, $user->setEmail($email, true));
         }
-        $errors = $user->setIdTipo($idTipoUsuario) === true ? $errors : array_merge($errors, $user->setIdTipo($idTipoUsuario));
-
-        if ($currentPassword || $newPassword || $newPasswordR) {
-            if (!isset($userData['id'])) {
-                if (password_verify($currentPassword, trim($userInfo->contrasena))) {
-                    $errors = $user->setPassword($newPassword, true, 'Nueva Contraseña') === true ? $errors : array_merge($errors, $user->setPassword($newPassword, true, 'Nueva Contraseña'));
-                    if ($newPasswordR) {
-                        if ($newPassword != $newPasswordR) {
-                            $errors['NewPasswordR'] = ['Las contraseñas no coinciden'];
-                        }
-                    } else {
-                        $errors['NewPasswordR'] = ['Este campo es obligatorio'];
-                    }
-                } else {
-                    $errors['Contraseña'] = ['Contraseña incorrecta.'];
-                    $errors = $user->setPassword($currentPassword, false) === true ? $errors : array_merge($errors, $user->setPassword($currentPassword, false));
-                }
-            } else {
-                $errors = $user->setPassword($currentPassword, true) === true ? $errors : array_merge($errors, $user->setPassword($currentPassword, true));
-            }
+        if ($tel != $userInfo->telefono) {
+            $errors = $user->setTelefono($tel) === true ? $errors : array_merge($errors, $user->setTelefono($tel));
+        } else {
+            $errors = $user->setTelefono($tel, true) === true ? $errors : array_merge($errors, $user->setTelefono($tel, true));
         }
         //If there aren't any errors
         if (!boolval($errors)) {
             if ($this->usersModel->updateUser($user)) {
                 $result['status'] = 1;
                 $result['message'] = 'Usuario actualizado correctamente';
-                if (!isset($userData['id'])) {
-                    $_SESSION['user_id'] = $user->getId();
-                    $_SESSION['user_name'] = $user->getNombre();
-                    $_SESSION['user_type'] = $user->getIdTipo();
-                    $_SESSION['user_email'] = $user->getEmail();
-                }
+                $_SESSION['user_email'] = $user->getEmail();
             } else {
                 $result['status'] = -1;
                 $result['exception'] = \Common\Database::$exception;

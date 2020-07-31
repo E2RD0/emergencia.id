@@ -211,7 +211,7 @@ class Perfil
     public function addMed($id){
         $db = new \Common\Database;
         $db->query('INSERT INTO perfil_medicacion
-        (nombre, dosis, frecuencia, notas, id_perfil_medico) 
+        (nombre, dosis, frecuencia, notas, id_perfil_medico)
         VALUES (:nombre, :dosis, :frecuencia, :notas, :id_perfil_medico)');
         $db->bind(':nombre', $id["nombre"]);
         $db->bind(':dosis', $id["dosis"]);

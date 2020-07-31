@@ -118,8 +118,8 @@ class Usuario
     public function setIdPerfil($value)
     {
         $v = new \Valitron\Validator(array('Perfil' => $value));
-        $v->rule('required', 'Tipo');
-        $v->rule('integer', 'Tipo');
+        $v->rule('required', 'Perfil');
+        $v->rule('integer', 'Perfil');
         if($v->validate()) {
             $this->idPerfil = $value;
             return true;
@@ -193,20 +193,19 @@ class Usuario
         return $db->getResult();
     }
 
-    public function updateUser(){
+    public function updateUser($user){
         $db = new \Common\Database;
-        if($user->password){
-            $db->query('UPDATE usuario SET nombre = :nombre, apellido = :apellido, email = :email, contrasena = :hash, idTipoUsuario = :idTipo WHERE idUsuario = :idUsuario');
+        if(isset($user->password)){
+            $db->query('UPDATE usuario SET nombre = :nombre, apellido = :apellido, email = :email, idTipoUsuario = :idTipo WHERE idUsuario = :idUsuario');
             $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
         }
         else{
-            $db->query('UPDATE usuario SET nombre = :nombre, apellido = :apellido, email = :email, idTipoUsuario = :idTipo WHERE idUsuario = :idUsuario');
+            $db->query('UPDATE usuario SET telefono = :telefono, email = :email, id_perfil_medico = :idPerfil WHERE id_usuario = :idUsuario;');
+            $db->bind(':idUsuario', $user->id);
+            $db->bind(':email', $user->email);
+            $db->bind(':telefono', $user->telefono);
+            $db->bind(':idPerfil', $user->idPerfil);
         }
-        $db->bind(':idUsuario', $user->id);
-        $db->bind(':nombre', $user->nombre);
-        $db->bind(':apellido', $user->apellido);
-        $db->bind(':email', $user->email);
-        $db->bind(':idTipo', $user->idTipo);
         return $db->execute();
     }
     public function updateUserParam($param, $value, $id){

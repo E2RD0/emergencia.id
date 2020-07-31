@@ -46,6 +46,7 @@ template::headerSite('Configuración de la cuenta');
                                 <select class="textfield" id="inputPerfil" name="perfil">
                                 <option selected value="">Seleccionar</option>
                               </select>
+                              <p class="form-error-label" id="errorPerfil"></p>
                             </div>
                         </div>
                     </div>

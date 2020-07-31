@@ -15,6 +15,12 @@ if (isset($_GET['action'])) {
             case 'logout':
                 $result = $controller->logout();
                 break;
+            case 'info':
+                $result = $controller->getUserInfo();
+                break;
+            case 'update':
+                $result = $controller->updateUser($_POST);
+                break;
             default:
                 \Common\Core::http404();
         }

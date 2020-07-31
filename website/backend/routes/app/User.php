@@ -3,6 +3,7 @@ class User extends \Common\Controller
 {
     public function __construct()
     {
+        $this->usersModel = $this->loadModel('Perfil');
     }
 
     public function signup()

@@ -82,7 +82,9 @@ function updateClient(form, submitButton)
     .done(function( response ) {
         // If user is registered succesfully
         if (response.status==1) {
+            console.log('yep');
             getUserInfo();
+            $('#nombreUsuario').html(($('#inputPerfil option:selected').text()));
         } else if(response.status==-1){
             swal(2, response.exception);
         }
