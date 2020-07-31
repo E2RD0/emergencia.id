@@ -55,7 +55,29 @@ template::headerSite('Dashboard del cliente');
                         </div>
                     </div>
                 </div>
+                    <!-- paginacion de perfiles -->
+                <div class="d-flex justify-content-between" v-if="show == ''">
+                    <h4 class="mt-2"></h4>
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="d-flex justify-content-between" v-else>
+                    <h4 class="mt-2">Página: {{pag}}</h4>
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item" v-show="pag != 1" @click.prevent="pag -= 1">
+                                <a class="button button--small" href="#">Atras</a>
+                            </li>
 
+                            <li class="page-item" v-show="pag * NUM_RESULTS / show.length < 1" @click.prevent="pag += 1">
+                                <a class="button button--small" href="#">Siguiente</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div> <!-- Tab pane perfiles -->
 
 
@@ -88,6 +110,31 @@ template::headerSite('Dashboard del cliente');
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- paginacion de perfiles compartir -->
+                <div class="d-flex justify-content-between" v-if="ShowShared == ''">
+                    <h4 class="mt-2"></h4>
+                    <nav aria-label="...">
+                        <ul class="pagination">
+
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="d-flex justify-content-between" v-else>
+                    <h4 class="mt-2">Página: {{pagC}}</h4>
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item" v-show="pagC != 1" @click.prevent="pagC -= 1">
+                                <a class="button button--small" href="#">Atras</a>
+                            </li>
+
+                            <li class="page-item" v-show="pagC * NUM_RESULTSC / ShowShared.length < 1" @click.prevent="pagC += 1">
+                                <a class="button button--small" href="#">Siguiente</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
 
             </div> <!-- Tab pane compartir -->
@@ -166,21 +213,7 @@ template::headerSite('Dashboard del cliente');
             </div>
         </div>
 
-    <!-- paginacion de perfiles -->
-    <div class="d-flex justify-content-between">
-    <h4 class="mt-2">Página: {{pag}}</h4>
-        <nav aria-label="...">
-            <ul class="pagination">
-                <li class="page-item" v-show="pag != 1" @click.prevent="pag -= 1">
-                    <a class="button button--small" href="#">Atras</a>
-                </li>
 
-                <li class="page-item" v-show="pag * NUM_RESULTS / show.length < 1" @click.prevent="pag += 1">
-                    <a class="button button--small" href="#">Siguiente</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
 
     <!-- modal eliminar perfil -->
     <div class="modal fade" id="eliminarperfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
