@@ -46,6 +46,27 @@ if (isset($_GET['action'])) {
         case 'showContact':
             $result = $controller->showContact($_POST);
         break;
+        case 'addDoctor':
+            $result = $controller->addDoctor($_POST);
+        break;
+        case 'getDoctor':
+            $result = $controller->getDoctor($_POST);
+        break;
+        case 'getMedication':
+            $result = $controller->getMedication($_POST);
+        break;
+        case 'addMedication':
+            $result = $controller->addMedication($_POST);
+        break;
+        case 'addNewCondition':
+            $result = $controller->addNCondition($_POST);
+        break;
+        case 'loadCondition':
+            $result = $controller->loadCondition($_POST);
+        break;
+        case 'deleteContact':
+            $result = $controller->deleteContact($_POST);
+        break;
         default:
             \Common\Core::http404();
     }

@@ -138,6 +138,55 @@ class Profile extends \Common\Controller
         $user = new Perfil;
         return $this->usersModel->getProfileContact($info);
     }
+
+    public function addDoctor($contact){
+        $result = $this->r;
+        $info = \Helpers\Validation::trimForm($contact);
+        $user = new Perfil;
+        return $this->usersModel->addContactDoctor($info);
+    }
+
+    public function getDoctor($contact){
+        $result = $this->r;
+        $info = \Helpers\Validation::trimForm($contact);
+        $user = new Perfil;
+        return $this->usersModel->getContactDoctor($info);
+    }
+
+    public function getMedication($contact){
+        $result = $this->r;
+        $info = \Helpers\Validation::trimForm($contact);
+        $user = new Perfil;
+        return $this->usersModel->getMed($info);
+    }
+
+    public function addMedication($contact){
+        $result = $this->r;
+        $info = \Helpers\Validation::trimForm($contact);
+        $user = new Perfil;
+        return $this->usersModel->addMed($info);
+    }
+
+    public function addNCondition($contact){
+        $result = $this->r;
+        $info = \Helpers\Validation::trimForm($contact);
+        $user = new Perfil;
+        return $this->usersModel->addConditionModel($info);
+    }
+
+    public function loadCondition($contact){
+        $result = $this->r;
+        $info = \Helpers\Validation::trimForm($contact);
+        $user = new Perfil;
+        return $this->usersModel->loadCondition($info);
+    }
+
+    public function deleteContact($contact){
+        $result = $this->r;
+        $info = \Helpers\Validation::trimForm($contact);
+        $user = new Perfil;
+        return $this->usersModel->deleteContactModel($info);
+    }
 }
 
 
