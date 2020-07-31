@@ -10,7 +10,11 @@ const dashboardUser = new Vue({
             show: [],
             ShowShared: [],
             deleteProfile: "Eliminar",
-            toSend: {}
+            toSend: {},
+            pag: 1,
+            NUM_RESULTS: 3,
+            pagC: 1,
+            NUM_RESULTSC: 3,
         }
     },
     created: function () {
