@@ -112,8 +112,7 @@ template::headerSite('Configuración de la cuenta');
                         </div>
                     </div>
                     <div class="col-4 my-4 px-auto my-auto">
-                        <a href="#" class="text-settings-link-on text-danger">
-                            <p class="mb-0 text-md-right text-center">Eliminar cuenta</p>
+                            <button onclick="deleteUser()" class="text-settings-link-on text-danger mb-0 text-md-right text-center">Eliminar cuenta</button>
                         </a>
                     </div>
                 </div>

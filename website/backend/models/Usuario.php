@@ -151,7 +151,7 @@ class Usuario
     public function deleteUser($value)
     {
         $db = new \Common\Database;
-        $db->query('DELETE FROM usuario WHERE idusuario = :id');
+        $db->query('DELETE FROM usuario WHERE id_usuario = :id');
         $db->bind(':id', $value);
         return $db->execute();
     }

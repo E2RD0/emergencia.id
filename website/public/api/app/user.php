@@ -24,6 +24,9 @@ if (isset($_GET['action'])) {
             case 'updatePassword':
                 $result = $controller->updatePassword($_POST);
                 break;
+            case 'delete':
+                $result = $controller->delete();
+                break;
             default:
                 \Common\Core::http404();
         }
