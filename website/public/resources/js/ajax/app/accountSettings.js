@@ -1,22 +1,49 @@
+const API_USUARIOS = HOME_PATH + 'api/app/user.php?action=';
+const API_PERFIL = HOME_PATH + 'api/app/perfil.php?action=';
 $( document ).ready(function() {
+    getUserProfiles();
     getUserInfo();
 });
 
+function getUserProfiles(){
+    $.ajax({
+        url: API_PERFIL + 'perfilesUsuario',
+        type: 'post',
+        dataType: 'json',
+        success: function (response) {
+            let jsonResponse = response.dataset;
+            let dropDown = $('#inputPerfil').html();
+
+            jsonResponse.forEach(perfil => {
+                dropDown += `
+                    <option value="${perfil.id_perfil_medico}">${perfil.nombres} ${perfil.apellidos}</option>
+                `;
+            });
+
+            $('#inputPerfil').html(dropDown);
+        },
+        error: function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        }
+    });
+}
 function getUserInfo()
 {
     $.ajax({
         dataType: 'json',
-        url: API + 'info'
+        url: API_USUARIOS + 'info'
     })
     .done(function( response ) {
         if (response.status) {
                 $( '#spinnerSettings' )[0].innerHTML = '';
-                $('#labelNombre').html(response.dataset.nombre);
-                $( '#inputNombre' ).val( response.dataset.nombre );
-                $( '#inputApellido' ).val( response.dataset.apellido );
                 $( '#inputEmail' ).val( response.dataset.email );
                 $( '#inputTeléfono' ).val( response.dataset.telefono );
-                $( '#inputDirección' ).val( response.dataset.direccion );
+                $( '#inputPerfil' ).val( response.dataset.id_perfil_medico );
 
         } else {
             swal(2, response.exception);
@@ -31,9 +58,9 @@ function getUserInfo()
     });
 }
 
-$( '#settings-form' ).submit(function( event ) {
+$( '#account-form' ).submit(function( event ) {
     event.preventDefault();
-    updateClient(this, document.getElementById('settings-submit'));
+    updateClient(this, document.getElementById('account-submit'));
 });
 
 function updateClient(form, submitButton)
@@ -41,11 +68,11 @@ function updateClient(form, submitButton)
     var inner = submitButton.innerHTML;
     $.ajax({
         type: 'post',
-        url: API + 'update',
+        url: API_USUARIOS + 'update',
         data: $(form).serialize(),
         dataType: 'json',
         beforeSend: function() {
-            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...';
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
         },
         complete: function() {
             submitButton.innerHTML = inner;
@@ -56,23 +83,13 @@ function updateClient(form, submitButton)
         // If user is registered succesfully
         if (response.status==1) {
             getUserInfo();
-            swal(1, response.message);
-            $('#inputContraseña').val('');
-            $('#inputNuevaContraseña').val('');
-            $('#inputNewPasswordR').val('');
         } else if(response.status==-1){
-            console.log('error con db');
             swal(2, response.exception);
         }
         var errors = response.errors;
-        checkFields(errors, 'Nombre');
-        checkFields(errors, 'Apellido');
         checkFields(errors, 'Email');
         checkFields(errors, 'Teléfono');
-        checkFields(errors, 'Dirección');
-        checkFields(errors, 'Contraseña');
-        checkFields(errors, 'Nueva Contraseña');
-        checkFields(errors, 'NewPasswordR');
+        checkFields(errors, 'Perfil');
     })
     .fail(function( jqXHR ) {
         // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.

@@ -62,6 +62,16 @@ class Profile extends \Common\Controller
         }
         return $result;
     }
+    public function perfilesUsuario()
+    {
+        $result = $this->r;
+        if ($result['dataset'] = $this->usersModel->getPerfilesUsuario($_SESSION['user_id'])) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No hay ningun perfil médico';
+        }
+        return $result;
+    }
 
     public function getProfile(){
         $result = $this->r;

@@ -108,6 +108,12 @@ class Perfil
         $db->bind(':id', $param);
         return $db->getResult();
     }
+    public function getPerfilesUsuario($param){
+        $db = new \Common\Database;
+        $db->query('SELECT id_perfil_medico, nombres, apellidos FROM perfil_medico WHERE id_usuario = :id');
+        $db->bind(':id', $param);
+        return $db->resultSet();
+    }
     public function updateProfileParam($param, $value, $id){
         $db = new \Common\Database;
         $db->query("UPDATE perfil_medico set $param = :value WHERE id_perfil_medico = :id");

@@ -81,23 +81,12 @@ class Users extends \Common\Controller
         $_SESSION['user_lastname'] = isset($info->apellidos) ? $info->apellidos : '';
     }
 
-    public function readOne($data, $result)
+    public function getUserInfo()
     {
-        $id = intval($data['id']);
-        $user = new Usuario;
-
-        if ($user->setId($id) && $user->userExists('idusuario', $id)) {
-            if ($_SESSION['user_id'] != $id) {
-                if ($result['dataset'] = $user->getUser($id)) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = \Common\Database::$exception;
-                }
-            } else {
-                $result['exception'] = 'No se puede modificar a sí mismo.';
-            }
+        if ($result['dataset'] = $this->usersModel-> getUser($_SESSION['user_id'])) {
+            $result['status'] = 1;
         } else {
-            $result['exception'] = 'Usuario inexistente';
+            $result['exception'] = 'Hubo un error al cargar los datos';
         }
         return $result;
     }

@@ -10,55 +10,52 @@ template::headerSite('Configuración de la cuenta');
                 <h1 class="text-regular">Configuración de la cuenta</h1>
                 <p class="text-help text-settings-help text-uppercase">Cuenta</p>
             </div>
-            <div class="col-12 bg-white rounded">
+            <form class="col-12 bg-white rounded" method="post" action="" id="account-form">
+                <div class="d-flex justify-content-center" id="spinnerSettings">
+                        <div class="spinner-grow" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
                 <div class="row">
-                    <div class="col-12 col-md-6 mt-4 mx-auto">
+                    <div class="col-12 col-md-6 mt-2 mx-auto">
                         <div class="col-12">
-                            <label class="text-help text-settings-tfname" for="first-name">Primer nombre</label>
+                            <label class="text-help text-settings-tfname" for="inputEmail">Correo electrónico</label>
                             <div class="input-group mb-4">
-                                <input class="textfield" type="text" class="form-control" id="first-name" aria-describedby="basic-addon3">
+                                <input name="email" class="textfield" type="email" class="form-control" id="inputEmail" aria-describedby="basic-addon3">
                                 <div class="line"></div>
+                                <p class="form-error-label" id="errorEmail"></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 mt-md-4 mt-2 mx-auto">
+                    <div class="col-12 col-md-6 mt-2 mx-auto">
                         <div class="col-12">
-                            <label class="text-help text-settings-tfname" for="second-name">Segundo nombre</label>
+                            <label class="text-help text-settings-tfname" for="inputTeléfono">Número de teléfono</label>
                             <div class="input-group mb-4">
-                                <input class="textfield" type="text" class="form-control" id="second-name" aria-describedby="basic-addon3">
+                                <input class="textfield" type="text" class="form-control" id="inputTeléfono" name="tel" aria-describedby="basic-addon3">
                                 <div class="line"></div>
+                                <p class="form-error-label" id="errorTeléfono"></p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-md-6 mt-2 mx-auto">
+                    <div class="col-12 col-md-6 mt-4">
                         <div class="col-12">
-                            <label class="text-help text-settings-tfname" for="email">Correo electrónico</label>
+                            <label class="text-help text-settings-tfname" for="first-name">Perfil médico del propietario</label>
                             <div class="input-group mb-4">
-                                <input class="textfield" type="email" class="form-control" id="email" aria-describedby="basic-addon3">
-                                <div class="line"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mt-2 mx-auto">
-                        <div class="col-12">
-                            <label class="text-help text-settings-tfname" for="number">Número de teléfono</label>
-                            <div class="input-group mb-4">
-                                <input class="textfield" type="text" class="form-control" id="number" aria-describedby="basic-addon3">
-                                <div class="line"></div>
+                                <select class="textfield" id="inputPerfil" name="perfil">
+                                <option selected value="">Seleccionar</option>
+                              </select>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <a href="#" class="text-settings-link-on">
-                            <p class="text-right mr-3">Guardar</p>
-                        </a>
+                        <button id="account-submit" class="text-settings-link-on float-right m-3" type="submit" name="button">Guardar</button>
                     </div>
                 </div>
-            </div>
+            </form>
             <div class="col-11 mx-auto mt-4">
                 <p class="text-help text-settings-help text-uppercase">Cambiar contraseña</p>
             </div>
@@ -124,5 +121,5 @@ template::headerSite('Configuración de la cuenta');
 </main>
 
 <?php
-template::footerSite();
+template::footerSite('accountSettings.js');
 ?>

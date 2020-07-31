@@ -10,6 +10,9 @@ if (isset($_GET['action'])) {
     $result = $controller->r;
 
     switch ($action) {
+        case 'perfilesUsuario':
+            $result = $controller->perfilesUsuario();
+        break;
         case 'test':
             $result = $controller->getProfile();
             break;

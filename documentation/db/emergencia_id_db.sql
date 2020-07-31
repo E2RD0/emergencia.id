@@ -77,7 +77,7 @@ CREATE TABLE "usuario"
  "clave"            char(98) NOT NULL,
  "id_perfil_medico" integer UNIQUE,
  CONSTRAINT "PK_usuario" PRIMARY KEY ( "id_usuario" ),
- CONSTRAINT "FK_201" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
+ CONSTRAINT "FK_201" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" ) ON DELETE SET NULL
 );
 
 CREATE INDEX "fkIdx_201" ON "usuario"
