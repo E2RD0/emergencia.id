@@ -92,13 +92,12 @@ class template
                     <a href="<?= HOME_PATH ?>app/user/profiles" class="color-text text-link mr-lg-5">Mis perfiles</a>
                     <div class="dropdown dropdown-nav-options">
                         <?php
+                        $nombre = 'Mi cuenta';
                         if (isset($_SESSION['user_id'])) {
                             $model = new \Perfil;
-                            $info = $model->getProfileInformationByUser($_SESSION['user_id']);
-                            $nombre = $info->nombres . ' ' . $info->apellidos;
-                        }
-                        else {
-                            $nombre = 'Mi cuenta';
+                            if($info = $model->getProfileInformationByUser($_SESSION['user_id'])){
+                                $nombre = $info->nombres . ' ' . $info->apellidos;
+                            }
                         }
                          ?>
                         <a href="#" id="nombreUsuario" class="font-size-regular btn dropdown-toggle shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $nombre?></a>
