@@ -15,7 +15,7 @@ const newprofile = new Vue({
             progress: 1,
             progresscolor: "",
             inputCounter: 0,
-            valueSingleInput: 6.25,
+            valueSingleInput: 4.545454545454545,
             savingTxt: "Guardado",
             aaa: "",
             blood: [],
@@ -54,10 +54,65 @@ const newprofile = new Vue({
                 direction: "",
                 id_p_m: 0
             },
+            addDoctorContact: {
+                nombre: "",
+                telefono: "",
+                especialidad: "",
+                id_perfil_medico: 0
+            },
+            addMedicacion: {
+                nombre: "",
+                dosis: "",
+                frecuencia: "",
+                notas: "",
+                adjunto: "",
+                id_perfil_medico: 0
+            },
+            addCondition: {
+                condicion: "",
+                notas: "",
+                adjunto: "",
+                id_medicacion: "Seleccionar",
+                id_perfil_medico: 0
+            },
+            addAllergy: {
+                alergia: "",
+                reaccion: "",
+                tratamiento: "",
+                id_perfil_medico: 0
+            },
+            addProcedure: {
+                procedimiento: "",
+                fecha: "",
+                hospital: "",
+                adjunto: "",
+                id_contacto_d: "",
+                id_perfil_medico: 0
+            },
+            secure: {
+                compania: "",
+                num_identificacion: "",
+                decucible: "",
+                telefono: "",
+                notas: "",
+                adjunto: "",
+                id_perfil_medico: 0
+            },
+            other: {
+                clave: "",
+                valor: "",
+                id_perfil_medico: 0
+            },
             addEmergencycontacts: [],
             timer: null,
             isFirstTime: true,
             test: "",
+            getDoctorContact: [],
+            getMedicacion: [],
+            getCondition: [],
+            //Ids para eliminar
+            idToDeleteContact: { id: 0, text: "Eliminar" },
+            progresscolorText: "text-bar-one"
         };
     },
     created: function() {
@@ -67,6 +122,10 @@ const newprofile = new Vue({
         this.getUri();
         this.getInformationToUpdate();
         this.getContacts();
+        this.asignAllId();
+        this.getDoctor();
+        this.getM();
+        this.getConditions();
     },
     computed: {
         calcProgressColor: function() {
@@ -82,34 +141,49 @@ const newprofile = new Vue({
                 (this.progresscolor = "progress-bar-fifth") :
                 "";
         },
+        calcProgressColorText: function() {
+            return this.calcProgress <= 25 ?
+                (this.progresscolorText = "text-bar-one") :
+                this.calcProgress <= 50 ?
+                (this.progresscolorText = "text-bar-two") :
+                this.calcProgress <= 75 ?
+                (this.progresscolorText = "text-bar-three") :
+                this.calcProgress <= 99 ?
+                (this.progresscolorText = "text-bar-four") :
+                this.calcProgress == 100 ?
+                (this.progresscolorText = "text-bar-one") :
+                "";
+        },
         calcProgress: function() {
             let value = 0;
-            this.dataProfile.name != "" ? (value = value + 6.25) : "";
-            this.dataProfile.lastName != "" ? (value = value + 6.25) : "";
-            this.dataProfile.document != "" ? (value = value + 6.25) : "";
-            this.dataProfile.weight != "" ? (value = value + 6.25) : "";
-            this.dataProfile.height != "" ? (value = value + 6.25) : "";
-            this.addEmergencycontacts != "" ? (value = value + 6.25) : "";
+            this.dataProfile.name != "" ? (value = value + 4.545454545454545) : "";
+            this.dataProfile.lastName != "" ? (value = value + 4.545454545454545) : "";
+            this.dataProfile.document != "" ? (value = value + 4.545454545454545) : "";
+            this.dataProfile.weight != "" ? (value = value + 4.545454545454545) : "";
+            this.dataProfile.height != "" ? (value = value + 4.545454545454545) : "";
+            this.addEmergencycontacts != "" ? (value = value + 4.545454545454545) : "";
+            this.getDoctorContact != "" ? (value = value + 4.545454545454545) : "";
+            this.getMedicacion != "" ? (value = value + 4.545454545454545) : "";
             this.dataProfile.donor != "Seleccionar" ?
-                (value = value + 6.25) :
+                (value = value + 4.545454545454545) :
                 "";
             this.dataProfile.isssEstatusSelected != "Seleccionar" ?
-                (value = value + 6.25) :
+                (value = value + 4.545454545454545) :
                 "";
             this.dataProfile.selectedIdBlood != "Seleccionar" ?
-                (value = value + 6.25) :
+                (value = value + 4.545454545454545) :
                 "";
             this.dataProfile.city != "Seleccionar" ?
-                (value = value + 6.25) :
+                (value = value + 4.545454545454545) :
                 "";
             this.dataProfile.province != "" ?
-                (value = value + 6.25) :
+                (value = value + 4.545454545454545) :
                 "";
             this.dataProfile.country != "Seleccionar" ?
-                (value = value + 6.25) :
+                (value = value + 4.545454545454545) :
                 "";
-            this.dataProfile.direction != "" ? (value = value + 6.25) : "";
-            this.dataProfile.date != "" ? (value = value + 6.25) : "";
+            this.dataProfile.direction != "" ? (value = value + 4.545454545454545) : "";
+            this.dataProfile.date != "" ? (value = value + 4.545454545454545) : "";
             return Math.trunc(value);
         },
         calcDate: function() {
@@ -300,10 +374,135 @@ const newprofile = new Vue({
                 )
                 .then(
                     response => (
-                        this.getContacts(), this.addNewContactForm = []
+                        this.getContacts(), this.addNewContactForm = [], this.asignAllId()
+                    )
+                );
+        },
+        asignAllId: function() {
+            this.addDoctorContact.id_perfil_medico = location.href.split('/').pop();
+            this.addMedicacion.id_perfil_medico = location.href.split('/').pop();
+            this.addNewContactForm.id_p_m = location.href.split('/').pop();
+            this.addCondition.id_perfil_medico = location.href.split('/').pop();
+        },
+        addDoctor: function() {
+            var formData = this.toFormData(this.addDoctorContact);
+            axios
+                .post(endPoint + "addDoctor",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        this.getDoctor(), this.addDoctorContact = [], this.asignAllId()
+                    )
+                );
+        },
+        getDoctor: function() {
+            var formData = this.toFormData(this.info);
+            axios
+                .post(endPoint + "getDoctor",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        this.getDoctorContact = response.data
+                    )
+                );
+        },
+        getM: function() {
+            var formData = this.toFormData(this.info);
+            axios
+                .post(endPoint + "getMedication",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        this.getMedicacion = response.data
+                    )
+                );
+        },
+        addMedicament: function() {
+            var formData = this.toFormData(this.addMedicacion);
+            axios
+                .post(endPoint + "addMedication",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        this.getM(), this.addMedicacion = [], this.asignAllId()
+                    )
+                );
+        },
+        getConditions: function() {
+            var formData = this.toFormData(this.info);
+            axios
+                .post(endPoint + "loadCondition",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        this.getCondition = response.data
+                    )
+                );
+        },
+        addCon: function() {
+            var formData = this.toFormData(this.addCondition);
+            axios
+                .post(endPoint + "addNewCondition",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        //console.log("adawdawdadwad")
+                        this.getConditions()
+                    )
+                );
+        },
+        changeId: function(p) {
+            console.log(p)
+            this.idToDeleteContact.id = p
+        },
+        deleteContact: function(parameter) {
+            this.idToDeleteContact.text = "Cargando..."
+            var formData = this.toFormData(this.idToDeleteContact);
+            axios
+                .post(endPoint + "deleteContact",
+                    formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    }
+                )
+                .then(
+                    response => (
+                        $("#eliminarContacto").modal("hide"),
+                        this.idToDeleteContact.text = "Eliminar",
+                        this.getContacts()
                     )
                 );
         }
     },
-
 });

@@ -573,8 +573,24 @@ select {
     background-color: #9AE542;
 }
 
-.text-bar {
+.text-bar-one {
     color: #FF4C4C;
+}
+
+.text-bar-two {
+    color: #F38738;
+}
+
+.text-bar-three {
+    color: #F3BD42;
+}
+
+.text-bar-four {
+    color: #F3DA40;
+}
+
+.text-bar-five {
+    color: #9AE542;
 }
 
 .target {

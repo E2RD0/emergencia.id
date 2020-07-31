@@ -178,6 +178,70 @@ class Perfil
         return $db->resultSet();
     }
 
+    public function addContactDoctor($id){
+        $db = new \Common\Database;
+        $db->query('INSERT INTO perfil_contacto_doctor (nombre, telefono, especialidad, id_perfil_medico) VALUES (:nombre, :telefono, :especialidad, :id_perfil_medico);');
+        $db->bind(':nombre', $id["nombre"]);
+        $db->bind(':telefono', $id["telefono"]);
+        $db->bind(':especialidad', $id["especialidad"]);
+        $db->bind(':id_perfil_medico', (int)$id["id_perfil_medico"]);
+        return $db->resultSet();
+    }
+
+    public function getContactDoctor($id){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM perfil_contacto_doctor WHERE id_perfil_medico = :id');
+        $db->bind(':id', (int)$id["idProfileToReceiveUpdates"]);
+        return $db->resultSet();
+    }
+
+    public function getMed($id){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM perfil_medicacion WHERE id_perfil_medico = :id');
+        $db->bind(':id', (int)$id["idProfileToReceiveUpdates"]);
+        return $db->resultSet();
+    }
+
+    public function addMed($id){
+        $db = new \Common\Database;
+        $db->query('INSERT INTO perfil_medicacion
+        (nombre, dosis, frecuencia, notas, id_perfil_medico) 
+        VALUES (:nombre, :dosis, :frecuencia, :notas, :id_perfil_medico)');
+        $db->bind(':nombre', $id["nombre"]);
+        $db->bind(':dosis', $id["dosis"]);
+        $db->bind(':frecuencia', $id["frecuencia"]);
+        $db->bind(':notas', $id["notas"]);
+        //$db->bind(':adjunto', (int)$id["adjunto"]);
+        $db->bind(':id_perfil_medico', $id["id_perfil_medico"]);
+        return $db->resultSet();
+    }
+
+    public function addConditionModel($id){
+        $db = new \Common\Database;
+        $db->query('INSERT INTO perfil_condicion_medica(
+            condicion, notas, id_medicacion, id_perfil_medico)
+            VALUES (:condicion, :notas, :id_medicacion, :id_perfil_medico);');
+        $db->bind(':condicion', $id["condicion"]);
+        $db->bind(':notas', $id["notas"]);
+        $db->bind(':id_medicacion', $id["id_medicacion"] === 'Seleccionar' ? null: (int)$id["id_medicacion"]);
+        $db->bind(':id_perfil_medico', (int)$id["id_perfil_medico"]);
+        return $db->resultSet();
+    }
+
+    public function loadCondition($id){
+        $db = new \Common\Database;
+        $db->query('SELECT * FROM perfil_condicion_medica WHERE id_perfil_medico = :id');
+        $db->bind(':id', (int)$id["idProfileToReceiveUpdates"]);
+        return $db->resultSet();
+    }
+
+    public function deleteContactModel($id){
+        $db = new \Common\Database;
+        $db->query('DELETE FROM perfil_contacto_emergencia WHERE id_contacto = :id');
+        $db->bind(':id', (int)$id["id"]);
+        return $db->resultSet();
+    }
+
 }
 
 
