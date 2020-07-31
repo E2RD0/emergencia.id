@@ -12,14 +12,17 @@ if (isset($_GET['action'])) {
     switch ($action) {
         case 'getshowProfile':
             $result = $controller->getShowProfile();
-        break;
+            break;
         case 'getshowProfileShared':
             $result = $controller->getShowProfileShared();
-        break;
+            break;
+        case 'deleteProfile':
+            $result = $controller->deleteProfile($_POST, $result);
+            break;
         default:
             \Common\Core::http404();
     }
-    
+
     header('content-type: application/json; charset=utf-8');
 	echo json_encode($result, JSON_PRETTY_PRINT);
 }
