@@ -35,7 +35,8 @@ template::headerSite('Dashboard del cliente');
                             <p class="card-text" v-if="item.date_part === null">Complete la información.</p>
                             <p class="card-text" v-else>{{item.date_part }} Años, {{item.nombre}}, {{item.ciudad}}</p>
                             <div class="d-flex flex-column d-sm-block">
-                                <a @click="redirectToEdit(item.id_perfil_medico)" class="color-text text-link mr-4 mb-3"><i class="far fa-pencil mr-2"></i>
+                                <a @click="redirectToEdit(item.id_perfil_medico)" class="color-text text-link mr-4 mb-3">
+                                    <i class="far fa-pencil mr-2"></i>
                                     Editar</a>
                                 <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-clone mr-2"></i>
                                     Duplicar</a>
@@ -52,9 +53,10 @@ template::headerSite('Dashboard del cliente');
                                             class="far fa-share-square mr-2"></i> Compartir</a>
                                     <a class="dropdown-item mb-1" href="#"><i class="fas fa-history mr-2"></i></i> Ver
                                         actividad</a>
-                                    <a class="dropdown-item" href="#" type="button" class="btn btn-primary"
-                                        data-toggle="modal" data-target="#eliminarperfil"><i
-                                            class="far fa-trash mr-2"></i> Eliminar</a>
+                                    <a @click="deleteMethod(item.id_perfil_medico)" class="dropdown-item" href="#" type="button"
+                                        class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil">
+                                        <i class="far fa-trash mr-2"></i>Eliminar
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +93,7 @@ template::headerSite('Dashboard del cliente');
                                 <div class="dropdown-menu profile-more-options" aria-labelledby="dropdownMenuOffset">
                                     <a class="dropdown-item mb-1" href="#"><i class="far fa-arrow-alt-down mr-2"></i>
                                         Descargar PDF</a>
-                                    <a class="dropdown-item" href="#" type="button" class="btn btn-primary"
+                                    <a @click="deleteMethod(item.id_perfil_medico)" class="dropdown-item" href="#" type="button" class="btn btn-primary"
                                         data-toggle="modal" data-target="#eliminarperfil"><i
                                             class="far fa-trash mr-2"></i> Eliminar</a>
                                 </div>
@@ -118,7 +120,7 @@ template::headerSite('Dashboard del cliente');
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Con este enlace pudes compartir la informacion del perfil médico para casos que no sean
+                    <p>Con este enlace puedes compartir la información del perfil médico para casos que no sean
                         emergencias(compartirlo con tu doctor,etc).</p>
                     <p class="card-text"><small class="text-muted">Copia el siguiente enlace</small></p>
                     <div class="input-group mb-4">
@@ -132,7 +134,7 @@ template::headerSite('Dashboard del cliente');
                             data-toggle="modal" data-target="#compartirperfil" data-dismiss="modal">Compartir con un
                             usuario</a></small>
                     <button type="button" class="btn"
-                        style="background-color: white; color: #2F8DEB; font-weight: 600;">Abrir enclace</button>
+                        style="background-color: white; color: #2F8DEB; font-weight: 600;">Abrir enlace</button>
                     <button type="button" class="btn btn-primary" style="font-weight: 600;">Copiar enlace</button>
                 </div>
             </div>
@@ -153,7 +155,7 @@ template::headerSite('Dashboard del cliente');
                 <div class="modal-body">
                     <p>Puedes compartir el perfil médico con una persona en específico que sea un usuario de la
                         plataforma.</p>
-                    <p class="card-text"><small class="text-muted">Correo electronico del usuario a compartir</small>
+                    <p class="card-text"><small class="text-muted">Correo electrónico del usuario a compartir</small>
                     </p>
                     <div class="input-group mb-4">
                         <input class="textfield" type="text" class="form-control" id="email"
@@ -191,27 +193,24 @@ template::headerSite('Dashboard del cliente');
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header  border-0">
+                <div class="modal-header border-0">
                     <h5 class="text-header-modal" id="exampleModalCenterTitle">Eliminar perfil</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>¿Estas seguro que quieres eliminar este perfil? Una vez eliminado no lo podras recuperar</p>
+                    <p>¿Estás seguro que quieres eliminar este perfil? Una vez eliminado no lo podrás recuperar</p>
                 </div>
-                <div class="modal-footer  border-0 d-flex justify-content-end">
-                    <button type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;"
-                        data-dismiss="modal">Eliminar</button>
+                <div class="modal-footer border-0 d-flex justify-content-end">
+                    <button @click="deletePerfil" type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;">
+                        {{deleteProfile}}</button>
                     <button type="button" class="btn btn-primary" style="font-weight: 600;"
                         data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
-
-
-
 </div>
 </div>
 <?php

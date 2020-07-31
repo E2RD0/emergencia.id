@@ -9,14 +9,16 @@ const dashboardUser = new Vue({
             newProfile: "Nuevo perfil",
             show: [],
             ShowShared: [],
+            deleteProfile: "Eliminar",
+            toSend: {}
         }
     },
-    created: function() {
+    created: function () {
         this.showprofiles();
         this.showprofilesShared();
     },
     methods: {
-        createNewProfile: function() {
+        createNewProfile: function () {
             this.newProfile = "Cargando..."
             axios.get(endPoint + "newProfile").then((response) => {
                 this.newProfile = "Nuevo perfil"
@@ -25,21 +27,40 @@ const dashboardUser = new Vue({
                 console.log(response)
             });
         },
-        showprofiles: function() {
+        showprofiles: function () {
             axios.get(endPointU + "getshowProfile")
                 .then((response) => {
                     this.show = response.data
                 })
         },
-        showprofilesShared: function() {
+        showprofilesShared: function () {
             axios.get(endPointU + "getshowProfileShared")
                 .then((response) => {
                     this.ShowShared = response.data
                 })
         },
-        redirectToEdit: function(parameter) {
+        redirectToEdit: function (parameter) {
             window.location = this.redirect + parameter;
-        }
+        },
+        deletePerfil: function () {
+            this.deleteProfile = "Cargando...";
+            let formData = this.toFormData(this.toSend);
+            axios.post(endPointU + "deleteProfile", formData).then(() => {
+                this.deleteProfile = "Eliminar"
+                this.showprofiles()
+                $("#eliminarperfil").modal("hide");
+            });
+        },
+        deleteMethod: function (param) {
+            this.toSend = {id_perfil_medico: param}
+        },
+        toFormData: function (obj) {
+            var form_data = new FormData();
+            for (var key in obj) {
+                form_data.append(key, obj[key]);
+            }
+            return form_data;
+        },
     },
 })
 
