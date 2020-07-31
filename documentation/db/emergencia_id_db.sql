@@ -50,13 +50,10 @@ CREATE TABLE "perfil_medico"
  "id_estado_isss"   integer,
  "id_usuario"       integer NOT NULL,
  CONSTRAINT "PK_perfil_medico" PRIMARY KEY ( "id_perfil_medico" ),
- CONSTRAINT "FK_255" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" ) ON DELETE CASCADE,
  CONSTRAINT "FK_230" FOREIGN KEY ( "id_tipo_sangre" ) REFERENCES "tipo_sangre" ( "id_tipo_sangre" ),
  CONSTRAINT "FK_212" FOREIGN KEY ( "id_estado_isss" ) REFERENCES "estado_isss" ( "id_estado_isss" ),
  CONSTRAINT "FK_236" FOREIGN KEY ( "id_pais" ) REFERENCES "pais" ( "id_pais" ),
  CONSTRAINT "FK_240" FOREIGN KEY ( "id_pais_estado" ) REFERENCES "pais_estado" ( "id_pais_estado" )
-
-
 );
 
 CREATE INDEX "fkIdx_212" ON "perfil_medico"
@@ -84,6 +81,11 @@ CREATE INDEX "fkIdx_201" ON "usuario"
 (
  "id_perfil_medico"
 );
+
+alter table perfil_medico
+	add constraint FK_255
+		foreign key (id_usuario) references usuario
+			on delete cascade;
 
 CREATE TABLE "usuario_recuperar_clave"
 (
