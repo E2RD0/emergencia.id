@@ -15,7 +15,9 @@ const dashboardUser = new Vue({
             NUM_RESULTS: 3,
             pagC: 1,
             NUM_RESULTSC: 3,
-        }
+            loading: '<div><i class="far fa-spinner-third icon-load primary-cl"></i></div>',
+            sharedWith: [],
+        };
     },
     created: function () {
         this.showprofiles();
@@ -50,13 +52,13 @@ const dashboardUser = new Vue({
             let formData = this.toFormData(this.toSend);
             console.log(formData);
             axios
-                .post(endPointU + "delete"+type+"Profile", formData)
+                .post(endPointU + "delete" + type + "Profile", formData)
                 .then((response) => {
                     jsonResponse = response.data;
                     let value = "";
                     let modal = "";
 
-                    if(jsonResponse.status == true){
+                    if (jsonResponse.status == true) {
                         if (type == "Own") {
                             value = this.show.indexOf(
                                 this.toSend.id_perfil_medico
@@ -78,9 +80,11 @@ const dashboardUser = new Vue({
                     $(modal).modal("hide");
                 });
         },
-        encapsulateId: function (param) {
-            this.toSend = { id_perfil_medico: param };
+        encapsulateId: function (key, param) {
+
+            this.toSend = { [key]: param };
             console.log(this.toSend);
+
         },
         toFormData: function (obj) {
             var form_data = new FormData();
@@ -88,6 +92,44 @@ const dashboardUser = new Vue({
                 form_data.append(key, obj[key]);
             }
             return form_data;
+        },
+        getShares: function (key, param) {
+            this.encapsulateId(key, param);
+            let formData = this.toFormData(this.toSend);
+            axios
+                .post(endPointU + "getUsersSharedWith", formData)
+                .then((response) => {
+                    let jsonResponse = response.data;
+                    if (jsonResponse.status != -1) {
+                        if (jsonResponse.dataset?.length) {
+                            this.sharedWith = jsonResponse.dataset;
+                            this.loading = '';
+                        } else {
+                            this.loading = jsonResponse.message;
+                        }
+                    }
+                });
+        },
+        deleteSharing: function (param) {
+            console.log(param);
+        },
+        shareProfileWith: function() {
+            let email = this.$refs.email.value;
+            console.log(email);
+            this.encapsulateId('email', email);
+            let formData = this.toFormData({ id_perfil_medico: email });
+            console.log(formData);
+            axios
+                .post(endPointU + "shareProfileWith", formData)
+                .then((response) => {
+                    let jsonResponse = response.data;
+                    console.log(jsonResponse);
+                    if (jsonResponse.status == true) {
+                        if (jsonResponse.dataset.length != 0) {
+                            this.sharedWith = jsonResponse.dataset;
+                        }
+                    }
+                });
         },
     },
 });

@@ -43,10 +43,10 @@ template::headerSite('Dashboard del cliente');
                                             Targeta QR</a>
                                         <a class="dropdown-item mb-1" href="#"><i class="far fa-arrow-alt-down mr-2"></i>
                                             Descargar PDF</a>
-                                        <a class="dropdown-item mb-1" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-share-square mr-2"></i> Compartir</a>
+                                        <a @click="getShares('id_perfil_medico', item.id_perfil_medico)" class="dropdown-item mb-1" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#compartirUsuarios"><i class="far fa-share-square mr-2"></i> Compartir</a>
                                         <a class="dropdown-item mb-1" href="#"><i class="fas fa-history mr-2"></i></i> Ver
                                             actividad</a>
-                                        <a @click="encapsulateId(item.id_perfil_medico)" class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil">
+                                        <a @click="encapsulateId('id_perfil_medico', item.id_perfil_medico)" class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfil">
                                             <i class="far fa-trash mr-2"></i>Eliminar
                                         </a>
                                     </div>
@@ -63,7 +63,7 @@ template::headerSite('Dashboard del cliente');
                         </ul>
                     </nav>
                 </div>
-                
+
                 <div class="d-flex justify-content-between" v-else>
                     <h4 class="mt-2">Página: {{pag}}</h4>
                     <nav aria-label="...">
@@ -121,7 +121,7 @@ template::headerSite('Dashboard del cliente');
                         </ul>
                     </nav>
                 </div>
-                
+
                 <div class="d-flex justify-content-between" v-else>
                     <h4 class="mt-2">Página: {{pagC}}</h4>
                     <nav aria-label="...">
@@ -143,7 +143,8 @@ template::headerSite('Dashboard del cliente');
         <!--Tab content -->
 
         <!-- modal compartir perfil -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <!-- <div class="modal fade" id="compartirEnlace" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header  border-0">
@@ -153,8 +154,8 @@ template::headerSite('Dashboard del cliente');
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Con este enlace puedes compartir la información del perfil médico para casos que no sean
-                            emergencias(compartirlo con tu doctor,etc).</p>
+                        <p>Con este enlace puedes compartir la información del perfil médico, para casos que no sean
+                            emergencias (compartirlo con tu doctor,etc).</p>
                         <p class="card-text"><small class="text-muted">Copia el siguiente enlace</small></p>
                         <div class="input-group mb-4">
                             <input class="textfield" type="text" class="form-control" id="email" aria-describedby="basic-addon3">
@@ -162,17 +163,19 @@ template::headerSite('Dashboard del cliente');
                         </div>
                     </div>
                     <div class="modal-footer  border-0 d-flex justify-content-between">
-                        <small class="text-muted"><a href="" style="text-decoration: none;font-weight: 600;color:grey" data-toggle="modal" data-target="#compartirperfil" data-dismiss="modal">Compartir con un
+                        <small class="text-muted"><a href="" style="text-decoration: none;font-weight: 600;color:grey"
+                            data-toggle="modal" data-target="#compartirperfil" data-dismiss="modal">Compartir con un
                                 usuario</a></small>
-                        <button type="button" class="btn" style="background-color: white; color: #2F8DEB; font-weight: 600;">Abrir enlace</button>
+                        <button type="button" class="btn" style="background-color: white; color: #2F8DEB; font-weight: 600;">
+                            Abrir enlace</button>
                         <button type="button" class="btn btn-primary" style="font-weight: 600;">Copiar enlace</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- modal compartir perfil con usuario -->
-        <div class="modal fade" id="compartirperfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="compartirUsuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header  border-0">
@@ -182,26 +185,30 @@ template::headerSite('Dashboard del cliente');
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Puedes compartir el perfil médico con una persona en específico que sea un usuario de la
+                        <p>Puedes compartir el perfil médico con una persona en específico: debe ser un usuario de la
                             plataforma.</p>
                         <p class="card-text"><small class="text-muted">Correo electrónico del usuario a compartir</small>
                         </p>
                         <div class="input-group mb-4">
-                            <input class="textfield" type="text" class="form-control" id="email" aria-describedby="basic-addon3">
+                            <input class="textfield" type="text" class="form-control" id="email" aria-describedby="basic-addon3" ref="email">
                             <div class="line"></div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;">Invitar</button>
+                            <button @click="shareProfileWith()" type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;">Invitar</button>
                         </div>
                         <div>
-                            <p class="card-text"><small class="text-muted">Gestiona quién tiene acceso</small></p>
-                            <hr>
-                            <div class="d-flex justify-content-between">
-                                <p>Laura Navas</p>
-                                <p class="mr-5" style="color:grey">lauranavas@gmail.com</p>
-                                <i class="far fa-trash mt-1" style="color: grey"></i>
+                            <p class="card-text" class="mb-3"><small class="text-muted">Gestiona quién tiene acceso</small></p>
+                            <div class="overflow-auto d-flex align-items-center justify-content-center" style="height:130px; max-height:130px;">
+                                <div v-if="!sharedWith.length">
+                                    <div v-html="loading"></div>
+                                </div>
+                                <div v-else="sharedWith.length" v-cloak id="users" class="d-flex justify-content-between px-4" v-for="user in sharedWith">
+                                    <p>{{user.nombres}}{{user.apellidos}}</p>
+                                    <p class="mr-5" style="color:grey">{{user.email}}</p>
+                                    <i @click="deleteSharing(user.id_usuario)" class="far fa-trash mt-1" style="color: grey"></i>
+                                    <hr>
+                                </div>
                             </div>
-                            <hr>
                         </div>
                     </div>
                     <div class="modal-footer  border-0 d-flex justify-content-between">

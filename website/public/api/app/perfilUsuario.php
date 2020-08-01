@@ -23,6 +23,12 @@ if (isset($_GET['action'])) {
             case 'deleteSharedProfile':
                 $result = $controller->deleteSharedProfile(array_merge($_POST,array('id_usuario'=>$_SESSION['user_id'])), $result);
                 break;
+            case 'getUsersSharedWith':
+                $result = $controller->getUsersSharedWith(array_merge($_POST,array('id_usuario'=>$_SESSION['user_id'])), $result);
+                break;
+            case 'shareProfileWith':
+                $result = $controller->shareProfileWith(array_merge($_POST,array('id_usuario'=>$_SESSION['user_id'])), $result);
+                break;
             default:
                 \Common\Core::http404();
         }

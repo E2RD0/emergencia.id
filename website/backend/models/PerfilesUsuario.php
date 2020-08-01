@@ -56,11 +56,12 @@ class PerfilesUsuario
         return $db->resultSet();
     }
 
-    public function profileExists($param)
+    public function profileExists($id_usuario, $id_perfil)
     {
         $db = new \Common\Database;
-        $db->query("SELECT id_perfil_medico FROM perfil_medico WHERE id_perfil_medico = :id");
-        $db->bind(':id', $param);
+        $db->query("SELECT id_perfil_medico FROM perfil_medico WHERE id_perfil_medico = :id_perfil AND id_usuario = :id_usuario");
+        $db->bind(':id_perfil', $id_usuario);
+        $db->bind(':id_usuario', $id_perfil);
         return boolval($db->rowCount());
     }
 
@@ -90,5 +91,44 @@ class PerfilesUsuario
         return boolval($db->rowCount());
     }
 
+    public function getUsersSharedWith($perfil, $iduser)
+    {
+        $db = new \Common\Database;
+        $db->query("SELECT
+                        usuario.id_usuario,
+                        perfil_medico.nombres,
+                        perfil_medico.apellidos,
+                        usuario.email
+                    FROM
+                        perfil_usuarios_compartir
+                        JOIN perfil_medico ON perfil_medico.id_perfil_medico = perfil_usuarios_compartir.id_perfil_medico
+                        JOIN usuario ON usuario.id_usuario = perfil_medico.id_usuario
+                    WHERE
+                        perfil_usuarios_compartir.id_perfil_medico = :id_perfil
+                        AND perfil_usuarios_compartir.id_usuario = :id_usuario
+                    ORDER BY
+                        perfil_usuarios_compartir.id_perfil_medico ASC"
+        );
+        $db->bind(':id_perfil', $perfil);
+        $db->bind(':id_usuario', $iduser);
+        return $db->resultSet();
+    }
+
+    public function shareProfileWith($perfil, $iduser)
+    {
+        $db = new \Common\Database;
+        $db->query("INSERT INTO perfil_usuarios_compartir VALUES (DEFAULT, :id_perfil, :id_usuario)");
+        $db->bind(':id_perfil', $perfil);
+        $db->bind(':id_usuario', $iduser);
+        return $db->execute();
+    }
+
+    public function emailExists($email)
+    {
+        $db = new \Common\Database;
+        $db->query("SELECT id_usuario FROM usuario WHERE email = :email");
+        $db->bind(':email', $email);
+        return $db->getResult();
+    }
 }
 ?>
