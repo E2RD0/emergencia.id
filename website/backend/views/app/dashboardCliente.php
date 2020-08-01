@@ -32,15 +32,15 @@ template::headerSite('Dashboard del cliente');
                                 <p class="card-text" v-if="item.date_part === null">Complete la información.</p>
                                 <p class="card-text" v-else>{{item.date_part }} Años, {{item.nombre}}, {{item.ciudad}}</p>
                                 <div class="d-flex flex-column d-sm-block">
-                                    <a @click="redirectToEdit(item.id_perfil_medico)" class="color-text text-link mr-4 mb-3">
-                                        <i class="far fa-pencil mr-2"></i>
+                                    <a @click="redirectToEdit(item.id_perfil_medico)" class="color-text text-link mr-4 mb-3" style="cursor: pointer;">
+                                        <i class="far fa-pencil mr-2" style="cursor: pointer"></i>
                                         Editar</a>
                                     <a href="#" class="color-text text-link mr-4 mb-3"><i class="far fa-clone mr-2"></i>
                                         Duplicar</a>
                                     <a href="#" class="color-text text-link mr-4 mb-3" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,5"><i class="fas fa-ellipsis-h"></i></a>
                                     <div class="dropdown-menu profile-more-options" aria-labelledby="dropdownMenuOffset">
                                         <a class="dropdown-item mb-1" href="#"><i class="far fa-address-card mr-2"></i>
-                                            Targeta QR</a>
+                                            Tarjeta QR</a>
                                         <a class="dropdown-item mb-1" href="#"><i class="far fa-arrow-alt-down mr-2"></i>
                                             Descargar PDF</a>
                                         <a @click="getShares('id_perfil_medico', item.id_perfil_medico)" class="dropdown-item mb-1" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#compartirUsuarios"><i class="far fa-share-square mr-2"></i> Compartir</a>
@@ -175,7 +175,7 @@ template::headerSite('Dashboard del cliente');
         </div> -->
 
         <!-- modal compartir perfil con usuario -->
-        <div class="modal fade" id="compartirUsuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" ref="shareModal" id="compartirUsuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header  border-0">
@@ -190,23 +190,25 @@ template::headerSite('Dashboard del cliente');
                         <p class="card-text"><small class="text-muted">Correo electrónico del usuario a compartir</small>
                         </p>
                         <div class="input-group mb-4">
-                            <input class="textfield" type="text" class="form-control" id="email" aria-describedby="basic-addon3" ref="email">
+                            <input class="textfield" type="email" class="form-control" id="email" aria-describedby="basic-addon3" ref="email">
                             <div class="line"></div>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <button @click="shareProfileWith()" type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;">Invitar</button>
+                        <div class="d-flex row mb-4">
+                            <div class="col-9">
+                                <p class="text-left pl-3 mt-0 mr-auto" :class="textColor">{{sharingStatus}}</p>
+                            </div>
+                            <div class="col-3 text-right">
+                                <button @click="shareProfileWith()" type="button" class="btn" style="font-weight: 600;color:black;border-color: #DDE3F0;">Invitar</button>
+                            </div>
                         </div>
                         <div>
                             <p class="card-text" class="mb-3"><small class="text-muted">Gestiona quién tiene acceso</small></p>
-                            <div class="overflow-auto d-flex align-items-center justify-content-center" style="height:130px; max-height:130px;">
-                                <div v-if="!sharedWith.length">
-                                    <div v-html="loading"></div>
-                                </div>
-                                <div v-else="sharedWith.length" v-cloak id="users" class="d-flex justify-content-between px-4" v-for="user in sharedWith">
-                                    <p>{{user.nombres}}{{user.apellidos}}</p>
+                            <div :class="'overflow-auto' + upperSpace" style="height:130px; max-height:130px;">
+                                <div class="d-flex justify-content-center" v-if="!sharedWith.length" v-html="loading"></div>
+                                <div v-else="sharedWith.length" v-cloak id="users" class="p-4 d-flex justify-content-between sharedProfileUser" v-for="user in sharedWith">
+                                    <p>{{user.nombres}} {{user.apellidos}}</p>
                                     <p class="mr-5" style="color:grey">{{user.email}}</p>
-                                    <i @click="deleteSharing(user.id_usuario)" class="far fa-trash mt-1" style="color: grey"></i>
-                                    <hr>
+                                    <i @click="deleteSharing('id_usuario', user.id_usuario)" class="far fa-trash mt-1 text-link" style="color: grey; cursor: pointer;"></i>
                                 </div>
                             </div>
                         </div>

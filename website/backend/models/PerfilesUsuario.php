@@ -60,8 +60,8 @@ class PerfilesUsuario
     {
         $db = new \Common\Database;
         $db->query("SELECT id_perfil_medico FROM perfil_medico WHERE id_perfil_medico = :id_perfil AND id_usuario = :id_usuario");
-        $db->bind(':id_perfil', $id_usuario);
-        $db->bind(':id_usuario', $id_perfil);
+        $db->bind(':id_perfil', $id_perfil);
+        $db->bind(':id_usuario', $id_usuario);
         return boolval($db->rowCount());
     }
 
@@ -91,27 +91,26 @@ class PerfilesUsuario
         return boolval($db->rowCount());
     }
 
-    public function getUsersSharedWith($perfil, $iduser)
+    public function getUsersSharedWith($perfil)
     {
         $db = new \Common\Database;
-        $db->query("SELECT
-                        usuario.id_usuario,
-                        perfil_medico.nombres,
-                        perfil_medico.apellidos,
-                        usuario.email
-                    FROM
-                        perfil_usuarios_compartir
-                        JOIN perfil_medico ON perfil_medico.id_perfil_medico = perfil_usuarios_compartir.id_perfil_medico
-                        JOIN usuario ON usuario.id_usuario = perfil_medico.id_usuario
-                    WHERE
-                        perfil_usuarios_compartir.id_perfil_medico = :id_perfil
-                        AND perfil_usuarios_compartir.id_usuario = :id_usuario
-                    ORDER BY
-                        perfil_usuarios_compartir.id_perfil_medico ASC"
-        );
+        $db->query("SELECT perfil_usuarios_compartir.id_usuario, split_part(perfil_medico.nombres, ' ', 1) as nombres, split_part(perfil_medico.apellidos, ' ', 1) as apellidos, usuario.email
+        FROM perfil_usuarios_compartir
+        JOIN usuario ON usuario.id_usuario = perfil_usuarios_compartir.id_usuario
+        JOIN perfil_medico ON perfil_medico.id_perfil_medico = usuario.id_perfil_medico
+        WHERE perfil_usuarios_compartir.id_perfil_medico = :id_perfil
+        ORDER BY perfil_usuarios_compartir.id_usuarios_compartir ASC");
+        $db->bind(':id_perfil', $perfil);
+        return $db->resultSet();
+    }
+
+    public function alreadySharingWith($perfil, $iduser)
+    {
+        $db = new \Common\Database;
+        $db->query("SELECT id_usuarios_compartir FROM perfil_usuarios_compartir WHERE id_perfil_medico = :id_perfil AND id_usuario = :id_usuario");
         $db->bind(':id_perfil', $perfil);
         $db->bind(':id_usuario', $iduser);
-        return $db->resultSet();
+        return boolval($db->rowCount());
     }
 
     public function shareProfileWith($perfil, $iduser)

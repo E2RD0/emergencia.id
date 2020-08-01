@@ -37,7 +37,7 @@ class ProfileUser extends \Common\Controller
         $id_usuario = intval($data['id_usuario']);
         $userProfiles = new PerfilesUsuario;
 
-        if ($userProfiles->setId_Perfiles_Usuario($id_perfil) && $userProfiles->profileExists($id_perfil, $id_usuario)) {
+        if ($userProfiles->setId_Perfiles_Usuario($id_perfil) && $userProfiles->profileExists($id_usuario, $id_perfil)) {
             if ($userProfiles->deleteProfile($id_perfil)) {
                 $result['status'] = 1;
                 $result['message'] = 'Perfil médico eliminado correctamente';
@@ -57,7 +57,7 @@ class ProfileUser extends \Common\Controller
         $id_usuario = intval($data['id_usuario']);
         $userProfiles = new PerfilesUsuario;
 
-        if ($userProfiles->setId_Perfiles_Usuario($id_perfil) && $userProfiles->sharedProfileExists($id_perfil, $id_usuario)) {
+        if ($userProfiles->sharedProfileExists($id_perfil, $id_usuario)) {
             if ($userProfiles->deleteSharedProfile($id_perfil, $id_usuario)) {
                 $result['status'] = 1;
                 $result['message'] = 'El perfil ya no está compartido contigo';
@@ -77,8 +77,8 @@ class ProfileUser extends \Common\Controller
         $id_usuario = intval($data['id_usuario']);
         $userProfiles = new PerfilesUsuario;
 
-        if ($userProfiles->setId_Perfiles_Usuario($id_perfil) && $userProfiles->profileExists($id_perfil, $id_usuario)) {
-            if ($result['dataset'] = $userProfiles->getUsersSharedWith($id_perfil, $id_usuario)) {
+        if ($userProfiles->profileExists($id_usuario, $id_perfil)) {
+            if ($result['dataset'] = $userProfiles->getUsersSharedWith($id_perfil)) {
                 $result['status'] = 1;
                 $result['message'] = 'Los usuarios se han cargado correctamente';
             } else {
@@ -88,31 +88,60 @@ class ProfileUser extends \Common\Controller
         } else {
             $result['exception'] = 'Perfil médico inexistente';
         }
+
         return $result;
     }
 
     public function shareProfileWith($data, $result)
     {
-        $id_email = intval($data['email']);
+        $email = $data['email'];
         $id_perfil = intval($data['id_perfil_medico']);
-        //$id_usuario = intval($data['id_usuario']);
+        $id_usuario_propio = intval($data['id_usuario']);
         $userProfiles = new PerfilesUsuario;
 
-        if ($id_usuario = $userProfiles->emailExists($id_email)){
-            if ($userProfiles->setId_Perfiles_Usuario($id_perfil) && $userProfiles->profileExists($id_perfil, $id_usuario)) {
-                if ($userProfiles->shareProfileWith($id_perfil, $id_usuario)) {
-                    $result['status'] = 1;
-                    $result['message'] = 'El perfil se ha compartido correctamente con el usuario';
+        if ($id_usuario = $userProfiles->emailExists($email)){
+            if ($userProfiles->profileExists($id_usuario_propio, $id_perfil)) {
+                if (!$userProfiles->alreadySharingWith($id_perfil, $id_usuario->id_usuario)){
+                    if ($userProfiles->shareProfileWith($id_perfil, $id_usuario->id_usuario)) {
+                        $result['status'] = 1;
+                        $result['message'] = 'El perfil se ha compartido correctamente.';
+                    } else {
+                        $result['exception'] = 'Hubo un error al compartir el perfil';
+                        $result['status'] = -1;
+                    }
                 } else {
-                    $result['exception'] = 'Hubo un error al compartir el perfil';
-                    $result['status'] = -1;
+                    $result['exception'] = 'Ya compartes tu perfil con ese usuario.';
+                    $result['status'] = 0;
                 }
             } else {
                 $result['exception'] = 'Perfil médico inexistente';
+                $result['status'] = -1;
             }
         } else {
             $result['exception'] = 'No existe el correo.';
             $result['status'] = -1;
+        }
+
+        return $result;
+    }
+
+    public function deleteSharedAccess($data, $result)
+    {
+        $id_perfil = intval($data['id_perfil_medico']);
+        $id_usuario = intval($data['id_usuario']);
+        $userProfiles = new PerfilesUsuario;
+
+        if ($userProfiles->alreadySharingWith($id_perfil, $id_usuario)){
+            if ($userProfiles->deleteSharedProfile($id_perfil, $id_usuario)) {
+                $result['status'] = 1;
+                $result['message'] = 'Se ha dejado de compartir el perfil con el usuario correctamente.';
+            } else {
+                $result['exception'] = 'Hubo un error al dejar de compartir el perfil';
+                $result['status'] = -1;
+            }
+        } else {
+            $result['exception'] = 'No compartes tu perfil con ese usuario.';
+            $result['status'] = 0;
         }
 
         return $result;

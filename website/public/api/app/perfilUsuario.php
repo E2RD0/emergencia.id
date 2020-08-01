@@ -29,6 +29,9 @@ if (isset($_GET['action'])) {
             case 'shareProfileWith':
                 $result = $controller->shareProfileWith(array_merge($_POST,array('id_usuario'=>$_SESSION['user_id'])), $result);
                 break;
+            case 'deleteSharedAccess':
+                $result = $controller->deleteSharedAccess($_POST, $result);
+                break;
             default:
                 \Common\Core::http404();
         }
