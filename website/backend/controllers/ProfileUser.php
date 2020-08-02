@@ -100,21 +100,26 @@ class ProfileUser extends \Common\Controller
         $userProfiles = new PerfilesUsuario;
 
         if ($id_usuario = $userProfiles->emailExists($email)){
-            if ($userProfiles->profileExists($id_usuario_propio, $id_perfil)) {
-                if (!$userProfiles->alreadySharingWith($id_perfil, $id_usuario->id_usuario)){
-                    if ($userProfiles->shareProfileWith($id_perfil, $id_usuario->id_usuario)) {
-                        $result['status'] = 1;
-                        $result['message'] = 'El perfil se ha compartido correctamente.';
+            if ($id_usuario->id_usuario != $id_usuario_propio){
+                if ($userProfiles->profileExists($id_usuario_propio, $id_perfil)) {
+                    if (!$userProfiles->alreadySharingWith($id_perfil, $id_usuario->id_usuario)){
+                        if ($userProfiles->shareProfileWith($id_perfil, $id_usuario->id_usuario)) {
+                            $result['status'] = 1;
+                            $result['message'] = 'El perfil se ha compartido correctamente.';
+                        } else {
+                            $result['exception'] = 'Hubo un error al compartir el perfil';
+                            $result['status'] = -1;
+                        }
                     } else {
-                        $result['exception'] = 'Hubo un error al compartir el perfil';
-                        $result['status'] = -1;
+                        $result['exception'] = 'Ya compartes tu perfil con ese usuario.';
+                        $result['status'] = 0;
                     }
                 } else {
-                    $result['exception'] = 'Ya compartes tu perfil con ese usuario.';
-                    $result['status'] = 0;
+                    $result['exception'] = 'Perfil médico inexistente';
+                    $result['status'] = -1;
                 }
             } else {
-                $result['exception'] = 'Perfil médico inexistente';
+                $result['exception'] = 'No puedes compartir el perfil a ti mismo.';
                 $result['status'] = -1;
             }
         } else {

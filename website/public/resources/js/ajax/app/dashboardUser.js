@@ -160,6 +160,10 @@ const dashboardUser = new Vue({
                                 .indexOf(this.toSend.id_usuario),
                             1
                         );
+                        if (this.sharedWith.length == 0){
+                            this.clearShared();
+                            this.loading = 'No compartes tu perfil con nadie.';
+                        }
                         swal(1, jsonResponse.message, false, 0);
                     } else swal(2, jsonResponse.exception, false, 0);
                 });
