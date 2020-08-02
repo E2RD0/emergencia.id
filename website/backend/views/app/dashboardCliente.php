@@ -104,7 +104,7 @@ template::headerSite('Dashboard del cliente');
                                     <div class="dropdown-menu profile-more-options" aria-labelledby="dropdownMenuOffset">
                                         <a class="dropdown-item mb-1" href="#"><i class="far fa-arrow-alt-down mr-2"></i>
                                             Descargar PDF</a>
-                                        <a @click="encapsulateId(item.id_perfil_medico)" class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfilcompartido"><i class="far fa-trash mr-2"></i> Eliminar</a>
+                                        <a @click="encapsulateId('id_perfil_medico', item.id_perfil_medico)" class="dropdown-item" href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminarperfilcompartido"><i class="far fa-trash mr-2"></i> Eliminar</a>
                                     </div>
                                 </div>
                             </div>
