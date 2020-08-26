@@ -32,7 +32,7 @@ function submit(){
         url: API_PERFIL + 'newUser',
         data: dataObject,
         beforeSend: function() {
-            $("#tel-submit")[0].innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando';
+            $("#tel-submit")[0].innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading';
         },
         complete: function() {
             $("#tel-submit")[0].innerHTML = 'Continuar';

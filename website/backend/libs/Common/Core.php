@@ -81,7 +81,7 @@ class Core
 
     public static function http404(){
         http_response_code(404);
-        echo "404 no encontrado";
+        echo "404 not found";
         die();
     }
 }

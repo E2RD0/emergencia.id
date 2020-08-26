@@ -147,7 +147,7 @@ function updatePassword(form, submitButton)
 }
 
 function deleteUser() {
-    swal(4, '¿Estás seguro de que quieres eliminar tu cuenta?', false, 0, true, out);
+    swal(4, 'Are you sure you want to delete your account?', false, 0, true, out);
 
     function out() {
         $.ajax({

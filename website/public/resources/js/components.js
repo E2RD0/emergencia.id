@@ -19,7 +19,7 @@ function swal(type, text, url = false, timer=0, allowCancel = false, callback = 
     var result = false;
     switch (type) {
         case 1:
-            title = "Éxito";
+            title = "Success";
             icon = "success";
             break;
         case 2:
@@ -27,15 +27,15 @@ function swal(type, text, url = false, timer=0, allowCancel = false, callback = 
             icon = "error";
             break;
         case 3:
-            title = "Advertencia";
+            title = "Warning";
             icon = "warning";
             break;
         case 4:
-            title = "Confirmar";
+            title = "Confirm";
             icon = "question";
             break;
         default:
-            title = "Aviso";
+            title = "Notice";
             icon = "info";
     }
     Swal.fire({
@@ -44,7 +44,7 @@ function swal(type, text, url = false, timer=0, allowCancel = false, callback = 
         icon: icon,
         timer: timer,
         confirmButtonText: 'OK',
-        cancelButtonText: 'Cancelar',
+        cancelButtonText: 'Cancel',
         showCancelButton: allowCancel,
         allowOutsideClick: allowCancel,
         allowEscapeKey: allowCancel
@@ -75,7 +75,7 @@ function readRows( api , el=false, action = 'show', fun=false)
     function after(){}
     if(el){
         function before() {
-            el.innerHTML = '<div class="spinner-grow" role="status"><span class="sr-only">Cargando...</span></div>';
+            el.innerHTML = '<div class="spinner-grow" role="status"><span class="sr-only">Loading...</span></div>';
         }
         function after() {
             el.innerHTML = '';
@@ -116,7 +116,7 @@ function confirmDelete( api, identifier, el=false, text=false)
         }
         function before() {
             if(buttons)
-                buttons.innerHTML = '<div class="spinner-grow" role="status"><span class="sr-only">Cargando...</span></div>';
+                buttons.innerHTML = '<div class="spinner-grow" role="status"><span class="sr-only">Loading...</span></div>';
         }
         function after() {
             if(buttons){
@@ -126,7 +126,7 @@ function confirmDelete( api, identifier, el=false, text=false)
             }
         }
     }
-    swal(4, (text ? text : '¿Desea eliminar el registro?'), false, 0, true, del);
+    swal(4, (text ? text : 'Do you want to delete this row?'), false, 0, true, del);
     function del() {
         $.ajax({
             type: 'post',
@@ -163,7 +163,7 @@ function saveRow( api, action, form, submitButton, checkErrors = [], id=0, compl
         data: $(form).serialize()+"&id="+id,
         dataType: 'json',
         beforeSend: function() {
-            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...';
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
         }
     })
     .done(function( response ) {

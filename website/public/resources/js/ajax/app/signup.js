@@ -7,10 +7,10 @@ $( '#register-form' ).submit(function( event ) {
         data: $( '#register-form' ).serialize(),
         dataType: 'json',
         beforeSend: function() {
-            $("#register-submit")[0].innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando';
+            $("#register-submit")[0].innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading';
         },
         complete: function() {
-            $("#register-submit")[0].innerHTML = 'Continuar';
+            $("#register-submit")[0].innerHTML = 'Continue';
         }
     })
     .done(function( response ) {

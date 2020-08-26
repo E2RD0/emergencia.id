@@ -96,19 +96,19 @@ class Database
     {
         switch ($code) {
             case '7':
-                self::$exception = 'Existe un problema al conectar con el servidor';
+                self::$exception = 'There is a problem connecting to the server';
                 break;
             case '42703':
-                self::$exception = 'Nombre de campo desconocido';
+                self::$exception = 'Unknown fieldname';
                 break;
             case '23505':
-                self::$exception = 'Dato duplicado, no se puede guardar';
+                self::$exception = 'Duplicated field cannot be saved';
                 break;
             case '42P01':
-                self::$exception = 'Nombre de tabla desconocido';
+                self::$exception = 'Unknown table\'s name';
                 break;
             case '1':
-                self::$exception = 'Registro ocupado, no se puede eliminar';
+                self::$exception = 'Occupied registry cannot be deleted';
                 break;
             default:
                 self::$exception = $message;

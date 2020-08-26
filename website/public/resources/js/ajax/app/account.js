@@ -1,7 +1,7 @@
 const API = HOME_PATH + 'api/app/user.php?action=';
 
 function logout() {
-    swal(4, '¿Estás seguro de que quieres cerrar sesión?', false, 0, true, out);
+    swal(4, 'Are you sure you want to log out from your account?', false, 0, true, out);
 
     function out() {
         $.ajax({

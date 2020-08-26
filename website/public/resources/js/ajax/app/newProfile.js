@@ -539,7 +539,7 @@ const newprofile = new Vue({
             this.idToDeleteContactDoctor.id = p
         },
         deleteContact: function(parameter) {
-            this.idToDeleteContact.text = "Cargando..."
+            this.idToDeleteContact.text = "Loading..."
             var formData = this.toFormData(this.idToDeleteContact);
             axios
                 .post(endPoint + "deleteContact",
@@ -558,7 +558,7 @@ const newprofile = new Vue({
                 );
         },
         deleteContactDoctor: function(parameter) {
-            this.idToDeleteContactDoctor.text = "Cargando..."
+            this.idToDeleteContactDoctor.text = "Loading..."
             var formData = this.toFormData(this.idToDeleteContactDoctor);
             axios
                 .post(endPoint + "deleteContactDoctor",

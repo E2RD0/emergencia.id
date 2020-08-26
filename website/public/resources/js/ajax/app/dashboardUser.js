@@ -33,7 +33,7 @@ const dashboardUser = new Vue({
     methods: {
 
         createNewProfile: function () {
-            this.newProfile = "Cargando...";
+            this.newProfile = "Loading...";
             axios.get(endPoint + "newProfile").then((response) => {
                 this.newProfile = "Nuevo perfil";
                 window.location =

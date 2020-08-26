@@ -14,5 +14,5 @@ define('DB_NAME', getenv('DB_NAME'));
 define('HOME_PATH', getenv('HOME_PATH'));
 define('HOST_NAME', getenv('HOST_NAME'));
 
-Valitron\Validator::langDir(__DIR__.'/libs/vendor/vlucas/valitron/lang');
-Valitron\Validator::lang('es');
+//Valitron\Validator::langDir(__DIR__.'/libs/vendor/vlucas/valitron/lang');
+//Valitron\Validator::lang('es');
