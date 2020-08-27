@@ -6,14 +6,14 @@ const dashboardUser = new Vue({
     data() {
         return {
             redirect: HOST_NAME + HOME_PATH + "app/profile/edit/",
-            newProfile: "Nuevo perfil",
+            newProfile: "New profile",
             show: [],
             ShowShared: [],
             pag: 1,
             NUM_RESULTS: 3,
             pagC: 1,
             NUM_RESULTSC: 3,
-            deleteText: "Eliminar",
+            deleteText: "Delete",
             toSend: [],
             loading:
                 '<div><i class="far fa-spinner-third icon-load primary-cl"></i></div>',
@@ -35,7 +35,7 @@ const dashboardUser = new Vue({
         createNewProfile: function () {
             this.newProfile = "Loading...";
             axios.get(endPoint + "newProfile").then((response) => {
-                this.newProfile = "Nuevo perfil";
+                this.newProfile = "New profile";
                 window.location =
                     this.redirect + response.data.id_perfil_medico;
                 console.log(response.data[0].id_perfil_medico);
@@ -72,7 +72,7 @@ const dashboardUser = new Vue({
 
         deleteProfile: function (type) {
             console.log(this.toSend);
-            this.deleteText = "Eliminando...";
+            this.deleteText = "Deleting...";
             let formData = this.toFormData(this.toSend);
             console.log(formData);
             axios
@@ -103,7 +103,7 @@ const dashboardUser = new Vue({
                         swal(1, jsonResponse.message, false, 0);
                     } else swal(2, jsonResponse.exception, false, 0);
 
-                    this.deleteText = "Eliminar";
+                    this.deleteText = "Delete";
                     this.toSend = {};
                     $(modal).modal("hide");
                 });
@@ -162,7 +162,7 @@ const dashboardUser = new Vue({
                         );
                         if (this.sharedWith.length == 0){
                             this.clearShared();
-                            this.loading = 'No compartes tu perfil con nadie.';
+                            this.loading = jsonResponse.message;
                         }
                         swal(1, jsonResponse.message, false, 0);
                     } else swal(2, jsonResponse.exception, false, 0);
@@ -179,11 +179,11 @@ const dashboardUser = new Vue({
                 } else {
                     this.textColor = "text-danger";
                     this.sharingStatus =
-                        "Ingrese un correo electrónico válido.";
+                        "Introduce a valid email address.";
                 }
             } else {
                 this.textColor = "text-danger";
-                this.sharingStatus = "Por favor rellena el campo.";
+                this.sharingStatus = "Please, fill the field.";
             }
             return false;
         },

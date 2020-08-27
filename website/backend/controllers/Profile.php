@@ -38,7 +38,7 @@ class Profile extends \Common\Controller
                     if ($rUsuario && $rNombres && $rApellidos && $rTelefono) {
                         $_SESSION['user_profile'] = $idPerfil;
                         $result['status'] = 1;
-                        $result['message'] = 'Usuario registrado correctamente';
+                        $result['message'] = 'User successfully registered.';
                         $result['id_perfil_medico'] = $idPerfil;
                     }
                     else {
@@ -51,13 +51,13 @@ class Profile extends \Common\Controller
                 }
             } else {
                 $result['status'] = 0;
-                $result['exception'] = 'Error en uno de los campos';
+                $result['exception'] = 'Error in one of the fields';
                 $result['errors'] = $errors;
             }
         }
         else {
             $result['status'] = -2;
-            $result['exception'] = 'Ya existe un perfil médico. Redirigiendo a perfiles...';
+            $result['exception'] = 'A medical profile already exists. Redirecting to profiles...';
         }
         return $result;
     }
@@ -67,7 +67,7 @@ class Profile extends \Common\Controller
         if ($result['dataset'] = $this->usersModel->getPerfilesUsuario($_SESSION['user_id'])) {
             $result['status'] = 1;
         } else {
-            $result['exception'] = 'No hay ningun perfil médico';
+            $result['exception'] = 'There is no medical profile';
         }
         return $result;
     }

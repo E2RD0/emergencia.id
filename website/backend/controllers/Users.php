@@ -101,7 +101,7 @@ class Users extends \Common\Controller
                 if ($user->deleteUser($id)) {
                     session_destroy();
                     $result['status'] = 1;
-                    $result['message'] = 'User deleted succesfully';
+                    $result['message'] = 'User deleted successfully';
                 } else {
                     $result['exception'] = \Common\Database::$exception;
                 }

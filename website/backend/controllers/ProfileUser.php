@@ -40,13 +40,13 @@ class ProfileUser extends \Common\Controller
         if ($userProfiles->setId_Perfiles_Usuario($id_perfil) && $userProfiles->profileExists($id_usuario, $id_perfil)) {
             if ($userProfiles->deleteProfile($id_perfil)) {
                 $result['status'] = 1;
-                $result['message'] = 'Perfil médico eliminado correctamente';
+                $result['message'] = 'Medical profile successfully deleted';
             } else {
                 $result['exception'] = \Common\Database::$exception;
                 $result['status'] = -1;
             }
         } else {
-            $result['exception'] = 'Perfil médico inexistente';
+            $result['exception'] = 'Inexistent medical profile';
         }
         return $result;
     }
@@ -60,13 +60,13 @@ class ProfileUser extends \Common\Controller
         if ($userProfiles->sharedProfileExists($id_perfil, $id_usuario)) {
             if ($userProfiles->deleteSharedProfile($id_perfil, $id_usuario)) {
                 $result['status'] = 1;
-                $result['message'] = 'El perfil ya no está compartido contigo';
+                $result['message'] = 'The profile is no longer shared with you';
             } else {
                 $result['exception'] = \Common\Database::$exception;
                 $result['status'] = -1;
             }
         } else {
-            $result['exception'] = 'Perfil médico inexistente';
+            $result['exception'] = 'Inexistent medical profile';
         }
         return $result;
     }
@@ -80,13 +80,13 @@ class ProfileUser extends \Common\Controller
         if ($userProfiles->profileExists($id_usuario, $id_perfil)) {
             if ($result['dataset'] = $userProfiles->getUsersSharedWith($id_perfil)) {
                 $result['status'] = 1;
-                $result['message'] = 'Los usuarios se han cargado correctamente';
+                $result['message'] = 'The users have been loaded successfully';
             } else {
-                $result['message'] = 'No compartes tu perfil con nadie';
+                $result['message'] = 'You don\'t share you profile with no one';
                 $result['status'] = 0;
             }
         } else {
-            $result['exception'] = 'Perfil médico inexistente';
+            $result['exception'] = 'Inexistent medical profile';
         }
 
         return $result;
@@ -105,25 +105,25 @@ class ProfileUser extends \Common\Controller
                     if (!$userProfiles->alreadySharingWith($id_perfil, $id_usuario->id_usuario)){
                         if ($userProfiles->shareProfileWith($id_perfil, $id_usuario->id_usuario)) {
                             $result['status'] = 1;
-                            $result['message'] = 'El perfil se ha compartido correctamente.';
+                            $result['message'] = 'The profile has been shared successfully';
                         } else {
-                            $result['exception'] = 'Hubo un error al compartir el perfil';
+                            $result['exception'] = 'Error while sharing your profile';
                             $result['status'] = -1;
                         }
                     } else {
-                        $result['exception'] = 'Ya compartes tu perfil con ese usuario.';
+                        $result['exception'] = 'Already sharing with this user';
                         $result['status'] = 0;
                     }
                 } else {
-                    $result['exception'] = 'Perfil médico inexistente';
+                    $result['exception'] = 'Inexistent medical profile';
                     $result['status'] = -1;
                 }
             } else {
-                $result['exception'] = 'No puedes compartir el perfil a ti mismo.';
+                $result['exception'] = 'You can\'t share your profile with yourself';
                 $result['status'] = -1;
             }
         } else {
-            $result['exception'] = 'No existe el correo.';
+            $result['exception'] = 'The email does\' exists';
             $result['status'] = -1;
         }
 
@@ -139,13 +139,13 @@ class ProfileUser extends \Common\Controller
         if ($userProfiles->alreadySharingWith($id_perfil, $id_usuario)){
             if ($userProfiles->deleteSharedProfile($id_perfil, $id_usuario)) {
                 $result['status'] = 1;
-                $result['message'] = 'Se ha dejado de compartir el perfil con el usuario correctamente.';
+                $result['message'] = 'The profile is no longer shared with the user';
             } else {
-                $result['exception'] = 'Hubo un error al dejar de compartir el perfil';
+                $result['exception'] = 'There was an error stopping sharing the profile with the user';
                 $result['status'] = -1;
             }
         } else {
-            $result['exception'] = 'No compartes tu perfil con ese usuario.';
+            $result['exception'] = 'You don\'t share the profile with this user.';
             $result['status'] = 0;
         }
 
