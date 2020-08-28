@@ -40,7 +40,7 @@ template::headerCreate('Nuevo perfil');
                 </div>
             </div>
             <div class="mt-4">
-                <h5>Información personal</h5>
+                <h5>Personal information</h5>
                 <div class="row mt-3">
                     <div class="col-lg-6">
                         <div class="form-group">
