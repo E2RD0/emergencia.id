@@ -65,7 +65,7 @@ const newprofile = new Vue({
                 list: true
             },
             messagesError: {
-                nombreUsuario: "Nombres"
+                nombreUsuario: "Name"
             },
             addNewContactForm: {
                 name: "",

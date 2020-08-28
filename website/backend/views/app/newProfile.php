@@ -17,7 +17,7 @@ template::headerCreate('Nuevo perfil');
         </div>
         <div class="container">
             <div class="text-center interline-header">
-                <h3>{{dataProfile.name == '' ? 'Nuevo Perfil Medico' : dataProfile.name + ' ' + dataProfile.lastName}}
+                <h3>{{dataProfile.name == '' ? 'New Medical Profile' : dataProfile.name + ' ' + dataProfile.lastName}}
                 </h3>
                 <p class="text-target">{{calcDate}} {{dataProfile.direction == '' ? '' : dataProfile.direction + '.'}}
                 </p>
@@ -27,14 +27,12 @@ template::headerCreate('Nuevo perfil');
                         <div class="checked">
                             <i @click="debounceSearch" class="far fa-check"></i>
                         </div>
-                        <div @click="debounceSearch" class="text-target">Permitir que los paramédicos puedan buscar este
-                            perfil</div>
+                        <div @click="debounceSearch" class="text-target">Allow paramedics to search this profile.</div>
                     </label>
                 </div>
             </div>
             <div class="mt-2">
-                <p><span :class="calcProgressColorText">{{calcProgress}}% </span><span class="text-target">del perfil
-                        completado</span>
+                <p><span :class="calcProgressColorText">{{calcProgress}}% </span><span class="text-target">of the completed profile</span>
                 </p>
                 <div class="progress" style="height:0.2rem">
                     <div :class="calcProgressColor" role="progressbar" :style="'width:' + calcProgress + '%'"
@@ -46,7 +44,7 @@ template::headerCreate('Nuevo perfil');
                 <div class="row mt-3">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target">Fecha de nacimiento</label>
+                            <label for="exampleInputEmail1" class="text-target">Date of birth</label>
                             <input id="dateToChoose" @input="debounceSearch" v-model="dataProfile.date" tabindex="1"
                                 class="input-date-picker" type="date" aria-describedby="basic-addon3">
                         </div>
@@ -57,21 +55,21 @@ template::headerCreate('Nuevo perfil');
                             <!-- Perfecto!vaya cerrare la conexion en fb seguimos mucahs gracias-->
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target">Tipo de sangre</label>
+                            <label for="exampleInputEmail1" class="text-target">Blood type</label>
                             <!-- <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3"> -->
                             <select @input="debounceSearch" v-model="dataProfile.selectedIdBlood" tabindex="5"
                                 class="textfield">
-                                <option selected value="Seleccionar">Seleccionar</option>
+                                <option selected value="Seleccionar">Select</option>
                                 <option v-for="item in blood" :value="item.id_tipo_sangre">{{item.tipo}}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target">Documento de identidad</label>
+                            <label for="exampleInputEmail1" class="text-target">Identification document</label>
                             <input onkeypress="return (event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode)));" @input="debounceSearch" v-model="dataProfile.document" tabindex="7" class="textfield"
                                 type="text" class="form-control" aria-describedby="basic-addon3">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target">Peso</label>
+                            <label for="exampleInputEmail1" class="text-target">Weight</label>
                             <input placeholder="Ej: 150 lbs" @input="debounceSearch" v-model="dataProfile.weight"
                                 tabindex="9" class="textfield" type="text" class="form-control"
                                 aria-describedby="basic-addon3">
@@ -85,66 +83,66 @@ template::headerCreate('Nuevo perfil');
                                 </div>
                                 <div class="text-upload">
                                     <input style="display: none" ref="fileInput" type="file" @change="onFileSelected">
-                                    <span @input="debounceSearch" @click="$refs.fileInput.click()">Subir imagen</span>
+                                    <span @input="debounceSearch" @click="$refs.fileInput.click()">Upload image</span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target mt-1">Apellidos</label>
+                            <label for="exampleInputEmail1" class="text-target mt-1">Surname</label>
                             <input onkeypress="return soloLetras(event)" @input="debounceSearch" tabindex="4" class="textfield" v-model="dataProfile.lastName"
                                 type="text" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target">Donante de organos</label>
+                            <label for="exampleInputEmail1" class="text-target">Organ donor</label>
                             <select @input="debounceSearch" v-model="dataProfile.donor" tabindex="8" class="textfield">
                                 <option v-for="item in options" :value="item.value">{{item.text}}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target">Estado ISSS</label>
+                            <label for="exampleInputEmail1" class="text-target">ISSS status</label>
                             <select @input="debounceSearch" v-model="dataProfile.isssEstatusSelected" tabindex="5"
                                 class="textfield">
-                                <option selected value="Seleccionar">Seleccionar</option>
+                                <option selected value="Seleccionar">Select</option>
                                 <option v-for="item in issEstatus" :value="item.id_estado_isss">{{item.estado}}</option>
                             </select>
                             <!-- <input class="textfield" type="text" class="form-control"> -->
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target">Estatura</label>
+                            <label for="exampleInputEmail1" class="text-target">Height</label>
                             <input placeholder="Ej: 1.80 cm" @input="debounceSearch" v-model="dataProfile.height"
                                 tabindex="10" class="textfield" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
 
-                <h5 class="mt-4">Ubicación</h5>
+                <h5 class="mt-4">Location</h5>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target">País</label>
+                            <label for="exampleInputEmail1" class="text-target">Country</label>
                             <select @input="debounceSearch" v-model="countrySelect" tabindex="5" class="textfield">
-                                <option selected value="Seleccionar">Seleccionar</option>
+                                <option selected value="Seleccionar">Select</option>
                                 <option v-for="item in countryList" :value="item.id_pais">{{item.nombre}}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target mt-1">Ciudad</label>
+                            <label for="exampleInputEmail1" class="text-target mt-1">City</label>
                             <input onkeypress="return soloLetras(event)" @input="debounceSearch" v-model="dataProfile.province" tabindex="14"
                                 class="textfield" type="text" class="form-control" aria-describedby="basic-addon3">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target">Estado/Provincia</label>
+                            <label for="exampleInputEmail1" class="text-target">State / Province</label>
                             <!-- <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3"> -->
                             <select @input="debounceSearch" v-model="dataProfile.city" tabindex="5" class="textfield">
-                                <option selected value="Seleccionar">Seleccionar</option>
+                                <option selected value="Seleccionar">Select</option>
                                 <option v-for="item in cityList" :value="item.id_pais_estado">{{item.nombre}}</option>
                             </select>
 
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-target mt-1">Dirección</label>
+                            <label for="exampleInputEmail1" class="text-target mt-1">Direction</label>
                             <input @input="debounceSearch" v-model="dataProfile.direction" tabindex="14"
                                 class="textfield" type="text" class="form-control" aria-describedby="basic-addon3">
                         </div>
@@ -152,9 +150,8 @@ template::headerCreate('Nuevo perfil');
                 </div>
 
                 <div class="perfil-contacto-emergencia">
-                    <h5 class="mt-4">Contactos de emergencia ({{addEmergencycontacts.length}})</h5>
-                    <p class="text-target">Ingresa a las personas que los paramédicos podrían contactar en caso de
-                        emergencia
+                    <h5 class="mt-4">Emergency contacts ({{addEmergencycontacts.length}})</h5>
+                    <p class="text-target">Enter people that paramedics could contact in an emergency.
                     </p>
 
                     <div class="emergency-contact mt-2" v-for="item in addEmergencycontacts">
@@ -189,13 +186,13 @@ template::headerCreate('Nuevo perfil');
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
-                                                            class="text-target">Nombre</label>
+                                                            class="text-target">Name</label>
                                                         <input v-model="item.nombre" tabindex="2" class="textfield"
                                                             type="text" aria-describedby="basic-addon3">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
-                                                            class="text-target">Teléfono</label>
+                                                            class="text-target">Telephone</label>
                                                         <input onkeypress="return (event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode)));" v-model="item.telefono" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
@@ -203,7 +200,7 @@ template::headerCreate('Nuevo perfil');
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
-                                                            class="text-target">Relación</label>
+                                                            class="text-target">Relationship</label>
                                                         <input v-model="item.relacion" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
@@ -217,7 +214,7 @@ template::headerCreate('Nuevo perfil');
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
-                                                            class="text-target">Dirección</label>
+                                                            class="text-target">Direction</label>
                                                         <input v-model="item.direccion" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
@@ -234,8 +231,8 @@ template::headerCreate('Nuevo perfil');
                     <div class="row">
                         <div class="mt-3 add-new-contact">
                             <a data-toggle="collapse" href="#addContact" data-toggle="collapse" aria-expanded="false"
-                                aria-controls="addContact"><i class="fas fa-plus icon-add-contact"></i> Nuevo
-                                contacto</a>
+                                aria-controls="addContact"><i class="fas fa-plus icon-add-contact"></i> New
+                                Contact</a>
                         </div>
                         <div class="addNewContactForm">
                             <!-- Contenido collapsable -->
@@ -244,31 +241,31 @@ template::headerCreate('Nuevo perfil');
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Nombre</label>
+                                                <label for="exampleInputEmail1" class="text-target">Name</label>
                                                 <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.name" tabindex="2" class="textfield"
                                                     type="text" aria-describedby="basic-addon3">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Teléfono</label>
+                                                <label for="exampleInputEmail1" class="text-target">Telephone</label>
                                                 <input onkeypress="return (event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode)));" v-model="addNewContactForm.telephone" class="textfield"
                                                     type="text" aria-describedby="basic-addon3">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Relación</label>
+                                                <label for="exampleInputEmail1" class="text-target">Relationship</label>
                                                 <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.relacion" class="textfield"
                                                     type="text" aria-describedby="basic-addon3">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Email</label>
+                                                <label for="exampleInputEmail1" class="text-target">E-mail</label>
                                                 <input v-model="addNewContactForm.email" class="textfield" type="text"
                                                     aria-describedby="basic-addon3">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Dirección</label>
+                                                <label for="exampleInputEmail1" class="text-target">Direction</label>
                                                 <input v-model="addNewContactForm.direction" class="textfield"
                                                     type="text" aria-describedby="basic-addon3">
                                             </div>
@@ -288,8 +285,8 @@ template::headerCreate('Nuevo perfil');
                 </div>
 
                 <div class="perfil-contacto-doctor">
-                    <h5 class="mt-4">Contactos doctor ({{getDoctorContact.length}})</h5>
-                    <p class="text-target">Ingresa los paramedicos que se podrían contactar en caso de emergencia.</p>
+                    <h5 class="mt-4">Doctor contacts ({{getDoctorContact.length}})</h5>
+                    <p class="text-target">Enter the paramedics who could be contacted in an emergency.</p>
 
                     <div class="emergency-contact mt-2" v-for="item in getDoctorContact">
                         <div>
@@ -322,13 +319,13 @@ template::headerCreate('Nuevo perfil');
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
-                                                            class="text-target">Nombre</label>
+                                                            class="text-target">Name</label>
                                                         <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.name" v-model="item.nombre" tabindex="2" class="textfield"
                                                             type="text" aria-describedby="basic-addon3">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
-                                                            class="text-target">Teléfono</label>
+                                                            class="text-target">Telephone</label>
                                                         <input onkeypress="return (event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode)));" v-model="item.telefono" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
@@ -336,7 +333,7 @@ template::headerCreate('Nuevo perfil');
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
-                                                            class="text-target">Especialidad</label>
+                                                            class="text-target">Specialty</label>
                                                         <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.name" v-model="item.especialidad" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
@@ -352,7 +349,7 @@ template::headerCreate('Nuevo perfil');
                     <div class="row">
                         <div class="mt-3 add-new-contact">
                             <a data-toggle="collapse" href="#addDoctor" data-toggle="collapse" aria-expanded="false"
-                                aria-controls="addDoctor"><i class="fas fa-plus icon-add-contact"></i> Nuevo contacto
+                                aria-controls="addDoctor"><i class="fas fa-plus icon-add-contact"></i> New contact
                                 doctor</a>
                         </div>
                         <div class="addNewContactForm">
@@ -362,19 +359,19 @@ template::headerCreate('Nuevo perfil');
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Nombre</label>
+                                                <label for="exampleInputEmail1" class="text-target">Name</label>
                                                 <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.name" v-model="addDoctorContact.nombre" tabindex="2" class="textfield"
                                                     type="text" aria-describedby="basic-addon3">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Teléfono</label>
+                                                <label for="exampleInputEmail1" class="text-target">Telephone</label>
                                                 <input onkeypress="return (event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode)));" v-model="addDoctorContact.telefono" class="textfield" type="text"
                                                     aria-describedby="basic-addon3">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Especialidad</label>
+                                                <label for="exampleInputEmail1" class="text-target">Specialty</label>
                                                 <input onkeypress="return soloLetras(event)" v-model="addNewContactForm.name" placeholder="Ej: Cardiólogo"
                                                     v-model="addDoctorContact.especialidad" class="textfield"
                                                     type="text" aria-describedby="basic-addon3">
@@ -394,8 +391,8 @@ template::headerCreate('Nuevo perfil');
                 </div>
 
                 <div class="perfil-medicacion">
-                    <h5 class="mt-4">Medicamentos ({{getMedicacion.length}})</h5>
-                    <p class="text-target">Ingresa la medicación que tomas regularmente.</p>
+                    <h5 class="mt-4">Medicines ({{getMedicacion.length}})</h5>
+                    <p class="text-target">Enter the medication you take regularly.</p>
 
                     <div class="emergency-contact mt-2" v-for="item in getMedicacion">
                         <div>
@@ -430,13 +427,12 @@ template::headerCreate('Nuevo perfil');
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
-                                                            class="text-target">Nombre</label>
+                                                            class="text-target">Name</label>
                                                         <input onkeypress="return soloLetras(event)" v-model="item.nombre" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1" class="text-target">Nota
-                                                            adicional</label>
+                                                        <label for="exampleInputEmail1" class="text-target">Additional note</label>
                                                         <input v-model="item.notas" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
@@ -446,15 +442,13 @@ template::headerCreate('Nuevo perfil');
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1"
-                                                                    class="text-target">Cantidad
-                                                                    de
-                                                                    dosis</label>
+                                                                    class="text-target">Amount of doses</label>
                                                                 <input v-model="item.dosis" class="textfield"
                                                                     type="text" aria-describedby="basic-addon3">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1"
-                                                                    class="text-target">Frecuencia</label>
+                                                                    class="text-target">Frequency</label>
                                                                 <input v-model="item.frecuencia" class="textfield"
                                                                     type="text" aria-describedby="basic-addon3">
                                                             </div>
@@ -476,8 +470,8 @@ template::headerCreate('Nuevo perfil');
                     <div class="row">
                         <div class="mt-3 add-new-contact">
                             <a data-toggle="collapse" href="#addMedicament" data-toggle="collapse" aria-expanded="false"
-                                aria-controls="addMedicament"><i class="fas fa-plus icon-add-contact"></i> Nuevo
-                                medicamento</a>
+                                aria-controls="addMedicament"><i class="fas fa-plus icon-add-contact"></i> New
+                                medicine</a>
                         </div>
                         <div class="addNewContactForm mt-2">
                             <!-- Contenido collapsable -->
@@ -486,13 +480,12 @@ template::headerCreate('Nuevo perfil');
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Nombre</label>
+                                                <label for="exampleInputEmail1" class="text-target">Name</label>
                                                 <input onkeypress="return soloLetras(event)" v-model="addMedicacion.nombre" class="textfield" type="text"
                                                     aria-describedby="basic-addon3">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Nota
-                                                    adicional</label>
+                                                <label for="exampleInputEmail1" class="text-target">Additional note</label>
                                                 <input v-model="addMedicacion.notas" class="textfield" type="text"
                                                     aria-describedby="basic-addon3">
                                             </div>
@@ -501,19 +494,17 @@ template::headerCreate('Nuevo perfil');
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1" class="text-target">Cantidad
-                                                            de
-                                                            dosis</label>
+                                                        <label for="exampleInputEmail1" class="text-target">Amount of doses</label>
                                                         <input v-model="addMedicacion.dosis" class="textfield"
                                                             type="text" aria-describedby="basic-addon3">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
-                                                            class="text-target">Frecuencia</label>
+                                                            class="text-target">Frequency</label>
                                                         <input v-model="addMedicacion.frecuencia" class="textfield"
                                                             type="text" aria-describedby="basic-addon3">
                                                     </div>
-                                                    <a href=""><i class="fas fa-paperclip"></i> Adjuntar archivo</a>
+                                                    <a href=""><i class="fas fa-paperclip"></i> Attach file</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -531,8 +522,8 @@ template::headerCreate('Nuevo perfil');
                 </div>
 
                 <div class="perfil-condicion-medica">
-                    <h5 class="mt-4">Condición médica</h5>
-                    <p class="text-target">Tu condición medica puede ayudar a los paramedicos en caso de emergencia.</p>
+                    <h5 class="mt-4">Medical condition</h5>
+                    <p class="text-target">Your medical condition can help paramedics in an emergency.</p>
 
                     <div class="emergency-contact mt-2" v-for="item in getCondition">
                         <div>
@@ -568,13 +559,12 @@ template::headerCreate('Nuevo perfil');
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
-                                                            class="text-target">Nombre</label>
+                                                            class="text-target">Name</label>
                                                         <input onkeypress="return soloLetras(event)" v-model="item.condicion" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1" class="text-target">Nota
-                                                            adicional</label>
+                                                        <label for="exampleInputEmail1" class="text-target">Additional note</label>
                                                         <input v-model="item.notas" class="textfield" type="text"
                                                             aria-describedby="basic-addon3">
                                                     </div>
@@ -584,12 +574,12 @@ template::headerCreate('Nuevo perfil');
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1"
-                                                                    class="text-target">Medicación</label>
+                                                                    class="text-target">Medication</label>
                                                                 <!-- <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3"> -->
                                                                 <select @input="debounceSearch"
                                                                     v-model="item.id_medicacion" tabindex="5"
                                                                     class="textfield">
-                                                                    <option selected value="Seleccionar">Seleccionar
+                                                                    <option selected value="Seleccionar">Select
                                                                     </option>
                                                                     <option v-for="item in getMedicacion"
                                                                         :value="item.id_medicacion">
@@ -612,8 +602,8 @@ template::headerCreate('Nuevo perfil');
                     <div class="row">
                         <div class="mt-3 add-new-contact">
                             <a data-toggle="collapse" href="#addCondition" data-toggle="collapse" aria-expanded="false"
-                                aria-controls="addCondition"><i class="fas fa-plus icon-add-contact"></i> Nueva
-                                condición medica</a>
+                                aria-controls="addCondition"><i class="fas fa-plus icon-add-contact"></i> New
+                                medical condition</a>
                         </div>
                         <div class="addNewContactForm">
                             <!-- Contenido collapsable -->
@@ -622,13 +612,12 @@ template::headerCreate('Nuevo perfil');
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Condición</label>
+                                                <label for="exampleInputEmail1" class="text-target">Condition</label>
                                                 <input onkeypress="return soloLetras(event)" v-model="addCondition.condicion" class="textfield" type="text"
                                                     aria-describedby="basic-addon3">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1" class="text-target">Nota
-                                                    adicional</label>
+                                                <label for="exampleInputEmail1" class="text-target">Additional note</label>
                                                 <input v-model="addCondition.notas" class="textfield" type="text"
                                                     aria-describedby="basic-addon3">
                                             </div>
@@ -638,18 +627,18 @@ template::headerCreate('Nuevo perfil');
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1"
-                                                            class="text-target">Medicación</label>
+                                                            class="text-target">Medication</label>
                                                         <!-- <input class="textfield" type="text" class="form-control" aria-describedby="basic-addon3"> -->
                                                         <select @input="debounceSearch"
                                                             v-model="addCondition.id_medicacion" tabindex="5"
                                                             class="textfield">
-                                                            <option selected value="Seleccionar">Seleccionar</option>
+                                                            <option selected value="Seleccionar">Select</option>
                                                             <option v-for="item in getMedicacion"
                                                                 :value="item.id_medicacion">
                                                                 {{item.nombre}}</option>
                                                         </select>
                                                     </div>
-                                                    <a href=""><i class="fas fa-paperclip"></i> Adjuntar archivo</a>
+                                                    <a href=""><i class="fas fa-paperclip"></i> Attach file</a>
                                                 </div>
                                             </div>
                                         </div>
