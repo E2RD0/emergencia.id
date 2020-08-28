@@ -34,12 +34,12 @@ const newprofile = new Vue({
             progresscolor: "",
             inputCounter: 0,
             valueSingleInput: 4.545454545454545,
-            savingTxt: "Guardado",
+            savingTxt: "Saved",
             aaa: "",
             blood: [],
             issEstatus: [],
             countryList: [],
-            countrySelect: "Seleccionar",
+            countrySelect: "Select",
             cityList: [],
             info: {
                 idProfileToReceiveUpdates: 0
@@ -49,15 +49,15 @@ const newprofile = new Vue({
                 date: "",
                 name: "",
                 lastName: "",
-                selectedIdBlood: "Seleccionar",
+                selectedIdBlood: "Select",
                 donor: false,
                 document: "",
-                isssEstatusSelected: "Seleccionar",
+                isssEstatusSelected: "Select",
                 weight: "",
                 height: "",
-                country: "Seleccionar",
+                country: "Select",
                 province: "",
-                city: "Seleccionar",
+                city: "Select",
                 direction: "",
                 image: "https://boostlikes-bc85.kxcdn.com/blog/wp-content/uploads/2019/08/No-Instagram-Profile-Pic.jpg",
                 selectedFile: null,
@@ -93,7 +93,7 @@ const newprofile = new Vue({
                 condicion: "",
                 notas: "",
                 adjunto: "",
-                id_medicacion: "Seleccionar",
+                id_medicacion: "Select",
                 id_perfil_medico: 0
             },
             addAllergy: {
@@ -186,22 +186,22 @@ const newprofile = new Vue({
             this.addEmergencycontacts != "" ? (value = value + 4.545454545454545) : "";
             this.getDoctorContact != "" ? (value = value + 4.545454545454545) : "";
             this.getMedicacion != "" ? (value = value + 4.545454545454545) : "";
-            this.dataProfile.donor != "Seleccionar" ?
+            this.dataProfile.donor != "Select" ?
                 (value = value + 4.545454545454545) :
                 "";
-            this.dataProfile.isssEstatusSelected != "Seleccionar" ?
+            this.dataProfile.isssEstatusSelected != "Select" ?
                 (value = value + 4.545454545454545) :
                 "";
-            this.dataProfile.selectedIdBlood != "Seleccionar" ?
+            this.dataProfile.selectedIdBlood != "Select" ?
                 (value = value + 4.545454545454545) :
                 "";
-            this.dataProfile.city != "Seleccionar" ?
+            this.dataProfile.city != "Select" ?
                 (value = value + 4.545454545454545) :
                 "";
             this.dataProfile.province != "" ?
                 (value = value + 4.545454545454545) :
                 "";
-            this.dataProfile.country != "Seleccionar" ?
+            this.dataProfile.country != "Select" ?
                 (value = value + 4.545454545454545) :
                 "";
             this.dataProfile.direction != "" ? (value = value + 4.545454545454545) : "";
@@ -218,7 +218,7 @@ const newprofile = new Vue({
             if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
                 edad--;
             }
-            return isNaN(edad) ? "" : edad + " años,";
+            return isNaN(edad) ? "" : edad + " years,";
         },
         img: function() {
             //this.image = this.src;
@@ -229,7 +229,7 @@ const newprofile = new Vue({
         countrySelect() {
             //console.log("Se realizo un cambio de país")
             this.dataProfile.country = this.countrySelect
-            this.dataProfile.city = "Seleccionar";
+            this.dataProfile.city = "Select";
             this.getCity();
         },
         dataProfile: {
@@ -244,12 +244,12 @@ const newprofile = new Vue({
     },
     methods: {
         debounceSearch(event) {
-            this.savingTxt = "Guardando";
+            this.savingTxt = "Saving";
             this.aaa =
                 '<div><i class="far fa-spinner-third icon-load"></i></div>';
             clearTimeout(this.debounce);
             this.debounce = setTimeout(() => {
-                this.savingTxt = "Guardado";
+                this.savingTxt = "Saved";
                 //console.log("PATCH a la BD");
                 this.updateInformation();
                 this.aaa = "";
@@ -360,14 +360,14 @@ const newprofile = new Vue({
             res.data[0].fecha_nacimiento == null ? this.dataProfile.date = "" : this.dataProfile.date = res.data[0].fecha_nacimiento;
             res.data[0].nombres == null ? this.dataProfile.name = "" : this.dataProfile.name = res.data[0].nombres;
             res.data[0].apellidos == null ? this.dataProfile.lastName = "" : this.dataProfile.lastName = res.data[0].apellidos;
-            res.data[0].id_tipo_sangre == null ? this.dataProfile.selectedIdBlood = "Seleccionar" : this.dataProfile.selectedIdBlood = res.data[0].id_tipo_sangre;
+            res.data[0].id_tipo_sangre == null ? this.dataProfile.selectedIdBlood = "Select" : this.dataProfile.selectedIdBlood = res.data[0].id_tipo_sangre;
             res.data[0].es_donador == true ? this.dataProfile.donor = true : this.dataProfile.donor = false;
             res.data[0].documento_identidad == null ? this.dataProfile.document = "" : this.dataProfile.document = res.data[0].documento_identidad;
-            res.data[0].id_estado_isss == null ? this.dataProfile.isssEstatusSelected = "Seleccionar" : this.dataProfile.isssEstatusSelected = res.data[0].id_estado_isss;
+            res.data[0].id_estado_isss == null ? this.dataProfile.isssEstatusSelected = "Select" : this.dataProfile.isssEstatusSelected = res.data[0].id_estado_isss;
             res.data[0].peso == null ? this.dataProfile.weight = "" : this.dataProfile.weight = res.data[0].peso;
             res.data[0].estatura == null ? this.dataProfile.height = "" : this.dataProfile.height = res.data[0].estatura;
-            res.data[0].id_pais == null ? this.countrySelect = "Seleccionar" : this.countrySelect = res.data[0].id_pais;
-            res.data[0].id_pais_estado == null ? this.idToLoadEstastus = "Seleccionar" : this.idToLoadEstastus = res.data[0].id_pais_estado;
+            res.data[0].id_pais == null ? this.countrySelect = "Select" : this.countrySelect = res.data[0].id_pais;
+            res.data[0].id_pais_estado == null ? this.idToLoadEstastus = "Select" : this.idToLoadEstastus = res.data[0].id_pais_estado;
             res.data[0].ciudad == null ? this.dataProfile.province = "" : this.dataProfile.province = res.data[0].ciudad;
             res.data[0].direccion == null ? this.dataProfile.direction = "" : this.dataProfile.direction = res.data[0].direccion;
             res.data[0].listado == null ? this.dataProfile.list = "" : this.dataProfile.list = res.data[0].listado;
