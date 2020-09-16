@@ -23,7 +23,7 @@ class Controller
             $loggedInClient = isset($_SESSION['user_id']);
 
             if ($context == 'admin') {
-                if ($loginRequired) {
+                if ($loginRequired === true) {
                     if (!$loggedInAdmin) { //If not logged in
                         \Helpers\Url::redirect('admin/user/login'); //redirect to login
                     }
