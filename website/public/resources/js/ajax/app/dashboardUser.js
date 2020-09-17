@@ -15,18 +15,20 @@ const dashboardUser = new Vue({
             NUM_RESULTSC: 3,
             deleteText: "Eliminar",
             toSend: [],
-            loading: '<div><i class="far fa-spinner-third icon-load primary-cl"></i></div>',
+            loading:
+                '<div><i class="far fa-spinner-third icon-load primary-cl"></i></div>',
             sharedWith: [],
             upperSpace: " d-flex align-items-center justify-content-center",
             sharingStatus: "",
             textColor: "",
-            uid: '',
-            srcImage: '',
+            uid: "",
+            srcImage: "",
             showModal: true,
-            nameModal: '',
-            edadModal: '',
-            ciudadModal: '',
-            showButtonModal: true
+            nameModal: "",
+            edadModal: "",
+            ciudadModal: "",
+            showButtonModal: true,
+            getProfileList: "Lista de perfiles"
         };
     },
     created: function() {
@@ -51,6 +53,10 @@ const dashboardUser = new Vue({
             this.showButtonModal = false
             setTimeout(() => { window.print() = true }, 0050);
             setTimeout(() => { this.showButtonModal = true }, 1000);
+        },
+
+        getProfilesReport: function (){
+
         },
         createNewProfile: function() {
             this.newProfile = "Cargando...";

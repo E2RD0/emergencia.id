@@ -14,9 +14,9 @@ template::headerSite('Dashboard del cliente');
                 <!-- btn escritorio -->
             </div>
             <div class="col-md-6 d-none d-md-flex justify-content-end p-0">
-                <button @click="createNewProfile" class="button button--small mr-2"
-                        role="button"><i class="fas fa-list mr-2"></i>Lista de perfiles</button>
-                <button @click="getProfilesReport" class="button button--small"
+                <button @click="getProfilesReport" class="button button--small mr-2"
+                        role="button"><i class="fas fa-list mr-2"></i>{{getProfileList}}</button>
+                <button @click="createNewProfile" class="button button--small"
                     role="button"><i class="fas fa-plus mr-2"></i>{{newProfile}}</button>
             </div>
         </div>
