@@ -193,6 +193,94 @@ class Profile extends \Common\Controller
         $user = new Perfil;
         return $this->usersModel->deleteContactDoctorModel($info);
     }
+    public function reporteCondicionesMedicas($data)
+    {
+        $result = $this->r;
+        $id = $data['id'];
+        $jrxml = __DIR__.'/../reports/reporteCondicionesMedicas.jrxml';
+        $input = __DIR__ . '/../reports/reporteCondicionesMedicas.jasper';
+        $output = __DIR__ .'/../../public/reports';
+        $options = [
+            'format' => ['pdf'],
+            'locale' => 'es',
+            'params' => [
+                'id' => $id,
+                'email' => $_SESSION['p_user_email']
+            ],
+            'db_connection' => [
+                'driver' => 'postgres', //mysql, ....
+                'username' => DB_USER,
+                'password' => DB_PASSWORD,
+                'host' => DB_HOST,
+                'database' => DB_NAME,
+                'port' => DB_PORT
+            ]
+        ];
+
+        $jasper = new \PHPJasper\PHPJasper;
+
+        $jasper->compile($jrxml)->execute();
+
+        $jasper->process(
+        $input,
+        $output,
+        $options
+        )->execute();
+
+        if(file_exists(__DIR__ .'/../../public/reports/reporteCondicionesMedicas.pdf')){
+            $result['status'] = 1;
+            $result['message'] = 'El pdf se ha generado correctamente';
+        }
+        else {
+            $result['exception'] = 'No se pudo generar el reporte';
+        }
+        return $result;
+    }
+
+    public function reporteContactosEmergencia($data)
+    {
+        $result = $this->r;
+        $id = $data['id'];
+        $jrxml = __DIR__.'/../reports/reporteContactosEmergencia.jrxml';
+        $input = __DIR__ . '/../reports/reporteContactosEmergencia.jasper';
+        $output = __DIR__ .'/../../public/reports';
+        $options = [
+            'format' => ['pdf'],
+            'locale' => 'es',
+            'params' => [
+                'id' => $id,
+                'email' => $_SESSION['p_user_email']
+            ],
+            'db_connection' => [
+                'driver' => 'postgres', //mysql, ....
+                'username' => DB_USER,
+                'password' => DB_PASSWORD,
+                'host' => DB_HOST,
+                'database' => DB_NAME,
+                'port' => DB_PORT
+            ]
+        ];
+
+        $jasper = new \PHPJasper\PHPJasper;
+
+        $jasper->compile($jrxml)->execute();
+
+        $jasper->process(
+        $input,
+        $output,
+        $options
+        )->execute();
+
+        if(file_exists(__DIR__ .'/../../public/reports/reporteContactosEmergencia.pdf')){
+            $result['status'] = 1;
+            $result['message'] = 'El pdf se ha generado correctamente';
+        }
+        else {
+            $result['exception'] = 'No se pudo generar el reporte';
+        }
+        return $result;
+    }
+
 }
 
 
