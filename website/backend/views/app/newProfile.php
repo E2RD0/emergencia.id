@@ -290,7 +290,7 @@ template::headerCreate('Nuevo perfil');
                 <div class="perfil-contacto-doctor">
                     <h5 class="mt-4">Contactos doctor ({{getDoctorContact.length}})</h5>
                     <p class="text-target">Ingresa los paramedicos que se podrían contactar en caso de emergencia.</p>
-
+                    <button style="margin-left: 30px" class="button">Generar reporte</button>
                     <div class="emergency-contact mt-2" v-for="item in getDoctorContact">
                         <div>
                             <div class="target">

@@ -28,6 +28,11 @@ class User extends \Common\Controller
         $this->loadView('app', 'configurarCuenta');
     }
 
+    public function qrcode()
+    {
+        $this->loadView('app', 'qrCode');
+    }
+
     /*public function dashboard()
     {
         $this->loadView('store', 'dashboard');

@@ -732,10 +732,18 @@ select {
     justify-content: center;
 }
 
-
 .primary-cl {
     color: #2198F4;
     font-size: 50px;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 0px;
+    margin: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
 }
 
 [v-cloak] {
@@ -748,11 +756,11 @@ select {
     border-width: 1px;
 }
 
-.sharedProfileUser:hover{
+.sharedProfileUser:hover {
     background-color: rgb(242, 245, 250);
 }
 
-.sharedProfileUser p{
+.sharedProfileUser p {
     margin-bottom: 0;
 }
 
