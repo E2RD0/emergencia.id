@@ -129,6 +129,18 @@ class Analiticas extends \Common\Controller
         return $result;
     }
 
+    public function graficoParaCondicionMedica()
+    {
+            $result = $this->model->graficoCondicionMedica();
+            return $result;
+    }
+
+    public function graficoParaProcedimientoMedicoo()
+    {
+            $result = $this->model->graficoProdecimientoMedico();
+            return $result;
+    }
+
     public function reporteUsuariosPais($data)
     {
         $input = __DIR__ . '/../reports/factura.jasper';

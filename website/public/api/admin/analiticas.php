@@ -32,6 +32,12 @@ if (isset($_GET['action'])) {
             case 'reporteUsuariosPais':
                 $result = $controller->reporteUsuariosPais($_SESSION['p_user_email']);
                 break;
+            case 'graficoCondicionMedica':
+                $result = $controller->graficoParaCondicionMedica($_POST);
+                break;
+            case 'graficoProcedimientos':
+                $result = $controller->graficoParaProcedimientoMedicoo($_POST);
+                break;
             default:
                 \Common\Core::http404();
         }

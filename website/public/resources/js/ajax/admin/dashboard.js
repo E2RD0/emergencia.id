@@ -7,6 +7,8 @@ ctx.fillText("Debes seleccionar una opción", 200, 200);*/
 const API_GRAFICOS = HOME_PATH + 'api/admin/analiticas.php?action=';
 $(document).ready(function() {
     getCountries();
+    graficaCondicionMedica();
+    graficaProdecimientos();
 });
 
 function getCountries() {
@@ -260,6 +262,68 @@ function perfilesFecha3() {
         }
     }, 2000);
 
+}
+
+function graficaCondicionMedica()
+{
+    $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: API_GRAFICOS + 'graficoCondicionMedica',
+        data: null
+    })
+    .done(function( response ) {
+        if (true) {
+            let condicion = [];
+            let cantidad = [];
+            response.forEach(function( row ) {
+                condicion.push( row.condicion );
+                cantidad.push( row.recuentofilas );
+            });
+            
+            grafico( 'graficoCondicionMedica', 'Cantidad de usuarios', 'bar', condicion, cantidad);
+        } else {
+            $( '#graficoCondicionMedica' ).remove();
+        }
+    })
+    .fail(function( jqXHR ) {
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+}
+
+function graficaProdecimientos()
+{
+    $.ajax({
+        type: 'post',
+        dataType: 'json',
+        url: API_GRAFICOS + 'graficoProcedimientos',
+        data: null
+    })
+    .done(function( response ) {
+        if (true) {
+            let procedimiento = [];
+            let cantidad = [];
+            response.forEach(function( row ) {
+                procedimiento.push( row.procedimiento );
+                cantidad.push( row.recuentofilas );
+            });
+            
+            grafico( 'graficoProcedimiento', 'Cantidad de usuarios', 'bar', procedimiento, cantidad);
+        } else {
+            $( '#graficoProcedimiento' ).remove();
+        }
+    })
+    .fail(function( jqXHR ) {
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
 }
 
 function grafico(id, nombre, tipo, ejeX, ejeY) {

@@ -64,4 +64,24 @@ class Graficos
         return $db->resultSet();
     }
 
+    public function graficoCondicionMedica(){
+        $db = new \Common\Database;
+        $db->query('SELECT condicion, COUNT(*) AS RecuentoFilas
+        FROM perfil_condicion_medica
+        GROUP BY condicion
+        HAVING COUNT(*) >= 1
+        ORDER BY condicion LIMIT 5');
+        return $db->resultSet();
+    }
+
+    public function graficoProdecimientoMedico(){
+        $db = new \Common\Database;
+        $db->query('SELECT procedimiento, COUNT(*) AS RecuentoFilas
+        FROM perfil_procedimiento_medico
+        GROUP BY procedimiento
+        HAVING COUNT(*) >= 1
+        ORDER BY procedimiento LIMIT 5');
+        return $db->resultSet();
+    }
+
 }

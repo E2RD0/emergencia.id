@@ -87,6 +87,17 @@ template::headerSite('Dashboard');
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-6 text-center p-5">
+                <h4>Condiciones medicas mas comunes</h2>
+                <canvas id="graficoCondicionMedica"   width="400" height="300"></canvas>
+            </div>
+            <div class="col-md-6 text-center p-5">
+                <h4>Procedimientos mas comunes</h2>
+                <canvas id="graficoProcedimiento"   width="400" height="300"></canvas>
+            </div>
+        </div>
+
     </div>
 </div>
 <?php
