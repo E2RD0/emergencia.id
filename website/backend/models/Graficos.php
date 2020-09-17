@@ -84,4 +84,13 @@ class Graficos
         return $db->resultSet();
     }
 
+    public function graficoTop5Medicamentos(){
+        $db = new \Common\Database;
+        $db->query('SELECT nombre, COUNT(_id) AS cantidad
+                    FROM (SELECT DISTINCT id_perfil_medico as _id, INITCAP(nombre) AS nombre
+                    FROM perfil_medicacion) AS datos
+                    GROUP BY nombre ORDER BY cantidad DESC
+                    LIMIT 5');
+        return $db->resultSet();
+    }
 }

@@ -20,12 +20,12 @@ if (isset($_GET['action'])) {
             case 'graficoPerfilesFecha':
                 $result = $controller->graficoPerfilesFecha($_POST);
                 break;
-                case 'graficoUsuariosPrivFecha':
-                    $result = $controller->graficoUsuariosPrivFecha($_POST);
-                    break;
-                case 'graficoUsuariosFecha':
-                    $result = $controller->graficoUsuariosFecha($_POST);
-                    break;
+            case 'graficoUsuariosPrivFecha':
+                $result = $controller->graficoUsuariosPrivFecha($_POST);
+                break;
+            case 'graficoUsuariosFecha':
+                $result = $controller->graficoUsuariosFecha($_POST);
+                break;
             case 'getCountries':
                 $result = $controller->getCountries();
                 break;
@@ -37,6 +37,9 @@ if (isset($_GET['action'])) {
                 break;
             case 'graficoProcedimientos':
                 $result = $controller->graficoParaProcedimientoMedicoo($_POST);
+                break;
+            case 'graficoTop5Medicamentos':
+                $result = $controller->graficoTop5Medicamentos($_POST);
                 break;
             default:
                 \Common\Core::http404();

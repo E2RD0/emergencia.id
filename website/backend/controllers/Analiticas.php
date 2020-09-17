@@ -81,6 +81,19 @@ class Analiticas extends \Common\Controller
         return $result;
     }
 
+    public function graficoTop5Medicamentos()
+    {
+        $result = $this->r;
+            if($result['dataset'] = $this->model->graficoTop5Medicamentos()){
+                $result['status'] = 1;
+            }
+            else {
+                $result['status'] = -1;
+                $result['exception'] = 'No hay datos disponibles.';
+            }
+        return $result;
+    }
+
     public function graficoUsuariosFecha($data)
     {
         $result = $this->r;
@@ -121,7 +134,7 @@ class Analiticas extends \Common\Controller
             $result['exception'] = 'Ingresa una fecha válida';
         }
         return $result;
-    }   
+    }
 
     public function getCountries(){
         $result = $this->r;

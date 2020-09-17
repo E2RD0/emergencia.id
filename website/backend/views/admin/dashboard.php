@@ -46,8 +46,8 @@ template::headerSite('Dashboard');
                 <canvas id="graficoPerfilesFecha"   width="400" height="300"></canvas>
             </div>
             <div class="col-md-6 text-center p-5">
-                <h4>Gráfico</h2>
-                <canvas id=""   width="400" height="300"></canvas>
+                <h4>Gráfico top 5 medicamentos más solicitados</h2>
+                <canvas id="graficoTop5Medicamentos"   width="400" height="300"></canvas>
             </div>
         </div>
 

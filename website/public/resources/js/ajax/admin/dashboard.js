@@ -9,6 +9,7 @@ $(document).ready(function() {
     getCountries();
     graficaCondicionMedica();
     graficaProdecimientos();
+    graficoTop5Medicamentos();
 });
 
 function getCountries() {
@@ -287,6 +288,38 @@ function graficaCondicionMedica()
         }
     })
     .fail(function( jqXHR ) {
+    // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+}
+
+function graficoTop5Medicamentos() {
+    $.ajax({
+        type: 'post',
+        url: API_GRAFICOS + 'graficoTop5Medicamentos',
+        dataType: 'json'
+    })
+    .done(function( response ) {
+        if ( response.status == 1) {
+            let columns = [];
+            let values = [];
+            let data = response.dataset;
+            console.log(data);
+            for (let i in data) {
+                columns.push(data[i].nombre);
+                values.push(data[i].cantidad);
+            }
+            grafico('graficoTop5Medicamentos', 'Top 5 medicamentos más solicitados', 'polarArea', columns, values);
+        } else {
+            swal(2, response.exception);
+        }
+    })
+    .fail(function( jqXHR ) {
+		// Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
         if ( jqXHR.status == 200 ) {
             console.log( jqXHR.responseText );
         } else {
@@ -325,6 +358,8 @@ function graficaProdecimientos()
         }
     });
 }
+        
+
 
 function grafico(id, nombre, tipo, ejeX, ejeY) {
     var cxt = $(document.getElementById(id));
