@@ -86,4 +86,33 @@ class Analiticas extends \Common\Controller
         $result['dataset']= $this->model->getCountries();
         return $result;
     }
+
+    public function reporteUsuariosPais($data)
+    {
+        $input = __DIR__ . '/../reports/factura.jasper';
+        $output = __DIR__ .'/../../public/reports';
+        $options = [
+            'format' => ['pdf'],
+            'locale' => 'es-SV',
+            'params' => [
+                'email' => $data
+            ],
+            'db_connection' => [
+                'driver' => 'postgres', //mysql, ....
+                'username' => DB_USER,
+                'password' => DB_PASSWORD,
+                'host' => DB_HOST,
+                'database' => 'poseidon',
+                'port' => DB_PORT
+            ]
+        ];
+
+        $jasper = new \PHPJasper\PHPJasper;
+
+        $jasper->process(
+        $input,
+        $output,
+        $options
+        )->execute();
+    }
 }

@@ -6,18 +6,28 @@ template::headerSite('Dashboard del cliente');
 <div id="dashboard">
     <div v-if="showModal" class="container mt-5" id="dashboard">
         <h1 class="title-page">Perfiles</h1>
-
-        <div class="nav d-flex d-md-block line nav-profiles" role="tablist">
-            <a class="navbar-brand profile-option text-link active" data-toggle="tab" href="#perfiles">Mis perfiles</a>
-            <a class="navbar-brand profile-option text-link" data-toggle="tab" href="#compartidos">Compartidos
-                conmigo</a>
-            <!-- btn escritorio -->
-            <button @click="createNewProfile" class="button button--small button-profile d-none d-md-block"
-                role="button"><i class="fas fa-plus mr-2"></i>{{newProfile}}</button>
+        <div class="row line">
+            <div class="col-12 col-md-6 nav d-flex d-md-block nav-profiles" role="tablist">
+                <a class="navbar-brand profile-option text-link active" data-toggle="tab" href="#perfiles">Mis perfiles</a>
+                <a class="navbar-brand profile-option text-link" data-toggle="tab" href="#compartidos">Compartidos
+                    conmigo</a>
+                <!-- btn escritorio -->
+            </div>
+            <div class="col-md-6 d-none d-md-flex justify-content-end p-0">
+                <button @click="createNewProfile" class="button button--small mr-2"
+                        role="button"><i class="fas fa-list mr-2"></i>Lista de perfiles</button>
+                <button @click="getProfilesReport" class="button button--small"
+                    role="button"><i class="fas fa-plus mr-2"></i>{{newProfile}}</button>
+            </div>
         </div>
+
         <!-- btn movil -->
-        <button @click="createNewProfile" class="button button--small d-block d-md-none mt-4" role="button"><i
-                class="fas fa-plus mr-2"></i>{{newProfile}}</button>
+        <div class="col-12 d-flex justify-content-around mt-4 d-md-none">
+            <button @click="createNewProfile" class="button button--small" role="button">
+                <i class="fas fa-list mr-2"></i>Lista de perfiles</button>
+            <button @click="createNewProfile" class="button button--small"
+                        role="button"><i class="fas fa-plus mr-2"></i>{{newProfile}}</button>
+        </div>
 
         <div class="tab-content">
             <!-- cards de mis perfiles -->

@@ -9,7 +9,6 @@ if (isset($_GET['action'])) {
     $controller = new \Analiticas;
     $result = $controller->r;
 
-
     if (isset($_SESSION['p_user_id'])) {
         switch ($action) {
             case 'graficoTipoSangre':
@@ -23,6 +22,9 @@ if (isset($_GET['action'])) {
                 break;
             case 'getCountries':
                 $result = $controller->getCountries();
+                break;
+            case 'reporteUsuariosPais':
+                $result = $controller->reporteUsuariosPais($_SESSION['p_user_email']);
                 break;
             default:
                 \Common\Core::http404();
