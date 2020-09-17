@@ -44,4 +44,24 @@ class Graficos
         return $db->resultSet();
     }
 
+    public function graficoUsuariosFecha($value1, $value2){
+        $db = new \Common\Database;
+        $db->query('SELECT to_char(date_trunc(\'month\', fecha_ingreso), \'Mon-YYYY\') AS "column", date_trunc(\'month\', fecha_ingreso) AS txn_month, count(id_usuario) as "value"
+        FROM usuario WHERE fecha_ingreso BETWEEN :fechaInicio AND :fechaFin
+        GROUP BY txn_month ORDER BY txn_month ASC');
+        $db->bind(':fechaInicio', $value1);
+        $db->bind(':fechaFin', $value2);
+        return $db->resultSet();
+    }
+
+    public function graficoUsuariosPrivFecha($value1, $value2){
+        $db = new \Common\Database;
+        $db->query('SELECT to_char(date_trunc(\'month\', fecha_ingreso), \'Mon-YYYY\') AS "column", date_trunc(\'month\', fecha_ingreso) AS txn_month, count(id_usuario_p) as "value"
+        FROM usuario_privilegiado WHERE fecha_ingreso BETWEEN :fechaInicio AND :fechaFin
+        GROUP BY txn_month ORDER BY txn_month ASC');
+        $db->bind(':fechaInicio', $value1);
+        $db->bind(':fechaFin', $value2);
+        return $db->resultSet();
+    }
+
 }

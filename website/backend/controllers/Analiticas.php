@@ -81,6 +81,48 @@ class Analiticas extends \Common\Controller
         return $result;
     }
 
+    public function graficoUsuariosFecha($data)
+    {
+        $result = $this->r;
+        $data = \Helpers\Validation::trimForm($data);
+        $fechaInicio = isset($data['fechaInicio2']) ? $data['fechaInicio2'] : null;
+        $fechaFin = isset($data['fechaFin2']) ? $data['fechaFin2'] : null;
+        if ($fechaInicio !=null && $fechaFin !=null) {
+            if($result['dataset'] = $this->model->graficoUsuariosFecha($fechaInicio, $fechaFin)){
+                $result['status'] = 1;
+            }
+            else {
+                $result['status'] = -1;
+                $result['exception'] = 'No hay datos disponibles.';
+            }
+        }
+        else{
+            $result['exception'] = 'Ingresa una fecha válida';
+        }
+        return $result;
+    }
+
+    public function graficoUsuariosPrivFecha($data)
+    {
+        $result = $this->r;
+        $data = \Helpers\Validation::trimForm($data);
+        $fechaInicio = isset($data['fechaInicio3']) ? $data['fechaInicio3'] : null;
+        $fechaFin = isset($data['fechaFin3']) ? $data['fechaFin3'] : null;
+        if ($fechaInicio !=null && $fechaFin !=null) {
+            if($result['dataset'] = $this->model->graficoUsuariosPrivFecha($fechaInicio, $fechaFin)){
+                $result['status'] = 1;
+            }
+            else {
+                $result['status'] = -1;
+                $result['exception'] = 'No hay datos disponibles.';
+            }
+        }
+        else{
+            $result['exception'] = 'Ingresa una fecha válida';
+        }
+        return $result;
+    }   
+
     public function getCountries(){
         $result = $this->r;
         $result['dataset']= $this->model->getCountries();
