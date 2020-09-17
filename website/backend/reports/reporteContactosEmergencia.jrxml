@@ -8,8 +8,7 @@
 	<parameter name="id" class="java.lang.Integer"/>
 	<parameter name="email" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT ROW_NUMBER () OVER (ORDER BY id_contacto), pc.nombre, pc.telefono, pc.email, pc.relacion, pm.nombres, pm.apellidos from perfil_contacto_emergencia pc INNER JOIN perfil_medico pm on pc.id_perfil_medico = pm.id_perfil_medico WHERE pc.id_perfil_medico = $P{id}
-]]>
+		<![CDATA[SELECT ROW_NUMBER () OVER (ORDER BY id_contacto), pc.nombre, pc.telefono, pc.email, pc.relacion, pm.nombres, pm.apellidos from perfil_contacto_emergencia pc INNER JOIN perfil_medico pm on pc.id_perfil_medico = pm.id_perfil_medico WHERE pc.id_perfil_medico = $P{id}]]>
 	</queryString>
 	<field name="row_number" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="row_number"/>
@@ -56,7 +55,7 @@
 			<staticText>
 				<reportElement x="380" y="10" width="191" height="40" uuid="5a4e976d-6c58-41f5-9f1f-9d603c29ac2e"/>
 				<textElement>
-					<font fontName="TTCommons-Bold" size="16"/>
+					<font fontName="Arial" size="16"/>
 				</textElement>
 				<text><![CDATA[Contactos de emergencia]]></text>
 			</staticText>
@@ -78,7 +77,7 @@
 			<staticText>
 				<reportElement x="380" y="66" width="78" height="14" uuid="68549b5a-29b4-446f-bfbc-4f3cb07194ff"/>
 				<textElement>
-					<font fontName="TTCommons-Bold" size="10"/>
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<text><![CDATA[Usuario creador: ]]></text>
 			</staticText>
@@ -139,28 +138,28 @@
 				<reportElement x="10" y="0" width="130" height="27" uuid="6fa38c7f-df70-4baa-a2ad-7a5d5fa58a25">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1285899b-855d-424d-a1f1-163cd0d58f61"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="150" y="0" width="130" height="27" uuid="1a1dec58-37f0-4c4b-8eaf-849158c15034">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1285899b-855d-424d-a1f1-163cd0d58f61"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="290" y="0" width="130" height="27" uuid="e979fe7b-e832-402c-82a1-8dfa8d6df256">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1285899b-855d-424d-a1f1-163cd0d58f61"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="432" y="0" width="130" height="27" uuid="2000e0fc-4118-419e-ba81-b9f8a1766c52">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1285899b-855d-424d-a1f1-163cd0d58f61"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{relacion}]]></textFieldExpression>
 			</textField>
 			<line>

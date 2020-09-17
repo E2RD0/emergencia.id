@@ -156,6 +156,7 @@ template::headerCreate('Nuevo perfil');
                     <p class="text-target">Ingresa a las personas que los paramédicos podrían contactar en caso de
                         emergencia
                     </p>
+                    <button style="margin-left: 30px" class="button" onclick="reporteContactosEmergencia()">Generar reporte</button>
 
                     <div class="emergency-contact mt-2" v-for="item in addEmergencycontacts">
                         <div>
@@ -533,7 +534,7 @@ template::headerCreate('Nuevo perfil');
                 <div class="perfil-condicion-medica">
                     <h5 class="mt-4">Condición médica</h5>
                     <p class="text-target">Tu condición medica puede ayudar a los paramedicos en caso de emergencia.</p>
-
+                    <button style="margin-left: 30px" class="button" onclick="reporteCondicionesMedicas()">Generar reporte</button>
                     <div class="emergency-contact mt-2" v-for="item in getCondition">
                         <div>
                             <div class="target">
@@ -695,7 +696,7 @@ template::headerCreate('Nuevo perfil');
                                             </a>
                                         </div>
                                     </div>
-                                    
+
                 <div class="collapse content-collapse" id="addMedicamento">
                     <div class="edit-target">
                         <div class="row">
@@ -723,7 +724,7 @@ template::headerCreate('Nuevo perfil');
                                             <label for="exampleInputEmail1" class="text-target">Frecuencia</label>
                                             <input class="textfield" type="text" aria-describedby="basic-addon3">
                                         </div>
-                                        
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -751,7 +752,7 @@ template::headerCreate('Nuevo perfil');
             medicamento</a>
     </div>
     <div class="addNewContactForm">
-        
+
         <div class="collapse content-collapse" id="addMedicament">
             <div class="edit-target">
                 <div class="row">
@@ -828,7 +829,7 @@ template::headerCreate('Nuevo perfil');
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="collapse content-collapse" id="addMedicamento">
                         <div class="edit-target">
                             <div class="row">
@@ -856,7 +857,7 @@ template::headerCreate('Nuevo perfil');
                                                 <label for="exampleInputEmail1" class="text-target">Frecuencia</label>
                                                 <input class="textfield" type="text" aria-describedby="basic-addon3">
                                             </div>
-                                            
+
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -884,7 +885,7 @@ template::headerCreate('Nuevo perfil');
                 medicamento</a>
         </div>
         <div class="addNewContactForm">
-            
+
             <div class="collapse content-collapse" id="addMedicament">
                 <div class="edit-target">
                     <div class="row">
@@ -961,7 +962,7 @@ template::headerCreate('Nuevo perfil');
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="collapse content-collapse" id="addMedicamento">
                         <div class="edit-target">
                             <div class="row">
@@ -989,7 +990,7 @@ template::headerCreate('Nuevo perfil');
                                                 <label for="exampleInputEmail1" class="text-target">Frecuencia</label>
                                                 <input class="textfield" type="text" aria-describedby="basic-addon3">
                                             </div>
-                                            
+
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -1017,7 +1018,7 @@ template::headerCreate('Nuevo perfil');
                 medicamento</a>
         </div>
         <div class="addNewContactForm">
-            
+
             <div class="collapse content-collapse" id="addMedicament">
                 <div class="edit-target">
                     <div class="row">
@@ -1097,7 +1098,7 @@ template::headerCreate('Nuevo perfil');
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="collapse content-collapse" id="addMedicamento">
                         <div class="edit-target">
                             <div class="row">
@@ -1125,7 +1126,7 @@ template::headerCreate('Nuevo perfil');
                                                 <label for="exampleInputEmail1" class="text-target">Frecuencia</label>
                                                 <input class="textfield" type="text" aria-describedby="basic-addon3">
                                             </div>
-                                            
+
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -1153,7 +1154,7 @@ template::headerCreate('Nuevo perfil');
                 medicamento</a>
         </div>
         <div class="addNewContactForm">
-            
+
             <div class="collapse content-collapse" id="addMedicament">
                 <div class="edit-target">
                     <div class="row">

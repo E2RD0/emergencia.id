@@ -70,6 +70,12 @@ if (isset($_GET['action'])) {
         case 'deleteContactDoctor':
             $result = $controller->deleteContactDoctor($_POST);
         break;
+        case 'reporteCondicionesMedicas':
+                $result = $controller->reporteCondicionesMedicas($_POST);
+                break;
+        case 'reporteContactosEmergencia':
+                $result = $controller->reporteContactosEmergencia($_POST);
+                break;
         default:
             \Common\Core::http404();
     }

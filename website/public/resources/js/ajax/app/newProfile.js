@@ -1,3 +1,6 @@
+const API_PERFIL = HOME_PATH + 'api/app/perfil.php?action=';
+
+
 function soloLetras(e) {
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
@@ -578,3 +581,51 @@ const newprofile = new Vue({
         }
     },
 });
+
+function reporteCondicionesMedicas(){
+    var idPerfilMedico = Number(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+    $.ajax({
+        type: 'post',
+        url: API_PERFIL + 'reporteCondicionesMedicas',
+        dataType: 'json',
+        data : { id : idPerfilMedico },
+        success: function( response ) {
+            if ( response.status == 1) {
+                fetchResource('http://localhost/emergencia.id/website/public/reports/reporteCondicionesMedicas.pdf');
+            } else{
+                swal(2, response.exception);
+            }},
+        error: function( jqXHR ) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if ( jqXHR.status == 200 ) {
+                console.log( jqXHR.responseText );
+            } else {
+                console.log( jqXHR.status + ' ' + jqXHR.statusText );
+            }
+        }
+    });
+}
+
+function reporteContactosEmergencia(){
+    var idPerfilMedico = Number(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+    $.ajax({
+        type: 'post',
+        url: API_PERFIL + 'reporteContactosEmergencia',
+        dataType: 'json',
+        data : { id : idPerfilMedico },
+        success: function( response ) {
+            if ( response.status == 1) {
+                fetchResource('http://localhost/emergencia.id/website/public/reports/reporteContactosEmergencia.pdf');
+            } else{
+                swal(2, response.exception);
+            }},
+        error: function( jqXHR ) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if ( jqXHR.status == 200 ) {
+                console.log( jqXHR.responseText );
+            } else {
+                console.log( jqXHR.status + ' ' + jqXHR.statusText );
+            }
+        }
+    });
+}

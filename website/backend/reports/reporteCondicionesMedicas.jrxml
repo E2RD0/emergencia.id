@@ -191,7 +191,7 @@
 			<staticText>
 				<reportElement x="380" y="10" width="191" height="40" uuid="5a4e976d-6c58-41f5-9f1f-9d603c29ac2e"/>
 				<textElement>
-					<font fontName="TTCommons-Bold" size="16"/>
+					<font fontName="Arial" size="16"/>
 				</textElement>
 				<text><![CDATA[Condiciones médicas]]></text>
 			</staticText>
@@ -213,7 +213,7 @@
 			<staticText>
 				<reportElement x="380" y="66" width="78" height="14" uuid="68549b5a-29b4-446f-bfbc-4f3cb07194ff"/>
 				<textElement>
-					<font fontName="TTCommons-Bold" size="10"/>
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<text><![CDATA[Usuario creador: ]]></text>
 			</staticText>

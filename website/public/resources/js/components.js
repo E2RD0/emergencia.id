@@ -212,3 +212,20 @@ function saveRow( api, action, form, submitButton, checkErrors = [], id=0, compl
         }
     });
 }
+
+function fetchResource(urlString) {
+    fetch(urlString)
+        .then(resp => resp.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = '';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            swal(1, 'Reporte generado correctamente');
+        })
+        .catch(() => swal(2, 'Error al descargar el reporte'));
+}
