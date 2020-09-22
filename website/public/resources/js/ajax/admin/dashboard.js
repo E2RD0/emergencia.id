@@ -5,12 +5,31 @@ ctx.textAlign = "center";
 ctx.fillText("Debes seleccionar una opción", 200, 200);*/
 
 const API_GRAFICOS = HOME_PATH + 'api/admin/analiticas.php?action=';
+var generatingReport = false;
 $(document).ready(function() {
     getCountries();
     graficaCondicionMedica();
     graficaProdecimientos();
     graficoTop5Medicamentos();
+    graficoEstadoUsuarios();
 });
+
+function report(event, type) {
+    if (generatingReport === false){
+        generatingReport = true;
+        event.innerHTML =
+            '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generando Reporte</p>';
+        axios.post(API_GRAFICOS + type).then((response) => {
+            if (response.data.status == 1) {
+                fetchResource(HOST_NAME + response.data.file);
+            } else {
+                swal(2, response.data.exception);
+            }
+            generatingReport = false;
+            event.innerHTML = "Generar Reporte";
+        });
+    }
+};
 
 function getCountries() {
     $.ajax({
@@ -281,7 +300,7 @@ function graficaCondicionMedica()
                 condicion.push( row.condicion );
                 cantidad.push( row.recuentofilas );
             });
-            
+
             grafico( 'graficoCondicionMedica', 'Cantidad de usuarios', 'bar', condicion, cantidad);
         } else {
             $( '#graficoCondicionMedica' ).remove();
@@ -308,12 +327,42 @@ function graficoTop5Medicamentos() {
             let columns = [];
             let values = [];
             let data = response.dataset;
-            console.log(data);
             for (let i in data) {
                 columns.push(data[i].nombre);
                 values.push(data[i].cantidad);
             }
             grafico('graficoTop5Medicamentos', 'Top 5 medicamentos más solicitados', 'polarArea', columns, values);
+        } else {
+            swal(2, response.exception);
+        }
+    })
+    .fail(function( jqXHR ) {
+		// Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+}
+
+function graficoEstadoUsuarios() {
+    $.ajax({
+        type: 'post',
+        url: API_GRAFICOS + 'graficoEstadoUsuarios',
+        dataType: 'json'
+    })
+    .done(function( response ) {
+        if ( response.status == 1) {
+            let columns = [];
+            let values = [];
+            let data = response.dataset;
+            console.log(data);
+            for (let i in data) {
+                columns.push(data[i].estado);
+                values.push(data[i].cantidad);
+            }
+            grafico('graficoEstadoUsuarios', 'Cantidad de usuarios por estado ISSS', 'pie', columns, values);
         } else {
             swal(2, response.exception);
         }
@@ -344,7 +393,7 @@ function graficaProdecimientos()
                 procedimiento.push( row.procedimiento );
                 cantidad.push( row.recuentofilas );
             });
-            
+
             grafico( 'graficoProcedimiento', 'Cantidad de usuarios', 'bar', procedimiento, cantidad);
         } else {
             $( '#graficoProcedimiento' ).remove();
@@ -358,7 +407,7 @@ function graficaProdecimientos()
         }
     });
 }
-        
+
 
 
 function grafico(id, nombre, tipo, ejeX, ejeY) {

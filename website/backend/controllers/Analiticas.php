@@ -94,6 +94,19 @@ class Analiticas extends \Common\Controller
         return $result;
     }
 
+    public function graficoEstadoUsuarios()
+    {
+        $result = $this->r;
+            if($result['dataset'] = $this->model->graficoEstadoUsuarios()){
+                $result['status'] = 1;
+            }
+            else {
+                $result['status'] = -1;
+                $result['exception'] = 'No hay datos disponibles.';
+            }
+        return $result;
+    }
+
     public function graficoUsuariosFecha($data)
     {
         $result = $this->r;
@@ -154,32 +167,106 @@ class Analiticas extends \Common\Controller
             return $result;
     }
 
-    public function reporteUsuariosPais($data)
+    public function reporteUsuariosPais()
     {
-        $input = __DIR__ . '/../reports/factura.jasper';
-        $output = __DIR__ .'/../../public/reports';
-        $options = [
-            'format' => ['pdf'],
-            'locale' => 'es-SV',
-            'params' => [
-                'email' => $data
-            ],
-            'db_connection' => [
-                'driver' => 'postgres', //mysql, ....
-                'username' => DB_USER,
-                'password' => DB_PASSWORD,
-                'host' => DB_HOST,
-                'database' => 'poseidon',
-                'port' => DB_PORT
-            ]
-        ];
+        $result = $this->r;
+        $output = __DIR__.'/../../public/reports/analytics';
 
-        $jasper = new \PHPJasper\PHPJasper;
+        if ($this->pathExists($output)) {
+            $jrxml = __DIR__.'/../reports/reporteUsuariosPais.jrxml';
+            $input = __DIR__.'/../reports/reporteUsuariosPais.jasper';
+            $options = [
+                'format' => ['pdf'],
+                'locale' => 'es',
+                'params' => [
+                    'email' => $_SESSION['p_user_email']
+                ],
+                'db_connection' => [
+                    'driver' => 'postgres', //mysql, ....
+                    'username' => DB_USER,
+                    'password' => DB_PASSWORD,
+                    'host' => DB_HOST,
+                    'database' => DB_NAME,
+                    'port' => DB_PORT
+                ]
+            ];
 
-        $jasper->process(
-        $input,
-        $output,
-        $options
-        )->execute();
+            $jasper = new \PHPJasper\PHPJasper;
+
+            $jasper->compile($jrxml)->execute();
+
+            $jasper->process(
+            $input,
+            $output,
+            $options
+            )->execute();
+
+            $file = $output.'/reporteUsuariosPais.pdf';
+
+            if(file_exists($file)){
+                $result['status'] = 1;
+                $result['message'] = 'El pdf se ha generado correctamente';
+                $result['file'] = $file;
+            }
+            else {
+                $result['exception'] = 'No se pudo generar el reporte';
+            }
+        } else {
+            $result['status'] = -1;
+            $result['exception'] = 'No se ha podido crear el directorio.';
+        }
+        return $result;
+    }
+
+    public function reporteUsuariosPrivilegiados()
+    {
+        $result = $this->r;
+
+        $output = __DIR__.'/../../public/reports/analytics';
+
+        if ($this->pathExists($output)) {
+            $jrxml = __DIR__.'/../reports/reporteUsuariosPrivilegiados.jrxml';
+            $input = __DIR__.'/../reports/reporteUsuariosPrivilegiados.jasper';
+            $options = [
+                'format' => ['pdf'],
+                'locale' => 'es',
+                'params' => [
+                    'usuariocreador' => $_SESSION['p_user_email']
+                ],
+                'db_connection' => [
+                    'driver' => 'postgres', //mysql, ....
+                    'username' => DB_USER,
+                    'password' => DB_PASSWORD,
+                    'host' => DB_HOST,
+                    'database' => DB_NAME,
+                    'port' => DB_PORT
+                ]
+            ];
+
+            $jasper = new \PHPJasper\PHPJasper;
+
+            $jasper->compile($jrxml)->execute();
+
+            $jasper->process(
+            $input,
+            $output,
+            $options
+            )->execute();
+
+            $file = $output.'/reporteUsuariosPrivilegiados.pdf';
+
+            if(file_exists($file)){
+                $result['status'] = 1;
+                $result['message'] = 'El pdf se ha generado correctamente';
+                $result['file'] = $file;
+            }
+            else {
+                $result['exception'] = 'No se pudo generar el reporte';
+            }
+        } else {
+            $result['status'] = -1;
+            $result['exception'] = 'No se ha podido crear el directorio.';
+        }
+        return $result;
     }
 }

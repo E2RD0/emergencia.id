@@ -30,7 +30,10 @@ if (isset($_GET['action'])) {
                 $result = $controller->getCountries();
                 break;
             case 'reporteUsuariosPais':
-                $result = $controller->reporteUsuariosPais($_SESSION['p_user_email']);
+                $result = $controller->reporteUsuariosPais();
+                break;
+            case 'reporteUsuariosPrivilegiados':
+                $result = $controller->reporteUsuariosPrivilegiados();
                 break;
             case 'graficoCondicionMedica':
                 $result = $controller->graficoParaCondicionMedica($_POST);
@@ -40,6 +43,9 @@ if (isset($_GET['action'])) {
                 break;
             case 'graficoTop5Medicamentos':
                 $result = $controller->graficoTop5Medicamentos($_POST);
+                break;
+            case 'graficoEstadoUsuarios':
+                $result = $controller->graficoEstadoUsuarios($_POST);
                 break;
             default:
                 \Common\Core::http404();

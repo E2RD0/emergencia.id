@@ -45,6 +45,9 @@ GROUP BY
 			<band height="66">
 				<rectangle>
 					<reportElement x="1" y="33" width="571" height="30" forecolor="rgba(0, 0, 0, 0.0)" backcolor="#2F8DEB" uuid="03f3ad50-0bd0-4dd0-9bf0-6e5f1a8eaaa2"/>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
 				</rectangle>
 				<staticText>
 					<reportElement x="9" y="33" width="153" height="29" forecolor="#FFFFFF" uuid="73c8144f-65b0-4a6b-9c15-213e26be6fee"/>
@@ -52,49 +55,52 @@ GROUP BY
 						<pen lineStyle="Solid"/>
 					</box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="SansSerif" size="12"/>
+						<font fontName="DejaVu Sans" size="13"/>
 					</textElement>
 					<text><![CDATA[Nombres del usuario]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="336" y="33" width="80" height="29" forecolor="#FFFFFF" uuid="82f5ac6a-2658-4c90-affd-56e2b2fb1d15"/>
+					<reportElement x="328" y="33" width="80" height="29" forecolor="#FFFFFF" uuid="82f5ac6a-2658-4c90-affd-56e2b2fb1d15"/>
 					<box>
 						<pen lineStyle="Solid"/>
 					</box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="SansSerif" size="12"/>
+						<font fontName="DejaVu Sans" size="13"/>
 					</textElement>
 					<text><![CDATA[Teléfono]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="439" y="33" width="122" height="29" forecolor="#FFFFFF" uuid="afd54ce8-3778-49e6-bc9d-c0a8a2b08233"/>
+					<reportElement x="420" y="33" width="139" height="29" forecolor="#FFFFFF" uuid="afd54ce8-3778-49e6-bc9d-c0a8a2b08233"/>
 					<box>
 						<pen lineStyle="Solid"/>
 					</box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="SansSerif" size="12"/>
+						<font fontName="DejaVu Sans" size="13"/>
 					</textElement>
 					<text><![CDATA[Estado de residencia]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="182" y="33" width="140" height="29" forecolor="#FFFFFF" uuid="8794ca68-89e1-4c2f-95b3-b94f0418d565"/>
+					<reportElement x="175" y="33" width="140" height="29" forecolor="#FFFFFF" uuid="8794ca68-89e1-4c2f-95b3-b94f0418d565"/>
 					<box>
 						<pen lineStyle="Solid"/>
 					</box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="SansSerif" size="12"/>
+						<font fontName="DejaVu Sans" size="13"/>
 					</textElement>
 					<text><![CDATA[Correo electrónico]]></text>
 				</staticText>
 				<rectangle>
 					<reportElement x="1" y="0" width="571" height="19" forecolor="rgba(0, 0, 0, 0.0)" backcolor="#A0D6FA" uuid="488d26a6-241f-4b5d-aa99-cab7baaf62f1"/>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
 				</rectangle>
 				<textField>
 					<reportElement x="186" y="0" width="200" height="18" forecolor="#FFFFFF" uuid="fb4fe80b-032c-4dc3-8c08-5f0f297ab9b8">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="729a1a6c-144f-4e1d-ad80-b4204b5c6252"/>
 					</reportElement>
 					<textElement textAlignment="Center">
-						<font fontName="TTCommons-DemiBold" size="14"/>
+						<font fontName="DejaVu Sans" size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
 				</textField>
@@ -107,39 +113,53 @@ GROUP BY
 	<title>
 		<band height="91" splitType="Stretch">
 			<staticText>
-				<reportElement x="380" y="8" width="170" height="46" uuid="c7f2332e-1e71-4129-b28a-437c1fdd9ebf"/>
+				<reportElement x="361" y="8" width="191" height="46" uuid="c7f2332e-1e71-4129-b28a-437c1fdd9ebf"/>
 				<textElement>
-					<font fontName="SansSerif" size="18"/>
+					<font fontName="DejaVu Sans" size="18"/>
 				</textElement>
 				<text><![CDATA[Reporte de usuarios
 por país]]></text>
 			</staticText>
-			<image>
-				<reportElement x="20" y="29" width="189" height="32" uuid="ec84310e-84e9-4917-98ca-3c15cf9e9339"/>
-				<imageExpression><![CDATA["http://192.168.1.105/mnt/nas/Dev/EmergenciaID/website/public/resources/images/for-light-bg.svg"]]></imageExpression>
-			</image>
 			<textField pattern="MMMM d, yyyy h:mm:ss a">
-				<reportElement x="380" y="54" width="170" height="16" uuid="4909cabd-03b0-4756-b3ec-6876d4755df4"/>
+				<reportElement x="361" y="54" width="190" height="16" uuid="4909cabd-03b0-4756-b3ec-6876d4755df4"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement x="370" y="8" width="5" height="76" forecolor="rgba(0, 0, 0, 0.0)" backcolor="#2F8DEB" uuid="f5cb74be-6c12-44d4-88d1-d03b8e99c3e9">
+				<reportElement x="351" y="8" width="5" height="76" forecolor="rgba(0, 0, 0, 0.0)" backcolor="#2F8DEB" uuid="f5cb74be-6c12-44d4-88d1-d03b8e99c3e9">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="380" y="70" width="78" height="14" uuid="af2a10d6-323f-48a7-ba8f-c240ec2e8da1"/>
+				<reportElement x="361" y="70" width="85" height="14" uuid="af2a10d6-323f-48a7-ba8f-c240ec2e8da1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 				<textElement>
-					<font fontName="TTCommons-Bold" size="10"/>
+					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
 				<text><![CDATA[Usuario creador: ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="458" y="70" width="114" height="14" uuid="72e4486d-980b-4ba0-b84c-450bbcb01f33"/>
+				<reportElement x="446" y="70" width="114" height="14" uuid="72e4486d-980b-4ba0-b84c-450bbcb01f33"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
 			</textField>
+			<image hAlign="Left" vAlign="Middle">
+				<reportElement x="20" y="19" width="260" height="51" uuid="ab64bcea-b6bf-401b-b92c-771dbd2f7a5b">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA["https://drive.google.com/uc?export=view&id=16Ck7Iixprqcu5BLetkjznt50OiGd9723"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>
@@ -148,26 +168,34 @@ por país]]></text>
 				<reportElement x="5" y="5" width="158" height="25" uuid="26547887-b186-493e-a19d-2b3864110cc2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0645d264-dfa0-467d-a489-7fde4177ebc3"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombresusuario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="183" y="5" width="138" height="25" uuid="f26cc627-7899-49cc-946a-72c94991835a">
+				<reportElement x="176" y="5" width="138" height="25" uuid="f26cc627-7899-49cc-946a-72c94991835a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bdc8ed35-848c-4a9a-89b1-99dbb801b4dd"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="337" y="5" width="80" height="25" uuid="3dbf699e-a003-46c4-85a5-1bac404deaf0">
+				<reportElement x="329" y="5" width="80" height="25" uuid="3dbf699e-a003-46c4-85a5-1bac404deaf0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="81facd94-ecef-47e7-b621-473524b73606"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="440" y="5" width="120" height="24" uuid="f1dd4604-77c9-40e7-9388-26a29ff1aca6"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement x="420" y="5" width="140" height="24" uuid="f1dd4604-77c9-40e7-9388-26a29ff1aca6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
 			<line>
@@ -179,15 +207,21 @@ por país]]></text>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="54" splitType="Stretch">
+		<band height="19" splitType="Stretch">
 			<textField>
-				<reportElement x="491" y="24" width="40" height="30" uuid="a1005e7a-5cd7-446d-958f-02e1f25318c6"/>
-				<textElement textAlignment="Right"/>
+				<reportElement positionType="FixRelativeToBottom" x="490" y="0" width="50" height="19" uuid="fb7eb65f-1e11-4cda-8e73-66cd01c37b22"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="532" y="24" width="40" height="30" uuid="f1d84306-339e-41dc-a69a-b7a0397fd7fa"/>
-				<textElement textAlignment="Left"/>
+				<reportElement positionType="FixRelativeToBottom" x="540" y="0" width="32" height="19" uuid="71c23d10-cffe-422c-b0aa-4ee4d2e0b49d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>

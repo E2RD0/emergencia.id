@@ -5,6 +5,30 @@ template::headerSite('Dashboard');
 
 <div id="dashboard">
     <div class="container mt-5" id="dashboard">
+        <h1 class="title-page mb-3">Reportes</h1>
+        <div class="row">
+            <div class="col-6">
+                <h4 class="mb-3">Usuarios privilegiados</h2>
+                <button
+                    onclick="report(this, 'reporteUsuariosPrivilegiados')"
+                    class="button button--small"
+                    role="button"
+                >
+                    <p class="d-inline-block my-0">Generar Reporte</p>
+                </button>
+            </div>
+            <div class="col-6">
+                <h4 class="mb-3">Usuarios según país</h2>
+                <button
+                onclick="report(this, 'reporteUsuariosPais')"
+                class="button button--small"
+                role="button"
+                >
+                    <p class="d-inline-block my-0">Generar Reporte</p>
+                </button>
+            </div>
+        </div>
+
         <h1 class="title-page mb-5">Gráficos</h1>
         <div class="row">
             <div class="col-md-6 text-center p-5">
@@ -89,12 +113,19 @@ template::headerSite('Dashboard');
 
         <div class="row">
             <div class="col-md-6 text-center p-5">
-                <h4>Condiciones medicas mas comunes</h2>
+                <h4>Condiciones médicas más comunes</h2>
                 <canvas id="graficoCondicionMedica"   width="400" height="300"></canvas>
             </div>
             <div class="col-md-6 text-center p-5">
-                <h4>Procedimientos mas comunes</h2>
+                <h4>Procedimientos más comunes</h2>
                 <canvas id="graficoProcedimiento"   width="400" height="300"></canvas>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 text-center p-5">
+                <h4>Cantidad de usuarios por estado ISSS</h4>
+                <canvas id="graficoEstadoUsuarios"   width="400" height="300"></canvas>
             </div>
         </div>
 

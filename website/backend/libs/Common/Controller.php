@@ -48,4 +48,8 @@ class Controller
             Core::http404();
         }
     }
+
+    public function pathExists($path){
+        return file_exists($path) || mkdir($path, 0777, true);
+    }
 }

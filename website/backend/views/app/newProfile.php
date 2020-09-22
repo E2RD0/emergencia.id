@@ -42,7 +42,16 @@ template::headerCreate('Nuevo perfil');
                 </div>
             </div>
             <div class="mt-4">
-                <h5>Información personal</h5>
+                <div class="row">
+                    <div class="col-md-8 col-12">
+                        <h5>Información personal</h5>
+                        <p class="text-target">Información sobre ti, para que los paramédicos tengan una referencia en caso de emergencia.
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-12 d-flex justify-content-end align-items-center">
+                        <button class="button d-inline-block" @click="reporte($event,'reporteInformacionPerfil')">Generar reporte</button>
+                    </div>
+                </div>
                 <div class="row mt-3">
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -54,7 +63,6 @@ template::headerCreate('Nuevo perfil');
                             <label for="exampleInputEmail1" class="text-target">{{messagesError.nombreUsuario}}</label>
                             <input onkeypress="return soloLetras(event)" @input="debounceSearch" tabindex="3" class="textfield" type="text"
                                 v-model="dataProfile.name">
-                            <!-- Perfecto!vaya cerrare la conexion en fb seguimos mucahs gracias-->
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-target">Tipo de sangre</label>
@@ -152,12 +160,17 @@ template::headerCreate('Nuevo perfil');
                 </div>
 
                 <div class="perfil-contacto-emergencia">
-                    <h5 class="mt-4">Contactos de emergencia ({{addEmergencycontacts.length}})</h5>
-                    <p class="text-target">Ingresa a las personas que los paramédicos podrían contactar en caso de
-                        emergencia
-                    </p>
-                    <button style="margin-left: 30px" class="button" onclick="reporteContactosEmergencia()">Generar reporte</button>
-
+                    <div class="row">
+                        <div class="col-md-8 col-12">
+                            <h5 class="mt-4">Contactos de emergencia ({{addEmergencycontacts.length}})</h5>
+                            <p class="text-target">Ingresa a las personas que los paramédicos podrían contactar en caso de
+                                emergencia
+                            </p>
+                        </div>
+                        <div class="col-md-4 col-12 d-flex justify-content-end align-items-center">
+                            <button class="button d-inline-block" @click="reporte($event,'reporteContactosEmergencia')">Generar reporte</button>
+                        </div>
+                    </div>
                     <div class="emergency-contact mt-2" v-for="item in addEmergencycontacts">
                         <div>
                             <div class="target">
@@ -289,9 +302,15 @@ template::headerCreate('Nuevo perfil');
                 </div>
 
                 <div class="perfil-contacto-doctor">
-                    <h5 class="mt-4">Contactos doctor ({{getDoctorContact.length}})</h5>
-                    <p class="text-target">Ingresa los paramedicos que se podrían contactar en caso de emergencia.</p>
-                    <button style="margin-left: 30px" class="button">Generar reporte</button>
+                    <div class="row">
+                        <div class="col-md-8 col-12">
+                            <h5 class="mt-4">Contactos doctor ({{getDoctorContact.length}})</h5>
+                            <p class="text-target">Ingresa los paramedicos que se podrían contactar en caso de emergencia.</p>
+                        </div>
+                        <div class="col-md-4 col-12 d-flex justify-content-end align-items-center">
+                            <button class="button d-inline-block" @click="reporte($event,'reporteContactosDoctor')">Generar reporte</button>
+                        </div>
+                    </div>
                     <div class="emergency-contact mt-2" v-for="item in getDoctorContact">
                         <div>
                             <div class="target">
@@ -395,9 +414,15 @@ template::headerCreate('Nuevo perfil');
                 </div>
 
                 <div class="perfil-medicacion">
-                    <h5 class="mt-4">Medicamentos ({{getMedicacion.length}})</h5>
-                    <p class="text-target">Ingresa la medicación que tomas regularmente.</p>
-
+                    <div class="row">
+                        <div class="col-md-8 col-12">
+                            <h5 class="mt-4">Medicamentos ({{getMedicacion.length}})</h5>
+                            <p class="text-target">Ingresa la medicación que tomas regularmente.</p>
+                        </div>
+                        <div class="col-md-4 col-12 d-flex justify-content-end align-items-center">
+                            <button class="button d-inline-block" @click="reporte($event,'reporteMedicamentos')">Generar reporte</button>
+                        </div>
+                    </div>
                     <div class="emergency-contact mt-2" v-for="item in getMedicacion">
                         <div>
                             <div class="target">
@@ -532,9 +557,15 @@ template::headerCreate('Nuevo perfil');
                 </div>
 
                 <div class="perfil-condicion-medica">
-                    <h5 class="mt-4">Condición médica</h5>
-                    <p class="text-target">Tu condición medica puede ayudar a los paramedicos en caso de emergencia.</p>
-                    <button style="margin-left: 30px" class="button" onclick="reporteCondicionesMedicas()">Generar reporte</button>
+                    <div class="row">
+                        <div class="col-md-8 col-12">
+                            <h5 class="mt-4">Condición médica ({{getCondition.length}})</h5>
+                            <p class="text-target">Tu condición medica puede ayudar a los paramedicos en caso de emergencia.</p>
+                        </div>
+                        <div class="col-md-4 col-12 d-flex justify-content-end align-items-center">
+                            <button class="button d-inline-block" @click="reporte($event,'reporteCondicionesMedicas')">Generar reporte</button>
+                        </div>
+                    </div>
                     <div class="emergency-contact mt-2" v-for="item in getCondition">
                         <div>
                             <div class="target">

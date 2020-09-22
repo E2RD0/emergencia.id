@@ -255,7 +255,11 @@ class Perfil
         return $db->resultSet();
     }
 
+    public function getProfileUID($id){
+        $db = new \Common\Database;
+        $db->query("SELECT uid FROM perfil_medico WHERE id_perfil_medico = :id");
+        $db->bind(':id', $id);
+        return $db->getResult();
+    }
+
 }
-
-
-?>

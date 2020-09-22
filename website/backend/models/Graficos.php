@@ -93,4 +93,15 @@ class Graficos
                     LIMIT 5');
         return $db->resultSet();
     }
+
+    public function graficoEstadoUsuarios(){
+        $db = new \Common\Database;
+        $db->query('SELECT estado, COUNT (*) AS cantidad
+                    FROM estado_isss
+                    JOIN perfil_medico USING (id_estado_isss)
+                    GROUP BY estado ORDER BY cantidad DESC
+                    LIMIT 5');
+        return $db->resultSet();
+    }
+
 }

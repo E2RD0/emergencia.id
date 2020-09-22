@@ -1,5 +1,5 @@
-let endPoint = HOST_NAME + HOME_PATH + "api/app/perfil.php?action=";
-let endPointU = HOST_NAME + HOME_PATH + "api/app/perfilUsuario.php?action=";
+const endPoint = HOST_NAME + HOME_PATH + "api/app/perfil.php?action=";
+const endPointU = HOST_NAME + HOME_PATH + "api/app/perfilUsuario.php?action=";
 const dashboardUser = new Vue({
     el: "#dashboard",
 
@@ -28,10 +28,10 @@ const dashboardUser = new Vue({
             edadModal: "",
             ciudadModal: "",
             showButtonModal: true,
-            getProfileList: "Lista de perfiles"
+            generatingReport: false,
         };
     },
-    created: function() {
+    created: function () {
         this.showprofiles();
         this.showprofilesShared();
     },
@@ -39,26 +39,52 @@ const dashboardUser = new Vue({
         $(this.$refs.shareModal).on("hidden.bs.modal", this.clearShared);
     },
     methods: {
-        imrpCode: function(id, n, a, edad, ciudad) {
-            console.log(id)
-            this.uid = id
-            this.srcImage = "https://chart.googleapis.com/chart?cht=qr&chl=" + this.uid + "&choe=UTF-8&chs=500"
-            this.showModal = false
-            this.nameModal = n + " " + a
-            this.edadModal = edad
-            this.ciudadModal = ciudad
+        imrpCode: function (id, n, a, edad, ciudad) {
+            console.log(id);
+            this.uid = id;
+            this.srcImage =
+                "https://chart.googleapis.com/chart?cht=qr&chl=" +
+                this.uid +
+                "&choe=UTF-8&chs=500";
+            this.showModal = false;
+            this.nameModal = n + " " + a;
+            this.edadModal = edad;
+            this.ciudadModal = ciudad;
         },
 
-        dowloadQR: function() {
-            this.showButtonModal = false
-            setTimeout(() => { window.print() = true }, 0050);
-            setTimeout(() => { this.showButtonModal = true }, 1000);
+        dowloadQR: function () {
+            this.showButtonModal = false;
+            setTimeout(() => {
+                window.print() = true;
+            }, 0050);
+            setTimeout(() => {
+                this.showButtonModal = true;
+            }, 1000);
         },
 
-        getProfilesReport: function (){
-
+        getProfilesReport(event) {
+            if (this.generatingReport === false) {
+                this.generatingReport = true;
+                if (event.target.tagName != 'BUTTON') event.target.parentElement.innerHTML =
+                    '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generando Lista</p>';
+                else event.target.innerHTML =
+                    '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generando Lista</p>';
+                axios
+                    .get(endPoint + "reportePerfilesUsuario")
+                    .then((response) => {
+                        if (response.data.status == 1) {
+                            fetchResource(HOST_NAME + response.data.file);
+                        } else {
+                            swal(2, response.data.exception);
+                        }
+                        this.generatingReport = false;
+                            event.target.innerHTML =
+                            '<i class="fas fa-list"></i><p class="d-inline-block my-0 ml-2">Lista de perfiles</p>';
+                    });
+            }
         },
-        createNewProfile: function() {
+
+        createNewProfile: function () {
             this.newProfile = "Cargando...";
             axios.get(endPoint + "newProfile").then((response) => {
                 this.newProfile = "Nuevo perfil";
@@ -69,23 +95,27 @@ const dashboardUser = new Vue({
             });
         },
 
-        showprofiles: function() {
+        getProfilePhoto: function (photo) {
+            return HOME_PATH + "/resources/images/" + photo;
+        },
+
+        showprofiles: function () {
             axios.get(endPointU + "getshowProfile").then((response) => {
                 this.show = response.data.dataset;
             });
         },
 
-        showprofilesShared: function() {
+        showprofilesShared: function () {
             axios.get(endPointU + "getshowProfileShared").then((response) => {
                 this.ShowShared = response.data.dataset;
             });
         },
 
-        redirectToEdit: function(parameter) {
+        redirectToEdit: function (parameter) {
             window.location = this.redirect + parameter;
         },
 
-        clearShared: function() {
+        clearShared: function () {
             this.sharedWith = {};
             this.loading =
                 '<div><i class="far fa-spinner-third icon-load primary-cl"></i></div>';
@@ -96,7 +126,7 @@ const dashboardUser = new Vue({
             this.sharingStatus = "";
         },
 
-        deleteProfile: function(type) {
+        deleteProfile: function (type) {
             console.log(this.toSend);
             this.deleteText = "Eliminando...";
             let formData = this.toFormData(this.toSend);
@@ -135,11 +165,11 @@ const dashboardUser = new Vue({
                 });
         },
 
-        encapsulateId: function(key, param) {
+        encapsulateId: function (key, param) {
             this.toSend[key] = param;
         },
 
-        toFormData: function(obj) {
+        toFormData: function (obj) {
             var form_data = new FormData();
             for (var key in obj) {
                 form_data.append(key, obj[key]);
@@ -147,12 +177,12 @@ const dashboardUser = new Vue({
             return form_data;
         },
 
-        getShares: function(key, param) {
+        getShares: function (key, param) {
             this.encapsulateId(key, param);
             this.refreshShares();
         },
 
-        refreshShares: function() {
+        refreshShares: function () {
             let formData = this.toFormData(this.toSend);
             axios
                 .post(endPointU + "getUsersSharedWith", formData)
@@ -170,7 +200,7 @@ const dashboardUser = new Vue({
                 });
         },
 
-        deleteSharing: function(key, param) {
+        deleteSharing: function (key, param) {
             this.encapsulateId(key, param);
             let formData = this.toFormData(this.toSend);
 
@@ -182,20 +212,20 @@ const dashboardUser = new Vue({
                     if (jsonResponse.status) {
                         this.sharedWith.splice(
                             this.sharedWith
-                            .map((e) => e.id_usuario)
-                            .indexOf(this.toSend.id_usuario),
+                                .map((e) => e.id_usuario)
+                                .indexOf(this.toSend.id_usuario),
                             1
                         );
                         if (this.sharedWith.length == 0) {
                             this.clearShared();
-                            this.loading = 'No compartes tu perfil con nadie.';
+                            this.loading = "No compartes tu perfil con nadie.";
                         }
                         swal(1, jsonResponse.message, false, 0);
                     } else swal(2, jsonResponse.exception, false, 0);
                 });
         },
 
-        validateEmail: function(email) {
+        validateEmail: function (email) {
             const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if (email && !(email === "")) {
                 if (regEx.test(email)) {
@@ -214,7 +244,7 @@ const dashboardUser = new Vue({
             return false;
         },
 
-        shareProfileWith: function() {
+        shareProfileWith: function () {
             let email = this.$refs.email.value;
             if (this.validateEmail(email)) {
                 this.encapsulateId("email", email);
