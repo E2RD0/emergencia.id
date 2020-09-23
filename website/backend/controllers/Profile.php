@@ -2,7 +2,7 @@
 
 class Profile extends \Common\Controller
 {
-    public $r;
+ public $r;
 
     public function __construct()
     {
@@ -38,7 +38,7 @@ class Profile extends \Common\Controller
                     if ($rUsuario && $rNombres && $rApellidos && $rTelefono) {
                         $_SESSION['user_profile'] = $idPerfil;
                         $result['status'] = 1;
-                        $result['message'] = 'Usuario registrado correctamente';
+                        $result['message'] = 'User successfully registered.';
                         $result['id_perfil_medico'] = $idPerfil;
                     }
                     else {
@@ -51,13 +51,13 @@ class Profile extends \Common\Controller
                 }
             } else {
                 $result['status'] = 0;
-                $result['exception'] = 'Error en uno de los campos';
+                $result['exception'] = 'Error in one of the fields';
                 $result['errors'] = $errors;
             }
         }
         else {
             $result['status'] = -2;
-            $result['exception'] = 'Ya existe un perfil médico. Redirigiendo a perfiles...';
+            $result['exception'] = 'A medical profile already exists. Redirecting to profiles...';
         }
         return $result;
     }
@@ -67,7 +67,7 @@ class Profile extends \Common\Controller
         if ($result['dataset'] = $this->usersModel->getPerfilesUsuario($_SESSION['user_id'])) {
             $result['status'] = 1;
         } else {
-            $result['exception'] = 'No hay ningun perfil médico';
+            $result['exception'] = 'There is no medical profile';
         }
         return $result;
     }
@@ -201,17 +201,18 @@ class Profile extends \Common\Controller
 
         $id = $data['id'];
         $uid = $this->usersModel->getProfileUID($data['id'])->uid;
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']).'/'.$uid;
+        $output = HOME_PATH.'reports/'.intval($_SESSION['user_id']).'/'.$uid;
 
         if ($this->pathExists($output)) {
             $jrxml = __DIR__.'/../reports/reporteInformacionPerfil.jrxml';
             $input = __DIR__.'/../reports/reporteInformacionPerfil.jasper';
             $options = [
                 'format' => ['pdf'],
-                'locale' => 'es',
+                'locale' => 'en',
                 'params' => [
                     'id_perfil_medico' => $id,
-                    'email' => $_SESSION['user_email']
+                    'email' => $_SESSION['user_email'],
+                    'path' => HOME_PATH.'resources/images/'
                 ],
                 'db_connection' => [
                     'driver' => 'postgres',
@@ -237,15 +238,15 @@ class Profile extends \Common\Controller
 
             if(file_exists($file)){
                 $result['status'] = 1;
-                $result['message'] = 'El pdf se ha generado correctamente';
+                $result['message'] = 'The pdf has been generated correctly';
                 $result['file'] = $file;
             }
             else {
-                $result['exception'] = 'No se pudo generar el reporte';
+                $result['exception'] = 'Report could not be generated';
             }
         } else {
             $result['status'] = -1;
-            $result['message'] = 'No se ha podido crear el directorio.';
+            $result['message'] = 'The directory could not be created.';
         }
         return $result;
     }
@@ -257,14 +258,14 @@ class Profile extends \Common\Controller
 
         $id = $data['id'];
         $uid = $this->usersModel->getProfileUID($data['id'])->uid;
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']).'/'.$uid;
+        $output = HOME_PATH.'reports/'.intval($_SESSION['user_id']).'/'.$uid;
 
         if ($this->pathExists($output)) {
             $jrxml = __DIR__.'/../reports/reporteCondicionesMedicas.jrxml';
             $input = __DIR__.'/../reports/reporteCondicionesMedicas.jasper';
             $options = [
                 'format' => ['pdf'],
-                'locale' => 'es',
+                'locale' => 'en',
                 'params' => [
                     'id' => $id,
                     'email' => $_SESSION['user_email']
@@ -293,15 +294,15 @@ class Profile extends \Common\Controller
 
             if(file_exists($file)){
                 $result['status'] = 1;
-                $result['message'] = 'El pdf se ha generado correctamente';
+                $result['message'] = 'The pdf has been generated correctly';
                 $result['file'] = $file;
             }
             else {
-                $result['exception'] = 'No se pudo generar el reporte';
+                $result['exception'] = 'Report could not be generated';
             }
         } else {
             $result['status'] = -1;
-            $result['message'] = 'No se ha podido crear el directorio.';
+            $result['message'] = 'The directory could not be created';
         }
         return $result;
     }
@@ -313,14 +314,14 @@ class Profile extends \Common\Controller
 
         $id = $data['id'];
         $uid = $this->usersModel->getProfileUID($data['id'])->uid;
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']).'/'.$uid;
+        $output = HOME_PATH.'reports/'.intval($_SESSION['user_id']).'/'.$uid;
 
         if ($this->pathExists($output)) {
             $jrxml = __DIR__.'/../reports/reporteContactosEmergencia.jrxml';
             $input = __DIR__.'/../reports/reporteContactosEmergencia.jasper';
             $options = [
                 'format' => ['pdf'],
-                'locale' => 'es',
+                'locale' => 'en',
                 'params' => [
                     'id' => $id,
                     'email' => $_SESSION['user_email']
@@ -349,15 +350,15 @@ class Profile extends \Common\Controller
 
             if(file_exists($file)){
                 $result['status'] = 1;
-                $result['message'] = 'El pdf se ha generado correctamente';
+                $result['message'] = 'The pdf has been generated correctly';
                 $result['file'] = $file;
             }
             else {
-                $result['exception'] = 'No se pudo generar el reporte';
+                $result['exception'] = 'Report could not be generated';
             }
         } else {
             $result['status'] = -1;
-            $result['exception'] = 'No se ha podido crear el directorio.';
+            $result['exception'] = 'The directory could not be created.';
         }
         return $result;
     }
@@ -366,14 +367,14 @@ class Profile extends \Common\Controller
     {
         $result = $this->r;
 
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']);
+        $output = HOME_PATH.'reports/'.intval($_SESSION['user_id']);
 
         if ($this->pathExists($output)) {
             $jrxml = __DIR__.'/../reports/reportePerfilesUsuario.jrxml';
             $input = __DIR__.'/../reports/reportePerfilesUsuario.jasper';
             $options = [
                 'format' => ['pdf'],
-                'locale' => 'es',
+                'locale' => 'en',
                 'params' => [
                     'idUsuario' => $_SESSION['user_id'],
                     'email' => $_SESSION['user_email']
@@ -402,15 +403,15 @@ class Profile extends \Common\Controller
 
             if(file_exists($file)){
                 $result['status'] = 1;
-                $result['message'] = 'El pdf se ha generado correctamente';
+                $result['message'] = 'The pdf has been generated correctly';
                 $result['file'] = $file;
             }
             else {
-                $result['exception'] = 'No se pudo generar el reporte';
+                $result['exception'] = 'Report could not be generated';
             }
         } else {
             $result['status'] = -1;
-            $result['exception'] = 'No se ha podido crear el directorio.';
+            $result['exception'] = 'The directory could not be created.';
         }
         return $result;
     }
@@ -422,14 +423,14 @@ class Profile extends \Common\Controller
 
         $id = $data['id'];
         $uid = $this->usersModel->getProfileUID($data['id'])->uid;
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']).'/'.$uid;
+        $output = HOME_PATH.'reports/'.intval($_SESSION['user_id']).'/'.$uid;
 
         if ($this->pathExists($output)) {
             $jrxml = __DIR__.'/../reports/reporteContactosDoctor.jrxml';
             $input = __DIR__.'/../reports/reporteContactosDoctor.jasper';
             $options = [
                 'format' => ['pdf'],
-                'locale' => 'es',
+                'locale' => 'en',
                 'params' => [
                     'id_profile' => $id,
                     'email' => $_SESSION['user_email']
@@ -458,15 +459,15 @@ class Profile extends \Common\Controller
 
             if(file_exists($file)){
                 $result['status'] = 1;
-                $result['message'] = 'El pdf se ha generado correctamente';
+                $result['message'] = 'The pdf has been generated correctly';
                 $result['file'] = $file;
             }
             else {
-                $result['exception'] = 'No se pudo generar el reporte';
+                $result['exception'] = 'Report could not be generated';
             }
         } else {
             $result['status'] = -1;
-            $result['message'] = 'No se ha podido crear el directorio.';
+            $result['message'] = 'The directory could not be created.';
         }
         return $result;
     }
@@ -478,14 +479,14 @@ class Profile extends \Common\Controller
 
         $id = $data['id'];
         $uid = $this->usersModel->getProfileUID($data['id'])->uid;
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']).'/'.$uid;
+        $output = HOME_PATH.'reports/'.intval($_SESSION['user_id']).'/'.$uid;
 
         if ($this->pathExists($output)) {
             $jrxml = __DIR__.'/../reports/reporteMedicamentos.jrxml';
             $input = __DIR__.'/../reports/reporteMedicamentos.jasper';
             $options = [
                 'format' => ['pdf'],
-                'locale' => 'es',
+                'locale' => 'en',
                 'params' => [
                     'id_perfil_medico' => $id,
                     'usuariocreador' => $_SESSION['user_email']
@@ -514,15 +515,15 @@ class Profile extends \Common\Controller
 
             if(file_exists($file)){
                 $result['status'] = 1;
-                $result['message'] = 'El pdf se ha generado correctamente';
+                $result['message'] = 'The pdf has been generated correctly';
                 $result['file'] = $file;
             }
             else {
-                $result['exception'] = 'No se pudo generar el reporte';
+                $result['exception'] = 'Report could not be generated';
             }
         } else {
             $result['status'] = -1;
-            $result['exception'] = 'No se ha podido crear el directorio.';
+            $result['exception'] = 'The directory could not be created.';
         }
         return $result;
     }

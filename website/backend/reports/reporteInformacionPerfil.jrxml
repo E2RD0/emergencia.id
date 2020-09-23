@@ -5,28 +5,29 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Emergencia.id"/>
 	<parameter name="id_perfil_medico" class="java.lang.Integer"/>
 	<parameter name="email" class="java.lang.String"/>
+	<parameter name="path" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT
 	usuario.id_usuario,
 	email,
-	COALESCE(telefono, 'Sin completar') AS telefono,
-	COALESCE(nombres || ' ' || apellidos, 'Sin completar') AS nombres_usuario,
+	COALESCE(telefono, 'Not completed') AS telefono,
+	COALESCE(nombres || ' ' || apellidos, 'Not completed') AS nombres_usuario,
 	uid,
 	COALESCE(foto, 'sin_foto.png') AS foto,
-	COALESCE(fecha_nacimiento::TEXT, 'Sin completar') AS fecha_nacimiento,
-	COALESCE(documento_identidad, 'Sin completar') AS documento_identidad,
-	CASE 	WHEN es_donador=true THEN 'Es donador'
-				WHEN es_donador=false THEN 'No es donador'
-				ELSE 'Sin completar'
+	COALESCE(fecha_nacimiento::TEXT, 'Not completed') AS fecha_nacimiento,
+	COALESCE(documento_identidad, 'Not completed') AS documento_identidad,
+	CASE 	WHEN es_donador=true THEN 'Is a donor'
+				WHEN es_donador=false THEN 'Not a donor'
+				ELSE 'Not completed'
 	END	AS es_donador,
-	COALESCE(direccion, 'Sin completar') AS direccion,
-	COALESCE(peso, 'Sin completar') AS peso,
-	COALESCE(estatura, 'Sin completar') AS estatura,
-	COALESCE(pais.nombre, 'Sin completar') AS pais,
-	COALESCE(pais_estado.nombre, 'Sin completar') AS estado,
-	COALESCE(ciudad, 'Sin completar') AS ciudad,
-	COALESCE(tipo_sangre.tipo, 'Sin completar') AS tipo_sangre,
-	COALESCE(estado_isss.estado, 'Sin completar') AS id_estado_isss,
+	COALESCE(direccion, 'Not completed') AS direccion,
+	COALESCE(peso, 'Not completed') AS peso,
+	COALESCE(estatura, 'Not completed') AS estatura,
+	COALESCE(pais.nombre, 'Not completed') AS pais,
+	COALESCE(pais_estado.nombre, 'Not completed') AS estado,
+	COALESCE(ciudad, 'Not completed') AS ciudad,
+	COALESCE(tipo_sangre.tipo, 'Not completed') AS tipo_sangre,
+	COALESCE(estado_isss.estado, 'Not completed') AS id_estado_isss,
 	fecha_creacion
 FROM
 	perfil_medico
@@ -105,14 +106,14 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="360" y="77" width="78" height="14" uuid="f1ce3746-991a-46be-bf03-0d8d3a566d66"/>
+				<reportElement x="360" y="77" width="72" height="14" uuid="f1ce3746-991a-46be-bf03-0d8d3a566d66"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<text><![CDATA[Usuario creador: ]]></text>
+				<text><![CDATA[Creator User:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="438" y="77" width="114" height="14" uuid="f1d7d9f2-075f-4d71-b26f-8374bf8d5d45"/>
+				<reportElement x="432" y="77" width="120" height="14" uuid="f1d7d9f2-075f-4d71-b26f-8374bf8d5d45"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
@@ -133,7 +134,7 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement>
 					<font fontName="DejaVu Sans" size="18"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Información del perfil #"+$F{uid}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Information of the profile #"+$F{uid}]]></textFieldExpression>
 			</textField>
 			<image hAlign="Left" vAlign="Middle">
 				<reportElement x="20" y="19" width="260" height="51" uuid="75fc7dde-e6cd-454e-84c4-e3c54320a4eb">
@@ -153,17 +154,17 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="169" y="5" width="116" height="20" forecolor="#FFFFFF" uuid="655c4338-16df-4e4c-b648-5a7e1931cb13">
+				<reportElement x="206" y="5" width="40" height="20" forecolor="#FFFFFF" uuid="655c4338-16df-4e4c-b648-5a7e1931cb13">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Correo electrónico:]]></text>
+				<text><![CDATA[E-mail:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="286" y="5" width="150" height="20" forecolor="#FFFFFF" uuid="7a63f1b2-0f8c-4e71-81ab-865c1aa94eec">
+				<reportElement x="246" y="5" width="150" height="20" forecolor="#FFFFFF" uuid="7a63f1b2-0f8c-4e71-81ab-865c1aa94eec">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
@@ -173,17 +174,17 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="443" y="5" width="56" height="20" forecolor="#FFFFFF" uuid="5785bc7c-1eca-4ebf-8057-79758d755f18">
+				<reportElement x="443" y="5" width="47" height="20" forecolor="#FFFFFF" uuid="5785bc7c-1eca-4ebf-8057-79758d755f18">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Teléfono:]]></text>
+				<text><![CDATA[Phone:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="500" y="5" width="68" height="20" forecolor="#FFFFFF" uuid="2cc9d2a6-354a-44fc-98b2-9e31e466ece4">
+				<reportElement x="490" y="5" width="68" height="20" forecolor="#FFFFFF" uuid="2cc9d2a6-354a-44fc-98b2-9e31e466ece4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -194,7 +195,7 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="6" y="5" width="120" height="20" forecolor="#FFFFFF" uuid="6a37e831-8df1-4f54-ab15-0fa7d9979b4e">
+				<reportElement x="14" y="5" width="120" height="20" forecolor="#FFFFFF" uuid="6a37e831-8df1-4f54-ab15-0fa7d9979b4e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -202,10 +203,10 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ID de identificación:]]></text>
+				<text><![CDATA[ID of identification:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="127" y="5" width="36" height="20" forecolor="#FFFFFF" uuid="284eb460-50e3-4c76-8f96-2127fef384f7">
+				<reportElement x="135" y="5" width="36" height="20" forecolor="#FFFFFF" uuid="284eb460-50e3-4c76-8f96-2127fef384f7">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="640fcf22-3626-42b8-8845-e68a1da8110c"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -223,19 +224,19 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<imageExpression><![CDATA["../../public/resources/images/"+$F{foto}]]></imageExpression>
+				<imageExpression><![CDATA[$P{path}+$F{foto}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="142" y="10" width="120" height="20" uuid="56875bfc-ae64-418f-ba27-9f97648ea1ba">
+				<reportElement x="142" y="10" width="168" height="40" uuid="56875bfc-ae64-418f-ba27-9f97648ea1ba">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e27b211d-38de-45d9-9c19-bb6abdec6ba3"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font fontName="DejaVu Sans" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombres_usuario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="142" y="50" width="120" height="20" uuid="faa2b922-fdac-4502-a758-cadc2187930c">
+				<reportElement x="142" y="59" width="120" height="20" uuid="faa2b922-fdac-4502-a758-cadc2187930c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a990707d-664e-4142-b722-44f2cedaf2c8"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -263,11 +264,12 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textFieldExpression><![CDATA[$F{es_donador}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="142" y="263" width="120" height="20" uuid="39c266c7-ff52-405d-8dbf-83242efb049d">
+				<reportElement x="142" y="263" width="168" height="55" uuid="39c266c7-ff52-405d-8dbf-83242efb049d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a16656f1-1615-4ac3-9056-c9c1d350d0cf"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font fontName="DejaVu Sans" size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
 			</textField>
@@ -317,7 +319,7 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textFieldExpression><![CDATA[$F{ciudad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="433" y="171" width="58" height="20" uuid="ecfc5b53-71ab-4fac-a75b-ee7fbc2ebfad">
+				<reportElement x="431" y="171" width="68" height="20" uuid="ecfc5b53-71ab-4fac-a75b-ee7fbc2ebfad">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="17485a49-31e3-450d-83b2-d82824a0eca4"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -335,7 +337,7 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textFieldExpression><![CDATA[$F{id_estado_isss}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MMMM d, yyyy h:mm:ss a">
-				<reportElement x="341" y="313" width="178" height="18" uuid="21202d83-d6fb-4800-8a4a-7119dbad6921">
+				<reportElement x="331" y="330" width="188" height="18" uuid="21202d83-d6fb-4800-8a4a-7119dbad6921">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a24d3f4-fbca-4792-9f97-510531b217b3"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -350,16 +352,16 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Nombres:]]></text>
+				<text><![CDATA[Names:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="52" y="40" width="90" height="40" uuid="378a7017-a72a-44d2-85c2-82119d6849fd">
+				<reportElement x="52" y="59" width="90" height="20" uuid="378a7017-a72a-44d2-85c2-82119d6849fd">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a990707d-664e-4142-b722-44f2cedaf2c8"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Fecha de nacimiento:]]></text>
+				<text><![CDATA[Date of birth:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="52" y="90" width="90" height="40" uuid="00687f38-5327-4c10-808f-b12661709c17">
@@ -368,16 +370,16 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Documento de identidad:]]></text>
+				<text><![CDATA[Identity document:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="52" y="140" width="90" height="20" uuid="30cb7198-d221-4194-bbc9-d6d4365bc2c4">
+				<reportElement x="52" y="135" width="90" height="30" uuid="30cb7198-d221-4194-bbc9-d6d4365bc2c4">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ebf46b02-89fe-45d6-aaa0-ae2efec7fb50"/>
 				</reportElement>
 				<textElement>
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[¿Es donador?]]></text>
+				<text><![CDATA[Are you a donor?]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="52" y="263" width="90" height="20" uuid="398a4e12-cd2b-4ca2-aa9b-f729df06932c">
@@ -386,7 +388,7 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Dirección:]]></text>
+				<text><![CDATA[Address:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="341" y="233" width="92" height="20" uuid="123f167f-6582-4a7e-95e0-c1450a455619">
@@ -395,7 +397,7 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement>
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Peso:]]></text>
+				<text><![CDATA[Weight:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="341" y="263" width="92" height="20" uuid="cf0afc8b-7374-4a19-9043-14f9d3df4c73">
@@ -404,7 +406,7 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Estatura:]]></text>
+				<text><![CDATA[Height:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="52" y="171" width="90" height="20" uuid="d9534abc-1a94-49dd-8c56-f02b64781235">
@@ -413,7 +415,7 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[País:]]></text>
+				<text><![CDATA[Country:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="52" y="233" width="90" height="20" uuid="ec6ed7fb-3f7b-4d32-8dbb-a6d54d872841">
@@ -422,7 +424,7 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Ciudad:]]></text>
+				<text><![CDATA[City:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="52" y="202" width="90" height="20" uuid="ae07d0f7-fbea-4282-985e-bfd0eda86213">
@@ -431,16 +433,16 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Estado:]]></text>
+				<text><![CDATA[State:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="341" y="171" width="92" height="20" uuid="7d303baa-c284-46e9-9a0c-5157bc20e5cd">
+				<reportElement x="341" y="171" width="90" height="20" uuid="7d303baa-c284-46e9-9a0c-5157bc20e5cd">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="17485a49-31e3-450d-83b2-d82824a0eca4"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Tipo de sangre:]]></text>
+				<text><![CDATA[Blood type:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="341" y="202" width="92" height="20" uuid="c16be85f-68f8-4485-bb74-197a77ed00df">
@@ -449,16 +451,16 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Estado ISSS:]]></text>
+				<text><![CDATA[ISSS Status:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="158" y="313" width="183" height="18" uuid="5227a458-f012-4c11-9e61-ecf45663f8a2">
+				<reportElement x="159" y="330" width="172" height="18" uuid="5227a458-f012-4c11-9e61-ecf45663f8a2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a24d3f4-fbca-4792-9f97-510531b217b3"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="12" isBold="false" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Fecha de creación del perfil:]]></text>
+				<text><![CDATA[Creation date of the profile:]]></text>
 			</staticText>
 		</band>
 	</detail>
@@ -469,7 +471,7 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement positionType="FixRelativeToBottom" x="540" y="0" width="32" height="19" uuid="ab5a706c-3f3a-4752-80df-024cf9bb81eb">
@@ -478,7 +480,7 @@ WHERE perfil_medico.id_perfil_medico = $P{id_perfil_medico}]]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

@@ -6,9 +6,9 @@
 	<parameter name="email" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
-	COALESCE(nombres || ' ' || apellidos, 'Sin nombre') AS nombresUsuario,
-	COALESCE( email,'Sin correo eléctronico') AS email,
-	COALESCE( telefono,'Sin teléfono') AS telefono,
+	COALESCE(nombres || ' ' || apellidos, 'Not completed') AS nombresUsuario,
+	COALESCE( email,'Not completed') AS email,
+	COALESCE( telefono,'Not completed') AS telefono,
 	pais.nombre AS pais,
 	pais_estado.nombre AS estado
 FROM usuario
@@ -57,7 +57,7 @@ GROUP BY
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="13"/>
 					</textElement>
-					<text><![CDATA[Nombres del usuario]]></text>
+					<text><![CDATA[Names of the user]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="328" y="33" width="80" height="29" forecolor="#FFFFFF" uuid="82f5ac6a-2658-4c90-affd-56e2b2fb1d15"/>
@@ -67,7 +67,7 @@ GROUP BY
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="13"/>
 					</textElement>
-					<text><![CDATA[Teléfono]]></text>
+					<text><![CDATA[Phone]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="420" y="33" width="139" height="29" forecolor="#FFFFFF" uuid="afd54ce8-3778-49e6-bc9d-c0a8a2b08233"/>
@@ -77,7 +77,7 @@ GROUP BY
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="13"/>
 					</textElement>
-					<text><![CDATA[Estado de residencia]]></text>
+					<text><![CDATA[State of residence]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="175" y="33" width="140" height="29" forecolor="#FFFFFF" uuid="8794ca68-89e1-4c2f-95b3-b94f0418d565"/>
@@ -87,7 +87,7 @@ GROUP BY
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="DejaVu Sans" size="13"/>
 					</textElement>
-					<text><![CDATA[Correo electrónico]]></text>
+					<text><![CDATA[E-mail]]></text>
 				</staticText>
 				<rectangle>
 					<reportElement x="1" y="0" width="571" height="19" forecolor="rgba(0, 0, 0, 0.0)" backcolor="#A0D6FA" uuid="488d26a6-241f-4b5d-aa99-cab7baaf62f1"/>
@@ -117,8 +117,7 @@ GROUP BY
 				<textElement>
 					<font fontName="DejaVu Sans" size="18"/>
 				</textElement>
-				<text><![CDATA[Reporte de usuarios
-por país]]></text>
+				<text><![CDATA[Report of users per country]]></text>
 			</staticText>
 			<textField pattern="MMMM d, yyyy h:mm:ss a">
 				<reportElement x="361" y="54" width="190" height="16" uuid="4909cabd-03b0-4756-b3ec-6876d4755df4"/>
@@ -138,16 +137,16 @@ por país]]></text>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="361" y="70" width="85" height="14" uuid="af2a10d6-323f-48a7-ba8f-c240ec2e8da1">
+				<reportElement x="361" y="70" width="69" height="14" uuid="af2a10d6-323f-48a7-ba8f-c240ec2e8da1">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement>
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<text><![CDATA[Usuario creador: ]]></text>
+				<text><![CDATA[Creator user:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="446" y="70" width="114" height="14" uuid="72e4486d-980b-4ba0-b84c-450bbcb01f33"/>
+				<reportElement x="430" y="70" width="121" height="14" uuid="72e4486d-980b-4ba0-b84c-450bbcb01f33"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>
 				</textElement>
@@ -213,7 +212,7 @@ por país]]></text>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement positionType="FixRelativeToBottom" x="540" y="0" width="32" height="19" uuid="71c23d10-cffe-422c-b0aa-4ee4d2e0b49d">
@@ -222,7 +221,7 @@ por país]]></text>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

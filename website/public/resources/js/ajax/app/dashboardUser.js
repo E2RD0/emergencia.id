@@ -6,14 +6,14 @@ const dashboardUser = new Vue({
     data() {
         return {
             redirect: HOST_NAME + HOME_PATH + "app/profile/edit/",
-            newProfile: "Nuevo perfil",
+            newProfile: "New profile",
             show: [],
             ShowShared: [],
             pag: 1,
             NUM_RESULTS: 3,
             pagC: 1,
             NUM_RESULTSC: 3,
-            deleteText: "Eliminar",
+            deleteText: "Delete",
             toSend: [],
             loading:
                 '<div><i class="far fa-spinner-third icon-load primary-cl"></i></div>',
@@ -66,9 +66,9 @@ const dashboardUser = new Vue({
             if (this.generatingReport === false) {
                 this.generatingReport = true;
                 if (event.target.tagName != 'BUTTON') event.target.parentElement.innerHTML =
-                    '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generando Lista</p>';
+                    '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generating list</p>';
                 else event.target.innerHTML =
-                    '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generando Lista</p>';
+                    '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generating list</p>';
                 axios
                     .get(endPoint + "reportePerfilesUsuario")
                     .then((response) => {
@@ -79,15 +79,15 @@ const dashboardUser = new Vue({
                         }
                         this.generatingReport = false;
                             event.target.innerHTML =
-                            '<i class="fas fa-list"></i><p class="d-inline-block my-0 ml-2">Lista de perfiles</p>';
+                            '<i class="fas fa-list"></i><p class="d-inline-block my-0 ml-2">Profile list</p>';
                     });
             }
         },
 
         createNewProfile: function () {
-            this.newProfile = "Cargando...";
+            this.newProfile = "Loading...";
             axios.get(endPoint + "newProfile").then((response) => {
-                this.newProfile = "Nuevo perfil";
+                this.newProfile = "New profile";
                 window.location =
                     this.redirect + response.data.id_perfil_medico;
                 console.log(response.data[0].id_perfil_medico);
@@ -128,7 +128,7 @@ const dashboardUser = new Vue({
 
         deleteProfile: function (type) {
             console.log(this.toSend);
-            this.deleteText = "Eliminando...";
+            this.deleteText = "Deleting...";
             let formData = this.toFormData(this.toSend);
             console.log(formData);
             axios
@@ -159,7 +159,7 @@ const dashboardUser = new Vue({
                         swal(1, jsonResponse.message, false, 0);
                     } else swal(2, jsonResponse.exception, false, 0);
 
-                    this.deleteText = "Eliminar";
+                    this.deleteText = "Delete";
                     this.toSend = {};
                     $(modal).modal("hide");
                 });
@@ -218,7 +218,7 @@ const dashboardUser = new Vue({
                         );
                         if (this.sharedWith.length == 0) {
                             this.clearShared();
-                            this.loading = "No compartes tu perfil con nadie.";
+                            this.loading = "You share your profile with no one.";
                         }
                         swal(1, jsonResponse.message, false, 0);
                     } else swal(2, jsonResponse.exception, false, 0);
@@ -234,12 +234,11 @@ const dashboardUser = new Vue({
                     return true;
                 } else {
                     this.textColor = "text-danger";
-                    this.sharingStatus =
-                        "Ingrese un correo electrónico válido.";
+                    this.sharingStatus = "Please enter a valid email address.";
                 }
             } else {
                 this.textColor = "text-danger";
-                this.sharingStatus = "Por favor rellena el campo.";
+                this.sharingStatus = "Please fill the field.";
             }
             return false;
         },

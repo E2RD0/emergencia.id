@@ -36,12 +36,12 @@ const newprofile = new Vue({
             progresscolor: "",
             inputCounter: 0,
             valueSingleInput: 4.545454545454545,
-            savingTxt: "Guardado",
+            savingTxt: "Saved",
             aaa: "",
             blood: [],
             issEstatus: [],
             countryList: [],
-            countrySelect: "Seleccionar",
+            countrySelect: "Select",
             cityList: [],
             info: {
                 idProfileToReceiveUpdates: 0,
@@ -52,15 +52,15 @@ const newprofile = new Vue({
                 date: "",
                 name: "",
                 lastName: "",
-                selectedIdBlood: "Seleccionar",
+                selectedIdBlood: "Select",
                 donor: false,
                 document: "",
-                isssEstatusSelected: "Seleccionar",
+                isssEstatusSelected: "Select",
                 weight: "",
                 height: "",
-                country: "Seleccionar",
+                country: "Select",
                 province: "",
-                city: "Seleccionar",
+                city: "Select",
                 direction: "",
                 image: HOME_PATH + "/resources/images/sin_foto.png",
                 selectedFile: null,
@@ -68,7 +68,7 @@ const newprofile = new Vue({
                 list: true,
             },
             messagesError: {
-                nombreUsuario: "Nombres",
+                nombreUsuario: "Names",
             },
             addNewContactForm: {
                 name: "",
@@ -96,7 +96,7 @@ const newprofile = new Vue({
                 condicion: "",
                 notas: "",
                 adjunto: "",
-                id_medicacion: "Seleccionar",
+                id_medicacion: "Select",
                 id_perfil_medico: 0,
             },
             addAllergy: {
@@ -135,8 +135,8 @@ const newprofile = new Vue({
             getMedicacion: [],
             getCondition: [],
             //Ids para eliminar
-            idToDeleteContact: { id: 0, text: "Eliminar" },
-            idToDeleteContactDoctor: { id: 0, text: "Eliminar" },
+            idToDeleteContact: { id: 0, text: "Delete" },
+            idToDeleteContactDoctor: { id: 0, text: "Delete" },
             progresscolorText: "text-bar-one",
             generatingReport: false,
         };
@@ -240,7 +240,7 @@ const newprofile = new Vue({
             if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
                 edad--;
             }
-            return isNaN(edad) ? "" : edad + " años,";
+            return isNaN(edad) ? "" : edad + " years,";
         },
         img: function () {
             //this.image = this.src;
@@ -251,7 +251,7 @@ const newprofile = new Vue({
         countrySelect() {
             //console.log("Se realizo un cambio de país")
             this.dataProfile.country = this.countrySelect;
-            this.dataProfile.city = "Seleccionar";
+            this.dataProfile.city = "Select";
             this.getCity();
         },
         dataProfile: {
@@ -265,12 +265,12 @@ const newprofile = new Vue({
     },
     methods: {
         debounceSearch(event) {
-            this.savingTxt = "Guardando";
+            this.savingTxt = "Saving...";
             this.aaa =
                 '<div><i class="far fa-spinner-third icon-load"></i></div>';
             clearTimeout(this.debounce);
             this.debounce = setTimeout(() => {
-                this.savingTxt = "Guardado";
+                this.savingTxt = "Saved";
                 //console.log("PATCH a la BD");
                 this.updateInformation();
                 this.aaa = "";
@@ -347,7 +347,7 @@ const newprofile = new Vue({
                         "Content-Type": "multipart/form-data",
                     },
                 })
-                .then((response) => console.log("Actualizado correctamente"));
+                .then((response) => console.log("Updated correctly"));
         },
         getUri: function () {
             let url = location.href.split("/").pop();
@@ -384,7 +384,7 @@ const newprofile = new Vue({
                 ? (this.dataProfile.lastName = "")
                 : (this.dataProfile.lastName = res.data[0].apellidos);
             res.data[0].id_tipo_sangre == null
-                ? (this.dataProfile.selectedIdBlood = "Seleccionar")
+                ? (this.dataProfile.selectedIdBlood = "Select")
                 : (this.dataProfile.selectedIdBlood =
                       res.data[0].id_tipo_sangre);
             res.data[0].es_donador == true
@@ -394,7 +394,7 @@ const newprofile = new Vue({
                 ? (this.dataProfile.document = "")
                 : (this.dataProfile.document = res.data[0].documento_identidad);
             res.data[0].id_estado_isss == null
-                ? (this.dataProfile.isssEstatusSelected = "Seleccionar")
+                ? (this.dataProfile.isssEstatusSelected = "Select")
                 : (this.dataProfile.isssEstatusSelected =
                       res.data[0].id_estado_isss);
             res.data[0].peso == null
@@ -404,10 +404,10 @@ const newprofile = new Vue({
                 ? (this.dataProfile.height = "")
                 : (this.dataProfile.height = res.data[0].estatura);
             res.data[0].id_pais == null
-                ? (this.countrySelect = "Seleccionar")
+                ? (this.countrySelect = "Select")
                 : (this.countrySelect = res.data[0].id_pais);
             res.data[0].id_pais_estado == null
-                ? (this.idToLoadEstastus = "Seleccionar")
+                ? (this.idToLoadEstastus = "Select")
                 : (this.idToLoadEstastus = res.data[0].id_pais_estado);
             res.data[0].ciudad == null
                 ? (this.dataProfile.province = "")
@@ -564,7 +564,7 @@ const newprofile = new Vue({
             this.idToDeleteContactDoctor.id = p;
         },
         deleteContact: function (parameter) {
-            this.idToDeleteContact.text = "Cargando...";
+            this.idToDeleteContact.text = "Loading...";
             var formData = this.toFormData(this.idToDeleteContact);
             axios
                 .post(endPoint + "deleteContact", formData, {
@@ -575,13 +575,13 @@ const newprofile = new Vue({
                 .then(
                     (response) => (
                         $("#eliminarContacto").modal("hide"),
-                        (this.idToDeleteContact.text = "Eliminar"),
+                        (this.idToDeleteContact.text = "Delete"),
                         this.getContacts()
                     )
                 );
         },
         deleteContactDoctor: function (parameter) {
-            this.idToDeleteContactDoctor.text = "Cargando...";
+            this.idToDeleteContactDoctor.text = "Loading...";
             var formData = this.toFormData(this.idToDeleteContactDoctor);
             axios
                 .post(endPoint + "deleteContactDoctor", formData, {
@@ -592,7 +592,7 @@ const newprofile = new Vue({
                 .then(
                     (response) => (
                         $("#eliminarContactoDoctor").modal("hide"),
-                        (this.idToDeleteContactDoctor.text = "Eliminar"),
+                        (this.idToDeleteContactDoctor.text = "Delete"),
                         this.getDoctor()
                     )
                 );
@@ -602,7 +602,7 @@ const newprofile = new Vue({
                 this.generatingReport = true;
                 let formData = this.toFormData({ id: this.dataProfile.idProfile });
                 event.target.innerHTML =
-                    '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generando Reporte</p>';
+                    '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generating report</p>';
                 axios
                     .post(API_PERFIL + type, formData, {
                         headers: {
@@ -616,7 +616,7 @@ const newprofile = new Vue({
                             swal(2, response.data.exception);
                         }
                         this.generatingReport = false;
-                        event.target.innerHTML = "Generar Reporte";
+                        event.target.innerHTML = "Generate Report";
                     });
             }
         },

@@ -4,7 +4,7 @@ template::headerSite('Dashboard del cliente');
 ?>
 <div id="dashboard">
     <div v-if="showModal" class="container mt-5" id="dashboard">
-        <h1 class="title-page">Perfiles</h1>
+        <h1 class="title-page">Profiles</h1>
         <div class="row px-3">
             <div
                 class="col-12 col-md-6 nav d-flex d-md-block nav-profiles"
@@ -14,13 +14,13 @@ template::headerSite('Dashboard del cliente');
                     class="navbar-brand profile-option text-link active"
                     data-toggle="tab"
                     href="#perfiles"
-                    >Mis perfiles</a
+                    >My profiles</a
                 >
                 <a
                     class="navbar-brand profile-option text-link"
                     data-toggle="tab"
                     href="#compartidos"
-                    >Compartidos conmigo</a
+                    >Shared with me</a
                 >
                 <!-- btn escritorio -->
             </div>
@@ -31,7 +31,7 @@ template::headerSite('Dashboard del cliente');
                     role="button"
                 >
                     <i class="fas fa-list"></i>
-                    <p class="d-inline-block my-0 ml-2">Lista de perfiles</p>
+                    <p class="d-inline-block my-0 ml-2">Profile list</p>
                 </button>
                 <button
                     @click="createNewProfile"
@@ -52,7 +52,7 @@ template::headerSite('Dashboard del cliente');
                 role="button"
             >
                 <i class="fas fa-list"></i>
-                <p class="d-inline-block my-0 ml-2">Lista de perfiles</p>
+                <p class="d-inline-block my-0 ml-2">Profile list</p>
             </button>
             <button
                 @click="createNewProfile"
@@ -86,7 +86,7 @@ template::headerSite('Dashboard del cliente');
                                     class="card-title text-regular"
                                     v-if="item.nombres === null"
                                 >
-                                    Complete su nombre.
+                                    Complete your name.
                                 </h5>
                                 <h5 class="card-title text-regular" v-else>
                                     {{ item.nombres }} {{ item.apellidos }}
@@ -95,10 +95,10 @@ template::headerSite('Dashboard del cliente');
                                     class="card-text"
                                     v-if="item.date_part === null"
                                 >
-                                    Complete la información.
+                                    Complete the information.
                                 </p>
                                 <p class="card-text" v-else>
-                                    {{ item.date_part }} Años, {{ item.nombre}}, {{ item.ciudad }}
+                                    {{ item.date_part }} years, {{ item.nombre}}, {{ item.ciudad }}
                                 </p>
                                 <div class="d-flex flex-column d-sm-block">
                                     <a
@@ -110,14 +110,14 @@ template::headerSite('Dashboard del cliente');
                                             class="far fa-pencil mr-2"
                                             style="cursor: pointer"
                                         ></i>
-                                        Editar</a
+                                        Edit</a
                                     >
                                     <a
                                         href="#"
                                         class="color-text text-link mr-4 mb-3"
                                     >
                                         <i class="far fa-clone mr-2"></i>
-                                        Duplicar</a
+                                        Duplicate</a
                                     >
                                     <a
                                         href="#"
@@ -148,7 +148,7 @@ template::headerSite('Dashboard del cliente');
                                                 ></i>
                                             </span>
                                             <span>
-                                                <p class="dd-p">Tarjeta QR</p>
+                                                <p class="dd-p">QR card</p>
                                             </span>
                                         </a>
                                         <a class="dropdown-item mb-1" href="#">
@@ -158,7 +158,7 @@ template::headerSite('Dashboard del cliente');
                                                 ></i>
                                             </span>
                                             <span>
-                                                <p class="dd-p">Descargar PDF</p>
+                                                <p class="dd-p">Download PDF</p>
                                             </span>
                                         </a>
                                         <a
@@ -175,7 +175,7 @@ template::headerSite('Dashboard del cliente');
                                                 ></i>
                                             </span>
                                             <span>
-                                                <p class="dd-p">Compartir</p>
+                                                <p class="dd-p">Share</p>
                                             </span>
                                         </a>
                                         <a class="dropdown-item mb-1" href="#">
@@ -185,7 +185,7 @@ template::headerSite('Dashboard del cliente');
                                                 ></i>
                                             </span>
                                             <span>
-                                                <p class="dd-p">Ver actividad</p>
+                                                <p class="dd-p">View activity</p>
                                             </span>
                                         </a>
                                         <a
@@ -202,7 +202,7 @@ template::headerSite('Dashboard del cliente');
                                                 ></i>
                                             </span>
                                             <span>
-                                                <p class="dd-p">Eliminar</p>
+                                                <p class="dd-p">Delete</p>
                                             </span>
                                         </a>
                                     </div>
@@ -220,7 +220,7 @@ template::headerSite('Dashboard del cliente');
                 </div>
 
                 <div class="d-flex justify-content-between" v-else>
-                    <h4 class="mt-2">Página {{ pag }}</h4>
+                    <h4 class="mt-2">Page {{ pag }}</h4>
                     <nav aria-label="...">
                         <ul class="pagination">
                             <li
@@ -229,7 +229,7 @@ template::headerSite('Dashboard del cliente');
                                 @click.prevent="pag -= 1"
                             >
                                 <a class="button button--small" href="#"
-                                    >Atrás</a
+                                    >Back</a
                                 >
                             </li>
 
@@ -239,7 +239,7 @@ template::headerSite('Dashboard del cliente');
                                 @click.prevent="pag += 1"
                             >
                                 <a class="button button--small" href="#"
-                                    >Siguiente</a
+                                    >Next</a
                                 >
                             </li>
                         </ul>
@@ -269,7 +269,7 @@ template::headerSite('Dashboard del cliente');
                                     class="card-title text-regular"
                                     v-if="item.nombres === null"
                                 >
-                                    Complete su nombre.
+                                    Complete your name.
                                 </h5>
                                 <h5 class="card-title text-regular" v-else>
                                     {{ item.nombres }} {{ item.apellidos }}
@@ -278,7 +278,7 @@ template::headerSite('Dashboard del cliente');
                                     class="card-text"
                                     v-if="item.date_part === null"
                                 >
-                                    Complete la información.
+                                    Complete the information.
                                 </p>
                                 <p class="card-text" v-else>
                                     {{ item.date_part }} Años, {{ item.nombre
@@ -290,14 +290,14 @@ template::headerSite('Dashboard del cliente');
                                         class="color-text text-link mr-4 mb-3"
                                     >
                                         <i class="far fa-eye mr-2"></i>
-                                        Ver</a
+                                        View</a
                                     >
                                     <a
                                         href="#"
                                         class="color-text text-link mr-4 mb-3"
                                     >
                                         <i class="far fa-clone mr-2"></i>
-                                        Guardar</a
+                                        Save</a
                                     >
                                     <a
                                         href="#"
@@ -320,7 +320,7 @@ template::headerSite('Dashboard del cliente');
                                             </span>
                                             <span>
                                                 <p class="dd-p">
-                                                    Descargar PDF
+                                                    Download PDF
                                                 </p>
                                             </span>
                                         </a>
@@ -337,7 +337,7 @@ template::headerSite('Dashboard del cliente');
                                         </span>
                                             <span>
                                                 <p class="dd-p">
-                                                    Eliminar
+                                                    Delete
                                                 </p>
                                             </span>
                                         </a>
@@ -360,7 +360,7 @@ template::headerSite('Dashboard del cliente');
                 </div>
 
                 <div class="d-flex justify-content-between" v-else>
-                    <h4 class="mt-2">Página {{ pagC }}</h4>
+                    <h4 class="mt-2">Page {{ pagC }}</h4>
                     <nav aria-label="...">
                         <ul class="pagination">
                             <li
@@ -369,7 +369,7 @@ template::headerSite('Dashboard del cliente');
                                 @click.prevent="pagC -= 1"
                             >
                                 <a class="button button--small" href="#"
-                                    >Atrás</a
+                                    >Back</a
                                 >
                             </li>
 
@@ -379,7 +379,7 @@ template::headerSite('Dashboard del cliente');
                                 @click.prevent="pagC += 1"
                             >
                                 <a class="button button--small" href="#"
-                                    >Siguiente</a
+                                    >Next</a
                                 >
                             </li>
                         </ul>
@@ -439,7 +439,7 @@ template::headerSite('Dashboard del cliente');
                             class="text-header-modal"
                             id="exampleModalCenterTitle"
                         >
-                            Compartir el perfil
+                            Share the profile
                         </h5>
                         <button
                             type="button"
@@ -452,14 +452,12 @@ template::headerSite('Dashboard del cliente');
                     </div>
                     <div class="modal-body">
                         <p>
-                            Puedes compartir el perfil médico con una persona en
-                            específico: debe ser un usuario de la plataforma.
+                            You can share the medical profile with a specific person, but it must be a user of the platform.
                         </p>
                         <p class="card-text">
-                            <small class="text-muted"
-                                >Correo electrónico del usuario a
-                                compartir</small
-                            >
+                            <small class="text-muted">
+                                User's email to be shared
+                            </small>
                         </p>
                         <div class="input-group mb-4">
                             <input
@@ -492,14 +490,14 @@ template::headerSite('Dashboard del cliente');
                                         border-color: #dde3f0;
                                     "
                                 >
-                                    Invitar
+                                    Invite
                                 </button>
                             </div>
                         </div>
                         <div>
                             <p class="card-text" class="mb-3">
                                 <small class="text-muted"
-                                    >Gestiona quién tiene acceso</small
+                                    >Manage who has access</small
                                 >
                             </p>
                             <div
@@ -548,7 +546,7 @@ template::headerSite('Dashboard del cliente');
                                 data-dismiss="modal"
                                 data-toggle="modal"
                                 data-target="#exampleModalCenter"
-                                >Compartir enlace</a
+                                >Share link</a
                             >
                         </small>
                         <button
@@ -557,7 +555,7 @@ template::headerSite('Dashboard del cliente');
                             style="font-weight: 600"
                             data-dismiss="modal"
                         >
-                            Aceptar
+                            Accept
                         </button>
                     </div>
                 </div>
@@ -580,7 +578,7 @@ template::headerSite('Dashboard del cliente');
                             class="text-header-modal"
                             id="exampleModalCenterTitle"
                         >
-                            Eliminar perfil
+                            Delete profile
                         </h5>
                         <button
                             type="button"
@@ -593,8 +591,7 @@ template::headerSite('Dashboard del cliente');
                     </div>
                     <div class="modal-body">
                         <p>
-                            ¿Estás seguro que quieres eliminar este perfil? Una
-                            vez eliminado no lo podrás recuperar
+                            Are you sure you want to delete this profile? Once deleted you cannot recover it
                         </p>
                     </div>
                     <div
@@ -618,7 +615,7 @@ template::headerSite('Dashboard del cliente');
                             style="font-weight: 600"
                             data-dismiss="modal"
                         >
-                            Cancelar
+                            Cancel
                         </button>
                     </div>
                 </div>
@@ -641,7 +638,7 @@ template::headerSite('Dashboard del cliente');
                             class="text-header-modal"
                             id="exampleModalCenterTitle"
                         >
-                            Eliminar perfil compartido
+                            Delete shared profile
                         </h5>
                         <button
                             type="button"
@@ -654,9 +651,7 @@ template::headerSite('Dashboard del cliente');
                     </div>
                     <div class="modal-body">
                         <p>
-                            ¿Estás seguro que quieres eliminar este perfil?
-                            Perderás el acceso para verlo, pero el perfil
-                            seguirá disponible para el propietario.
+                            Are you sure you want to delete this profile? You will lose access to view it, but the profile will still be available to the owner.
                         </p>
                     </div>
                     <div
@@ -680,7 +675,7 @@ template::headerSite('Dashboard del cliente');
                             style="font-weight: 600"
                             data-dismiss="modal"
                         >
-                            Cancelar
+                            Cancel
                         </button>
                     </div>
                 </div>
@@ -723,8 +718,7 @@ template::headerSite('Dashboard del cliente');
                             alt="Emergencia.id"
                         />
                         <small class="d-flex justify-content-center mt-2"
-                            >Puedes enviar este codigo QR para escanear tu
-                            información</small
+                            >You can use this QR Code to scan the information of this profile.</small
                         >
                         <span
                             style="color: #2f8deb"
@@ -733,7 +727,7 @@ template::headerSite('Dashboard del cliente');
                             {{ nameModal }}</span
                         >
                         <small class="d-flex justify-content-center mt-2">
-                            {{ edadModal }} años, {{ ciudadModal }}</small
+                            {{ edadModal }} years, {{ ciudadModal }}</small
                         >
                         <img :src="srcImage" class="img-fluid" alt="" />
                     </div>
@@ -761,7 +755,7 @@ template::headerSite('Dashboard del cliente');
                         class="btn btn-primary"
                         style="font-weight: 600"
                     >
-                        Descargar codigo
+                        Download code
                     </button>
                 </div>
             </div>

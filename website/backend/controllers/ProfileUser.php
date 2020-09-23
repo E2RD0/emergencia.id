@@ -1,17 +1,15 @@
 <?php
 
-class ProfileUser extends \Common\Controller
-{
+class ProfileUser extends \Common\Controller {
     public $r;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->usersModel = $this->loadModel('PerfilesUsuario');
     }
 
-    public function getShowProfile($data, $result){
+    public function getShowProfile($data, $result) {
 
-        if ($result['dataset'] = $this->usersModel->getShowProfile($data)){
+        if ($result['dataset'] = $this->usersModel->getShowProfile($data)) {
             $result['status'] = 1;
         } else {
             $result['exception'] = \Common\Database::$exception;
@@ -20,9 +18,9 @@ class ProfileUser extends \Common\Controller
         return $result;
     }
 
-    public function getShowProfileShared($data, $result){
+    public function getShowProfileShared($data, $result) {
 
-        if ($result['dataset'] = $this->usersModel->getShowProfileShared($data)){
+        if ($result['dataset'] = $this->usersModel->getShowProfileShared($data)) {
             $result['status'] = 1;
         } else {
             $result['exception'] = \Common\Database::$exception;
@@ -31,127 +29,119 @@ class ProfileUser extends \Common\Controller
         return $result;
     }
 
-    public function deleteProfile($data, $result)
-    {
+    public function deleteProfile($data, $result) {
         $id_perfil = intval($data['id_perfil_medico']);
         $id_usuario = intval($data['id_usuario']);
-        $userProfiles = new PerfilesUsuario;
+        $userProfiles = new PerfilesUsuario();
 
         if ($userProfiles->setId_Perfiles_Usuario($id_perfil) && $userProfiles->profileExists($id_usuario, $id_perfil)) {
             if ($userProfiles->deleteProfile($id_perfil)) {
                 $result['status'] = 1;
-                $result['message'] = 'Perfil médico eliminado correctamente';
+                $result['message'] = 'Medical profile successfully deleted';
             } else {
                 $result['exception'] = \Common\Database::$exception;
                 $result['status'] = -1;
             }
         } else {
-            $result['exception'] = 'Perfil médico inexistente';
+            $result['exception'] = 'Inexistent medical profile';
         }
         return $result;
     }
 
-    public function deleteSharedProfile($data, $result)
-    {
+    public function deleteSharedProfile($data, $result) {
         $id_perfil = intval($data['id_perfil_medico']);
         $id_usuario = intval($data['id_usuario']);
-        $userProfiles = new PerfilesUsuario;
+        $userProfiles = new PerfilesUsuario();
 
         if ($userProfiles->sharedProfileExists($id_perfil, $id_usuario)) {
             if ($userProfiles->deleteSharedProfile($id_perfil, $id_usuario)) {
                 $result['status'] = 1;
-                $result['message'] = 'El perfil ya no está compartido contigo';
+                $result['message'] = 'The profile is no longer shared with you';
             } else {
                 $result['exception'] = \Common\Database::$exception;
                 $result['status'] = -1;
             }
         } else {
-            $result['exception'] = 'Perfil médico inexistente';
+            $result['exception'] = 'Inexistent medical profile';
         }
         return $result;
     }
 
-    public function getUsersSharedWith($data, $result)
-    {
+    public function getUsersSharedWith($data, $result) {
         $id_perfil = intval($data['id_perfil_medico']);
         $id_usuario = intval($data['id_usuario']);
-        $userProfiles = new PerfilesUsuario;
+        $userProfiles = new PerfilesUsuario();
 
         if ($userProfiles->profileExists($id_usuario, $id_perfil)) {
             if ($result['dataset'] = $userProfiles->getUsersSharedWith($id_perfil)) {
                 $result['status'] = 1;
-                $result['message'] = 'Los usuarios se han cargado correctamente';
+                $result['message'] = 'The users have been loaded successfully';
             } else {
-                $result['message'] = 'No compartes tu perfil con nadie';
+                $result['message'] = 'You don\'t share you profile with no one';
                 $result['status'] = 0;
             }
         } else {
-            $result['exception'] = 'Perfil médico inexistente';
+            $result['exception'] = 'Inexistent medical profile';
         }
 
         return $result;
     }
 
-    public function shareProfileWith($data, $result)
-    {
+    public function shareProfileWith($data, $result) {
         $email = $data['email'];
         $id_perfil = intval($data['id_perfil_medico']);
         $id_usuario_propio = intval($data['id_usuario']);
-        $userProfiles = new PerfilesUsuario;
+        $userProfiles = new PerfilesUsuario();
 
-        if ($id_usuario = $userProfiles->emailExists($email)){
-            if ($id_usuario->id_usuario != $id_usuario_propio){
+        if ($id_usuario = $userProfiles->emailExists($email)) {
+            if ($id_usuario->id_usuario != $id_usuario_propio) {
                 if ($userProfiles->profileExists($id_usuario_propio, $id_perfil)) {
-                    if (!$userProfiles->alreadySharingWith($id_perfil, $id_usuario->id_usuario)){
+                    if (!$userProfiles->alreadySharingWith($id_perfil, $id_usuario->id_usuario)) {
                         if ($userProfiles->shareProfileWith($id_perfil, $id_usuario->id_usuario)) {
                             $result['status'] = 1;
-                            $result['message'] = 'El perfil se ha compartido correctamente.';
+                            $result['message'] = 'The profile has been shared successfully';
                         } else {
-                            $result['exception'] = 'Hubo un error al compartir el perfil';
+                            $result['exception'] = 'Error while sharing your profile';
                             $result['status'] = -1;
                         }
                     } else {
-                        $result['exception'] = 'Ya compartes tu perfil con ese usuario.';
+                        $result['exception'] = 'Already sharing with this user';
                         $result['status'] = 0;
                     }
                 } else {
-                    $result['exception'] = 'Perfil médico inexistente';
+                    $result['exception'] = 'Inexistent medical profile';
                     $result['status'] = -1;
                 }
             } else {
-                $result['exception'] = 'No puedes compartir el perfil a ti mismo.';
+                $result['exception'] = 'You can\'t share your profile with yourself';
                 $result['status'] = -1;
             }
         } else {
-            $result['exception'] = 'No existe el correo.';
+            $result['exception'] = 'The email doesn\'t exists';
             $result['status'] = -1;
         }
 
         return $result;
     }
 
-    public function deleteSharedAccess($data, $result)
-    {
+    public function deleteSharedAccess($data, $result) {
         $id_perfil = intval($data['id_perfil_medico']);
         $id_usuario = intval($data['id_usuario']);
-        $userProfiles = new PerfilesUsuario;
+        $userProfiles = new PerfilesUsuario();
 
-        if ($userProfiles->alreadySharingWith($id_perfil, $id_usuario)){
+        if ($userProfiles->alreadySharingWith($id_perfil, $id_usuario)) {
             if ($userProfiles->deleteSharedProfile($id_perfil, $id_usuario)) {
                 $result['status'] = 1;
-                $result['message'] = 'Se ha dejado de compartir el perfil con el usuario correctamente.';
+                $result['message'] = 'The profile is no longer shared with the user';
             } else {
-                $result['exception'] = 'Hubo un error al dejar de compartir el perfil';
+                $result['exception'] = 'There was an error stopping sharing the profile with the user';
                 $result['status'] = -1;
             }
         } else {
-            $result['exception'] = 'No compartes tu perfil con ese usuario.';
+            $result['exception'] = 'You don\'t share the profile with this user.';
             $result['status'] = 0;
         }
 
         return $result;
     }
 }
-
-
-?>
