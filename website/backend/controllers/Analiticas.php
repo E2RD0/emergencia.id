@@ -31,11 +31,11 @@ class Analiticas extends \Common\Controller
             }
             else {
                 $result['status'] = -1;
-                $result['exception'] = 'No hay datos disponibles.';
+                $result['exception'] = 'No data available.';
             }
         }
         else{
-            $result['exception'] = 'No hay datos disponibles.';
+            $result['exception'] = 'No data available.';
         }
         return $result;
     }
@@ -51,11 +51,11 @@ class Analiticas extends \Common\Controller
             }
             else {
                 $result['status'] = -1;
-                $result['exception'] = 'No hay datos disponibles.';
+                $result['exception'] = 'No data available..';
             }
         }
         else{
-            $result['exception'] = 'No hay datos disponibles.';
+            $result['exception'] = 'No data available.';
         }
         return $result;
     }
@@ -72,11 +72,11 @@ class Analiticas extends \Common\Controller
             }
             else {
                 $result['status'] = -1;
-                $result['exception'] = 'No hay datos disponibles.';
+                $result['exception'] = 'No data available.';
             }
         }
         else{
-            $result['exception'] = 'Ingresa una fecha válida';
+            $result['exception'] = 'Enter a valid date';
         }
         return $result;
     }
@@ -89,7 +89,7 @@ class Analiticas extends \Common\Controller
             }
             else {
                 $result['status'] = -1;
-                $result['exception'] = 'No hay datos disponibles.';
+                $result['exception'] = 'No data available.';
             }
         return $result;
     }
@@ -102,7 +102,7 @@ class Analiticas extends \Common\Controller
             }
             else {
                 $result['status'] = -1;
-                $result['exception'] = 'No hay datos disponibles.';
+                $result['exception'] = 'No data available.';
             }
         return $result;
     }
@@ -119,11 +119,11 @@ class Analiticas extends \Common\Controller
             }
             else {
                 $result['status'] = -1;
-                $result['exception'] = 'No hay datos disponibles.';
+                $result['exception'] = 'No data available.';
             }
         }
         else{
-            $result['exception'] = 'Ingresa una fecha válida';
+            $result['exception'] = 'Enter a valid date';
         }
         return $result;
     }
@@ -140,11 +140,11 @@ class Analiticas extends \Common\Controller
             }
             else {
                 $result['status'] = -1;
-                $result['exception'] = 'No hay datos disponibles.';
+                $result['exception'] = 'No data available.';
             }
         }
         else{
-            $result['exception'] = 'Ingresa una fecha válida';
+            $result['exception'] = 'Enter a valid date';
         }
         return $result;
     }
@@ -205,15 +205,15 @@ class Analiticas extends \Common\Controller
 
             if(file_exists($file)){
                 $result['status'] = 1;
-                $result['message'] = 'El pdf se ha generado correctamente';
+                $result['message'] = 'The pdf has been generated correctly';
                 $result['file'] = $file;
             }
             else {
-                $result['exception'] = 'No se pudo generar el reporte';
+                $result['exception'] = 'Report could not be generated';
             }
         } else {
             $result['status'] = -1;
-            $result['exception'] = 'No se ha podido crear el directorio.';
+            $result['exception'] = 'The directory could not be created.';
         }
         return $result;
     }
@@ -257,15 +257,15 @@ class Analiticas extends \Common\Controller
 
             if(file_exists($file)){
                 $result['status'] = 1;
-                $result['message'] = 'El pdf se ha generado correctamente';
+                $result['message'] = 'The pdf has been generated correctly';
                 $result['file'] = $file;
             }
             else {
-                $result['exception'] = 'No se pudo generar el reporte';
+                $result['exception'] = 'Report could not be generated';
             }
         } else {
             $result['status'] = -1;
-            $result['exception'] = 'No se ha podido crear el directorio.';
+            $result['exception'] = 'The directory could not be created.';
         }
         return $result;
     }

@@ -25,14 +25,14 @@ class PUsers extends \Common\Controller
                 $userInfo = $this->usersModel->checkPassword($email);
                 $this->loginSession($userInfo->id_usuario, $email);
                 $result['status'] = 1;
-                $result['message'] = 'Usuario registrado correctamente';
+                $result['message'] = 'Correctly registered user';
             } else {
                 $result['status'] = -1;
                 $result['exception'] = \Common\Database::$exception;
             }
         } else {
             $result['status'] = 0;
-            $result['exception'] = 'Error en uno de los campos';
+            $result['exception'] = 'Error in one of the fields';
             $result['errors'] = $errors;
         }
         return $result;
@@ -56,17 +56,17 @@ class PUsers extends \Common\Controller
                 if (password_verify($password, trim($userHash->clave))) {
                     $this->loginSession($userHash->id_usuario_p, $email);
                     $result['status'] = 1;
-                    $result['message'] = 'Autenticación correcta';
+                    $result['message'] = 'Successful authentication';
                 } else {
                     $result['status'] = -1;
-                    $result['exception'] = 'Credenciales incorrectas';
+                    $result['exception'] = 'Incorrect credentials';
                 }
             } else {
                 $result['status'] = -1;
-                $result['exception'] = 'Credenciales incorrectas';
+                $result['exception'] = 'Incorrect credentials';
             }
         } else {
-            $result['exception'] = 'Error en uno de los campos';
+            $result['exception'] = 'Error in one of the fields';
             $result['errors'] = $errors;
         }
         return $result;
@@ -82,7 +82,7 @@ class PUsers extends \Common\Controller
         if ($result['dataset'] = $this->usersModel-> getUser($_SESSION['user_id'])) {
             $result['status'] = 1;
         } else {
-            $result['exception'] = 'Hubo un error al cargar los datos';
+            $result['exception'] = 'There was an error loading the data';
         }
         return $result;
     }
@@ -101,12 +101,12 @@ class PUsers extends \Common\Controller
                 if ($user->deleteUser($id)) {
                     session_destroy();
                     $result['status'] = 1;
-                    $result['message'] = 'Usuario eliminado correctamente';
+                    $result['message'] = 'Correctly deleted user';
                 } else {
                     $result['exception'] = \Common\Database::$exception;
                 }
         } else {
-            $result['exception'] = 'Usuario inexistente';
+            $result['exception'] = 'Non-existent user';
         }
         return $result;
     }
@@ -131,13 +131,13 @@ class PUsers extends \Common\Controller
         if (!boolval($errors)) {
             if ($this->usersModel->registerUser($user)) {
                 $result['status'] = 1;
-                $result['message'] = 'Usuario registrado correctamente';
+                $result['message'] = 'Correctly registered user';
             } else {
                 $result['status'] = -1;
-                $result['exception'] = 'Error al ingresar los datos';
+                $result['exception'] = 'Error when entering data';
             }
         } else {
-            $result['exception'] = 'Error en uno de los campos';
+            $result['exception'] = 'Error in one of the fields';
             $result['errors'] = $errors;
         }
         return $result;
@@ -148,10 +148,10 @@ class PUsers extends \Common\Controller
         if (isset($_SESSION['sidebar_status'])) {
             $result['dataset'] = array('status' => $_SESSION['sidebar_status']);
             $result['status'] = 1;
-            $result['message'] = 'Se ha conseguido el estado correctamente';
+            $result['message'] = 'The status has been achieved correctly';
         } else {
             $result['status'] = -1;
-            $result['exception'] = 'Ocurrió un problema al conseguir el estado';
+            $result['exception'] = 'A problem occurred in getting the state';
         }
         return $result;
     }
@@ -161,10 +161,10 @@ class PUsers extends \Common\Controller
         if (isset($_SESSION['sidebar_status'])) {
             $_SESSION['sidebar_status'] = $value['status'];
             $result['status'] = 1;
-            $result['message'] = 'Se ha cambiado el estado correctamente';
+            $result['message'] = 'The status has been changed correctly';
         } else {
             $result['status'] = -1;
-            $result['exception'] = 'Ocurrió un problema al modificar el estado';
+            $result['exception'] = 'A problem occurred when changing the status';
         }
         return $result;
     }
@@ -174,9 +174,9 @@ class PUsers extends \Common\Controller
         $result = $this->r;
         if (session_destroy()) {
             $result['status'] = 1;
-            $result['message'] = 'Se ha cerrado la sesión';
+            $result['message'] = 'You are now logged out';
         } else {
-            $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
+            $result['exception'] = 'A problem occurred while logging out';
         }
         return $result;
     }
@@ -211,14 +211,14 @@ class PUsers extends \Common\Controller
         if (!boolval($errors)) {
             if ($this->usersModel->updateUser($user)) {
                 $result['status'] = 1;
-                $result['message'] = 'Usuario actualizado correctamente';
+                $result['message'] = 'User updated correctly';
                 $_SESSION['user_email'] = $user->getEmail();
             } else {
                 $result['status'] = -1;
                 $result['exception'] = \Common\Database::$exception;
             }
         } else {
-            $result['exception'] = 'Error en uno de los campos';
+            $result['exception'] = 'Error in one of the fields';
             $result['errors'] = $errors;
         }
         return $result;
@@ -244,10 +244,10 @@ class PUsers extends \Common\Controller
             $errors = $user->setPassword($newPassword, true, 'Nueva Contraseña') === true ? $errors : array_merge($errors, $user->setPassword($newPassword, true, 'Nueva Contraseña'));
             if ($newPasswordR) {
                 if ($newPassword != $newPasswordR) {
-                    $errors['NewPasswordR'] = ['Las contraseñas no coinciden'];
+                    $errors['NewPasswordR'] = ['Passwords do not match'];
                 }
             } else {
-                $errors['NewPasswordR'] = ['Este campo es obligatorio'];
+                $errors['NewPasswordR'] = ['This field is required'];
             }
         } else {
             $errors['Contraseña'] = ['Contraseña incorrecta.'];
@@ -257,13 +257,13 @@ class PUsers extends \Common\Controller
         if (!boolval($errors)) {
             if ($this->usersModel->updateUser($user)) {
                 $result['status'] = 1;
-                $result['message'] = 'Contraseña actualizada correctamente';
+                $result['message'] = 'Password correctly updated';
             } else {
                 $result['status'] = -1;
                 $result['exception'] = \Common\Database::$exception;
             }
         } else {
-            $result['exception'] = 'Error en uno de los campos';
+            $result['exception'] = 'Error in one of the fields';
             $result['errors'] = $errors;
         }
         return $result;
@@ -286,20 +286,20 @@ class PUsers extends \Common\Controller
                 if ($this->usersModel->saveRecoveryCode($pin, $userInfo->idusuario)) {
                     if (\Helpers\EmailSender::sendEmail('Código para recuperar contraseña', $email, "El código de recuperación es: $pin.\n")) {
                         $result['status'] = 1;
-                        $result['message'] = 'Se ha enviado el pin correctamente';
+                        $result['message'] = 'The pin has been sent correctly';
                     } else {
                         $result['status'] = -1;
-                        $result['exception'] = 'Error al enviar correo electrónico';
+                        $result['exception'] = 'Error when sending email';
                     }
                 } else {
                     $result['status'] = -1;
                     $result['exception'] = \Common\Database::$exception;
                 }
             } else {
-                $errors['Email'] = ['No existe ninguna cuenta con este email.'];
+                $errors['Email'] = ['There is no account with this email.'];
             }
         } else {
-            $result['exception'] = 'Error en uno de los campos';
+            $result['exception'] = 'Error in one of the fields';
         }
         $result['errors'] = $errors;
         return $result;
@@ -315,16 +315,16 @@ class PUsers extends \Common\Controller
 
         if ($userInfo) {
             if (empty($pin)) {
-                $errors['Código'] = ['Este campo es obligatorio.'];
+                $errors['Código'] = ['This field is required.'];
             } else {
                 if ($pin==($this->usersModel->getPasswordPin($userInfo->idusuario))->pin) {
                     $result['status'] = 1;
                 } else {
-                    $errors['Código'] = ['El código es incorrecto.'];
+                    $errors['Código'] = ['The code is incorrect.'];
                 }
             }
         } else {
-            $errors['Código'] = ['El código es incorrecto.'];
+            $errors['Código'] = ['The code is incorrect.'];
         }
 
         $result['errors'] = $errors;
