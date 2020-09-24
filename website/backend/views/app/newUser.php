@@ -14,17 +14,17 @@ template::headerLogin('Register');
                 <div class="mx-3">
                     <h5 class="d-flex">
                         <!-- If ternario, para validad el active del stepper -->
-                        <span id="step1" class="badge badge-pill mr-3 active-stepper"><span class="">1</span></span><span class="d-none d-sm-none d-md-block text-dark">Añade tu información</span>
+                        <span id="step1" class="badge badge-pill mr-3 active-stepper"><span class="">1</span></span><span class="d-none d-sm-none d-md-block text-dark">Enter your information</span>
                     </h5>
                 </div>
                 <div class="mx-3">
                     <h5 class="d-flex">
-                        <span id="step2" class="badge badge-pill mr-3 inactive-stepper"><span class="">2</span></span><span class="d-none d-sm-none d-md-block text-secondary">Completa tu perfil médico</span>
+                        <span id="step2" class="badge badge-pill mr-3 inactive-stepper"><span class="">2</span></span><span class="d-none d-sm-none d-md-block text-secondary">Complete your medical profile</span>
                     </h5>
                 </div>
                 <div class="mx-3">
                     <h5 class="d-flex">
-                        <span class="badge badge-pill mr-3 inactive-stepper"><span class="">3</span></span><span class="d-none d-sm-none d-md-block text-secondary">Revisión</span>
+                        <span class="badge badge-pill mr-3 inactive-stepper"><span class="">3</span></span><span class="d-none d-sm-none d-md-block text-secondary">Review</span>
                     </h5>
                 </div>
             </div>
@@ -34,30 +34,30 @@ template::headerLogin('Register');
 
             <div id="stepOne" class="container mt-5 tab-pane active" role="tabpanel">
                 <div class="container-login-form-inner mx-auto text-center">
-                    <h1 class="text-main text-title mb-1">¿Cómo te llamas?</h1>
-                    <p class="mt-2 mb-4">Ingresa tu nombre.</p>
+                    <h1 class="text-main text-title mb-1">What is your name?</h1>
+                    <p class="mt-2 mb-4">Enter your name.</p>
                     <div id="names-form">
-                        <label class="text-help float-left" for="inputNombres">Nombres</label>
+                        <label class="text-help float-left" for="inputNombres">Firstname</label>
                         <input id="inputNombres" class="textfield" type="text" aria-describedby="basic-addon3" required pattern="^[A-Z a-zñáéíóúüÑÁÉÍÓÚ]+$">
                         <p class="form-error-label" id="errorNombres"></p>
-                        <label class="text-help float-left mt-2" for="inputApellidos">Apellidos</label>
+                        <label class="text-help float-left mt-2" for="inputApellidos">Lastname</label>
                         <input id="inputApellidos" class="textfield" type="text" aria-describedby="basic-addon3" required pattern="^[A-Z a-zñáéíóúüÑÁÉÍÓÚ]+$">
                         <p class="form-error-label" id="errorApellidos"></p>
-                        <button id="names-submit" class="button float-right mt-3 btn_redirect_white">Continuar</button>
+                        <button id="names-submit" class="button float-right mt-3 btn_redirect_white">Continue</button>
                     </div>
                 </div>
             </div>
 
             <div id="stepTwo" class="container mt-5 tab-pane" role="tabpanel">
                 <div class="container-login-form-inner mx-auto text-center">
-                    <h1 class="text-main text-title mb-1">Ingresa tu número de teléfono</h1>
-                    <p class="mt-2 mb-4">Servirá por si pierdes acceso a tu correo electrónico y como un medio alternativo para iniciar sesión.</p>
+                    <h1 class="text-main text-title mb-1">Enter your phone number</h1>
+                    <p class="mt-2 mb-4">It will be of help if you lose access to your email as an alternative method to log in to your account.</p>
                     <div id="tel-form" class="clearfix mb-3">
-                        <label class="text-help float-left" for="inputTeléfono">Teléfono</label>
+                        <label class="text-help float-left" for="inputTeléfono">Phone number</label>
                         <input id="inputTeléfono" class="textfield" type="text" aria-describedby="basic-addon3">
                         <p class="form-error-label" id="errorTeléfono"></p>
-                        <button id="go-back-1"class="button button--white float-left mt-3">Regresar</button>
-                        <button id="tel-submit" class="button float-right mt-3">Continuar</button>
+                        <button id="go-back-1"class="button button--white float-left mt-3">Go back</button>
+                        <button id="tel-submit" class="button float-right mt-3">Continue</button>
                     </div>
                 </div>
             </div>
