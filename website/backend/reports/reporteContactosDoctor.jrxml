@@ -73,7 +73,7 @@ GROUP BY
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="445" y="70" width="115" height="14" uuid="6a5bc3e5-07af-48a9-b89b-32fc9dcbea6a"/>
+				<reportElement x="430" y="70" width="130" height="14" uuid="6a5bc3e5-07af-48a9-b89b-32fc9dcbea6a"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
@@ -87,20 +87,20 @@ GROUP BY
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="360" y="70" width="85" height="14" uuid="94d44261-b2a5-4abb-9d1e-a5aaa1820760">
+				<reportElement x="360" y="70" width="70" height="14" uuid="94d44261-b2a5-4abb-9d1e-a5aaa1820760">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<text><![CDATA[Usuario creador: ]]></text>
+				<text><![CDATA[Creator User:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="360" y="8" width="200" height="46" uuid="a1735006-4844-40f2-a1d0-69617ae247cd"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="18"/>
 				</textElement>
-				<text><![CDATA[Reporte de contactos de doctores]]></text>
+				<text><![CDATA[Doctor contact report]]></text>
 			</staticText>
 			<image hAlign="Left" vAlign="Middle">
 				<reportElement x="20" y="19" width="260" height="51" uuid="0e4a06d9-a774-48c8-968e-91370eaade30">
@@ -127,7 +127,7 @@ GROUP BY
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="14"/>
 				</textElement>
-				<text><![CDATA[Nombre]]></text>
+				<text><![CDATA[Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="175" y="39" width="190" height="30" forecolor="#FFFFFF" uuid="cf981334-2358-461e-99e7-f8313cca3370">
@@ -136,7 +136,7 @@ GROUP BY
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="14"/>
 				</textElement>
-				<text><![CDATA[Teléfono]]></text>
+				<text><![CDATA[Phone]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="375" y="39" width="181" height="30" forecolor="#FFFFFF" uuid="32ceff9b-66da-472b-b1e6-c6af04b661d0">
@@ -145,14 +145,14 @@ GROUP BY
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="14"/>
 				</textElement>
-				<text><![CDATA[Especialidad]]></text>
+				<text><![CDATA[Specialty]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="15" y="10" width="80" height="20" uuid="8a252f6b-dcab-4b6e-9721-d3a66033e534"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<text><![CDATA[Información de: ]]></text>
+				<text><![CDATA[Information of: ]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="95" y="10" width="190" height="20" uuid="3b606998-2d49-44c2-b5db-100cfa98123f">
@@ -209,7 +209,7 @@ GROUP BY
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement positionType="FixRelativeToBottom" x="540" y="0" width="32" height="19" uuid="60ae5bb2-7ebc-43b4-9e6b-3a409cd3ff6b">
@@ -218,7 +218,7 @@ GROUP BY
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

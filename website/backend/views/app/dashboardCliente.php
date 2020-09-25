@@ -281,7 +281,7 @@ template::headerSite('Dashboard del cliente');
                                     Complete the information.
                                 </p>
                                 <p class="card-text" v-else>
-                                    {{ item.date_part }} Años, {{ item.nombre
+                                    {{ item.date_part }} years, {{ item.nombre
                                     }}, {{ item.ciudad }}
                                 </p>
                                 <div class="d-flex flex-column d-sm-block">

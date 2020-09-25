@@ -18,7 +18,7 @@ template::headerSite('Dashboard');
                 </button>
             </div>
             <div class="col-6">
-                <h4 class="mb-3">Usuarios según país</h2>
+                <h4 class="mb-3">Users per country</h2>
                 <button
                 onclick="report(this, 'reporteUsuariosPais')"
                 class="button button--small"
@@ -60,10 +60,10 @@ template::headerSite('Dashboard');
             <div class="col-md-6 text-center p-5">
                 <h4>Registration of medical profiles by date</h2>
                 <form class="form-group text-left" action="" method="post" id="perfilesFechaForm">
-                    <label class="text-target">Fecha de inicio</label>
+                    <label class="text-target">Starting date</label>
                     <p class="form-error-label" id="errorPerfilesFecha"></p>
                     <input class="textfield bg-white" name="fechaInicio" type="date" id="inputFechaInicio" required>
-                    <label class="text-target">Fecha final</label>
+                    <label class="text-target">Final date</label>
                     <input class="textfield bg-white" name="fechaFin" type="date" id="inputFechaFin" required>
 
                 </form>

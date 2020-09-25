@@ -29,7 +29,7 @@ template::headerSite('Configuración de la cuenta');
                     </div>
                     <div class="col-12 col-md-6 mt-2 mx-auto">
                         <div class="col-12">
-                            <label class="text-help text-settings-tfname" for="inputTeléfono">telephone number</label>
+                            <label class="text-help text-settings-tfname" for="inputTeléfono">Phone number</label>
                             <div class="input-group mb-4">
                                 <input class="textfield" type="text" class="form-control" id="inputTeléfono" name="tel" aria-describedby="basic-addon3">
                                 <div class="line"></div>
@@ -97,7 +97,7 @@ template::headerSite('Configuración de la cuenta');
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <button id="password-submit" class="text-settings-link-on float-right m-3" type="submit" name="button">Seve</button>
+                        <button id="password-submit" class="text-settings-link-on float-right m-3" type="submit" name="button">Save</button>
                     </div>
                 </div>
             </form>

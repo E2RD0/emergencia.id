@@ -7,7 +7,7 @@ class template
 ?>
         <!--Here copy the header-->
         <!doctype html>
-        <html class="no-js" lang="es">
+        <html class="no-js" lang="en">
 
         <head>
             <meta charset="UTF-8">
@@ -89,7 +89,7 @@ class template
             <nav class="navbar navbar-light bg-white">
                 <img class="ml-3" src="<?= HOME_PATH ?>resources/images/for-light-bg.svg" width="150" height="70" alt="Emergencia.id">
                 <div class="navbar-items d-flex align-items-center mr-0 mr-sm-3">
-                    <a href="<?= HOME_PATH ?>app/user/profiles" class="color-text text-link mr-lg-5">Mis perfiles</a>
+                    <a href="<?= HOME_PATH ?>app/user/profiles" class="color-text text-link mr-lg-5">My profiles</a>
                     <div class="dropdown dropdown-nav-options">
                         <?php
                         $nombre = 'Mi cuenta';
@@ -107,8 +107,8 @@ class template
                          ?>
                         <a href="#" id="nombreUsuario" class="font-size-regular btn dropdown-toggle shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $nombre?></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item font-size-regular" href="<?= HOME_PATH ?>app/user/settings">Ajustes de cuenta</a>
-                            <a class="dropdown-item font-size-regular" href="#" onclick="logout()">Cerrar Sesión</a>
+                            <a class="dropdown-item font-size-regular" href="<?= HOME_PATH ?>app/user/settings">Account settings</a>
+                            <a class="dropdown-item font-size-regular" href="#" onclick="logout()">Logout</a>
                         </div>
                     </div>
                 </div>

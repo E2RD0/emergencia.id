@@ -8,10 +8,10 @@ $( '#login-form' ).submit(function( event ) {
         data: $( '#login-form' ).serialize(),
         dataType: 'json',
         beforeSend: function() {
-            $("#login-submit")[0].innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando';
+            $("#login-submit")[0].innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading';
         },
         complete: function() {
-            $("#login-submit")[0].innerHTML = 'Acceder';
+            $("#login-submit")[0].innerHTML = 'Continue';
         }
     })
     .done(function( response ) {
