@@ -1,6 +1,6 @@
 <?php
 require_once '../templates/templateUser.php';
-template::headerLogin('Restablecer contraseña');
+template::headerLogin('Reset password');
 ?>
 <div class="container-login container-login--recover">
     <header class="header-login">

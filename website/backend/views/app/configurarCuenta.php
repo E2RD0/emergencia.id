@@ -1,6 +1,6 @@
 <?php
 require_once 'templates/templateUser.php';
-template::headerSite('Configuración de la cuenta');
+template::headerSite('Account settings');
 ?>
 
 <main class="container-fluid">

@@ -52,7 +52,7 @@ class UsuarioPrivilegiado
                 }
                 else {
                     $errors = [];
-                    $errors['Teléfono'] = ['Ya existe una cuenta con este teléfono'];
+                    $errors['Teléfono'] = ['An account with this phone number already exists'];
                     return $errors;
                 }
             }
@@ -83,7 +83,7 @@ class UsuarioPrivilegiado
                 }
                 else {
                     $errors = [];
-                    $errors['Email'] = ['Ya existe una cuenta con este correo'];
+                    $errors['Email'] = ['An account with this email already exists'];
                     return $errors;
                 }
             }

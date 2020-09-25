@@ -143,32 +143,6 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function getSidebarStatus($result)
-    {
-        if (isset($_SESSION['sidebar_status'])) {
-            $result['dataset'] = array('status' => $_SESSION['sidebar_status']);
-            $result['status'] = 1;
-            $result['message'] = 'Se ha conseguido el estado correctamente';
-        } else {
-            $result['status'] = -1;
-            $result['exception'] = 'Ocurrió un problema al conseguir el estado';
-        }
-        return $result;
-    }
-
-    public function setSidebarStatus($value ,$result)
-    {
-        if (isset($_SESSION['sidebar_status'])) {
-            $_SESSION['sidebar_status'] = $value['status'];
-            $result['status'] = 1;
-            $result['message'] = 'Se ha cambiado el estado correctamente';
-        } else {
-            $result['status'] = -1;
-            $result['exception'] = 'Ocurrió un problema al modificar el estado';
-        }
-        return $result;
-    }
-
     public function logout()
     {
         $result = $this->r;

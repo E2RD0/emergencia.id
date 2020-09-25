@@ -1,6 +1,6 @@
 <?php
 require_once 'templates/templateUser.php';
-template::headerLogin('Inicio de sesión');
+template::headerLogin('Log In');
 ?>
 <div class="container-login">
     <header class="header-login">

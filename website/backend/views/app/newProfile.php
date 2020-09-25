@@ -1,6 +1,6 @@
 <?php
 require_once 'templates/templateUser.php';
-template::headerCreate('Nuevo perfil');
+template::headerCreate('Profile');
 ?>
 
 <div id="newprofile">

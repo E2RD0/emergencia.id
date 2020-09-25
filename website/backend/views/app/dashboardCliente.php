@@ -1,6 +1,6 @@
 <?php
 require_once 'templates/templateUser.php';
-template::headerSite('Dashboard del cliente');
+template::headerSite('My Dashboard');
 ?>
 <div id="dashboard">
     <div v-if="showModal" class="container mt-5" id="dashboard">

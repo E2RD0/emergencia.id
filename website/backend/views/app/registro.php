@@ -1,6 +1,6 @@
 <?php
 require_once 'templates/templateUser.php';
-template::headerLogin('Registro');
+template::headerLogin('Register');
 ?>
 <div class="container-login">
     <header class="header-login">

@@ -1,6 +1,6 @@
 <?php
 require_once 'templates/templateUser.php';
-template::headerSite('Dashboard');
+template::headerSite('Analytics');
 ?>
 
 <div id="dashboard">
