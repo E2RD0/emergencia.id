@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<!-- Created with Jaspersoft Studio version 6.14.0.final using JasperReports Library version 6.14.0-2ab0d8625be255bf609c78e1181801213e51db8f  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosPrivilegiados" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dd1c72cd-fe01-42e0-a0ba-c102a8eeac9d">
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="187"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="803"/>
@@ -79,7 +79,7 @@ WHERE c.id_perfil_medico = $P{id}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="18"/>
 				</textElement>
-				<text><![CDATA[Reporte de condiciones médicas]]></text>
+				<text><![CDATA[Report of medical conditions]]></text>
 			</staticText>
 			<textField pattern="MMMM d, yyyy h:mm:ss a">
 				<reportElement x="359" y="52" width="198" height="16" uuid="d11f75c5-eed0-453e-9d77-6e2e15275d0d"/>
@@ -105,7 +105,7 @@ WHERE c.id_perfil_medico = $P{id}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="10"/>
 				</textElement>
-				<text><![CDATA[Usuario creador: ]]></text>
+				<text><![CDATA[User:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="444" y="68" width="113" height="14" uuid="ce47a317-b095-4293-9399-2e27c87156c0"/>
@@ -136,7 +136,7 @@ WHERE c.id_perfil_medico = $P{id}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<text><![CDATA[Información de: ]]></text>
+				<text><![CDATA[Information of:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="90" y="9" width="190" height="20" uuid="00c79248-1f22-4476-90f2-614b822bca32">
@@ -152,28 +152,28 @@ WHERE c.id_perfil_medico = $P{id}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="14"/>
 				</textElement>
-				<text><![CDATA[Condición]]></text>
+				<text><![CDATA[Condition]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="139" y="44" width="190" height="20" forecolor="#FFFFFF" uuid="ae590c10-f24f-4d92-893f-fbe6d9b46210"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="14"/>
 				</textElement>
-				<text><![CDATA[Notas]]></text>
+				<text><![CDATA[Notes]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="339" y="44" width="112" height="20" forecolor="#FFFFFF" uuid="9efc8b83-2b06-4815-8f26-381263181c60"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="14"/>
 				</textElement>
-				<text><![CDATA[Medicación]]></text>
+				<text><![CDATA[Medication]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="463" y="44" width="99" height="20" forecolor="#FFFFFF" uuid="e33eac4b-d002-4644-80a7-16d6789be781"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="14"/>
 				</textElement>
-				<text><![CDATA[Dosis]]></text>
+				<text><![CDATA[Dose]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -230,7 +230,7 @@ WHERE c.id_perfil_medico = $P{id}]]>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement positionType="FixRelativeToBottom" x="540" y="0" width="32" height="19" uuid="06a7f768-471d-4ec0-9a18-2e145bfca319">
@@ -239,7 +239,7 @@ WHERE c.id_perfil_medico = $P{id}]]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
