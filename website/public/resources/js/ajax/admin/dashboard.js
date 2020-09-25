@@ -18,7 +18,7 @@ function report(event, type) {
     if (generatingReport === false){
         generatingReport = true;
         event.innerHTML =
-            '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generando Reporte</p>';
+            '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generating report</p>';
         axios.post(API_GRAFICOS + type).then((response) => {
             if (response.data.status == 1) {
                 fetchResource(HOST_NAME + response.data.file);
@@ -26,7 +26,7 @@ function report(event, type) {
                 swal(2, response.data.exception);
             }
             generatingReport = false;
-            event.innerHTML = "Generar Reporte";
+            event.innerHTML = "Generate report";
         });
     }
 };
@@ -76,7 +76,7 @@ $('#tipoSangre').change(function(event) {
                     columns.push(data[i].column);
                     values.push(data[i].value);
                 }
-                grafico('graficoTipoSangre', 'Tipo de sangre por perfil médico', 'bar', columns, values);
+                grafico('graficoTipoSangre', 'Blood type by medical profile', 'bar', columns, values);
             } else {
                 swal(2, response.exception);
             }
@@ -107,7 +107,7 @@ $('#inputPais').change(function(event) {
                     columns.push(data[i].column);
                     values.push(data[i].value);
                 }
-                grafico('graficoPerfilesPais', 'Cantidad de perfiles médicos', 'bar', columns, values);
+                grafico('graficoPerfilesPais', 'Number of medical profiles', 'bar', columns, values);
             } else {
                 swal(2, response.exception);
             }
@@ -153,7 +153,7 @@ function perfilesFecha() {
                                 columns.push(data[i].column);
                                 values.push(data[i].value);
                             }
-                            grafico('graficoPerfilesFecha', 'Cantidad de perfiles médicos', 'bar', columns, values);
+                            grafico('graficoPerfilesFecha', 'Number of medical profiles', 'bar', columns, values);
                         } else if (response.status == -1) {
                             swal(2, response.exception);
                         } else {
@@ -169,7 +169,7 @@ function perfilesFecha() {
                         }
                     });
             } else {
-                $("#errorPerfilesFecha").html('La fecha inicial debe de ser anterior a la fecha final.');
+                $("#errorPerfilesFecha").html('The starting date must be before the final date.');
             }
         }
     }, 2000);
@@ -207,7 +207,7 @@ function perfilesFecha2() {
                                 columns.push(data[i].column);
                                 values.push(data[i].value);
                             }
-                            grafico('graficoPerfilesFecha2', 'Cantidad de usuarios', 'bar', columns, values);
+                            grafico('graficoPerfilesFecha2', 'Number of users', 'bar', columns, values);
                         } else if (response.status == -1) {
                             swal(2, response.exception);
                         } else {
@@ -223,7 +223,7 @@ function perfilesFecha2() {
                         }
                     });
             } else {
-                $("#errorPerfilesFecha2").html('La fecha inicial debe de ser anterior a la fecha final.');
+                $("#errorPerfilesFecha2").html('The starting date must be before the final date.');
             }
         }
     }, 2000);
@@ -261,7 +261,7 @@ function perfilesFecha3() {
                                 columns.push(data[i].column);
                                 values.push(data[i].value);
                             }
-                            grafico('graficoPerfilesFecha3', 'Cantidad de usuarios', 'bar', columns, values);
+                            grafico('graficoPerfilesFecha3', 'Number of users', 'bar', columns, values);
                         } else if (response.status == -1) {
                             swal(2, response.exception);
                         } else {
@@ -277,7 +277,7 @@ function perfilesFecha3() {
                         }
                     });
             } else {
-                $("#errorPerfilesFecha3").html('La fecha inicial debe de ser anterior a la fecha final.');
+                $("#errorPerfilesFecha3").html('The starting date must be before the final date.');
             }
         }
     }, 2000);
@@ -301,7 +301,7 @@ function graficaCondicionMedica()
                 cantidad.push( row.recuentofilas );
             });
 
-            grafico( 'graficoCondicionMedica', 'Cantidad de usuarios', 'bar', condicion, cantidad);
+            grafico( 'graficoCondicionMedica', 'Number of users', 'bar', condicion, cantidad);
         } else {
             $( '#graficoCondicionMedica' ).remove();
         }
@@ -331,7 +331,7 @@ function graficoTop5Medicamentos() {
                 columns.push(data[i].nombre);
                 values.push(data[i].cantidad);
             }
-            grafico('graficoTop5Medicamentos', 'Top 5 medicamentos más solicitados', 'polarArea', columns, values);
+            grafico('graficoTop5Medicamentos', 'TOP 5 most used medication', 'polarArea', columns, values);
         } else {
             swal(2, response.exception);
         }
@@ -362,7 +362,7 @@ function graficoEstadoUsuarios() {
                 columns.push(data[i].estado);
                 values.push(data[i].cantidad);
             }
-            grafico('graficoEstadoUsuarios', 'Cantidad de usuarios por estado ISSS', 'pie', columns, values);
+            grafico('graficoEstadoUsuarios', 'Number of users by ISSS status', 'pie', columns, values);
         } else {
             swal(2, response.exception);
         }
@@ -394,7 +394,7 @@ function graficaProdecimientos()
                 cantidad.push( row.recuentofilas );
             });
 
-            grafico( 'graficoProcedimiento', 'Cantidad de usuarios', 'bar', procedimiento, cantidad);
+            grafico( 'graficoProcedimiento', 'Number of users', 'bar', procedimiento, cantidad);
         } else {
             $( '#graficoProcedimiento' ).remove();
         }

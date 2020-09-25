@@ -92,7 +92,7 @@ class template
                     <a href="<?= HOME_PATH ?>admin/dashboard/analytics" class="color-text text-link mr-lg-5">Analíticas</a>
                     <div class="dropdown dropdown-nav-options">
                         <?php
-                        $nombre = 'Mi cuenta';
+                        $nombre = 'My account';
                         if (isset($_SESSION['p_user_id'])) {
                             $model = new \UsuarioPrivilegiado;
                             if($info = $model->getUser($_SESSION['p_user_id'])){
@@ -107,8 +107,8 @@ class template
                          ?>
                         <a href="#" id="nombreUsuario" class="font-size-regular btn dropdown-toggle shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $nombre?></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item font-size-regular" href="<?= HOME_PATH ?>admin/user/settings">Ajustes de cuenta</a>
-                            <a class="dropdown-item font-size-regular" href="#" onclick="logout()">Cerrar Sesión</a>
+                            <a class="dropdown-item font-size-regular" href="<?= HOME_PATH ?>admin/user/settings">Account settings</a>
+                            <a class="dropdown-item font-size-regular" href="#" onclick="logout()">Log out</a>
                         </div>
                     </div>
                 </div>
