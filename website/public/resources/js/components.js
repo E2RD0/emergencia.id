@@ -225,7 +225,7 @@ function fetchResource(urlString) {
             document.body.appendChild(a);
             a.click();
             window.URL.revokeObjectURL(url);
-            swal(1, 'Reporte generado correctamente');
+            swal(1, 'Report generated successfully');
         })
-        .catch(() => swal(2, 'Error al descargar el reporte'));
+        .catch(() => swal(2, 'Error while generating the report'));
 }
