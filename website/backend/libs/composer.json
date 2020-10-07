@@ -1,0 +1,15 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^4.1",
+        "vlucas/valitron": "^1.4",
+        "sendgrid/sendgrid": "~7",
+        "geekcom/phpjasper": "^3.3"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Common\\": "Common",
+            "Helpers\\": "Helpers"
+        }
+    }
+}
