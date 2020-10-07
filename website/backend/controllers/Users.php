@@ -57,6 +57,7 @@ class Users extends \Common\Controller
                     $this->loginSession($userHash->id_usuario, $email);
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
+                    $result['session'] = $userHash->id_usuario;
                 } else {
                     $result['status'] = -1;
                     $result['exception'] = 'Credenciales incorrectas';
