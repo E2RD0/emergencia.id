@@ -1,5 +1,4 @@
 <?php
-header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 require_once __DIR__ . '/../../../backend/init.php';
 require_once __DIR__ . '/../../../backend/controllers/Users.php';
@@ -31,8 +30,7 @@ if (isset($_GET['action'])) {
             default:
                 \Common\Core::http404();
         }
-    }
-    else {
+    } else {
         switch ($action) {
             case 'signup':
                 $result = $controller->signUp($_POST);
@@ -51,8 +49,7 @@ if (isset($_GET['action'])) {
         }
     }
     header('content-type: application/json; charset=utf-8');
-	echo json_encode($result);
-}
-else {
+    echo json_encode($result);
+} else {
     \Common\Core::http404();
 }

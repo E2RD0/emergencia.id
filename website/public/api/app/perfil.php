@@ -1,8 +1,7 @@
 <?php
-header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
-require_once __DIR__.'/../../../backend/init.php';
-require_once __DIR__.'/../../../backend/controllers/Profile.php';
+require_once __DIR__ . '/../../../backend/init.php';
+require_once __DIR__ . '/../../../backend/controllers/Profile.php';
 
 if (isset($_GET['action'])) {
     session_start();

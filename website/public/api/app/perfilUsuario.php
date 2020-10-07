@@ -1,5 +1,4 @@
 <?php
-header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 require_once __DIR__ . '/../../../backend/init.php';
 require_once __DIR__ . '/../../../backend/controllers/ProfileUser.php';
@@ -19,16 +18,16 @@ if (isset($_GET['action'])) {
                 $result = $controller->getShowProfileShared($_SESSION['user_id'], $result);
                 break;
             case 'deleteOwnProfile':
-                $result = $controller->deleteProfile(array_merge($_POST,array('id_usuario'=>$_SESSION['user_id'])), $result);
+                $result = $controller->deleteProfile(array_merge($_POST, array('id_usuario' => $_SESSION['user_id'])), $result);
                 break;
             case 'deleteSharedProfile':
-                $result = $controller->deleteSharedProfile(array_merge($_POST,array('id_usuario'=>$_SESSION['user_id'])), $result);
+                $result = $controller->deleteSharedProfile(array_merge($_POST, array('id_usuario' => $_SESSION['user_id'])), $result);
                 break;
             case 'getUsersSharedWith':
-                $result = $controller->getUsersSharedWith(array_merge($_POST,array('id_usuario'=>$_SESSION['user_id'])), $result);
+                $result = $controller->getUsersSharedWith(array_merge($_POST, array('id_usuario' => $_SESSION['user_id'])), $result);
                 break;
             case 'shareProfileWith':
-                $result = $controller->shareProfileWith(array_merge($_POST,array('id_usuario'=>$_SESSION['user_id'])), $result);
+                $result = $controller->shareProfileWith(array_merge($_POST, array('id_usuario' => $_SESSION['user_id'])), $result);
                 break;
             case 'deleteSharedAccess':
                 $result = $controller->deleteSharedAccess($_POST, $result);
@@ -39,8 +38,7 @@ if (isset($_GET['action'])) {
     }
 
     header('content-type: application/json; charset=utf-8');
-	echo json_encode($result, JSON_PRETTY_PRINT);
-}
-else {
+    echo json_encode($result, JSON_PRETTY_PRINT);
+} else {
     \Common\Core::http404();
 }
