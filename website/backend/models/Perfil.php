@@ -157,6 +157,14 @@ class Perfil
         $db->bind(':id', (int)$id["idProfileToReceiveUpdates"]);
         return $db->resultSet();
     }
+
+    public function searchProfileWithUid($id){
+        $db = new \Common\Database;
+        $db->query('SELECT * from perfil_medico WHERE perfil_medico.uid = :id');
+        $db->bind(':id', $id);
+        return $db->resultSet();
+    }
+
     public function getProfileInformationByUser($id){
         $db = new \Common\Database;
         $db->query('SELECT * from perfil_medico p INNER JOIN usuario u ON p.id_perfil_medico = u.id_perfil_medico where u.id_usuario = :id');

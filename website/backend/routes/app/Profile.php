@@ -7,7 +7,7 @@ class Profile extends \Common\Controller{
     }
 
     public function edit($id)
-    {   
+    {
         session_start();
         $s = $_SESSION['user_id'];
         if($this->model->existProfile($id, $s)){

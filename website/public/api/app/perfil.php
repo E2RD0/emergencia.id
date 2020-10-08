@@ -40,6 +40,9 @@ if (isset($_GET['action'])) {
         case 'showProfileAllInfo':
             $result = $controller->getInformation($_POST);
             break;
+        case 'searchProfileWithUID':
+            $result = $controller->getProfileByUid();
+            break;
         case 'newContact':
             $result = $controller->crateContact($_POST);
             break;

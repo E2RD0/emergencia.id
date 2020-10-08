@@ -102,6 +102,13 @@ class Profile extends \Common\Controller
         return $result;
     }
 
+    public function getInformation($id){
+        $idSesssion = $_SESSION['user_id'];
+        $result = $this->r;
+        $result = $this->usersModel->getProfileInformationToUpdate($id);
+        return $result;
+    }
+
     public function createNewProfile(){
         #session_start();
         $idSesssion = $_SESSION['user_id'];
@@ -117,10 +124,9 @@ class Profile extends \Common\Controller
         return $this->usersModel->updateProfile($info);
     }
 
-    public function getInformation($id){
-        $idSesssion = $_SESSION['user_id'];
+    public function getProfileByUid(){
         $result = $this->r;
-        $result = $this->usersModel->getProfileInformationToUpdate($id);
+        $result = $this->usersModel->searchProfileWithUid($_GET['uid']);
         return $result;
     }
 
