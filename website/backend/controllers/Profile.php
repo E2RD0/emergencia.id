@@ -7,12 +7,12 @@ class Profile extends \Common\Controller
     public function __construct()
     {
         $this->usersModel = $this->loadModel('Perfil');
-        $this->r = array('status' => 0, 'message' => null, 'exception' => null, 'errors'=> []);
+        $this->r = array('status' => 0, 'message' => null, 'exception' => null, 'errors' => []);
     }
     public function newUser($userData)
     {
         $result = $this->r;
-        if($this->usersModel->countProfilesUser($_SESSION['user_id']) == 0) {
+        if ($this->usersModel->countProfilesUser($_SESSION['user_id']) == 0) {
             $userData = \Helpers\Validation::trimForm($userData);
             $nombres = $userData['nombres'];
             $apellidos = $userData['apellidos'];
@@ -29,8 +29,8 @@ class Profile extends \Common\Controller
             $idUsuario = $_SESSION['user_id'];
             //If there aren't any errors
             if (!boolval($errors)) {
-                if ($idPerfil = ($this->usersModel->newProfile($idUsuario))->id_perfil_medico ){
-                    $rUsuario =$user->updateUserParam('id_perfil_medico', $idPerfil, $idUsuario);
+                if ($idPerfil = ($this->usersModel->newProfile($idUsuario))->id_perfil_medico) {
+                    $rUsuario = $user->updateUserParam('id_perfil_medico', $idPerfil, $idUsuario);
                     $rNombres = $this->usersModel->updateProfileParam('nombres', $nombres, $idPerfil);
                     $rApellidos = $this->usersModel->updateProfileParam('apellidos', $apellidos, $idPerfil);
                     $rTelefono = $tel ? $user->updateUserParam('telefono', $tel, $idUsuario) : true;
@@ -40,8 +40,7 @@ class Profile extends \Common\Controller
                         $result['status'] = 1;
                         $result['message'] = 'Usuario registrado correctamente';
                         $result['id_perfil_medico'] = $idPerfil;
-                    }
-                    else {
+                    } else {
                         $result['status'] = -1;
                         $result['exception'] = \Common\Database::$exception;
                     }
@@ -54,8 +53,7 @@ class Profile extends \Common\Controller
                 $result['exception'] = 'Error en uno de los campos';
                 $result['errors'] = $errors;
             }
-        }
-        else {
+        } else {
             $result['status'] = -2;
             $result['exception'] = 'Ya existe un perfil médico. Redirigiendo a perfiles...';
         }
@@ -72,44 +70,72 @@ class Profile extends \Common\Controller
         return $result;
     }
 
-    public function getProfile(){
+    public function getRecentProfiles($formData)
+    {
+        $result = $this->r;
+        $formData = \Helpers\Validation::trimForm($formData);
+
+        $field = 'uid = ';
+        $search = '';
+
+        foreach ($formData as $key => $value) {
+            $search .= ($key == 0 ? '' : ' ') . $field . "'" . $value . "'" . ($key == (count($formData) - 1) ? ';' : ' OR');
+        }
+
+        if ($result['dataset'] = $this->usersModel->getRecentProfiles($search)) {
+            $result['status'] = 1;
+        } else {
+            $result['status'] = -1;
+            $result['exception'] = 'No existen esos perfiles médicos';
+        }
+        return $result;
+    }
+
+    public function getProfile()
+    {
         $result = $this->r;
         $result = $this->usersModel->getProfileInformation();
         return $result;
     }
 
-    public function getBlood(){
+    public function getBlood()
+    {
         $result = $this->r;
         $result = $this->usersModel->loadBlood();
         return $result;
     }
 
-    public function getIssEstatus(){
+    public function getIssEstatus()
+    {
         $result = $this->r;
         $result = $this->usersModel->loadIsssEstatus();
         return $result;
     }
 
-    public function getCountry(){
+    public function getCountry()
+    {
         $result = $this->r;
         $result = $this->usersModel->loadCountry();
         return $result;
     }
 
-    public function getCity($param){
+    public function getCity($param)
+    {
         $result = $this->r;
         $result = $this->usersModel->loadCity($param);
         return $result;
     }
 
-    public function getInformation($id){
+    public function getInformation($id)
+    {
         $idSesssion = $_SESSION['user_id'];
         $result = $this->r;
         $result = $this->usersModel->getProfileInformationToUpdate($id);
         return $result;
     }
 
-    public function createNewProfile(){
+    public function createNewProfile()
+    {
         #session_start();
         $idSesssion = $_SESSION['user_id'];
         $result = $this->r;
@@ -117,83 +143,95 @@ class Profile extends \Common\Controller
         return $result;
     }
 
-    public function updatePro($info){
+    public function updatePro($info)
+    {
         $result = $this->r;
         $info = \Helpers\Validation::trimForm($info);
         $user = new Perfil;
         return $this->usersModel->updateProfile($info);
     }
 
-    public function getProfileByUid(){
+    public function getProfileByUid()
+    {
         $result = $this->r;
         $result = $this->usersModel->searchProfileWithUid($_GET['uid']);
         return $result;
     }
 
-    public function crateContact($contact){
+    public function crateContact($contact)
+    {
         $result = $this->r;
         $info = \Helpers\Validation::trimForm($contact);
         $user = new Perfil;
         return $this->usersModel->createNewContact($info);
     }
 
-    public function showContact($contact){
+    public function showContact($contact)
+    {
         $result = $this->r;
         $info = \Helpers\Validation::trimForm($contact);
         $user = new Perfil;
         return $this->usersModel->getProfileContact($info);
     }
 
-    public function addDoctor($contact){
+    public function addDoctor($contact)
+    {
         $result = $this->r;
         $info = \Helpers\Validation::trimForm($contact);
         $user = new Perfil;
         return $this->usersModel->addContactDoctor($info);
     }
 
-    public function getDoctor($contact){
+    public function getDoctor($contact)
+    {
         $result = $this->r;
         $info = \Helpers\Validation::trimForm($contact);
         $user = new Perfil;
         return $this->usersModel->getContactDoctor($info);
     }
 
-    public function getMedication($contact){
+    public function getMedication($contact)
+    {
         $result = $this->r;
         $info = \Helpers\Validation::trimForm($contact);
         $user = new Perfil;
         return $this->usersModel->getMed($info);
     }
 
-    public function addMedication($contact){
+    public function addMedication($contact)
+    {
         $result = $this->r;
         $info = \Helpers\Validation::trimForm($contact);
         $user = new Perfil;
         return $this->usersModel->addMed($info);
     }
 
-    public function addNCondition($contact){
+    public function addNCondition($contact)
+    {
         $result = $this->r;
         $info = \Helpers\Validation::trimForm($contact);
         $user = new Perfil;
         return $this->usersModel->addConditionModel($info);
     }
 
-    public function loadCondition($contact){
+    public function loadCondition($contact)
+    {
         $result = $this->r;
         $info = \Helpers\Validation::trimForm($contact);
         $user = new Perfil;
         return $this->usersModel->loadCondition($info);
     }
 
-    public function deleteContact($contact){
+    public function deleteContact($contact)
+    {
         $result = $this->r;
         $info = \Helpers\Validation::trimForm($contact);
         $user = new Perfil;
         return $this->usersModel->deleteContactModel($info);
     }
 
-    public function deleteContactDoctor($contact){
+    public function deleteContactDoctor($contact)
+    {
         $result = $this->r;
         $info = \Helpers\Validation::trimForm($contact);
         $user = new Perfil;
@@ -207,11 +245,11 @@ class Profile extends \Common\Controller
 
         $id = $data['id'];
         $uid = $this->usersModel->getProfileUID($data['id'])->uid;
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']).'/'.$uid;
+        $output = __DIR__ . '/../../public/reports/' . intval($_SESSION['user_id']) . '/' . $uid;
 
         if ($this->pathExists($output)) {
-            $jrxml = __DIR__.'/../reports/reporteInformacionPerfil.jrxml';
-            $input = __DIR__.'/../reports/reporteInformacionPerfil.jasper';
+            $jrxml = __DIR__ . '/../reports/reporteInformacionPerfil.jrxml';
+            $input = __DIR__ . '/../reports/reporteInformacionPerfil.jasper';
             $options = [
                 'format' => ['pdf'],
                 'locale' => 'es',
@@ -234,19 +272,18 @@ class Profile extends \Common\Controller
             $jasper->compile($jrxml)->execute();
 
             $jasper->process(
-            $input,
-            $output,
-            $options
+                $input,
+                $output,
+                $options
             )->execute();
 
-            $file = $output.'/reporteInformacionPerfil.pdf';
+            $file = $output . '/reporteInformacionPerfil.pdf';
 
-            if(file_exists($file)){
+            if (file_exists($file)) {
                 $result['status'] = 1;
                 $result['message'] = 'El pdf se ha generado correctamente';
                 $result['file'] = $file;
-            }
-            else {
+            } else {
                 $result['exception'] = 'No se pudo generar el reporte';
             }
         } else {
@@ -263,11 +300,11 @@ class Profile extends \Common\Controller
 
         $id = $data['id'];
         $uid = $this->usersModel->getProfileUID($data['id'])->uid;
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']).'/'.$uid;
+        $output = __DIR__ . '/../../public/reports/' . intval($_SESSION['user_id']) . '/' . $uid;
 
         if ($this->pathExists($output)) {
-            $jrxml = __DIR__.'/../reports/reporteCondicionesMedicas.jrxml';
-            $input = __DIR__.'/../reports/reporteCondicionesMedicas.jasper';
+            $jrxml = __DIR__ . '/../reports/reporteCondicionesMedicas.jrxml';
+            $input = __DIR__ . '/../reports/reporteCondicionesMedicas.jasper';
             $options = [
                 'format' => ['pdf'],
                 'locale' => 'es',
@@ -290,19 +327,18 @@ class Profile extends \Common\Controller
             $jasper->compile($jrxml)->execute();
 
             $jasper->process(
-            $input,
-            $output,
-            $options
+                $input,
+                $output,
+                $options
             )->execute();
 
-            $file = $output.'/reporteCondicionesMedicas.pdf';
+            $file = $output . '/reporteCondicionesMedicas.pdf';
 
-            if(file_exists($file)){
+            if (file_exists($file)) {
                 $result['status'] = 1;
                 $result['message'] = 'El pdf se ha generado correctamente';
                 $result['file'] = $file;
-            }
-            else {
+            } else {
                 $result['exception'] = 'No se pudo generar el reporte';
             }
         } else {
@@ -319,11 +355,11 @@ class Profile extends \Common\Controller
 
         $id = $data['id'];
         $uid = $this->usersModel->getProfileUID($data['id'])->uid;
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']).'/'.$uid;
+        $output = __DIR__ . '/../../public/reports/' . intval($_SESSION['user_id']) . '/' . $uid;
 
         if ($this->pathExists($output)) {
-            $jrxml = __DIR__.'/../reports/reporteContactosEmergencia.jrxml';
-            $input = __DIR__.'/../reports/reporteContactosEmergencia.jasper';
+            $jrxml = __DIR__ . '/../reports/reporteContactosEmergencia.jrxml';
+            $input = __DIR__ . '/../reports/reporteContactosEmergencia.jasper';
             $options = [
                 'format' => ['pdf'],
                 'locale' => 'es',
@@ -346,19 +382,18 @@ class Profile extends \Common\Controller
             $jasper->compile($jrxml)->execute();
 
             $jasper->process(
-            $input,
-            $output,
-            $options
+                $input,
+                $output,
+                $options
             )->execute();
 
-            $file = $output.'/reporteContactosEmergencia.pdf';
+            $file = $output . '/reporteContactosEmergencia.pdf';
 
-            if(file_exists($file)){
+            if (file_exists($file)) {
                 $result['status'] = 1;
                 $result['message'] = 'El pdf se ha generado correctamente';
                 $result['file'] = $file;
-            }
-            else {
+            } else {
                 $result['exception'] = 'No se pudo generar el reporte';
             }
         } else {
@@ -372,11 +407,11 @@ class Profile extends \Common\Controller
     {
         $result = $this->r;
 
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']);
+        $output = __DIR__ . '/../../public/reports/' . intval($_SESSION['user_id']);
 
         if ($this->pathExists($output)) {
-            $jrxml = __DIR__.'/../reports/reportePerfilesUsuario.jrxml';
-            $input = __DIR__.'/../reports/reportePerfilesUsuario.jasper';
+            $jrxml = __DIR__ . '/../reports/reportePerfilesUsuario.jrxml';
+            $input = __DIR__ . '/../reports/reportePerfilesUsuario.jasper';
             $options = [
                 'format' => ['pdf'],
                 'locale' => 'es',
@@ -399,19 +434,18 @@ class Profile extends \Common\Controller
             $jasper->compile($jrxml)->execute();
 
             $jasper->process(
-            $input,
-            $output,
-            $options
+                $input,
+                $output,
+                $options
             )->execute();
 
-            $file = $output.'/reportePerfilesUsuario.pdf';
+            $file = $output . '/reportePerfilesUsuario.pdf';
 
-            if(file_exists($file)){
+            if (file_exists($file)) {
                 $result['status'] = 1;
                 $result['message'] = 'El pdf se ha generado correctamente';
                 $result['file'] = $file;
-            }
-            else {
+            } else {
                 $result['exception'] = 'No se pudo generar el reporte';
             }
         } else {
@@ -428,11 +462,11 @@ class Profile extends \Common\Controller
 
         $id = $data['id'];
         $uid = $this->usersModel->getProfileUID($data['id'])->uid;
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']).'/'.$uid;
+        $output = __DIR__ . '/../../public/reports/' . intval($_SESSION['user_id']) . '/' . $uid;
 
         if ($this->pathExists($output)) {
-            $jrxml = __DIR__.'/../reports/reporteContactosDoctor.jrxml';
-            $input = __DIR__.'/../reports/reporteContactosDoctor.jasper';
+            $jrxml = __DIR__ . '/../reports/reporteContactosDoctor.jrxml';
+            $input = __DIR__ . '/../reports/reporteContactosDoctor.jasper';
             $options = [
                 'format' => ['pdf'],
                 'locale' => 'es',
@@ -455,19 +489,18 @@ class Profile extends \Common\Controller
             $jasper->compile($jrxml)->execute();
 
             $jasper->process(
-            $input,
-            $output,
-            $options
+                $input,
+                $output,
+                $options
             )->execute();
 
-            $file = $output.'/reporteContactosDoctor.pdf';
+            $file = $output . '/reporteContactosDoctor.pdf';
 
-            if(file_exists($file)){
+            if (file_exists($file)) {
                 $result['status'] = 1;
                 $result['message'] = 'El pdf se ha generado correctamente';
                 $result['file'] = $file;
-            }
-            else {
+            } else {
                 $result['exception'] = 'No se pudo generar el reporte';
             }
         } else {
@@ -484,11 +517,11 @@ class Profile extends \Common\Controller
 
         $id = $data['id'];
         $uid = $this->usersModel->getProfileUID($data['id'])->uid;
-        $output = __DIR__.'/../../public/reports/'.intval($_SESSION['user_id']).'/'.$uid;
+        $output = __DIR__ . '/../../public/reports/' . intval($_SESSION['user_id']) . '/' . $uid;
 
         if ($this->pathExists($output)) {
-            $jrxml = __DIR__.'/../reports/reporteMedicamentos.jrxml';
-            $input = __DIR__.'/../reports/reporteMedicamentos.jasper';
+            $jrxml = __DIR__ . '/../reports/reporteMedicamentos.jrxml';
+            $input = __DIR__ . '/../reports/reporteMedicamentos.jasper';
             $options = [
                 'format' => ['pdf'],
                 'locale' => 'es',
@@ -511,19 +544,18 @@ class Profile extends \Common\Controller
             $jasper->compile($jrxml)->execute();
 
             $jasper->process(
-            $input,
-            $output,
-            $options
+                $input,
+                $output,
+                $options
             )->execute();
 
-            $file = $output.'/reporteMedicamentos.pdf';
+            $file = $output . '/reporteMedicamentos.pdf';
 
-            if(file_exists($file)){
+            if (file_exists($file)) {
                 $result['status'] = 1;
                 $result['message'] = 'El pdf se ha generado correctamente';
                 $result['file'] = $file;
-            }
-            else {
+            } else {
                 $result['exception'] = 'No se pudo generar el reporte';
             }
         } else {
@@ -532,8 +564,4 @@ class Profile extends \Common\Controller
         }
         return $result;
     }
-
 }
-
-
-?>

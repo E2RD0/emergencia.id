@@ -30,7 +30,7 @@ class Database
         //Data source name
         $dsn = "pgsql:host={$this->host};dbname={$this->name}";
         $options = [
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
+            \PDO::ATTR_EMULATE_PREPARES => \PDO::ERRMODE_EXCEPTION
         ];
         try {
             $this->dbh = new \PDO($dsn, $this->user, $this->password, $options);
@@ -113,5 +113,25 @@ class Database
             default:
                 self::$exception = $message;
         }
+    }
+
+    public function debugQuery($query, $params)
+    {
+        $keys = array();
+
+        # build a regular expression for each parameter
+        foreach ($params as $key => $value) {
+            if (is_string($key)) {
+                $keys[] = '/:' . $key . '/';
+            } else {
+                $keys[] = '/[?]/';
+            }
+        }
+
+        $query = preg_replace($keys, $params, $query, 1, $count);
+
+        #trigger_error('replaced '.$count.' keys');
+
+        return $query;
     }
 }
