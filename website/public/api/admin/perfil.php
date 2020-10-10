@@ -13,6 +13,9 @@ if (isset($_GET['action'])) {
         case 'recentProfiles':
             $result = $controller->getRecentProfiles($_POST);
             break;
+        case 'getProfileByUID':
+            $result = $controller->getCompleteProfileByUID($_POST);
+            break;
         default:
             \Common\Core::http404();
     }

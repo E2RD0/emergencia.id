@@ -75,19 +75,38 @@ class Profile extends \Common\Controller
         $result = $this->r;
         $formData = \Helpers\Validation::trimForm($formData);
 
-        $field = 'uid = ';
-        $search = '';
-
-        foreach ($formData as $key => $value) {
-            $search .= ($key == 0 ? '' : ' ') . $field . "'" . $value . "'" . ($key == (count($formData) - 1) ? ';' : ' OR');
-        }
+        $search = "'" . implode("','", $formData) . "'";
 
         if ($result['dataset'] = $this->usersModel->getRecentProfiles($search)) {
             $result['status'] = 1;
         } else {
             $result['status'] = -1;
-            $result['exception'] = 'No existen esos perfiles médicos';
+            $result['exception'] = \Common\Database::$exception;
         }
+        return $result;
+    }
+
+    public function getCompleteProfileByUID($data)
+    {
+        $result = $this->r;
+        $data = \Helpers\Validation::trimForm($data);
+        $dataset = [];
+        $profile = new \Perfil;
+
+        $uid = $data['uid'];
+        if (!$dataset['generalInformation'] = (object) $profile->generalInformationByUID($uid)) {
+            $dataset['emergencyContacts'] = (object) $profile->emergencyContactsByUID($uid);
+            $dataset['doctorContacts'] = (object) $profile->doctorContactsByUID($uid);
+            $dataset['medication'] = (object) $profile->medicationByUID($uid);
+            $dataset['medicalConditions'] = (object) $profile->medicalConditionsByUID($uid);
+            $result['status'] = 1;
+        } else {
+            $result['status'] = -1;
+            $result['exception'] = 'Hubo un error al cargar el perfil.';
+        }
+
+        $result['dataset'] = $dataset;
+
         return $result;
     }
 

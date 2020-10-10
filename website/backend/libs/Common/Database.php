@@ -115,23 +115,32 @@ class Database
         }
     }
 
-    public function debugQuery($query, $params)
+    public function debugQuery($query = NULL, $params = NULL)
     {
-        $keys = array();
+        if (isset($query, $params)) {
+            $keys = array();
 
-        # build a regular expression for each parameter
-        foreach ($params as $key => $value) {
-            if (is_string($key)) {
-                $keys[] = '/:' . $key . '/';
-            } else {
-                $keys[] = '/[?]/';
+            # build a regular expression for each parameter
+            foreach ($params as $key => $value) {
+                if (is_string($key)) {
+                    $keys[] = '/:' . $key . '/';
+                } else {
+                    $keys[] = '/[?]/';
+                }
             }
+
+            $query = preg_replace($keys, $params, $query, 1, $count);
+
+            #trigger_error('replaced '.$count.' keys');
+
+            return $query;
+        } else {
+            return $this->stmt->query;
         }
+    }
 
-        $query = preg_replace($keys, $params, $query, 1, $count);
-
-        #trigger_error('replaced '.$count.' keys');
-
-        return $query;
+    public function debug()
+    {
+        return $this->stmt->debugDumpParams();
     }
 }
