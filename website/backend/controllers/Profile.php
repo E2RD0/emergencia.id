@@ -94,7 +94,7 @@ class Profile extends \Common\Controller
         $profile = new \Perfil;
 
         $uid = $data['uid'];
-        if (!$dataset['generalInformation'] = (object) $profile->generalInformationByUID($uid)) {
+        if ($dataset['generalInformation'] = (object) $profile->generalInformationByUID($uid)) {
             $dataset['emergencyContacts'] = (object) $profile->emergencyContactsByUID($uid);
             $dataset['doctorContacts'] = (object) $profile->doctorContactsByUID($uid);
             $dataset['medication'] = (object) $profile->medicationByUID($uid);
