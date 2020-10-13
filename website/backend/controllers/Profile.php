@@ -110,6 +110,16 @@ class Profile extends \Common\Controller
         return $result;
     }
 
+    public function getInfoUser()
+    {
+        if ($result['dataset'] = $this->usersModel-> getUserParams()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'Hubo un error al cargar los datos';
+        }
+        return $result;
+    }
+
     public function getProfile()
     {
         $result = $this->r;

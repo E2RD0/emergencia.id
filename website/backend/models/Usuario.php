@@ -193,6 +193,14 @@ class Usuario
         return $db->getResult();
     }
 
+    public function getUserParams(){
+        $id = $_GET['parameter'];
+        $db = new \Common\Database;
+        $db->query("SELECT * FROM usuario WHERE id_usuario=:id");
+        $db->bind(':id', $id);
+        return $db->getResult();
+    }
+
     public function updateUser($user){
         $db = new \Common\Database;
         if(isset($user->password)){

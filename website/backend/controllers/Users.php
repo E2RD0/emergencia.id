@@ -88,6 +88,16 @@ class Users extends \Common\Controller
         return $result;
     }
 
+    public function getUserInfoParameter()
+    {
+        if ($result['dataset'] = $this->usersModel-> getUserParams()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'Hubo un error al cargar los datos';
+        }
+        return $result;
+    }
+
     public function create($data, $result)
     {
         return $this->userRegister($data, $result);

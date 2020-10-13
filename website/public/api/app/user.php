@@ -18,6 +18,9 @@ if (isset($_GET['action'])) {
             case 'info':
                 $result = $controller->getUserInfo();
                 break;
+            case 'infoWithParameters':
+                $result = $controller->getUserInfoParameter();
+                break;
             case 'update':
                 $result = $controller->updateUser($_POST);
                 break;
