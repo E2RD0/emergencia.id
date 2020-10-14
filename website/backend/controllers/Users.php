@@ -4,7 +4,7 @@ class Users extends \Common\Controller
     public function __construct()
     {
         $this->usersModel = $this->loadModel('Usuario');
-        $this->r = array('status' => 0, 'message' => null, 'exception' => null, 'errors'=> []);
+        $this->r = array('status' => 0, 'message' => null, 'exception' => null, 'errors' => []);
     }
 
     public function signUp($userData)
@@ -57,7 +57,6 @@ class Users extends \Common\Controller
                     $this->loginSession($userHash->id_usuario, $email);
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
-                    $result['session'] = $userHash->id_usuario;
                 } else {
                     $result['status'] = -1;
                     $result['exception'] = 'Credenciales incorrectas';
@@ -73,24 +72,17 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    private function loginSession($id, $email){
+
+
+    private function loginSession($id, $email)
+    {
         $_SESSION['user_id'] = $id;
         $_SESSION['user_email'] = $email;
     }
 
     public function getUserInfo()
     {
-        if ($result['dataset'] = $this->usersModel-> getUser($_SESSION['user_id'])) {
-            $result['status'] = 1;
-        } else {
-            $result['exception'] = 'Hubo un error al cargar los datos';
-        }
-        return $result;
-    }
-
-    public function getUserInfoParameter()
-    {
-        if ($result['dataset'] = $this->usersModel-> getUserParams()) {
+        if ($result['dataset'] = $this->usersModel->getUser($_SESSION['user_id'])) {
             $result['status'] = 1;
         } else {
             $result['exception'] = 'Hubo un error al cargar los datos';
@@ -109,13 +101,13 @@ class Users extends \Common\Controller
         $user = new Usuario;
 
         if ($user->setId($id) && $user->userExists('id_usuario', $id)) {
-                if ($user->deleteUser($id)) {
-                    session_destroy();
-                    $result['status'] = 1;
-                    $result['message'] = 'Usuario eliminado correctamente';
-                } else {
-                    $result['exception'] = \Common\Database::$exception;
-                }
+            if ($user->deleteUser($id)) {
+                session_destroy();
+                $result['status'] = 1;
+                $result['message'] = 'Usuario eliminado correctamente';
+            } else {
+                $result['exception'] = \Common\Database::$exception;
+            }
         } else {
             $result['exception'] = 'Usuario inexistente';
         }
@@ -129,7 +121,7 @@ class Users extends \Common\Controller
         $apellido = $userData['apellido'];
         $email = $userData['email'];
         $password = $userData['password'];
-        $idTipoUsuario = isset($userData['idTipoUsuario']) ? $userData['idTipoUsuario']: 1 ;
+        $idTipoUsuario = isset($userData['idTipoUsuario']) ? $userData['idTipoUsuario'] : 1;
 
         $user = new Usuario;
         $errors = [];
@@ -167,7 +159,7 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function setSidebarStatus($value ,$result)
+    public function setSidebarStatus($value, $result)
     {
         if (isset($_SESSION['sidebar_status'])) {
             $_SESSION['sidebar_status'] = $value['status'];
@@ -198,7 +190,7 @@ class Users extends \Common\Controller
         $userData = \Helpers\Validation::trimForm($userData);
         $idUsuario = $_SESSION['user_id'];
 
-        $userInfo= $this->usersModel->getUser($idUsuario);
+        $userInfo = $this->usersModel->getUser($idUsuario);
 
         $email = $userData['email'];
         $tel = $userData['tel'];
@@ -241,7 +233,7 @@ class Users extends \Common\Controller
         $userData = \Helpers\Validation::trimForm($userData);
         $idUsuario = $_SESSION['user_id'];
 
-        $userInfo= $this->usersModel->getUser($idUsuario);
+        $userInfo = $this->usersModel->getUser($idUsuario);
 
         $currentPassword = $userData['password'];
         $newPassword = $userData['newPassword'];
@@ -328,7 +320,7 @@ class Users extends \Common\Controller
             if (empty($pin)) {
                 $errors['Código'] = ['Este campo es obligatorio.'];
             } else {
-                if ($pin==($this->usersModel->getPasswordPin($userInfo->idusuario))->pin) {
+                if ($pin == ($this->usersModel->getPasswordPin($userInfo->idusuario))->pin) {
                     $result['status'] = 1;
                 } else {
                     $errors['Código'] = ['El código es incorrecto.'];

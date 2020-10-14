@@ -16,9 +16,6 @@ if (isset($_GET['action'])) {
         case 'getProfileByUID':
             $result = $controller->getCompleteProfileByUID($_POST);
             break;
-            case 'getInfoUser':
-                $result = $controller->getInfoUser();
-                break;
         default:
             \Common\Core::http404();
     }

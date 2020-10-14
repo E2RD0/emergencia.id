@@ -1,5 +1,5 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
 require_once __DIR__ . '/../../../backend/init.php';
 require_once __DIR__ . '/../../../backend/controllers/PUsers.php';
 
@@ -8,7 +8,6 @@ if (isset($_GET['action'])) {
     $action = $_GET['action'];
     $controller = new \PUsers;
     $result = $controller->r;
-
 
     if (isset($_SESSION['p_user_id'])) {
         switch ($action) {
@@ -30,8 +29,7 @@ if (isset($_GET['action'])) {
             default:
                 \Common\Core::http404();
         }
-    }
-    else {
+    } else {
         switch ($action) {
             case 'signup':
                 $result = $controller->signUp($_POST);
@@ -45,13 +43,15 @@ if (isset($_GET['action'])) {
             case 'recoverCode':
                 $result = $controller->recoverCode($_POST);
                 break;
+            case 'getAppProfileInfo':
+                $result = $controller->getAppProfileInfo($_GET['id_user']);
+                break;
             default:
                 \Common\Core::http404();
         }
     }
     header('content-type: application/json; charset=utf-8');
-	echo json_encode($result);
-}
-else {
+    echo json_encode($result);
+} else {
     \Common\Core::http404();
 }

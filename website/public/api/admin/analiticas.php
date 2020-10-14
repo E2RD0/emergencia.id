@@ -1,5 +1,5 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
 require_once __DIR__ . '/../../../backend/init.php';
 require_once __DIR__ . '/../../../backend/controllers/Analiticas.php';
 
@@ -50,13 +50,11 @@ if (isset($_GET['action'])) {
             default:
                 \Common\Core::http404();
         }
-    }
-    else {
+    } else {
         \Common\Core::http404();
     }
     header('content-type: application/json; charset=utf-8');
-	echo json_encode($result);
-}
-else {
+    echo json_encode($result);
+} else {
     \Common\Core::http404();
 }

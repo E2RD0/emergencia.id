@@ -17,11 +17,12 @@ class Usuario
         return $this->id;
     }
 
-    public function setId($value) {
+    public function setId($value)
+    {
         $v = new \Valitron\Validator(array('Id' => $value));
         $v->rule('required', 'Id');
         $v->rule('integer', 'Id');
-        if($v->validate()) {
+        if ($v->validate()) {
             $this->id = $value;
             return true;
         } else {
@@ -38,17 +39,15 @@ class Usuario
     {
         $v = new \Valitron\Validator(array('Teléfono' => $value));
         $v->rule('integer', 'Teléfono');
-        if($v->validate()) {
-            if($isLogin){
+        if ($v->validate()) {
+            if ($isLogin) {
                 $this->telefono = $value;
                 return true;
-            }
-            else{
-                if(!$this->userExists('telefono', $value)){
+            } else {
+                if (!$this->userExists('telefono', $value)) {
                     $this->telefono = $value;
                     return true;
-                }
-                else {
+                } else {
                     $errors = [];
                     $errors['Teléfono'] = ['Ya existe una cuenta con este teléfono'];
                     return $errors;
@@ -69,17 +68,15 @@ class Usuario
         $v = new \Valitron\Validator(array('Email' => $value));
         $v->rule('required', 'Email');
         $v->rule('email', 'Email');
-        if($v->validate()) {
-            if($isLogin){
+        if ($v->validate()) {
+            if ($isLogin) {
                 $this->email = $value;
                 return true;
-            }
-            else{
-                if(!$this->userExists('email', $value)){
+            } else {
+                if (!$this->userExists('email', $value)) {
                     $this->email = $value;
                     return true;
-                }
-                else {
+                } else {
                     $errors = [];
                     $errors['Email'] = ['Ya existe una cuenta con este correo'];
                     return $errors;
@@ -95,14 +92,14 @@ class Usuario
         return $this->password;
     }
 
-    public function setPassword($value, $checkStrength = true, $name='Contraseña')
+    public function setPassword($value, $checkStrength = true, $name = 'Contraseña')
     {
-        $v = new \Valitron\Validator(array( $name => $value));
-        $v->rule('required', $name );
-        if($checkStrength){
-            $v->rule('lengthMin', $name , 6);
+        $v = new \Valitron\Validator(array($name => $value));
+        $v->rule('required', $name);
+        if ($checkStrength) {
+            $v->rule('lengthMin', $name, 6);
         }
-        if($v->validate()) {
+        if ($v->validate()) {
             $this->password = $value;
             return true;
         } else {
@@ -120,7 +117,7 @@ class Usuario
         $v = new \Valitron\Validator(array('Perfil' => $value));
         $v->rule('required', 'Perfil');
         $v->rule('integer', 'Perfil');
-        if($v->validate()) {
+        if ($v->validate()) {
             $this->idPerfil = $value;
             return true;
         } else {
@@ -128,7 +125,8 @@ class Usuario
         }
     }
 
-    public function userExists($param, $value){
+    public function userExists($param, $value)
+    {
         $db = new \Common\Database;
         $db->query("SELECT * FROM usuario WHERE {$param}=:value");
         //$db->bind(':param', $param);
@@ -136,13 +134,15 @@ class Usuario
         return boolval($db->rowCount());
     }
 
-    public function getUsers(){
+    public function getUsers()
+    {
         $db = new \Common\Database;
         $db->query('SELECT idUsuario, nombre, apellido, email, contrasena, u.idtipousuario, tipo FROM usuario u INNER JOIN tipoUsuario t ON u.idTipoUsuario = t.idTipoUsuario');
         return $db->resultSet();
     }
 
-    public function getTypes(){
+    public function getTypes()
+    {
         $db = new \Common\Database;
         $db->query('SELECT * FROM tipoUsuario');
         return $db->resultSet();
@@ -156,19 +156,22 @@ class Usuario
         return $db->execute();
     }
 
-    public function userCount(){
+    public function userCount()
+    {
         $db = new \Common\Database;
         $db->query('SELECT * FROM usuario');
         return $db->rowCount();
     }
-    public function registerUser($user){
+    public function registerUser($user)
+    {
         $db = new \Common\Database;
         $db->query('INSERT into usuario (id_usuario, email, clave) VALUES(DEFAULT, :email, :clave)');
         $db->bind(':email', $user->email);
         $db->bind(':clave', password_hash($user->password, PASSWORD_ARGON2ID));
         return $db->execute();
     }
-    public function checkPassword($email){
+    public function checkPassword($email)
+    {
         $db = new \Common\Database;
         $db->query('SELECT * from usuario WHERE email = :email');
         $db->bind(':email', $email);
@@ -186,29 +189,23 @@ class Usuario
         $db->bind(':idUsuario', $user->idusario);
         return $db->execute();
     }
-    public function getUser($id){
+    public function getUser($id)
+    {
         $db = new \Common\Database;
         $db->query("SELECT * FROM usuario WHERE id_usuario=:id");
         $db->bind(':id', $id);
         return $db->getResult();
     }
 
-    public function getUserParams(){
-        $id = $_GET['parameter'];
-        $db = new \Common\Database;
-        $db->query("SELECT * FROM usuario WHERE id_usuario=:id");
-        $db->bind(':id', $id);
-        return $db->getResult();
-    }
 
-    public function updateUser($user){
+    public function updateUser($user)
+    {
         $db = new \Common\Database;
-        if(isset($user->password)){
+        if (isset($user->password)) {
             $db->query('UPDATE usuario SET clave = :hash WHERE id_usuario = :idUsuario');
             $db->bind(':idUsuario', $user->id);
             $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
-        }
-        else{
+        } else {
             $db->query('UPDATE usuario SET telefono = :telefono, email = :email, id_perfil_medico = :idPerfil WHERE id_usuario = :idUsuario;');
             $db->bind(':idUsuario', $user->id);
             $db->bind(':email', $user->email);
@@ -217,14 +214,16 @@ class Usuario
         }
         return $db->execute();
     }
-    public function updateUserParam($param, $value, $id){
+    public function updateUserParam($param, $value, $id)
+    {
         $db = new \Common\Database;
         $db->query("UPDATE usuario SET $param = :value WHERE id_usuario = :idUsuario");
         $db->bind(':idUsuario', $id);
         $db->bind(':value', $value);
         return $db->execute();
     }
-    public function saveRecoveryCode($pin, $id){
+    public function saveRecoveryCode($pin, $id)
+    {
         $this->deleteRecoveryCode($id);
         $db = new \Common\Database;
         $db->query('INSERT INTO recuperarClave values (DEFAULT, DEFAULT, :pin, :idUsuario)');
@@ -232,13 +231,15 @@ class Usuario
         $db->bind(':pin', $pin);
         return $db->execute();
     }
-    public function deleteRecoveryCode($id){
+    public function deleteRecoveryCode($id)
+    {
         $db = new \Common\Database;
         $db->query('DELETE FROM recuperarClave WHERE idUsuario = :idUsuario');
         $db->bind(':idUsuario', $id);
         return $db->execute();
     }
-    public function getPasswordPin($id){
+    public function getPasswordPin($id)
+    {
         $db = new \Common\Database;
         $db->query('SELECT pin FROM recuperarClave WHERE idUsuario = :idUsuario');
         $db->bind(':idUsuario', $id);

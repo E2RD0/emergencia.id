@@ -19,11 +19,12 @@ class UsuarioPrivilegiado
         return $this->id;
     }
 
-    public function setId($value) {
+    public function setId($value)
+    {
         $v = new \Valitron\Validator(array('Id' => $value));
         $v->rule('required', 'Id');
         $v->rule('integer', 'Id');
-        if($v->validate()) {
+        if ($v->validate()) {
             $this->id = $value;
             return true;
         } else {
@@ -40,17 +41,15 @@ class UsuarioPrivilegiado
     {
         $v = new \Valitron\Validator(array('Teléfono' => $value));
         $v->rule('integer', 'Teléfono');
-        if($v->validate()) {
-            if($isLogin){
+        if ($v->validate()) {
+            if ($isLogin) {
                 $this->telefono = $value;
                 return true;
-            }
-            else{
-                if(!$this->userExists('telefono', $value)){
+            } else {
+                if (!$this->userExists('telefono', $value)) {
                     $this->telefono = $value;
                     return true;
-                }
-                else {
+                } else {
                     $errors = [];
                     $errors['Teléfono'] = ['Ya existe una cuenta con este teléfono'];
                     return $errors;
@@ -71,17 +70,15 @@ class UsuarioPrivilegiado
         $v = new \Valitron\Validator(array('Email' => $value));
         $v->rule('required', 'Email');
         $v->rule('email', 'Email');
-        if($v->validate()) {
-            if($isLogin){
+        if ($v->validate()) {
+            if ($isLogin) {
                 $this->email = $value;
                 return true;
-            }
-            else{
-                if(!$this->userExists('email', $value)){
+            } else {
+                if (!$this->userExists('email', $value)) {
                     $this->email = $value;
                     return true;
-                }
-                else {
+                } else {
                     $errors = [];
                     $errors['Email'] = ['Ya existe una cuenta con este correo'];
                     return $errors;
@@ -97,14 +94,14 @@ class UsuarioPrivilegiado
         return $this->password;
     }
 
-    public function setPassword($value, $checkStrength = true, $name='Contraseña')
+    public function setPassword($value, $checkStrength = true, $name = 'Contraseña')
     {
-        $v = new \Valitron\Validator(array( $name => $value));
-        $v->rule('required', $name );
-        if($checkStrength){
-            $v->rule('lengthMin', $name , 6);
+        $v = new \Valitron\Validator(array($name => $value));
+        $v->rule('required', $name);
+        if ($checkStrength) {
+            $v->rule('lengthMin', $name, 6);
         }
-        if($v->validate()) {
+        if ($v->validate()) {
             $this->password = $value;
             return true;
         } else {
@@ -122,7 +119,7 @@ class UsuarioPrivilegiado
         $v = new \Valitron\Validator(array('Tipo' => $value));
         $v->rule('required', 'Tipo');
         $v->rule('integer', 'Tipo');
-        if($v->validate()) {
+        if ($v->validate()) {
             $this->idTipo = $value;
             return true;
         } else {
@@ -130,7 +127,8 @@ class UsuarioPrivilegiado
         }
     }
 
-    public function userExists($param, $value){
+    public function userExists($param, $value)
+    {
         $db = new \Common\Database;
         $db->query("SELECT * FROM usuario_privilegiado WHERE {$param}=:value");
         //$db->bind(':param', $param);
@@ -138,13 +136,15 @@ class UsuarioPrivilegiado
         return boolval($db->rowCount());
     }
 
-    public function getUsers(){
+    public function getUsers()
+    {
         $db = new \Common\Database;
         $db->query('SELECT idUsuario, nombre, apellido, email, contrasena, u.idtipousuario, tipo FROM usuario u INNER JOIN tipoUsuario t ON u.idTipoUsuario = t.idTipoUsuario');
         return $db->resultSet();
     }
 
-    public function getTypes(){
+    public function getTypes()
+    {
         $db = new \Common\Database;
         $db->query('SELECT * FROM tipoUsuario');
         return $db->resultSet();
@@ -158,22 +158,26 @@ class UsuarioPrivilegiado
         return $db->execute();
     }
 
-    public function userCount(){
+    public function userCount()
+    {
         $db = new \Common\Database;
         $db->query('SELECT * FROM usuario');
         return $db->rowCount();
     }
-    public function registerUser($user){
+    public function registerUser($user)
+    {
         $db = new \Common\Database;
         $db->query('INSERT into usuario (id_usuario_p, email, clave) VALUES(DEFAULT, :email, :clave)');
         $db->bind(':email', $user->email);
         $db->bind(':clave', password_hash($user->password, PASSWORD_ARGON2ID));
         return $db->execute();
     }
-    public function checkPassword($email){
+    public function checkPassword($email, $tipo)
+    {
         $db = new \Common\Database;
-        $db->query('SELECT * from usuario_privilegiado WHERE email = :email');
+        $db->query('SELECT * from usuario_privilegiado WHERE email = :email AND id_tipo_usuario_p = :tipo');
         $db->bind(':email', $email);
+        $db->bind(':tipo', $tipo);
         return $db->getResult();
     }
     public function modifyUser($user)
@@ -188,21 +192,42 @@ class UsuarioPrivilegiado
         $db->bind(':idUsuario', $user->idusario);
         return $db->execute();
     }
-    public function getUser($id){
+    public function getUser($id)
+    {
         $db = new \Common\Database;
         $db->query("SELECT * FROM usuario_privilegiado WHERE id_usuario_p=:id");
         $db->bind(':id', $id);
         return $db->getResult();
     }
-
-    public function updateUser($user){
+    public function getUserParams($id)
+    {
         $db = new \Common\Database;
-        if(isset($user->password)){
+        $db->query(
+            'SELECT
+            COALESCE(INITCAP(nombres || \' \' || apellidos), \'Sin nombre\') AS nombre,
+            COALESCE(email, \'Sin correo electrónico\') AS email,
+            COALESCE(usuario_privilegiado.telefono, \'Sin teléfono\') AS telefono,
+            COALESCE(INITCAP(up_tipo_usuario.tipo), \'Sin tipo\') AS tipo_usuario,
+            COALESCE(up_organizacion.nombre, \'Sin nombre\') AS organizacion,
+            COALESCE(up_organizacion.telefono, \'Sin teléfono\') AS telefono_org
+        FROM
+            usuario_privilegiado
+            JOIN up_organizacion USING ( id_organizacion )
+            JOIN up_tipo_usuario USING ( id_tipo_usuario_p )
+        WHERE
+            id_usuario_p = :id'
+        );
+        $db->bind(':id', $id);
+        return $db->getResult();
+    }
+    public function updateUser($user)
+    {
+        $db = new \Common\Database;
+        if (isset($user->password)) {
             $db->query('UPDATE usuario SET clave = :hash WHERE id_usuario_p = :idUsuario');
             $db->bind(':idUsuario', $user->id);
             $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
-        }
-        else{
+        } else {
             $db->query('UPDATE usuario SET telefono = :telefono, email = :email, id_perfil_medico = :idPerfil WHERE id_usuario_p = :idUsuario;');
             $db->bind(':idUsuario', $user->id);
             $db->bind(':email', $user->email);
@@ -211,14 +236,16 @@ class UsuarioPrivilegiado
         }
         return $db->execute();
     }
-    public function updateUserParam($param, $value, $id){
+    public function updateUserParam($param, $value, $id)
+    {
         $db = new \Common\Database;
         $db->query("UPDATE usuario SET $param = :value WHERE id_usuario_p = :idUsuario");
         $db->bind(':idUsuario', $id);
         $db->bind(':value', $value);
         return $db->execute();
     }
-    public function saveRecoveryCode($pin, $id){
+    public function saveRecoveryCode($pin, $id)
+    {
         $this->deleteRecoveryCode($id);
         $db = new \Common\Database;
         $db->query('INSERT INTO recuperarClave values (DEFAULT, DEFAULT, :pin, :idUsuario)');
@@ -226,13 +253,15 @@ class UsuarioPrivilegiado
         $db->bind(':pin', $pin);
         return $db->execute();
     }
-    public function deleteRecoveryCode($id){
+    public function deleteRecoveryCode($id)
+    {
         $db = new \Common\Database;
         $db->query('DELETE FROM recuperarClave WHERE idUsuario = :idUsuario');
         $db->bind(':idUsuario', $id);
         return $db->execute();
     }
-    public function getPasswordPin($id){
+    public function getPasswordPin($id)
+    {
         $db = new \Common\Database;
         $db->query('SELECT pin FROM recuperarClave WHERE idUsuario = :idUsuario');
         $db->bind(':idUsuario', $id);
