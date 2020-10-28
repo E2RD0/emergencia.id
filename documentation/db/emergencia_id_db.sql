@@ -405,3 +405,9 @@ BEGIN
   RETURN id;
 END;
 $$ LANGUAGE plpgsql;
+
+ALTER TABLE usuario
+ADD COLUMN secret2fa CHAR(32);
+
+ALTER TABLE usuario_privilegiado
+ADD COLUMN secret2fa CHAR(32);

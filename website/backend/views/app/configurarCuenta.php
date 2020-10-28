@@ -95,6 +95,14 @@ template::headerSite('Configuración de la cuenta');
                         </div>
                     </div>
                 </div>
+                <div class="row text-center">
+                    <div class="col-12">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="2fa-check" disabled>
+                        <label class="custom-control-label" for="2fa-check">Activar verificación en 2 pasos.</label>
+                    </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <button id="password-submit" class="text-settings-link-on float-right m-3" type="submit" name="button">Guardar</button>
@@ -121,6 +129,42 @@ template::headerSite('Configuración de la cuenta');
     </div>
 </main>
 
+<div class="modal fade twofa" id="2fa-modal" tabindex="-1" role="dialog" aria-labelledby="2fa-modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Verificación en 2 pasos</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+          <?php
+
+          $tfa = new \RobThree\Auth\TwoFactorAuth;('Emergencia.ID');
+           $secret = $tfa->createSecret(160);
+          ?>
+        <img alt="Código QR" class="qr-image" src="<?= $tfa->getQRCodeImageAsDataUri('Emergencia.ID', $secret) ?>">
+        <p class="text-muted" id="secret"><?= chunk_split($secret, 4, ' ')?></p>
+        <form id="form">
+    <div class="form__group form__pincode">
+      <label>Ingresa el código de 6 dígitos de tu aplicación de autenticación</label>
+      <input type="tel" name="pincode-1" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="·" autocomplete="off">
+      <input type="tel" name="pincode-2" maxlength="1" pattern="[\d]*" tabindex="2" placeholder="·" autocomplete="off">
+      <input type="tel" name="pincode-3" maxlength="1" pattern="[\d]*" tabindex="3" placeholder="·" autocomplete="off">
+      <input type="tel" name="pincode-4" maxlength="1" pattern="[\d]*" tabindex="4" placeholder="·" autocomplete="off">
+      <input type="tel" name="pincode-5" maxlength="1" pattern="[\d]*" tabindex="5" placeholder="·" autocomplete="off">
+      <input type="tel" name="pincode-6" maxlength="1" pattern="[\d]*" tabindex="6" placeholder="·" autocomplete="off">
+    </div>
+    <div class="form__buttons">
+      <button class="button-p button-p--primary" disabled id="save2fa">Continuar</button>
+    </div>
+  </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
-template::footerSite('accountSettings.js');
+template::footerSite('accountSettings.js', '../../vendor/inputmask.min.js', '../../vendor/jquery.inputmask.min.js');
 ?>

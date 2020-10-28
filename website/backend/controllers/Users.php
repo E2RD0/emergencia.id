@@ -54,9 +54,15 @@ class Users extends \Common\Controller
             $userHash = $this->usersModel->checkPassword($email);
             if ($userHash) {
                 if (password_verify($password, trim($userHash->clave))) {
-                    $this->loginSession($userHash->id_usuario, $email);
-                    $result['status'] = 1;
-                    $result['message'] = 'Autenticación correcta';
+                    if($userHash->secret2fa==null){
+                        $this->loginSession($userHash->id_usuario, $email);
+                        $result['status'] = 1;
+                        $result['message'] = 'Autenticación correcta';
+                    }
+                    else{
+                        $result['status'] = 2;
+                        $result['message'] = 'Verificación en 2 pasos.';
+                    }
                 } else {
                     $result['status'] = -1;
                     $result['exception'] = 'Credenciales incorrectas';
@@ -72,7 +78,68 @@ class Users extends \Common\Controller
         return $result;
     }
 
+    public function save2fa($secret, $id)
+    {
+        $result = $this->r;
+        if($this->usersModel->save2fa($secret, $id)){
+            $result['status'] = 1;
+        }
+        else{
+            $result['status'] = 0;
+            $result['exception'] = 'Error al activar la verificación en 2 pasos.';
+        }
+        return $result;
+    }
+    public function twoFactorAuth($data, $isLogin=true)
+    {
+        $result = $this->r;
+        $code = $data['code'];
+        if($isLogin){
+            $secret = '';
+        }
+        else{
+            $secret = $data['secret'];
+        }
+        $tfa = new \RobThree\Auth\TwoFactorAuth('Emergencia.ID');
 
+        if($tfa->verifyCode($secret, $code) === true){
+            $result['status'] = 1;
+        }
+        else{
+            $result['status'] = 0;
+            $result['exception'] = 'El código de autenticación es incorrecto';
+        }
+        return $result;
+    }
+
+    public function twoFactorAuthLogin($data)
+    {
+        $result = $this->r;
+        $code = $data['code'];
+        $email = $data['email'];
+        $userHash = $this->usersModel->checkPassword($email);
+        $secret = $userHash->secret2fa;
+
+        $tfa = new \RobThree\Auth\TwoFactorAuth('Poseidon');
+
+        if($tfa->verifyCode($secret, $code) === true){
+            //if ($this->usersModel->setOnline($email, true)) {
+            $this->loginSession($userHash->id_usuario, $email);
+                //$_SESSION['client_pw_exp'] = (new DateTime('now'))->format('Y-m-d') > ((new DateTime($userHash->ultimocambiocontrasena))->add(new DateInterval('P3M')))->format('Y-m-d') ? 1 : 0;
+                //if (isset($_SESSION['client_lg_att'])) unset($_SESSION['client_lg_att']);
+            $result['status'] = 1;
+            $result['message'] = 'Autenticación correcta';
+            /*}else {
+                $result['status'] = -1;
+                $result['exception'] = 'Ocurrió un error al iniciar sesión';
+            }*/
+        }
+        else{
+            $result['status'] = 0;
+            $result['exception'] = 'El código de autenticación es incorrecto';
+        }
+        return $result;
+    }
 
     private function loginSession($id, $email)
     {

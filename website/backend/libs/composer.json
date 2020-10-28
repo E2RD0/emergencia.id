@@ -3,7 +3,8 @@
         "vlucas/phpdotenv": "^4.1",
         "vlucas/valitron": "^1.4",
         "sendgrid/sendgrid": "~7",
-        "geekcom/phpjasper": "^3.3"
+        "geekcom/phpjasper": "^3.3",
+        "robthree/twofactorauth": "^1.7"
     },
 
     "autoload": {

@@ -245,4 +245,14 @@ class Usuario
         $db->bind(':idUsuario', $id);
         return $db->getResult();
     }
+    public function save2fa($secret, $id)
+    {
+        $db = new \Common\Database;
+        if($secret == '')
+            $secret = null;
+        $db->query('UPDATE usuario SET secret2fa = :value WHERE id_usuario = :id');
+        $db->bind(':value', $secret);
+        $db->bind(':id', $id);
+        return $db->execute();
+    }
 }

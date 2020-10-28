@@ -30,6 +30,12 @@ if (isset($_GET['action'])) {
             case 'delete':
                 $result = $controller->delete();
                 break;
+            case '2fa':
+                $result = $controller->twoFactorAuth($_POST, false);
+                break;
+            case 'save2fa':
+                $result = $controller->save2fa($_POST['secret'], $_SESSION['user_id']);
+                break;
             default:
                 \Common\Core::http404();
         }
@@ -46,6 +52,9 @@ if (isset($_GET['action'])) {
                 break;
             case 'recoverCode':
                 $result = $controller->recoverCode($_POST);
+                break;
+            case '2fa-login':
+                $result = $controller->twoFactorAuthLogin($_POST);
                 break;
             default:
                 \Common\Core::http404();
