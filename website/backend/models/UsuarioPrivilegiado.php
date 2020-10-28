@@ -99,7 +99,7 @@ class UsuarioPrivilegiado
         $v = new \Valitron\Validator(array($name => $value));
         $v->rule('required', $name);
         if ($checkStrength) {
-            $v->rule('lengthMin', $name, 6);
+            $v->rule('lengthMin', $name, 8);
         }
         if ($v->validate()) {
             $this->password = $value;

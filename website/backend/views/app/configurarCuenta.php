@@ -10,12 +10,12 @@ template::headerSite('Configuración de la cuenta');
                 <h1 class="text-regular">Configuración de la cuenta</h1>
                 <p class="text-help text-settings-help text-uppercase">Cuenta</p>
             </div>
-            <form class="col-12 bg-white rounded" method="post" action="" id="account-form">
+            <form autocomplete="off" class="col-12 bg-white rounded" method="post" action="" id="account-form">
                 <div class="d-flex justify-content-center" id="spinnerSettings">
-                        <div class="spinner-grow" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
+                    <div class="spinner-grow" role="status">
+                        <span class="sr-only">Loading...</span>
                     </div>
+                </div>
                 <div class="row">
                     <div class="col-12 col-md-6 mt-2 mx-auto">
                         <div class="col-12">
@@ -44,9 +44,9 @@ template::headerSite('Configuración de la cuenta');
                             <label class="text-help text-settings-tfname" for="first-name">Perfil médico del propietario</label>
                             <div class="input-group mb-4">
                                 <select class="textfield" id="inputPerfil" name="perfil">
-                                <option selected value="">Seleccionar</option>
-                              </select>
-                              <p class="form-error-label" id="errorPerfil"></p>
+                                    <option selected value="">Seleccionar</option>
+                                </select>
+                                <p class="form-error-label" id="errorPerfil"></p>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ template::headerSite('Configuración de la cuenta');
             <div class="col-11 mx-auto mt-4">
                 <p class="text-help text-settings-help text-uppercase">Cambiar contraseña</p>
             </div>
-            <form class="col-12 bg-white rounded" method="post" action="" id="password-form">
+            <form autocomplete="off" class="col-12 bg-white rounded" method="post" action="" id="password-form">
                 <div class="row">
                     <div class="col-12 col-md-6 mt-4 mx-auto">
                         <div class="col-12">
@@ -120,7 +120,7 @@ template::headerSite('Configuración de la cuenta');
                         </div>
                     </div>
                     <div class="col-4 my-4 px-auto my-auto">
-                            <button onclick="deleteUser()" class="text-settings-link-on text-danger mb-0 text-md-right text-center">Eliminar cuenta</button>
+                        <button onclick="deleteUser()" class="text-settings-link-on text-danger mb-0 text-md-right text-center">Eliminar cuenta</button>
                         </a>
                     </div>
                 </div>

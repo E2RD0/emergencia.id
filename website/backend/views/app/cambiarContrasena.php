@@ -12,7 +12,7 @@ template::headerLogin('Restablecer contraseña');
                 <h1 class="text-main text-title">Restablecer contraseña</h1>
                 <p class="text-regular mt-2 mb-4">Cambia tu contraseña</p>
 
-                <form action="">
+                <form autocomplete="off" action="">
                     <label class="text-help" for="newPass">Nueva contraseña</label>
                     <div class="input-group mb-4">
                         <input class="textfield" type="password" class="form-control" id="newPass" aria-describedby="basic-addon3">
