@@ -57,7 +57,7 @@ template::headerLogin('Inicio de sesión');
           </button>
         </div>
         <div class="modal-body text-center">
-          <form id="form">
+          <form autocomplete="off" id="form">
       <div class="form__group form__pincode">
         <label>Ingresa el código de 6 dígitos de tu aplicación de autenticación</label>
         <input type="tel" name="pincode-1" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="·" autocomplete="off">

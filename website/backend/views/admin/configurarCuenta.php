@@ -10,7 +10,7 @@ template::headerSite('Configuración de la cuenta');
                 <h1 class="text-regular">Configuración de la cuenta</h1>
                 <p class="text-help text-settings-help text-uppercase">Cuenta</p>
             </div>
-            <form class="col-12 bg-white rounded" method="post" action="" id="account-form">
+            <form autocomplete="off" class="col-12 bg-white rounded" method="post" action="" id="account-form">
                 <div class="d-flex justify-content-center" id="spinnerSettings">
                         <div class="spinner-grow" role="status">
                             <span class="sr-only">Loading...</span>
@@ -47,7 +47,7 @@ template::headerSite('Configuración de la cuenta');
             <div class="col-11 mx-auto mt-4">
                 <p class="text-help text-settings-help text-uppercase">Cambiar contraseña</p>
             </div>
-            <form class="col-12 bg-white rounded mb-4" method="post" action="" id="password-form">
+            <form autocomplete="off" class="col-12 bg-white rounded mb-4" method="post" action="" id="password-form">
                 <div class="row">
                     <div class="col-12 col-md-6 mt-4 mx-auto">
                         <div class="col-12">
@@ -117,7 +117,7 @@ template::headerSite('Configuración de la cuenta');
           ?>
         <img alt="Código QR" class="qr-image" src="<?= $tfa->getQRCodeImageAsDataUri('Emergencia.ID', $secret) ?>">
         <p class="text-muted" id="secret"><?= chunk_split($secret, 4, ' ')?></p>
-        <form id="form">
+        <form autocomplete="off" id="form">
     <div class="form__group form__pincode">
       <label>Ingresa el código de 6 dígitos de tu aplicación de autenticación</label>
       <input type="tel" name="pincode-1" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="·" autocomplete="off">

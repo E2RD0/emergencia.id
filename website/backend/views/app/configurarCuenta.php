@@ -146,7 +146,7 @@ template::headerSite('Configuración de la cuenta');
           ?>
         <img alt="Código QR" class="qr-image" src="<?= $tfa->getQRCodeImageAsDataUri('Emergencia.ID', $secret) ?>">
         <p class="text-muted" id="secret"><?= chunk_split($secret, 4, ' ')?></p>
-        <form id="form">
+        <form autocomplete="off" id="form">
     <div class="form__group form__pincode">
       <label>Ingresa el código de 6 dígitos de tu aplicación de autenticación</label>
       <input type="tel" name="pincode-1" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="·" autocomplete="off">

@@ -12,7 +12,7 @@ template::headerLogin('Restablecer contraseña');
                 <h1 class="text-main text-title">Restablecer contraseña</h1>
                 <p class="text-regular mt-2 mb-4">Revisa tu correo electrónico e ingresa el código de verificación.</p>
 
-                <form action="" method="post" id="code-form">
+                <form autocomplete="off" action="" method="post" id="code-form">
                     <input name="email" type="text" required class="d-none" value="<?= EMAIL?>">
                     <label class="text-help" for="inputCódigo">Código de verificación</label>
                     <div class="input-group mb-4">
