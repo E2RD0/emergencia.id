@@ -226,7 +226,7 @@ class Usuario
     {
         $this->deleteRecoveryCode($id);
         $db = new \Common\Database;
-        $db->query('INSERT INTO recuperarClave values (DEFAULT, DEFAULT, :pin, :idUsuario)');
+        $db->query('INSERT INTO usuario_recuperar_clave values (DEFAULT, NOW(), :pin, :idUsuario)');
         $db->bind(':idUsuario', $id);
         $db->bind(':pin', $pin);
         return $db->execute();
@@ -234,14 +234,14 @@ class Usuario
     public function deleteRecoveryCode($id)
     {
         $db = new \Common\Database;
-        $db->query('DELETE FROM recuperarClave WHERE idUsuario = :idUsuario');
+        $db->query('DELETE FROM usuario_recuperar_clave WHERE id_usuario = :idUsuario');
         $db->bind(':idUsuario', $id);
         return $db->execute();
     }
     public function getPasswordPin($id)
     {
         $db = new \Common\Database;
-        $db->query('SELECT pin FROM recuperarClave WHERE idUsuario = :idUsuario');
+        $db->query('SELECT pin FROM usuario_recuperar_clave WHERE id_usuario = :idUsuario');
         $db->bind(':idUsuario', $id);
         return $db->getResult();
     }
@@ -253,6 +253,14 @@ class Usuario
         $db->query('UPDATE usuario SET secret2fa = :value WHERE id_usuario = :id');
         $db->bind(':value', $secret);
         $db->bind(':id', $id);
+        return $db->execute();
+    }
+    public function changePassword($user)
+    {
+        $db = new \Common\Database;
+        $db->query('UPDATE usuario SET clave = :hash WHERE id_usuario = :idUsuario');
+        $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
+        $db->bind(':idUsuario', $user->id);
         return $db->execute();
     }
 }

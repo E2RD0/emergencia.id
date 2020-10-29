@@ -120,7 +120,7 @@ class Users extends \Common\Controller
         $userHash = $this->usersModel->checkPassword($email);
         $secret = $userHash->secret2fa;
 
-        $tfa = new \RobThree\Auth\TwoFactorAuth('Poseidon');
+        $tfa = new \RobThree\Auth\TwoFactorAuth('Emergencia.ID');
 
         if($tfa->verifyCode($secret, $code) === true){
             //if ($this->usersModel->setOnline($email, true)) {
@@ -340,8 +340,9 @@ class Users extends \Common\Controller
     }
 
 
-    public function userRecoverPassword($userData, $result)
+    public function recoverPassword($userData)
     {
+        $result = $this->r;
         $userData = \Helpers\Validation::trimForm($userData);
         $email = $userData['email'];
 
@@ -353,7 +354,7 @@ class Users extends \Common\Controller
             $userInfo = $this->usersModel->checkPassword($email);
             if ($userInfo) {
                 $pin = strtoupper($this->pin());
-                if ($this->usersModel->saveRecoveryCode($pin, $userInfo->idusuario)) {
+                if ($this->usersModel->saveRecoveryCode($pin, $userInfo->id_usuario)) {
                     if (\Helpers\EmailSender::sendEmail('Código para recuperar contraseña', $email, "El código de recuperación es: $pin.\n")) {
                         $result['status'] = 1;
                         $result['message'] = 'Se ha enviado el pin correctamente';
@@ -375,8 +376,9 @@ class Users extends \Common\Controller
         return $result;
     }
 
-    public function userRecoverCode($userData, $result)
+    public function recoverCode($userData)
     {
+        $result = $this->r;
         $userData = \Helpers\Validation::trimForm($userData);
         $pin = strtoupper($userData['pin']);
         $email = $userData['email'];
@@ -387,8 +389,9 @@ class Users extends \Common\Controller
             if (empty($pin)) {
                 $errors['Código'] = ['Este campo es obligatorio.'];
             } else {
-                if ($pin == ($this->usersModel->getPasswordPin($userInfo->idusuario))->pin) {
+                if ($pin == ($this->usersModel->getPasswordPin($userInfo->id_usuario))->pin) {
                     $result['status'] = 1;
+                    setcookie("email", $email, time() + 420, HOME_PATH . "app/user/newPassword");
                 } else {
                     $errors['Código'] = ['El código es incorrecto.'];
                 }
@@ -398,6 +401,47 @@ class Users extends \Common\Controller
         }
 
         $result['errors'] = $errors;
+        return $result;
+    }
+
+    public function newPassword($userData)
+    {
+        $result = $this->r;
+        $userData = \Helpers\Validation::trimForm($userData);
+        $email = $userData['email'];
+        $newPassword = $userData['newPassword'];
+        $newPasswordR = $userData['newPasswordR'];
+        $idUsuario= ($this->usersModel->checkPassword($email))->id_usuario;
+
+        $user = new Usuario;
+        $errors = [];
+        $errors = $user->setId($idUsuario) === true ? $errors : array_merge($errors, $user->setId($idUsuario));
+        $errors = $user->setEmail($email, true) === true ? $errors : array_merge($errors, $user->setEmail($email, true));
+        $errors = $user->setPassword($newPassword, true, 'Nueva Contraseña') === true ? $errors : array_merge($errors, $user->setPassword($newPassword, true, 'Nueva Contraseña'));
+        if ($newPasswordR) {
+            if ($newPassword != $newPasswordR) {
+                $errors['NewPasswordR'] = ['Las contraseñas no coinciden'];
+            }
+        } else {
+            $errors['NewPasswordR'] = ['Este campo es obligatorio'];
+        }
+        //If there aren't any errors
+        if (!boolval($errors)) {
+            if ($this->usersModel->changePassword($user)) {
+                $result['status'] = 1;
+                $result['message'] = 'Usuario actualizado correctamente';
+                if (isset($_COOKIE['email'])) {
+                    unset($_COOKIE['email']);
+                    setcookie('email', null, -1, HOME_PATH . 'newPassword');
+                }
+            } else {
+                $result['status'] = -1;
+                $result['exception'] = \Common\Database::$exception;
+            }
+        } else {
+            $result['exception'] = 'Error en uno de los campos';
+            $result['errors'] = $errors;
+        }
         return $result;
     }
 

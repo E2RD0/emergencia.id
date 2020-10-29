@@ -33,22 +33,23 @@ class User extends \Common\Controller
         $this->loadView('app', 'qrCode');
     }
 
-    /*public function dashboard()
-    {
-        $this->loadView('store', 'dashboard');
-    }
 
     public function recoverPassword()
     {
-        $this->loadView('dashboard', 'enviar-correo', -1);
+        $this->loadView('app', 'recuperarContrasena', -1);
     }
     public function recoverCode($emailParameter)
     {
         DEFINE('EMAIL', $emailParameter);
-        $this->loadView('dashboard', 'ingresar-codigo', -1);
+        $this->loadView('app', 'ingresarCodigo', -1);
     }
     public function newPassword()
     {
-        $this->loadView('dashboard', 'recuperar-clave', -1);
-    }*/
+        if(isset($_COOKIE['email'])) {
+            $this->loadView('app', 'cambiarContrasena', -1);
+        }
+        else {
+            Core::http404();
+        }
+    }
 }

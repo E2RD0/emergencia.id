@@ -1,7 +1,9 @@
 <?php
 class User extends \Common\Controller
 {
-    public function __construct(){}
+    public function __construct(){
+        $this->usersModel = $this->loadModel('UsuarioPrivilegiado');
+    }
 
     public function signup()
     {
@@ -17,22 +19,22 @@ class User extends \Common\Controller
         $this->loadView('admin', 'configurarCuenta');
     }
 
-    /*public function dashboard()
-    {
-        $this->loadView('store', 'dashboard');
-    }
-
     public function recoverPassword()
     {
-        $this->loadView('dashboard', 'enviar-correo', -1);
+        $this->loadView('admin', 'recuperarContrasena', -1);
     }
     public function recoverCode($emailParameter)
     {
         DEFINE('EMAIL', $emailParameter);
-        $this->loadView('dashboard', 'ingresar-codigo', -1);
+        $this->loadView('admin', 'ingresarCodigo', -1);
     }
     public function newPassword()
     {
-        $this->loadView('dashboard', 'recuperar-clave', -1);
-    }*/
+        if(isset($_COOKIE['email'])) {
+            $this->loadView('admin', 'cambiarContrasena', -1);
+        }
+        else {
+            Core::http404();
+        }
+    }
 }

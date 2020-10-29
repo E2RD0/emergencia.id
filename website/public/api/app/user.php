@@ -53,6 +53,9 @@ if (isset($_GET['action'])) {
             case 'recoverCode':
                 $result = $controller->recoverCode($_POST);
                 break;
+            case 'newPassword':
+                $result = $controller->newPassword($_POST);
+                break;
             case '2fa-login':
                 $result = $controller->twoFactorAuthLogin($_POST);
                 break;

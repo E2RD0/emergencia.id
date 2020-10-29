@@ -172,7 +172,7 @@ class UsuarioPrivilegiado
         $db->bind(':clave', password_hash($user->password, PASSWORD_ARGON2ID));
         return $db->execute();
     }
-    public function checkPassword($email, $tipo)
+    public function checkPassword($email, $tipo=1)
     {
         $db = new \Common\Database;
         $db->query('SELECT * from usuario_privilegiado WHERE email = :email AND id_tipo_usuario_p = :tipo');
@@ -224,15 +224,14 @@ class UsuarioPrivilegiado
     {
         $db = new \Common\Database;
         if (isset($user->password)) {
-            $db->query('UPDATE usuario SET clave = :hash WHERE id_usuario_p = :idUsuario');
+            $db->query('UPDATE usuario_privilegiado SET clave = :hash WHERE id_usuario_p = :idUsuario');
             $db->bind(':idUsuario', $user->id);
             $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
         } else {
-            $db->query('UPDATE usuario SET telefono = :telefono, email = :email, id_perfil_medico = :idPerfil WHERE id_usuario_p = :idUsuario;');
+            $db->query('UPDATE usuario_privilegiado SET telefono = :telefono, email = :email WHERE id_usuario_p = :idUsuario;');
             $db->bind(':idUsuario', $user->id);
             $db->bind(':email', $user->email);
             $db->bind(':telefono', $user->telefono);
-            $db->bind(':idPerfil', $user->idPerfil);
         }
         return $db->execute();
     }
@@ -248,7 +247,7 @@ class UsuarioPrivilegiado
     {
         $this->deleteRecoveryCode($id);
         $db = new \Common\Database;
-        $db->query('INSERT INTO recuperarClave values (DEFAULT, DEFAULT, :pin, :idUsuario)');
+        $db->query('INSERT INTO usuario_p_recuperar_clave values (DEFAULT, NOW(), :pin, :idUsuario)');
         $db->bind(':idUsuario', $id);
         $db->bind(':pin', $pin);
         return $db->execute();
@@ -256,15 +255,33 @@ class UsuarioPrivilegiado
     public function deleteRecoveryCode($id)
     {
         $db = new \Common\Database;
-        $db->query('DELETE FROM recuperarClave WHERE idUsuario = :idUsuario');
+        $db->query('DELETE FROM usuario_p_recuperar_clave WHERE id_usuario_p = :idUsuario');
         $db->bind(':idUsuario', $id);
         return $db->execute();
     }
     public function getPasswordPin($id)
     {
         $db = new \Common\Database;
-        $db->query('SELECT pin FROM recuperarClave WHERE idUsuario = :idUsuario');
+        $db->query('SELECT pin FROM usuario_p_recuperar_clave WHERE id_usuario_p = :idUsuario');
         $db->bind(':idUsuario', $id);
         return $db->getResult();
+    }
+    public function save2fa($secret, $id)
+    {
+        $db = new \Common\Database;
+        if($secret == '')
+            $secret = null;
+        $db->query('UPDATE usuario_privilegiado SET secret2fa = :value WHERE id_usuario_p = :id');
+        $db->bind(':value', $secret);
+        $db->bind(':id', $id);
+        return $db->execute();
+    }
+    public function changePassword($user)
+    {
+        $db = new \Common\Database;
+        $db->query('UPDATE usuario_privilegiado SET clave = :hash WHERE id_usuario_p = :idUsuario');
+        $db->bind(':hash', password_hash($user->password, PASSWORD_ARGON2ID));
+        $db->bind(':idUsuario', $user->id);
+        return $db->execute();
     }
 }

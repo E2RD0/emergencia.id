@@ -90,7 +90,7 @@ alter table perfil_medico
 CREATE TABLE "usuario_recuperar_clave"
 (
  "id_recuperar_clave" serial NOT NULL,
- "fecha_creacion"     timestamptz NOT NULL,
+ "fecha_creacion"     timestamptz NOT NULL DEFAULT NOW(),
  "pin"                char(6) NOT NULL,
  "id_usuario"         integer NOT NULL,
  CONSTRAINT "PK_usuario_recuperar_clave" PRIMARY KEY ( "id_recuperar_clave" ),
@@ -100,6 +100,21 @@ CREATE TABLE "usuario_recuperar_clave"
 CREATE INDEX "fkIdx_223" ON "usuario_recuperar_clave"
 (
  "id_usuario"
+);
+
+CREATE TABLE "usuario_p_recuperar_clave"
+(
+ "id_recuperar_clave" serial NOT NULL,
+ "fecha_creacion"     timestamptz NOT NULL DEFAULT NOW(),
+ "pin"                char(6) NOT NULL,
+ "id_usuario_p"         integer NOT NULL,
+ CONSTRAINT "PK_usuario_p_recuperar_clave" PRIMARY KEY ( "id_recuperar_clave" ),
+ CONSTRAINT "FK_225" FOREIGN KEY ( "id_usuario_p" ) REFERENCES "usuario_privilegiado" ( "id_usuario_p" )
+);
+
+CREATE INDEX "fkIdx_225" ON "usuario_p_recuperar_clave"
+(
+ "id_usuario_p"
 );
 
 /*CREATE TABLE "perfiles_usuario"

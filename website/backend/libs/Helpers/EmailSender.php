@@ -6,7 +6,7 @@ class EmailSender
     public static function sendEmail($subject, $to, $message)
     {
         $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("e2rd0e@gmail.com", "Tienda Poseidón");
+        $email->setFrom("e2rd0e@gmail.com", "Emergencia.id");
         $email->setSubject($subject);
         $email->addTo($to);
         $email->addContent("text/plain", $message);

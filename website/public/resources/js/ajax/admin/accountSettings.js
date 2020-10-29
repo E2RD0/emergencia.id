@@ -1,31 +1,75 @@
-const API = HOME_PATH + 'api/admin/user.php?action=';
+var twoFactorCheck = false;
 
-$( '#login-form' ).submit(function( event ) {
-    event.preventDefault();
+const API_USUARIOS = HOME_PATH + 'api/admin/user.php?action=';
+$( document ).ready(function() {
+    getUserInfo();
+});
+
+function getUserInfo()
+{
     $.ajax({
-        type: 'post',
-        url: API + 'login',
-        data: $( '#login-form' ).serialize(),
         dataType: 'json',
-        beforeSend: function() {
-            $("#login-submit")[0].innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando';
-        },
-        complete: function() {
-            $("#login-submit")[0].innerHTML = 'Acceder';
-        }
+        url: API_USUARIOS + 'info'
     })
     .done(function( response ) {
-        // If user login is succesfull
-        if ( response.status == 1) {
-            redirect('admin/dashboard/analytics');
-        } else if(response.status == 2){
-            $('#2fa-modal').modal('show');
-        } else if (response.status == -1){
+        if (response.status) {
+                $( '#spinnerSettings' )[0].innerHTML = '';
+                $( '#inputEmail' ).val( response.dataset.email );
+                $( '#inputTeléfono' ).val( response.dataset.telefono );
+                if(response.dataset.secret2fa != null){
+                    $("#2fa-check").prop('checked', true);
+                }
+                $("#2fa-check").prop('disabled', false);
+
+        } else {
+            swal(2, response.exception);
+        }
+    })
+    .fail(function( jqXHR ) {
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+}
+
+$( '#account-form' ).submit(function( event ) {
+    event.preventDefault();
+    updateClient(this, document.getElementById('account-submit'));
+});
+
+$( '#password-form' ).submit(function( event ) {
+    event.preventDefault();
+    updatePassword(this, document.getElementById('password-submit'));
+});
+
+function updateClient(form, submitButton)
+{
+    var inner = submitButton.innerHTML;
+    $.ajax({
+        type: 'post',
+        url: API_USUARIOS + 'update',
+        data: $(form).serialize(),
+        dataType: 'json',
+        beforeSend: function() {
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+        },
+        complete: function() {
+            submitButton.innerHTML = inner;
+        }
+
+    })
+    .done(function( response ) {
+        // If user is registered succesfully
+        if (response.status==1) {
+            getUserInfo();
+        } else if(response.status==-1){
             swal(2, response.exception);
         }
         var errors = response.errors;
         checkFields(errors, 'Email');
-        checkFields(errors, 'Contraseña');
+        checkFields(errors, 'Teléfono');
     })
     .fail(function( jqXHR ) {
         // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
@@ -35,28 +79,84 @@ $( '#login-form' ).submit(function( event ) {
             console.log( jqXHR.status + ' ' + jqXHR.statusText );
         }
     });
+}
+
+function updatePassword(form, submitButton)
+{
+    var inner = submitButton.innerHTML;
+    $.ajax({
+        type: 'post',
+        url: API_USUARIOS + 'updatePassword',
+        data: $(form).serialize(),
+        dataType: 'json',
+        beforeSend: function() {
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+        },
+        complete: function() {
+            submitButton.innerHTML = inner;
+        }
+
+    })
+    .done(function( response ) {
+        // If user is registered succesfully
+        if (response.status==1) {
+            $('#password-form')[0].reset();
+            swal(1, response.message);
+        } else if(response.status==-1){
+            swal(2, response.exception);
+        }
+        var errors = response.errors;
+        checkFields(errors, 'Contraseña');
+        checkFields(errors, 'Nueva Contraseña');
+        checkFields(errors, 'NewPasswordR');
+    })
+    .fail(function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+}
+
+
+$("#2fa-check").change(function(){
+   var check = $(this).prop('checked');
+   if(check == true) {
+     $('#2fa-modal').modal('show');
+     $(this).prop('checked', false);
+   } else {
+       $(this).prop('checked', true);
+       swal(4, '¿Estás seguro de que quieres desactivar la verificación en 2 pasos?', false, 0, true, disable2fa);
+   }
 });
 
-function reset2fa(){
-    var $form = $('#form');
-    var $group = $form.find('.form__pincode');
-    var $inputs = $group.find(':input');
-    var $first = $form.find('[name=pincode-1]');
+function disable2fa(){
+    $.ajax({
+        type: "POST",
+        url: API_USUARIOS + "save2fa",
+        dataType: "json",
+        data: {
+          'secret': ''
+        }
+      })
+      .done(function(data) {
+          if (data.status === 1) {
+            $("#2fa-check").prop('checked', false);
+          }
 
-    $inputs.each(function() {
-      // clear all fields
-      $(this).val('');
-
-      // enable all fields
-      $(this).prop('disabled', false);
+          if (data.status === 0) {
+              swal(2, 'Error al desactivar la verificación en dos pasos');
+          }
+      })
+      .fail(function(jqXHR) {
+        if (jqXHR.status == 200) {
+            console.log(jqXHR.responseText);
+        } else {
+            console.log(jqXHR.status + " " + jqXHR.statusText);
+        }
     });
-    // remove response status class
-    $group.removeClass('form__group--success form__group--error');
-
-    // disable submit button
-
-    // focus to first field
-    $first.focus();
 }
 
 $(function() {
@@ -84,6 +184,7 @@ $(function() {
     , $sixth = $form.find('[name=pincode-6]');
 
   // submit button
+  var $button = $form.find('.button-p--primary');
 
   // all fields
   $inputs
@@ -380,11 +481,11 @@ $(function() {
             }
         $.ajax({
             type: "POST",
-            url: API + "2fa-login",
+            url: API_USUARIOS + "2fa",
             dataType: "json",
             data: {
               'code': _pincode.join(''),
-              'email': $('#inputEmail').val().trim()
+              'secret': $("#secret").html().replace(/\s/g, '')
             }
           })
           .done(function(data) {
@@ -392,18 +493,14 @@ $(function() {
               ! debug || console.log('data', data);
 
               if (data.status === 1) {
-                redirect('admin/dashboard/analytics');
+                $group.addClass('form__group--success');
+                $button.removeAttr('disabled');
+                twoFactorCheck = true;
               }
-              else if (data.status === 0) {
-                 $('#login-form').trigger("reset");
-                 swal(2, 'Código de autenticación incorrecto');
-                setTimeout(function(){
-                    $('#2fa-modal').modal('hide');
-                },1800);
+
+              if (data.status === 0) {
+                $group.addClass('form__group--error');
                 setTimeout(reset,2000);
-              }
-              else if (data.status === -1){
-                  swal(2, data.exception);
               }
             } catch (err) {
 
@@ -423,3 +520,69 @@ $(function() {
       }
     });
 });
+
+$("#save2fa").click(
+    function(e){
+    e.preventDefault()
+    if(twoFactorCheck){
+        $.ajax({
+            type: "POST",
+            url: API + "save2fa",
+            dataType: "json",
+            data: {
+              'secret': $("#secret").html().replace(/\s/g, '')
+            }
+          })
+          .done(function(data) {
+              if (data.status === 1) {
+                $("#2fa-check").prop('checked', true);
+                $('#2fa-modal').modal('hide');
+                reset2fa();
+              }
+
+              if (data.status === 0) {
+                  swal(2, response.exception);
+                  reset2fa();
+              }
+          })
+          .fail(function(jqXHR) {
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + " " + jqXHR.statusText);
+            }
+          })
+    }
+    else{
+        swal(2, 'Código de autenticación incorrecto');
+    }
+});
+
+$("#2fa-modal").on("hidden.bs.modal", function () {
+    reset2fa();
+});
+
+function reset2fa(){
+    var $form = $('#form');
+    var $group = $form.find('.form__pincode');
+    var $inputs = $group.find(':input');
+    var $first = $form.find('[name=pincode-1]');
+    var $button = $form.find('.button-p--primary');
+
+    $inputs.each(function() {
+      // clear all fields
+      $(this).val('');
+
+      // enable all fields
+      $(this).prop('disabled', false);
+    });
+
+    // remove response status class
+    $group.removeClass('form__group--success form__group--error');
+
+    // disable submit button
+    $button.attr('disabled', true);
+
+    // focus to first field
+    $first.focus();
+}
