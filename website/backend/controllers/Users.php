@@ -268,12 +268,9 @@ class Users extends \Common\Controller
     public function logout()
     {
         $result = $this->r;
-        if (session_destroy()) {
-            $result['status'] = 1;
-            $result['message'] = 'Se ha cerrado la sesión';
-        } else {
-            $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
-        }
+        unset($_SESSION['user_id'], $_SESSION['user_email']);
+        $result['status'] = 1;
+        $result['message'] = 'Se ha cerrado la sesión';
         return $result;
     }
 
