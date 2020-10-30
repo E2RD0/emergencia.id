@@ -586,3 +586,34 @@ VALUES
     (DEFAULT, 22, 10),
     (DEFAULT, 28, 4),
     (DEFAULT, 15, 9);
+
+UPDATE perfil_medico set id_usuario = 1 WHERE id_perfil_medico = 1;
+UPDATE perfil_medico set id_usuario = 2 WHERE id_perfil_medico = 2;
+UPDATE perfil_medico set id_usuario = 3 WHERE id_perfil_medico = 3;
+UPDATE perfil_medico set id_usuario = 4 WHERE id_perfil_medico = 4;
+UPDATE perfil_medico set id_usuario = 5 WHERE id_perfil_medico = 5;
+UPDATE perfil_medico set id_usuario = 6 WHERE id_perfil_medico = 6;
+UPDATE perfil_medico set id_usuario = 7 WHERE id_perfil_medico = 7;
+UPDATE perfil_medico set id_usuario = 8 WHERE id_perfil_medico = 8;
+UPDATE perfil_medico set id_usuario = 9 WHERE id_perfil_medico = 9;
+UPDATE perfil_medico set id_usuario = 10 WHERE id_perfil_medico = 10;
+UPDATE perfil_medico set id_usuario = 11 WHERE id_perfil_medico = 11;
+UPDATE perfil_medico set id_usuario = 12 WHERE id_perfil_medico = 12;
+UPDATE perfil_medico set id_usuario = 13 WHERE id_perfil_medico = 13;
+UPDATE perfil_medico set id_usuario = 14 WHERE id_perfil_medico = 14;
+UPDATE perfil_medico set id_usuario = 15 WHERE id_perfil_medico = 15;
+UPDATE perfil_medico set id_usuario = 16 WHERE id_perfil_medico = 16;
+UPDATE perfil_medico set id_usuario = 17 WHERE id_perfil_medico = 17;
+UPDATE perfil_medico set id_usuario = 18 WHERE id_perfil_medico = 18;
+UPDATE perfil_medico set id_usuario = 19 WHERE id_perfil_medico = 19;
+UPDATE perfil_medico set id_usuario = 20 WHERE id_perfil_medico = 20;
+UPDATE perfil_medico set id_usuario = 21 WHERE id_perfil_medico = 21;
+UPDATE perfil_medico set id_usuario = 22 WHERE id_perfil_medico = 22;
+UPDATE perfil_medico set id_usuario = 23 WHERE id_perfil_medico = 23;
+UPDATE perfil_medico set id_usuario = 24 WHERE id_perfil_medico = 24;
+UPDATE perfil_medico set id_usuario = 25 WHERE id_perfil_medico = 25;
+UPDATE perfil_medico set id_usuario = 26 WHERE id_perfil_medico = 26;
+UPDATE perfil_medico set id_usuario = 27 WHERE id_perfil_medico = 27;
+UPDATE perfil_medico set id_usuario = 28 WHERE id_perfil_medico = 28;
+UPDATE perfil_medico set id_usuario = 29 WHERE id_perfil_medico = 29;
+UPDATE perfil_medico set id_usuario = 29 WHERE id_perfil_medico = 29;

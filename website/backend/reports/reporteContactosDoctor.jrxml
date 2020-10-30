@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="registro_medicos" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4308da9-fb08-472b-98fa-22fab5e82189">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Emergencia.id"/>
+	<parameter name="email" class="java.lang.String"/>
+	<parameter name="id_profile" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT 
+	perfil_medico.nombres,
+	perfil_medico.apellidos,
+	perfil_contacto_doctor.id_contacto_d,
+	perfil_contacto_doctor.nombre,
+	perfil_contacto_doctor.telefono,
+	perfil_contacto_doctor.especialidad
+FROM perfil_contacto_doctor
+	INNER JOIN perfil_medico ON 
+	 perfil_contacto_doctor.id_perfil_medico = perfil_medico.id_perfil_medico 
+	INNER JOIN usuario ON 
+	 perfil_medico.id_usuario = usuario.id_usuario 
+WHERE 
+	 usuario.email =  $P{email} 
+	 AND perfil_contacto_doctor.id_perfil_medico =   $P{id_profile} 
+GROUP BY 
+	perfil_medico.nombres,
+	perfil_medico.apellidos,
+	perfil_contacto_doctor.nombre,
+	perfil_contacto_doctor.telefono,
+	perfil_contacto_doctor.especialidad,
+	perfil_contacto_doctor.id_contacto_d]]>
+	</queryString>
+	<field name="nombres" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nombres"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil_medico"/>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="apellidos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil_medico"/>
+	</field>
+	<field name="id_contacto_d" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_contacto_d"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil_contacto_doctor"/>
+		<property name="com.jaspersoft.studio.field.name" value="id_contacto_d"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil_contacto_doctor"/>
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil_contacto_doctor"/>
+		<property name="com.jaspersoft.studio.field.name" value="telefono"/>
+	</field>
+	<field name="especialidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="especialidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="perfil_contacto_doctor"/>
+		<property name="com.jaspersoft.studio.field.name" value="especialidad"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="97" splitType="Stretch">
+			<rectangle>
+				<reportElement x="350" y="8" width="5" height="76" forecolor="rgba(0, 0, 0, 0.0)" backcolor="#2F8DEB" uuid="22305946-140b-401c-b0e3-0bc629ceea5c">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="445" y="70" width="115" height="14" uuid="6a5bc3e5-07af-48a9-b89b-32fc9dcbea6a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMM d, yyyy h:mm:ss a">
+				<reportElement x="360" y="54" width="200" height="16" uuid="aaed7f83-ba76-4bc9-ba3e-9fada15ce77b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="70" width="85" height="14" uuid="94d44261-b2a5-4abb-9d1e-a5aaa1820760">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Usuario creador: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="8" width="200" height="46" uuid="a1735006-4844-40f2-a1d0-69617ae247cd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="18"/>
+				</textElement>
+				<text><![CDATA[Reporte de contactos de doctores]]></text>
+			</staticText>
+			<image hAlign="Left" vAlign="Middle">
+				<reportElement x="20" y="19" width="260" height="51" uuid="0e4a06d9-a774-48c8-968e-91370eaade30">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA["https://drive.google.com/uc?export=view&id=16Ck7Iixprqcu5BLetkjznt50OiGd9723"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="69" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<rectangle>
+				<reportElement x="0" y="39" width="572" height="30" forecolor="rgba(0, 0, 0, 0.0)" backcolor="#2F8DEB" uuid="37fba531-d123-4aae-8f9e-2aa8e5aeaded"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="15" y="39" width="150" height="30" forecolor="#FFFFFF" uuid="64dbc6eb-1058-4ea4-8160-8ab00515ffd4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f8596144-3030-4a3a-93fd-509b1a84708d"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="39" width="190" height="30" forecolor="#FFFFFF" uuid="cf981334-2358-461e-99e7-f8313cca3370">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="255c2629-dc65-428f-942b-18250ab080db"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<text><![CDATA[Teléfono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="39" width="181" height="30" forecolor="#FFFFFF" uuid="32ceff9b-66da-472b-b1e6-c6af04b661d0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b14f3700-5068-4fe7-84d3-c724d783226f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<text><![CDATA[Especialidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="10" width="80" height="20" uuid="8a252f6b-dcab-4b6e-9721-d3a66033e534"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Información de: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="95" y="10" width="190" height="20" uuid="3b606998-2d49-44c2-b5db-100cfa98123f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="958cc276-0903-4f2d-a0b9-b6507831c86d"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres} + ' ' + $F{apellidos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="15" y="0" width="150" height="30" uuid="244adf87-1126-4814-8372-2981ed3f473a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f8596144-3030-4a3a-93fd-509b1a84708d"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="0" width="190" height="30" uuid="5deb2df1-11a2-49e3-b195-1d8f2465d8cb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="255c2629-dc65-428f-942b-18250ab080db"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="0" width="181" height="30" uuid="c9d75feb-ae65-4e8b-afea-8bbb1ad47abb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b14f3700-5068-4fe7-84d3-c724d783226f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{especialidad}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="35" width="571" height="1" forecolor="#A0D6FA" uuid="8010e844-74a4-414a-8464-50d6af793f5d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="490" y="0" width="50" height="19" uuid="2957a4cd-30ff-4b3c-a0b4-bad994e5bb75"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement positionType="FixRelativeToBottom" x="540" y="0" width="32" height="19" uuid="60ae5bb2-7ebc-43b4-9e6b-3a409cd3ff6b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

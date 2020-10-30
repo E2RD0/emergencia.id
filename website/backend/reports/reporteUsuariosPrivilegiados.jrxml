@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuariosPrivilegiados" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dd1c72cd-fe01-42e0-a0ba-c102a8eeac9d">
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="281"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="708"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Emergencia.id"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="usuariocreador" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT up_tipo_usuario.id_tipo_usuario_p ,up_tipo_usuario.tipo, usuario_privilegiado.nombres, usuario_privilegiado.apellidos, usuario_privilegiado.email, usuario_privilegiado.telefono
+FROM usuario_privilegiado INNER JOIN up_tipo_usuario ON usuario_privilegiado.id_tipo_usuario_p = up_tipo_usuario.id_tipo_usuario_p
+GROUP BY usuario_privilegiado.id_usuario_p, up_tipo_usuario.tipo,  up_tipo_usuario.id_tipo_usuario_p]]>
+	</queryString>
+	<field name="id_tipo_usuario_p" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_tipo_usuario_p"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_tipo_usuario_p"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="up_tipo_usuario"/>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="up_tipo_usuario"/>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombres"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombres"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario_privilegiado"/>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellidos"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellidos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario_privilegiado"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario_privilegiado"/>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuario_privilegiado"/>
+	</field>
+	<group name="tipoadmin">
+		<groupExpression><![CDATA[$F{id_tipo_usuario_p}]]></groupExpression>
+		<groupHeader>
+			<band height="62">
+				<rectangle>
+					<reportElement x="0" y="32" width="572" height="30" forecolor="rgba(0, 0, 0, 0.0)" backcolor="#2F8DEB" uuid="5a38042f-de6c-4139-9237-13dcdd38db9c"/>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="15" y="32" width="293" height="29" forecolor="#FFFFFF" uuid="0c317806-a53c-4c15-8312-545b4e20ce2b"/>
+					<box>
+						<pen lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="13"/>
+					</textElement>
+					<text><![CDATA[Nombre del usuario]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="326" y="32" width="131" height="29" forecolor="#FFFFFF" uuid="053114c5-e7d1-4207-bd78-6f5c316469c9"/>
+					<box>
+						<pen lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="13"/>
+					</textElement>
+					<text><![CDATA[Correo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="474" y="32" width="81" height="29" forecolor="#FFFFFF" uuid="57945cfc-e772-4c61-896f-e876cee61afd"/>
+					<box>
+						<pen lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="13"/>
+					</textElement>
+					<text><![CDATA[Telefono]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="0" y="0" width="572" height="19" forecolor="rgba(0, 0, 0, 0.0)" backcolor="#A0D6FA" uuid="885346cc-3a36-4e7e-b52c-b699bf3be66c"/>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
+				</rectangle>
+				<textField>
+					<reportElement x="239" y="0" width="94" height="19" forecolor="#FFFFFF" uuid="f4cb9fae-af51-412c-acd8-26df0d1f9fe2">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="729a1a6c-144f-4e1d-ad80-b4204b5c6252"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="91" splitType="Stretch">
+			<staticText>
+				<reportElement x="361" y="8" width="196" height="45" uuid="5a4e976d-6c58-41f5-9f1f-9d603c29ac2e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="19"/>
+				</textElement>
+				<text><![CDATA[Reporte de usuarios
+privilegiados]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="361" y="53" width="196" height="16" uuid="d11f75c5-eed0-453e-9d77-6e2e15275d0d"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="351" y="8" width="5" height="75" forecolor="rgba(0, 0, 0, 0.0)" backcolor="#2F8DEB" uuid="573841a0-d785-4899-ba4d-5fe76ce13ffd">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="361" y="69" width="85" height="14" uuid="68549b5a-29b4-446f-bfbc-4f3cb07194ff">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Usuario creador: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="446" y="69" width="126" height="14" uuid="10937a75-2d5a-400e-83b3-3b8f0ec183a6"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{usuariocreador}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Left" vAlign="Middle">
+				<reportElement x="20" y="19" width="260" height="51" uuid="2bf50f50-7ccb-47c2-ae02-dc61f091184e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA["https://drive.google.com/uc?export=view&id=16Ck7Iixprqcu5BLetkjznt50OiGd9723"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="326" y="4" width="130" height="20" uuid="cb86177d-c63f-4424-b75d-f8e81fe66878">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bdc8ed35-848c-4a9a-89b1-99dbb801b4dd"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="4" width="80" height="20" uuid="7a6614e9-40c3-48f7-ac0c-b6e74c054620">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="81facd94-ecef-47e7-b621-473524b73606"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="4" width="293" height="20" uuid="fd48391b-e9a7-4014-91a2-aa533ffa5a49">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0645d264-dfa0-467d-a489-7fde4177ebc3"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="35" width="571" height="1" forecolor="#A0D6FA" uuid="31cae8d9-6440-41d5-8bc4-dcd02307b186">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="490" y="0" width="50" height="19" uuid="22d8b085-76d7-4be1-9e0f-4aec58af08cb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement positionType="FixRelativeToBottom" x="540" y="0" width="32" height="19" uuid="90558ea7-7356-48ff-ae74-df0a7782b779">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
