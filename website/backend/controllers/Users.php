@@ -55,9 +55,14 @@ class Users extends \Common\Controller
             if ($userHash) {
                 if (password_verify($password, trim($userHash->clave))) {
                     if($userHash->secret2fa==null){
-                        $this->loginSession($userHash->id_usuario, $email);
-                        $result['status'] = 1;
-                        $result['message'] = 'Autenticación correcta';
+                        if($userHash->block){
+                            $result['status'] = 3;
+                            $result['exception'] = 'su cuenta esta bloqueada';
+                        }else{
+                            $this->loginSession($userHash->id_usuario, $email);
+                            $result['status'] = 1;
+                            $result['message'] = 'Autenticación correcta';
+                        }
                     }
                     else{
                         $result['status'] = 2;

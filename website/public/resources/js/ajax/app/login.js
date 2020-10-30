@@ -1,14 +1,10 @@
 const API = HOME_PATH + "api/app/user.php?action=";
 let num = 0;
-let block = false;
 $("#login-form").submit(function (event) {
     num = num + 1;
     console.log(num);
     event.preventDefault();
     let a = document.getElementById("inputEmail");
-    if (block) {
-        swal(2, "Su cuenta ha sido bloqueada temporalmente");
-    }
     if (num == 3) {
         fetch(`${API}intentos&email=${a.value}`);
         swal(2, "Su cuenta ha sido bloqueada temporalmente");
@@ -30,14 +26,15 @@ $("#login-form").submit(function (event) {
         .done(function (response) {
             // If user login is succesfull
             if (response.status == 1) {
-                response.block
-                    ? swal(2, "Su cuenta ha sido bloqueada temporalmente")
-                    : redirect("app/user/profiles");
+                redirect("app/user/profiles");
             } else if (response.status == 2) {
                 $("#2fa-modal").modal("show");
             } else if (response.status == -1) {
                 swal(2, response.exception);
+            } else if (response.status == 3) {
+                swal(2, response.exception);
             }
+
             /* response.block ? (block = true) : (block = false); */
             var errors = response.errors;
             checkFields(errors, "Email");
