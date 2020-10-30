@@ -62,10 +62,9 @@ CREATE TABLE "usuario" (
     "clave" char(98) NOT NULL,
     "id_perfil_medico" integer UNIQUE,
     "fecha_creacion" timestamp DEFAULT now(),
+    "secret2fa" 	CHAR(32)
     CONSTRAINT "PK_usuario" PRIMARY KEY ("id_usuario"),
-    CONSTRAINT "FK_201" FOREIGN KEY ("id_perfil_medico") REFERENCES "perfil_medico" ("id_perfil_medico") ON DELETE
-    SET
-        NULL
+    CONSTRAINT "FK_201" FOREIGN KEY ("id_perfil_medico") REFERENCES "perfil_medico" ("id_perfil_medico") ON DELETE SET NULL
 );
 
 CREATE INDEX "fkIdx_201" ON "usuario" ("id_perfil_medico");
@@ -101,25 +100,6 @@ CREATE INDEX "fkIdx_225" ON "usuario_p_recuperar_clave"
  "id_usuario_p"
 );
 
-/*CREATE TABLE "perfiles_usuario"
- (
- "id_perfiles_usuario" serial NOT NULL,
- "id_usuario"          integer NOT NULL,
- "id_perfil_medico"    integer NOT NULL,
- CONSTRAINT "PK_perfiles_usuario" PRIMARY KEY ( "id_perfiles_usuario" ),
- CONSTRAINT "FK_195" FOREIGN KEY ( "id_usuario" ) REFERENCES "usuario" ( "id_usuario" ),
- CONSTRAINT "FK_215" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
- );
- 
- CREATE INDEX "fkIdx_195" ON "perfiles_usuario"
- (
- "id_usuario"
- );
- 
- CREATE INDEX "fkIdx_215" ON "perfiles_usuario"
- (
- "id_perfil_medico"
- );*/
 CREATE TABLE "perfil_contacto_emergencia" (
     "id_contacto" serial NOT NULL,
     "nombre" varchar(200) NOT NULL,
@@ -244,23 +224,7 @@ CREATE INDEX "fkIdx_132" ON "perfil_usuarios_compartir" ("id_perfil_medico");
 
 CREATE INDEX "fkIdx_204" ON "perfil_usuarios_compartir" ("id_usuario");
 
-/*CREATE TABLE "perfil_enlaces_compartir"
- (
- "id_enlace"        serial NOT NULL,
- "enlace"           varchar(75) UNIQUE NOT NULL,
- "fecha_creacion"   timestamptz NOT NULL,
- "fecha_expiracion" timestamptz NOT NULL,
- "num_visitas"      int NOT NULL DEFAULT 0,
- "id_perfil_medico" integer NOT NULL,
- CONSTRAINT "PK_perfil_enlaces_compartir" PRIMARY KEY ( "id_enlace" ),
- CONSTRAINT "FK_138" FOREIGN KEY ( "id_perfil_medico" ) REFERENCES "perfil_medico" ( "id_perfil_medico" )
- );
- 
- CREATE INDEX "fkIdx_138" ON "perfil_enlaces_compartir"
- (
- "id_perfil_medico"
- );
- */
+
 CREATE TABLE "accion_bitacora" (
     "id_accion_bitacora" serial NOT NULL,
     "accion" varchar(100) UNIQUE NOT NULL,
@@ -306,6 +270,7 @@ CREATE TABLE "usuario_privilegiado" (
     "id_tipo_usuario_p" integer NOT NULL,
     "id_organizacion" integer NOT NULL,
     "fecha_creacion" timestamp DEFAULT now(),
+    "secret2fa" 	CHAR(32)
     CONSTRAINT "PK_usuario_privilegiado" PRIMARY KEY ("id_usuario_p"),
     CONSTRAINT "FK_108" FOREIGN KEY ("id_tipo_usuario_p") REFERENCES "up_tipo_usuario" ("id_tipo_usuario_p"),
     CONSTRAINT "FK_114" FOREIGN KEY ("id_organizacion") REFERENCES "up_organizacion" ("id_organizacion") ON DELETE CASCADE
