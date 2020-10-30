@@ -36,6 +36,7 @@ if (isset($_GET['action'])) {
             case 'save2fa':
                 $result = $controller->save2fa($_POST['secret'], $_SESSION['user_id']);
                 break;
+
             default:
                 \Common\Core::http404();
         }
@@ -44,6 +45,9 @@ if (isset($_GET['action'])) {
             case 'signup':
                 $result = $controller->signUp($_POST);
                 break;
+                case 'intentos':
+                    $result = $controller->update();
+                    break;
             case 'login':
                 $result = $controller->login($_POST);
                 break;

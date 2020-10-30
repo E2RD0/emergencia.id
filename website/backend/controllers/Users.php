@@ -457,4 +457,11 @@ class Users extends \Common\Controller
         }
         return substr(bin2hex($bytes), 0, $lenght);
     }
+    public function update(){
+        $db = new \Common\Database;
+        $email = $_GET['email'];
+        $db->query("UPDATE usuario SET block = true WHERE email = :email");
+        $db->bind(':email', $email);
+        return $db->execute();
+    }
 }

@@ -128,7 +128,6 @@ class UsuarioPrivilegiado
     }
 
     public function addNewUser($user){
-        print_r($user);
         $db = new \Common\Database;
         $db->query('INSERT INTO usuario_privilegiado(
             nombres, apellidos, email, telefono, clave, id_tipo_usuario_p, id_organizacion, fecha_creacion, secret2fa)
