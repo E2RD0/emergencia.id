@@ -15,7 +15,7 @@ $(document).ready(function() {
 });
 
 function report(event, type) {
-    if (generatingReport === false){
+    if (generatingReport === false) {
         generatingReport = true;
         event.innerHTML =
             '<i class="far fa-spinner-third icon-load ml-0"></i><p class="d-inline-block my-0 ml-2">Generando Reporte</p>';
@@ -284,128 +284,126 @@ function perfilesFecha3() {
 
 }
 
-function graficaCondicionMedica()
-{
+function graficaCondicionMedica() {
     $.ajax({
-        type: 'post',
-        dataType: 'json',
-        url: API_GRAFICOS + 'graficoCondicionMedica',
-        data: null
-    })
-    .done(function( response ) {
-        if (true) {
-            let condicion = [];
-            let cantidad = [];
-            response.forEach(function( row ) {
-                condicion.push( row.condicion );
-                cantidad.push( row.recuentofilas );
-            });
+            type: 'post',
+            dataType: 'json',
+            url: API_GRAFICOS + 'graficoCondicionMedica',
+            data: null
+        })
+        .done(function(response) {
+            if (true) {
+                let condicion = [];
+                let cantidad = [];
+                response.forEach(function(row) {
+                    condicion.push(row.condicion);
+                    cantidad.push(row.recuentofilas);
+                });
 
-            grafico( 'graficoCondicionMedica', 'Cantidad de usuarios', 'bar', condicion, cantidad);
-        } else {
-            $( '#graficoCondicionMedica' ).remove();
-        }
-    })
-    .fail(function( jqXHR ) {
-    // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-        if ( jqXHR.status == 200 ) {
-            console.log( jqXHR.responseText );
-        } else {
-            console.log( jqXHR.status + ' ' + jqXHR.statusText );
-        }
-    });
+                grafico('graficoCondicionMedica', 'Cantidad de usuarios', 'bar', condicion, cantidad);
+            } else {
+                $('#graficoCondicionMedica').remove();
+            }
+        })
+        .fail(function(jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
 }
 
 function graficoTop5Medicamentos() {
     $.ajax({
-        type: 'post',
-        url: API_GRAFICOS + 'graficoTop5Medicamentos',
-        dataType: 'json'
-    })
-    .done(function( response ) {
-        if ( response.status == 1) {
-            let columns = [];
-            let values = [];
-            let data = response.dataset;
-            for (let i in data) {
-                columns.push(data[i].nombre);
-                values.push(data[i].cantidad);
+            type: 'post',
+            url: API_GRAFICOS + 'graficoTop5Medicamentos',
+            dataType: 'json'
+        })
+        .done(function(response) {
+            if (response.status == 1) {
+                let columns = [];
+                let values = [];
+                let data = response.dataset;
+                for (let i in data) {
+                    columns.push(data[i].nombre);
+                    values.push(data[i].cantidad);
+                }
+                grafico('graficoTop5Medicamentos', 'Top 5 medicamentos más solicitados', 'polarArea', columns, values);
+            } else {
+                swal(2, response.exception);
             }
-            grafico('graficoTop5Medicamentos', 'Top 5 medicamentos más solicitados', 'polarArea', columns, values);
-        } else {
-            swal(2, response.exception);
-        }
-    })
-    .fail(function( jqXHR ) {
-		// Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-        if ( jqXHR.status == 200 ) {
-            console.log( jqXHR.responseText );
-        } else {
-            console.log( jqXHR.status + ' ' + jqXHR.statusText );
-        }
-    });
+        })
+        .fail(function(jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
 }
 
 function graficoEstadoUsuarios() {
     $.ajax({
-        type: 'post',
-        url: API_GRAFICOS + 'graficoEstadoUsuarios',
-        dataType: 'json'
-    })
-    .done(function( response ) {
-        if ( response.status == 1) {
-            let columns = [];
-            let values = [];
-            let data = response.dataset;
-            console.log(data);
-            for (let i in data) {
-                columns.push(data[i].estado);
-                values.push(data[i].cantidad);
+            type: 'post',
+            url: API_GRAFICOS + 'graficoEstadoUsuarios',
+            dataType: 'json'
+        })
+        .done(function(response) {
+            if (response.status == 1) {
+                let columns = [];
+                let values = [];
+                let data = response.dataset;
+                console.log(data);
+                for (let i in data) {
+                    columns.push(data[i].estado);
+                    values.push(data[i].cantidad);
+                }
+                grafico('graficoEstadoUsuarios', 'Cantidad de usuarios por estado ISSS', 'pie', columns, values);
+            } else {
+                swal(2, response.exception);
             }
-            grafico('graficoEstadoUsuarios', 'Cantidad de usuarios por estado ISSS', 'pie', columns, values);
-        } else {
-            swal(2, response.exception);
-        }
-    })
-    .fail(function( jqXHR ) {
-		// Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-        if ( jqXHR.status == 200 ) {
-            console.log( jqXHR.responseText );
-        } else {
-            console.log( jqXHR.status + ' ' + jqXHR.statusText );
-        }
-    });
+        })
+        .fail(function(jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
 }
 
-function graficaProdecimientos()
-{
+function graficaProdecimientos() {
     $.ajax({
-        type: 'post',
-        dataType: 'json',
-        url: API_GRAFICOS + 'graficoProcedimientos',
-        data: null
-    })
-    .done(function( response ) {
-        if (true) {
-            let procedimiento = [];
-            let cantidad = [];
-            response.forEach(function( row ) {
-                procedimiento.push( row.procedimiento );
-                cantidad.push( row.recuentofilas );
-            });
+            type: 'post',
+            dataType: 'json',
+            url: API_GRAFICOS + 'graficoProcedimientos',
+            data: null
+        })
+        .done(function(response) {
+            if (true) {
+                let procedimiento = [];
+                let cantidad = [];
+                response.forEach(function(row) {
+                    procedimiento.push(row.procedimiento);
+                    cantidad.push(row.recuentofilas);
+                });
 
-            grafico( 'graficoProcedimiento', 'Cantidad de usuarios', 'bar', procedimiento, cantidad);
-        } else {
-            $( '#graficoProcedimiento' ).remove();
-        }
-    })
-    .fail(function( jqXHR ) {
-        if ( jqXHR.status == 200 ) {
-            console.log( jqXHR.responseText );
-        } else {
-            console.log( jqXHR.status + ' ' + jqXHR.statusText );
-        }
-    });
+                grafico('graficoProcedimiento', 'Cantidad de usuarios', 'bar', procedimiento, cantidad);
+            } else {
+                $('#graficoProcedimiento').remove();
+            }
+        })
+        .fail(function(jqXHR) {
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
 }
 
 

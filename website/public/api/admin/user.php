@@ -43,6 +43,12 @@ if (isset($_GET['action'])) {
             case 'login':
                 $result = $controller->login($_POST);
                 break;
+            case 'register_new_user':
+                $result = $controller->registerNewUser();
+                break;
+            case 'reg_new_use':
+                $result = $controller->regNewUser($_POST);
+                break;
             case 'recoverPassword':
                 $result = $controller->recoverPassword($_POST);
                 break;

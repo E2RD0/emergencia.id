@@ -10,6 +10,11 @@ class User extends \Common\Controller
         $this->loadView('admin', 'registro', -1);
     }
 
+    public function new()
+    {
+        $this->loadView('admin', 'registerNewUser', -1);
+    }
+
     public function login()
     {
         $this->loadView('admin', 'login', -1);
