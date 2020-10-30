@@ -46,8 +46,7 @@ const newprofile = new Vue({
             info: {
                 idProfileToReceiveUpdates: 0,
             },
-            src:
-                "https://boostlikes-bc85.kxcdn.com/blog/wp-content/uploads/2019/08/No-Instagram-Profile-Pic.jpg",
+            src: "https://boostlikes-bc85.kxcdn.com/blog/wp-content/uploads/2019/08/No-Instagram-Profile-Pic.jpg",
             dataProfile: {
                 date: "",
                 name: "",
@@ -141,7 +140,7 @@ const newprofile = new Vue({
             generatingReport: false,
         };
     },
-    created: function () {
+    created: function() {
         this.getBlood();
         this.getIsss();
         this.getCountry();
@@ -154,83 +153,83 @@ const newprofile = new Vue({
         this.getConditions();
     },
     computed: {
-        calcProgressColor: function () {
-            return this.calcProgress <= 25
-                ? (this.progresscolor = "progress-bar-first")
-                : this.calcProgress <= 50
-                ? (this.progresscolor = "progress-bar-second")
-                : this.calcProgress <= 75
-                ? (this.progresscolor = "progress-bar-third")
-                : this.calcProgress <= 99
-                ? (this.progresscolor = "progress-bar-fourth")
-                : this.calcProgress == 100
-                ? (this.progresscolor = "progress-bar-fifth")
-                : "";
+        calcProgressColor: function() {
+            return this.calcProgress <= 25 ?
+                (this.progresscolor = "progress-bar-first") :
+                this.calcProgress <= 50 ?
+                (this.progresscolor = "progress-bar-second") :
+                this.calcProgress <= 75 ?
+                (this.progresscolor = "progress-bar-third") :
+                this.calcProgress <= 99 ?
+                (this.progresscolor = "progress-bar-fourth") :
+                this.calcProgress == 100 ?
+                (this.progresscolor = "progress-bar-fifth") :
+                "";
         },
-        calcProgressColorText: function () {
-            return this.calcProgress <= 25
-                ? (this.progresscolorText = "text-bar-one")
-                : this.calcProgress <= 50
-                ? (this.progresscolorText = "text-bar-two")
-                : this.calcProgress <= 75
-                ? (this.progresscolorText = "text-bar-three")
-                : this.calcProgress <= 99
-                ? (this.progresscolorText = "text-bar-four")
-                : this.calcProgress == 100
-                ? (this.progresscolorText = "text-bar-one")
-                : "";
+        calcProgressColorText: function() {
+            return this.calcProgress <= 25 ?
+                (this.progresscolorText = "text-bar-one") :
+                this.calcProgress <= 50 ?
+                (this.progresscolorText = "text-bar-two") :
+                this.calcProgress <= 75 ?
+                (this.progresscolorText = "text-bar-three") :
+                this.calcProgress <= 99 ?
+                (this.progresscolorText = "text-bar-four") :
+                this.calcProgress == 100 ?
+                (this.progresscolorText = "text-bar-one") :
+                "";
         },
-        calcProgress: function () {
+        calcProgress: function() {
             let value = 0;
-            this.dataProfile.name != ""
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.dataProfile.lastName != ""
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.dataProfile.document != ""
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.dataProfile.weight != ""
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.dataProfile.height != ""
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.addEmergencycontacts != ""
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.getDoctorContact != ""
-                ? (value = value + 4.545454545454545)
-                : "";
+            this.dataProfile.name != "" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.dataProfile.lastName != "" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.dataProfile.document != "" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.dataProfile.weight != "" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.dataProfile.height != "" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.addEmergencycontacts != "" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.getDoctorContact != "" ?
+                (value = value + 4.545454545454545) :
+                "";
             this.getMedicacion != "" ? (value = value + 4.545454545454545) : "";
-            this.dataProfile.donor != "Seleccionar"
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.dataProfile.isssEstatusSelected != "Seleccionar"
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.dataProfile.selectedIdBlood != "Seleccionar"
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.dataProfile.city != "Seleccionar"
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.dataProfile.province != ""
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.dataProfile.country != "Seleccionar"
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.dataProfile.direction != ""
-                ? (value = value + 4.545454545454545)
-                : "";
-            this.dataProfile.date != ""
-                ? (value = value + 4.545454545454545)
-                : "";
+            this.dataProfile.donor != "Seleccionar" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.dataProfile.isssEstatusSelected != "Seleccionar" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.dataProfile.selectedIdBlood != "Seleccionar" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.dataProfile.city != "Seleccionar" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.dataProfile.province != "" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.dataProfile.country != "Seleccionar" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.dataProfile.direction != "" ?
+                (value = value + 4.545454545454545) :
+                "";
+            this.dataProfile.date != "" ?
+                (value = value + 4.545454545454545) :
+                "";
             return Math.trunc(value);
         },
-        calcDate: function () {
+        calcDate: function() {
             fecha = this.dataProfile.date;
             var hoy = new Date();
             var cumpleanos = new Date(fecha);
@@ -242,7 +241,7 @@ const newprofile = new Vue({
             }
             return isNaN(edad) ? "" : edad + " años,";
         },
-        img: function () {
+        img: function() {
             //this.image = this.src;
             return this.src;
         },
@@ -277,18 +276,18 @@ const newprofile = new Vue({
                 //2.5 segundos para realizar actualización a la bd despues de terminar de escribir:)
             }, 2500);
         },
-        onFileSelected: function (event) {
+        onFileSelected: function(event) {
             this.selectedFile = event.target.files[0];
             this.showImage(this.selectedFile);
         },
-        showImage: function (file) {
+        showImage: function(file) {
             let reader = new FileReader();
             reader.onload = (e) => {
                 this.dataProfile.image = e.target.result;
             };
             reader.readAsDataURL(file);
         },
-        addContactFromForm: function () {
+        addContactFromForm: function() {
             this.addEmergencycontacts.push({
                 name: this.addNewContactForm.name,
                 relacion: this.addNewContactForm.relacion,
@@ -298,47 +297,47 @@ const newprofile = new Vue({
             });
             this.addNewContactForm = [];
         },
-        seleccionarSangre: function (recive) {
+        seleccionarSangre: function(recive) {
             //console.log(recive);
         },
-        getBlood: function () {
+        getBlood: function() {
             axios.get(endPoint + "getBlood").then((response) => {
                 this.blood = response.data;
             });
         },
-        getIsss: function () {
+        getIsss: function() {
             axios.get(endPoint + "getIssEstatus").then((response) => {
                 this.issEstatus = response.data;
             });
         },
-        getCountry: function () {
+        getCountry: function() {
             axios.get(endPoint + "getCountry").then((response) => {
                 this.countryList = response.data;
             });
         },
-        getCity: function () {
+        getCity: function() {
             axios
                 .get(endPoint + "getCity&country=" + this.dataProfile.country)
                 .then((response) => {
                     this.cityList = response.data;
                     const param = this.cityList.find(
                         (countryEstatus) =>
-                            countryEstatus.id_pais_estado ===
-                            this.idToLoadEstastus
+                        countryEstatus.id_pais_estado ===
+                        this.idToLoadEstastus
                     );
                     //console.log(param.id_pais_estado)
                     this.dataProfile.city = param.id_pais_estado;
                     this.loaderTest = false;
                 });
         },
-        toFormData: function (obj) {
+        toFormData: function(obj) {
             var form_data = new FormData();
             for (var key in obj) {
                 form_data.append(key, obj[key]);
             }
             return form_data;
         },
-        updateInformation: function () {
+        updateInformation: function() {
             //console.log("Hi i´m a update method")
             var formData = this.toFormData(this.dataProfile);
             axios
@@ -349,15 +348,15 @@ const newprofile = new Vue({
                 })
                 .then((response) => console.log("Actualizado correctamente"));
         },
-        getUri: function () {
+        getUri: function() {
             let url = location.href.split("/").pop();
             this.dataProfile.idProfile = url;
             this.addNewContactForm.id_p_m = url;
         },
-        changeList: function () {
+        changeList: function() {
             //this.dataProfile.list ? this.dataProfile.list = false : this.dataProfile.list = true
         },
-        getInformationToUpdate: function () {
+        getInformationToUpdate: function() {
             this.info.idProfileToReceiveUpdates = location.href
                 .split("/")
                 .pop();
@@ -371,60 +370,60 @@ const newprofile = new Vue({
                 })
                 .then((response) => this.prepareToShowInformation(response));
         },
-        prepareToShowInformation: function (res) {
+        prepareToShowInformation: function(res) {
             //console.log(res.data)
             //console.log(res.data[0].email)
-            res.data[0].fecha_nacimiento == null
-                ? (this.dataProfile.date = "")
-                : (this.dataProfile.date = res.data[0].fecha_nacimiento);
-            res.data[0].nombres == null
-                ? (this.dataProfile.name = "")
-                : (this.dataProfile.name = res.data[0].nombres);
-            res.data[0].apellidos == null
-                ? (this.dataProfile.lastName = "")
-                : (this.dataProfile.lastName = res.data[0].apellidos);
-            res.data[0].id_tipo_sangre == null
-                ? (this.dataProfile.selectedIdBlood = "Seleccionar")
-                : (this.dataProfile.selectedIdBlood =
-                      res.data[0].id_tipo_sangre);
-            res.data[0].es_donador == true
-                ? (this.dataProfile.donor = true)
-                : (this.dataProfile.donor = false);
-            res.data[0].documento_identidad == null
-                ? (this.dataProfile.document = "")
-                : (this.dataProfile.document = res.data[0].documento_identidad);
-            res.data[0].id_estado_isss == null
-                ? (this.dataProfile.isssEstatusSelected = "Seleccionar")
-                : (this.dataProfile.isssEstatusSelected =
-                      res.data[0].id_estado_isss);
-            res.data[0].peso == null
-                ? (this.dataProfile.weight = "")
-                : (this.dataProfile.weight = res.data[0].peso);
-            res.data[0].estatura == null
-                ? (this.dataProfile.height = "")
-                : (this.dataProfile.height = res.data[0].estatura);
-            res.data[0].id_pais == null
-                ? (this.countrySelect = "Seleccionar")
-                : (this.countrySelect = res.data[0].id_pais);
-            res.data[0].id_pais_estado == null
-                ? (this.idToLoadEstastus = "Seleccionar")
-                : (this.idToLoadEstastus = res.data[0].id_pais_estado);
-            res.data[0].ciudad == null
-                ? (this.dataProfile.province = "")
-                : (this.dataProfile.province = res.data[0].ciudad);
-            res.data[0].direccion == null
-                ? (this.dataProfile.direction = "")
-                : (this.dataProfile.direction = res.data[0].direccion);
-            res.data[0].listado == null
-                ? (this.dataProfile.list = "")
-                : (this.dataProfile.list = res.data[0].listado);
+            res.data[0].fecha_nacimiento == null ?
+                (this.dataProfile.date = "") :
+                (this.dataProfile.date = res.data[0].fecha_nacimiento);
+            res.data[0].nombres == null ?
+                (this.dataProfile.name = "") :
+                (this.dataProfile.name = res.data[0].nombres);
+            res.data[0].apellidos == null ?
+                (this.dataProfile.lastName = "") :
+                (this.dataProfile.lastName = res.data[0].apellidos);
+            res.data[0].id_tipo_sangre == null ?
+                (this.dataProfile.selectedIdBlood = "Seleccionar") :
+                (this.dataProfile.selectedIdBlood =
+                    res.data[0].id_tipo_sangre);
+            res.data[0].es_donador == true ?
+                (this.dataProfile.donor = true) :
+                (this.dataProfile.donor = false);
+            res.data[0].documento_identidad == null ?
+                (this.dataProfile.document = "") :
+                (this.dataProfile.document = res.data[0].documento_identidad);
+            res.data[0].id_estado_isss == null ?
+                (this.dataProfile.isssEstatusSelected = "Seleccionar") :
+                (this.dataProfile.isssEstatusSelected =
+                    res.data[0].id_estado_isss);
+            res.data[0].peso == null ?
+                (this.dataProfile.weight = "") :
+                (this.dataProfile.weight = res.data[0].peso);
+            res.data[0].estatura == null ?
+                (this.dataProfile.height = "") :
+                (this.dataProfile.height = res.data[0].estatura);
+            res.data[0].id_pais == null ?
+                (this.countrySelect = "Seleccionar") :
+                (this.countrySelect = res.data[0].id_pais);
+            res.data[0].id_pais_estado == null ?
+                (this.idToLoadEstastus = "Seleccionar") :
+                (this.idToLoadEstastus = res.data[0].id_pais_estado);
+            res.data[0].ciudad == null ?
+                (this.dataProfile.province = "") :
+                (this.dataProfile.province = res.data[0].ciudad);
+            res.data[0].direccion == null ?
+                (this.dataProfile.direction = "") :
+                (this.dataProfile.direction = res.data[0].direccion);
+            res.data[0].listado == null ?
+                (this.dataProfile.list = "") :
+                (this.dataProfile.list = res.data[0].listado);
             this.loaderTest = false;
         },
-        closeProfile: function () {
+        closeProfile: function() {
             window.location = this.redirect;
         },
         //addNewContactForm
-        getContacts: function () {
+        getContacts: function() {
             var formData = this.toFormData(this.info);
             axios
                 .post(endPoint + "showContact", formData, {
@@ -436,7 +435,7 @@ const newprofile = new Vue({
                     (response) => (this.addEmergencycontacts = response.data)
                 );
         },
-        createNewContact: function () {
+        createNewContact: function() {
             var formData = this.toFormData(this.addNewContactForm);
             axios
                 .post(endPoint + "newContact", formData, {
@@ -452,7 +451,7 @@ const newprofile = new Vue({
                     )
                 );
         },
-        asignAllId: function () {
+        asignAllId: function() {
             this.addDoctorContact.id_perfil_medico = location.href
                 .split("/")
                 .pop();
@@ -462,7 +461,7 @@ const newprofile = new Vue({
             this.addNewContactForm.id_p_m = location.href.split("/").pop();
             this.addCondition.id_perfil_medico = location.href.split("/").pop();
         },
-        addDoctor: function () {
+        addDoctor: function() {
             var formData = this.toFormData(this.addDoctorContact);
             axios
                 .post(endPoint + "addDoctor", formData, {
@@ -478,7 +477,7 @@ const newprofile = new Vue({
                     )
                 );
         },
-        getDoctor: function () {
+        getDoctor: function() {
             var formData = this.toFormData(this.info);
             axios
                 .post(endPoint + "getDoctor", formData, {
@@ -488,7 +487,7 @@ const newprofile = new Vue({
                 })
                 .then((response) => (this.getDoctorContact = response.data));
         },
-        noNumbers: function () {
+        noNumbers: function() {
             key = e.keyCode || e.which;
             tecla = String.fromCharCode(key).toLowerCase();
             letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
@@ -506,7 +505,7 @@ const newprofile = new Vue({
                 return false;
             }
         },
-        getM: function () {
+        getM: function() {
             var formData = this.toFormData(this.info);
             axios
                 .post(endPoint + "getMedication", formData, {
@@ -516,7 +515,7 @@ const newprofile = new Vue({
                 })
                 .then((response) => (this.getMedicacion = response.data));
         },
-        addMedicament: function () {
+        addMedicament: function() {
             var formData = this.toFormData(this.addMedicacion);
             axios
                 .post(endPoint + "addMedication", formData, {
@@ -532,7 +531,7 @@ const newprofile = new Vue({
                     )
                 );
         },
-        getConditions: function () {
+        getConditions: function() {
             var formData = this.toFormData(this.info);
             axios
                 .post(endPoint + "loadCondition", formData, {
@@ -542,7 +541,7 @@ const newprofile = new Vue({
                 })
                 .then((response) => (this.getCondition = response.data));
         },
-        addCon: function () {
+        addCon: function() {
             var formData = this.toFormData(this.addCondition);
             axios
                 .post(endPoint + "addNewCondition", formData, {
@@ -555,15 +554,15 @@ const newprofile = new Vue({
                     this.getConditions()
                 );
         },
-        changeId: function (p) {
+        changeId: function(p) {
             console.log(p);
             this.idToDeleteContact.id = p;
         },
-        changeIdContactDoctor: function (p) {
+        changeIdContactDoctor: function(p) {
             console.log(p);
             this.idToDeleteContactDoctor.id = p;
         },
-        deleteContact: function (parameter) {
+        deleteContact: function(parameter) {
             this.idToDeleteContact.text = "Cargando...";
             var formData = this.toFormData(this.idToDeleteContact);
             axios
@@ -580,7 +579,7 @@ const newprofile = new Vue({
                     )
                 );
         },
-        deleteContactDoctor: function (parameter) {
+        deleteContactDoctor: function(parameter) {
             this.idToDeleteContactDoctor.text = "Cargando...";
             var formData = this.toFormData(this.idToDeleteContactDoctor);
             axios
@@ -598,7 +597,7 @@ const newprofile = new Vue({
                 );
         },
         reporte(event, type) {
-            if (this.generatingReport === false){
+            if (this.generatingReport === false) {
                 this.generatingReport = true;
                 let formData = this.toFormData({ id: this.dataProfile.idProfile });
                 event.target.innerHTML =

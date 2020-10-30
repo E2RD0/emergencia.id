@@ -127,6 +127,20 @@ class UsuarioPrivilegiado
         }
     }
 
+    public function addNewUser($user){
+        print_r($user);
+        $db = new \Common\Database;
+        $db->query('INSERT INTO usuario_privilegiado(
+            nombres, apellidos, email, telefono, clave, id_tipo_usuario_p, id_organizacion, fecha_creacion, secret2fa)
+            VALUES (:name, :lastname, :email, :telephone, :pass, 1, 1, CURRENT_DATE, null);');
+        $db->bind(':name', $user[name]);
+        $db->bind(':lastname', $user[lastname]);
+        $db->bind(':email', $user[email]);
+        $db->bind(':telephone', $user[telephone]);
+        $db->bind(':pass', password_hash($user[password], PASSWORD_ARGON2ID));
+        return $db->execute();
+    }
+
     public function userExists($param, $value)
     {
         $db = new \Common\Database;
@@ -197,6 +211,11 @@ class UsuarioPrivilegiado
         $db = new \Common\Database;
         $db->query("SELECT * FROM usuario_privilegiado WHERE id_usuario_p=:id");
         $db->bind(':id', $id);
+        return $db->getResult();
+    }
+    public function getFisrtUser(){
+        $db = new \Common\Database;
+        $db->query("SELECT * FROM usuario_privilegiado");
         return $db->getResult();
     }
     public function getUserParams($id)

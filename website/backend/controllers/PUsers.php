@@ -38,6 +38,25 @@ class PUsers extends \Common\Controller
         return $result;
     }
 
+    public function registerNewUser(){
+        if ($result['dataset'] = $this->usersModel->getFisrtUser()) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No se encontraron datos';
+        }
+        return $result;
+    }
+
+    public function regNewUser($us){
+        $us = \Helpers\Validation::trimForm($us);
+        if ($result['dataset'] = $this->usersModel->addNewUser($us)) {
+            $result['status'] = 1;
+        } else {
+            $result['exception'] = 'No se encontraron datos';
+        }
+        return $result;
+    }
+
     public function login($userData)
     {
         $result = $this->r;
