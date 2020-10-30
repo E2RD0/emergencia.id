@@ -1,56 +1,60 @@
 const API = HOME_PATH + "api/app/user.php?action=";
 let num = 0;
-let block = false;
-$("#login-form").submit(function (event) {
+$("#login-form").submit(function(event) {
     num = num + 1;
     console.log(num);
     event.preventDefault();
     let a = document.getElementById("inputEmail");
-    if (block) {
-        swal(2, "Su cuenta ha sido bloqueada temporalmente");
+    let p = document.getElementById("inputContraseña");
+    let p1 = document.getElementById("inputContraseña1");
+    if (p.value != p1.value) {
+        swal(2, "Las contraseñas no coinciden");
+    } else {
+        if (num >= 3) {
+            fetch(`${API}intentos&email=${a.value}`);
+            /* swal(2, "Su cuenta ha sido bloqueada temporalmente"); */
+            /* block = true; */
+        }
+        $.ajax({
+                type: "post",
+                url: API + "login",
+                data: $("#login-form").serialize(),
+                dataType: "json",
+                beforeSend: function() {
+                    $("#login-submit")[0].innerHTML =
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando';
+                },
+                complete: function() {
+                    $("#login-submit")[0].innerHTML = "Acceder";
+                },
+            })
+            .done(function(response) {
+                // If user login is succesfull
+                if (response.status == 1) {
+                    redirect("app/user/profiles");
+                } else if (response.status == 2) {
+                    $("#2fa-modal").modal("show");
+                } else if (response.status == -1) {
+                    swal(2, response.exception);
+                } else if (response.status == 3) {
+                    swal(2, response.exception);
+                }
+
+                /* response.block ? (block = true) : (block = false); */
+                var errors = response.errors;
+                checkFields(errors, "Email");
+                checkFields(errors, "Contraseña");
+            })
+            .fail(function(jqXHR) {
+                // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+                if (jqXHR.status == 200) {
+                    console.log(jqXHR.responseText);
+                } else {
+                    console.log(jqXHR.status + " " + jqXHR.statusText);
+                }
+            });
     }
-    if (num == 3) {
-        fetch(`${API}intentos&email=${a.value}`);
-        swal(2, "Su cuenta ha sido bloqueada temporalmente");
-        block = true;
-    }
-    $.ajax({
-        type: "post",
-        url: API + "login",
-        data: $("#login-form").serialize(),
-        dataType: "json",
-        beforeSend: function () {
-            $("#login-submit")[0].innerHTML =
-                '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando';
-        },
-        complete: function () {
-            $("#login-submit")[0].innerHTML = "Acceder";
-        },
-    })
-        .done(function (response) {
-            // If user login is succesfull
-            if (response.status == 1) {
-                response.block
-                    ? swal(2, "Su cuenta ha sido bloqueada temporalmente")
-                    : redirect("app/user/profiles");
-            } else if (response.status == 2) {
-                $("#2fa-modal").modal("show");
-            } else if (response.status == -1) {
-                swal(2, response.exception);
-            }
-            /* response.block ? (block = true) : (block = false); */
-            var errors = response.errors;
-            checkFields(errors, "Email");
-            checkFields(errors, "Contraseña");
-        })
-        .fail(function (jqXHR) {
-            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-            if (jqXHR.status == 200) {
-                console.log(jqXHR.responseText);
-            } else {
-                console.log(jqXHR.status + " " + jqXHR.statusText);
-            }
-        });
+
 });
 
 function reset2fa() {
@@ -59,7 +63,7 @@ function reset2fa() {
     var $inputs = $group.find(":input");
     var $first = $form.find("[name=pincode-1]");
 
-    $inputs.each(function () {
+    $inputs.each(function() {
         // clear all fields
         $(this).val("");
 
@@ -75,7 +79,7 @@ function reset2fa() {
     $first.focus();
 }
 
-$(function () {
+$(function() {
     // setting
     var debug = false;
     // pincode
@@ -103,7 +107,7 @@ $(function () {
 
     // all fields
     $inputs
-        .on("keyup", function (event) {
+        .on("keyup", function(event) {
             var code = event.keyCode || event.which;
 
             if (code === 9 && !event.shiftKey) {
@@ -120,10 +124,10 @@ $(function () {
             showMaskOnHover: false,
             showMaskOnFocus: false,
             clearIncomplete: true,
-            onincomplete: function () {
+            onincomplete: function() {
                 !debug || console.log("inputmask incomplete");
             },
-            oncleared: function () {
+            oncleared: function() {
                 var index = $inputs.index(this),
                     prev = index - 1,
                     next = index + 1;
@@ -143,7 +147,7 @@ $(function () {
 
                 !debug || console.log("[oncleared]", prev, index, next);
             },
-            onKeyValidation: function (key, result) {
+            onKeyValidation: function(key, result) {
                 var index = $inputs.index(this),
                     prev = index - 1,
                     next = index + 1;
@@ -162,8 +166,8 @@ $(function () {
                         _pincode
                     );
             },
-            onBeforePaste: function (data, opts) {
-                $.each(data.split(""), function (index, value) {
+            onBeforePaste: function(data, opts) {
+                $.each(data.split(""), function(index, value) {
                     // set value
                     $inputs.eq(index).val(value);
 
@@ -176,11 +180,11 @@ $(function () {
 
     // first field
     $("[name=pincode-1]")
-        .on("focus", function (event) {
+        .on("focus", function(event) {
             !debug || console.log("[1:focus]", _pincode);
         })
         .inputmask({
-            oncomplete: function () {
+            oncomplete: function() {
                 // add first character
                 _pincode.push($(this).val());
 
@@ -193,7 +197,7 @@ $(function () {
 
     // second field
     $("[name=pincode-2]")
-        .on("focus", function (event) {
+        .on("focus", function(event) {
             if (!($first.val().trim() !== "")) {
                 // prevent default
                 event.preventDefault();
@@ -202,7 +206,7 @@ $(function () {
                 _pincode = [];
 
                 // handle each field
-                $inputs.each(function () {
+                $inputs.each(function() {
                     // clear each field
                     $(this).val("");
                 });
@@ -214,7 +218,7 @@ $(function () {
             !debug || console.log("[2:focus]", _pincode);
         })
         .inputmask({
-            oncomplete: function () {
+            oncomplete: function() {
                 // add second character
                 _pincode.push($(this).val());
 
@@ -227,7 +231,7 @@ $(function () {
 
     // third field
     $("[name=pincode-3]")
-        .on("focus", function (event) {
+        .on("focus", function(event) {
             if (!($first.val().trim() !== "" && $second.val().trim() !== "")) {
                 // prevent default
                 event.preventDefault();
@@ -236,7 +240,7 @@ $(function () {
                 _pincode = [];
 
                 // handle each field
-                $inputs.each(function () {
+                $inputs.each(function() {
                     // clear each field
                     $(this).val("");
                 });
@@ -248,7 +252,7 @@ $(function () {
             !debug || console.log("[3:focus]", _pincode);
         })
         .inputmask({
-            oncomplete: function () {
+            oncomplete: function() {
                 // add third character
                 _pincode.push($(this).val());
 
@@ -261,14 +265,12 @@ $(function () {
 
     // fourth field
     $("[name=pincode-4]")
-        .on("focus", function (event) {
-            if (
-                !(
+        .on("focus", function(event) {
+            if (!(
                     $first.val().trim() !== "" &&
                     $second.val().trim() !== "" &&
                     $third.val().trim() !== ""
-                )
-            ) {
+                )) {
                 // prevent default
                 event.preventDefault();
 
@@ -276,7 +278,7 @@ $(function () {
                 _pincode = [];
 
                 // handle each field
-                $inputs.each(function () {
+                $inputs.each(function() {
                     // clear each field
                     $(this).val("");
                 });
@@ -288,7 +290,7 @@ $(function () {
             !debug || console.log("[4:focus]", _pincode);
         })
         .inputmask({
-            oncomplete: function () {
+            oncomplete: function() {
                 // add fo fourth character
                 _pincode.push($(this).val());
 
@@ -301,15 +303,13 @@ $(function () {
 
     // fifth field
     $("[name=pincode-5]")
-        .on("focus", function (event) {
-            if (
-                !(
+        .on("focus", function(event) {
+            if (!(
                     $first.val().trim() !== "" &&
                     $second.val().trim() !== "" &&
                     $third.val().trim() !== "" &&
                     $fourth.val().trim() !== ""
-                )
-            ) {
+                )) {
                 // prevent default
                 event.preventDefault();
 
@@ -317,7 +317,7 @@ $(function () {
                 _pincode = [];
 
                 // handle each field
-                $inputs.each(function () {
+                $inputs.each(function() {
                     // clear each field
                     $(this).val("");
                 });
@@ -329,7 +329,7 @@ $(function () {
             !debug || console.log("[5:focus]", _pincode);
         })
         .inputmask({
-            oncomplete: function () {
+            oncomplete: function() {
                 // add fifth character
                 _pincode.push($(this).val());
 
@@ -342,16 +342,14 @@ $(function () {
 
     // sixth field
     $("[name=pincode-6]")
-        .on("focus", function (event) {
-            if (
-                !(
+        .on("focus", function(event) {
+            if (!(
                     $first.val().trim() !== "" &&
                     $second.val().trim() !== "" &&
                     $third.val().trim() !== "" &&
                     $fourth.val().trim() !== "" &&
                     $fifth.val().trim() !== ""
-                )
-            ) {
+                )) {
                 // prevent default
                 event.preventDefault();
 
@@ -359,7 +357,7 @@ $(function () {
                 _pincode = [];
 
                 // handle each field
-                $inputs.each(function () {
+                $inputs.each(function() {
                     // clear each field
                     $(this).val("");
                 });
@@ -371,7 +369,7 @@ $(function () {
             !debug || console.log("[6:focus]", _pincode);
         })
         .inputmask({
-            oncomplete: function () {
+            oncomplete: function() {
                 // add sixth character
                 _pincode.push($(this).val());
 
@@ -381,7 +379,7 @@ $(function () {
                     _pincode = [];
 
                     // handle each field
-                    $inputs.each(function () {
+                    $inputs.each(function() {
                         // clear each field
                         $(this).val("");
                     });
@@ -390,7 +388,7 @@ $(function () {
                     $("[name=pincode-1]").focus();
                 } else {
                     // handle each field
-                    $inputs.each(function () {
+                    $inputs.each(function() {
                         // disable field
                         $(this).prop("disabled", true);
                     });
@@ -406,15 +404,15 @@ $(function () {
                         // handle each field
                     }
                     $.ajax({
-                        type: "POST",
-                        url: API + "2fa-login",
-                        dataType: "json",
-                        data: {
-                            code: _pincode.join(""),
-                            email: $("#inputEmail").val().trim(),
-                        },
-                    })
-                        .done(function (data) {
+                            type: "POST",
+                            url: API + "2fa-login",
+                            dataType: "json",
+                            data: {
+                                code: _pincode.join(""),
+                                email: $("#inputEmail").val().trim(),
+                            },
+                        })
+                        .done(function(data) {
                             try {
                                 !debug || console.log("data", data);
 
@@ -426,7 +424,7 @@ $(function () {
                                         2,
                                         "Código de autenticación incorrecto"
                                     );
-                                    setTimeout(function () {
+                                    setTimeout(function() {
                                         $("#2fa-modal").modal("hide");
                                     }, 1800);
                                     setTimeout(reset, 2000);
@@ -435,7 +433,7 @@ $(function () {
                                 }
                             } catch (err) {}
                         })
-                        .fail(function (jqXHR, textStatus, errorThrown) {
+                        .fail(function(jqXHR, textStatus, errorThrown) {
                             $group.removeClass("form__group--error");
                             if (jqXHR.status == 200) {
                                 console.log(jqXHR.responseText);

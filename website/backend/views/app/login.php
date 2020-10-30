@@ -26,6 +26,12 @@ template::headerLogin('Inicio de sesión');
                         <div class="line"></div>
                         <p class="form-error-label" id="errorContraseña"></p>
                     </div>
+                    <label class="text-help" for="inputContraseña">Repetir contraseña</label>
+                    <div class="input-group mb-4">
+                        <input class="textfield" type="password" class="form-control" id="inputContraseña1" required name="password1" aria-describedby="basic-addon3">
+                        <div class="line"></div>
+                        <p class="form-error-label" id="errorContraseña"></p>
+                    </div>
                     <div class="row mb-md-4 mb-2">
                         <!--Para computadora-->
                         <div class="col-12 col-md-8 text-center text-lg-right d-none d-sm-block">
