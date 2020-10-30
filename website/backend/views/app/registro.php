@@ -25,6 +25,7 @@ template::headerLogin('Registro');
                         <div class="line"></div>
                         <p class="form-error-label" id="errorContraseña"></p>
                     </div>
+                    <div class="g-recaptcha" data-sitekey="6LcGpNUZAAAAAE7YAJKT84Yas2YkUgr10nO9qcqw"></div>
                     <div class="row mb-md-4 mb-2">
                         <div class="col-12 text-sm-right text-center mb-2">
                             <button type="submit" class="button" id="register-submit">Continuar</button>
@@ -41,5 +42,5 @@ template::headerLogin('Registro');
 </div>
 
 <?php
-template::footerLogin('signup.js');
+template::footerLogin('signup.js', '../../vendor/api.js');
 ?>

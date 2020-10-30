@@ -14,6 +14,11 @@ class Users extends \Common\Controller
         $email = $userData['email'];
         $password = $userData['password'];
 
+        $secret="6LcGpNUZAAAAADHUhpjnvTQdfDynx0FzGLEgz1ne";
+        $response=isset($userData["captcha"]) ? $userData["captcha"] : false;
+
+        $captchaResponse = null;
+
         $user = new Usuario;
         $errors = [];
         $errors = $user->setEmail($email) === true ? $errors : array_merge($errors, $user->setEmail($email));
@@ -21,14 +26,30 @@ class Users extends \Common\Controller
 
         //If there aren't any errors
         if (!boolval($errors)) {
-            if ($this->usersModel->registerUser($user)) {
-                $userInfo = $this->usersModel->checkPassword($email);
-                $this->loginSession($userInfo->id_usuario, $email);
-                $result['status'] = 1;
-                $result['message'] = 'Usuario registrado correctamente';
-            } else {
+            if($response !==false){
+                $verify=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
+                $captcha_success=json_decode($verify);
+                if ($captcha_success->success==true) {
+                    $captchaResponse = true;
+                }
+                else {
+                    $captchaResponse = false;
+                }
+            }
+            if($captchaResponse === null || $captchaResponse === true){
+                if ($this->usersModel->registerUser($user)) {
+                    $userInfo = $this->usersModel->checkPassword($email);
+                    $this->loginSession($userInfo->id_usuario, $email);
+                    $result['status'] = 1;
+                    $result['message'] = 'Usuario registrado correctamente';
+                } else {
+                    $result['status'] = -1;
+                    $result['exception'] = \Common\Database::$exception;
+                }
+            }
+            else{
                 $result['status'] = -1;
-                $result['exception'] = \Common\Database::$exception;
+                $result['exception'] = 'Debes comprobar que no eres un robot';
             }
         } else {
             $result['status'] = 0;

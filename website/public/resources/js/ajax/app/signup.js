@@ -11,7 +11,7 @@ $("#register-form").submit(function (event) {
     $.ajax({
         type: "post",
         url: API + "signup",
-        data: $("#register-form").serialize(),
+        data: $("#register-form").serialize()+"&captcha="+grecaptcha.getResponse(),
         dataType: "json",
         beforeSend: function () {
             $("#register-submit")[0].innerHTML =
